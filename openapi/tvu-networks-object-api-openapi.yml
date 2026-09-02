@@ -1,0 +1,2241 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Object API
+  description: Object API operations of the TVU Networks public HTTP API, assembled verbatim from the
+    per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://mma.tvunetworks.com
+  description: Apifox server "MMA"
+paths:
+  /api/objectd/v1/attr:
+    put:
+      summary: update object attributes
+      deprecated: false
+      description: ''
+      operationId: /api/objectd/v1/attr
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                actions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      objectId:
+                        type: string
+                        description: The objectId to update. The parameters `objectId` and `objectIdList`
+                          must include at least one of them. | | objectIdList | yes | []string | The objectIds
+                          to update. The parameters `objectId` and `objectIdList` must include at least
+                          one of them.|
+                      objectIdList:
+                        type: array
+                        items:
+                          type: string
+                        description: The objectId List to update. The parameters `objectId` and `objectIdList`
+                          must include at least one of them. | | objectIdList | yes | []string | The objectIds
+                          to update. The parameters `objectId` and `objectIdList` must include at least
+                          one of them.|
+                      attrName:
+                        type: string
+                        description: 'Properties to be updated are currently supported:
+
+                          `tag` Update the tag list.
+
+                          `admin.users` Update the user list for admin permissions.
+
+                          `admin.groups` Update the group list for admin permissions.
+
+                          `owner.users` Update the user list for owner permissions.
+
+                          `owner.groups` Update the group list for owner permissions.
+
+                          `feature.{featureName}.users` Update the user list for feature permissions,
+                          where featureName is the name of the corresponding feature.
+
+                          `feature.{featureName}.groups`  Update the group list for feature permissions,
+                          where featureName is the name of the corresponding feature.
+
+                          `attributes.{attributesName}`  Update attributes, where attributesName is the
+                          name of the corresponding attribute.'
+                      operator:
+                        type: string
+                        description: 'Currently, three types of update operations are supported:  `add`
+                          means to add a new element, `remove` means  to delete a specific element, `update`
+                          means to overwrite all values. `remove_all` means to delete all element.'
+                      attrValue:
+                        type: array
+                        items:
+                          type: string
+                        description: The attribute values to be changed.
+                    required:
+                    - objectId
+                    - attrName
+                    - operator
+                    - attrValue
+                    - objectIdList
+                    x-apifox-orders:
+                    - objectId
+                    - objectIdList
+                    - attrName
+                    - operator
+                    - attrValue
+                  description: Update the task list
+              required:
+              - actions
+              x-apifox-orders:
+              - actions
+            example:
+              actions:
+              - objectId: '1'
+                attrName: feature.takelive.groups
+                operator: remove_all
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                required:
+                - errorCode
+                - errorInfo
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+              example:
+                errorCode: '0x0'
+                errorInfo: Succ
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: 0TWm6z0znVGySCUfQa4dZ
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: 0TWm6z0znVGySCUfQa4dZ
+          scopes:
+            0TWm6z0znVGySCUfQa4dZ:
+              bearer: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782315-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782315.md
+    get:
+      summary: get objects' attribute
+      deprecated: false
+      description: ''
+      operationId: /api/objectd/v1/attr
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: objectIds
+        in: query
+        description: Object ID list.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attrName
+        in: query
+        description: 'Get attribute values, currently supported:
+
+          `attributes.{attributesName}`  get attributes, where attributesName is the name of the corresponding
+          attribute.
+
+          `attributes.{attributesName1}.{attributesName2}.{attributesName3}....` get more attributes'
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        objectId:
+                          type: string
+                          description: the ID of the Object
+                        attrName:
+                          type: string
+                          description: The attrName of the search. If there are multiple attributes obtained,
+                            only return the first attribute (this is done for compatibility, as it may
+                            be deleted at any time in the future)
+                        attrValue:
+                          type: array
+                          items:
+                            type: string
+                          description: the value of the attrName. If there are multiple attributes obtained,
+                            only return the first attribute (this is done for compatibility, as it may
+                            be deleted at any time in the future)
+                        attrList:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              attrName:
+                                type: string
+                              attrValue:
+                                type: string
+                            x-apifox-orders:
+                            - attrName
+                            - attrValue
+                          description: Multi-attribute list
+                      required:
+                      - objectId
+                      - attrList
+                      x-apifox-orders:
+                      - objectId
+                      - attrName
+                      - attrValue
+                      - attrList
+                    description: the result of the search
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Succ
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: MIMjJB3ScwoFqBgWMdgcm
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: MIMjJB3ScwoFqBgWMdgcm
+          scopes:
+            MIMjJB3ScwoFqBgWMdgcm:
+              bearer: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782318-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782318.md
+  /api/objectd/v1/attr/object:
+    get:
+      summary: Get objects with the attribute set to a specific value.
+      deprecated: false
+      description: Get object where the attribute equals a specific value.
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: sharerecording
+        in: query
+        description: ''
+        required: false
+        example: '"true"'
+        schema:
+          type: string
+      - name: publicslug
+        in: query
+        description: ''
+        required: false
+        example: '"true"'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      type: string
+                    description: the result of the search
+                  01K0BCJYQHTYCWATY4H3VBCZ3K:
+                    type: string
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                - 01K0BCJYQHTYCWATY4H3VBCZ3K
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+                - 01K0BCJYQHTYCWATY4H3VBCZ3K
+              example:
+                errorCode: '0x0'
+                errorInfo: Succ
+                result:
+                - 1031xxxxxxxx0951552
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-465089519-run
+      operationId: Get_objects_with_the_attribute_set_to_a_specific_value_465089519
+      x-source-doc: https://docs.tvunetworks.cn/api-465089519.md
+  /api/objectd/v1/attr/publicslug/true:
+    get:
+      summary: Get objects with the publicslug attribute set to true.
+      deprecated: false
+      description: Get objects with the publicslug attribute set to true.
+      operationId: /api/objectd/v1/attrv2
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      type: string
+                    description: the result of the search
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Succ
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: wjW8R6Ce6AVHcdyVwV1t8
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: wjW8R6Ce6AVHcdyVwV1t8
+          scopes:
+            wjW8R6Ce6AVHcdyVwV1t8:
+              bearer: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782321-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782321.md
+  /api/objectd/v1/attrv2:
+    post:
+      summary: get objects' single attribute
+      deprecated: false
+      description: get objects' single attribute value.
+      operationId: /api/objectd/v1/attrv2
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                objectIds:
+                  type: array
+                  items:
+                    type: string
+                attrName:
+                  type: string
+              required:
+              - objectIds
+              - attrName
+              x-apifox-orders:
+              - objectIds
+              - attrName
+            example:
+              objectIds:
+              - testobjectid
+              attrName: publicslug
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        objectId:
+                          type: string
+                          description: the ID of the Object
+                        attrValue:
+                          type: array
+                          items:
+                            type: string
+                          description: 'the value of the attrName. '
+                      required:
+                      - objectId
+                      x-apifox-orders:
+                      - objectId
+                      - attrValue
+                    description: the result of the search
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Succ
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: xCEQT7j-SDDUtrlggl0bN
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: xCEQT7j-SDDUtrlggl0bN
+          scopes:
+            xCEQT7j-SDDUtrlggl0bN:
+              bearer: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782319-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782319.md
+  /api/objectd/v1/o/{objectId}:
+    get:
+      summary: object
+      deprecated: false
+      description: Retrieve all attributes of an object using its objectID.
+      operationId: /api/objectd/v1/o/{objectId}
+      tags:
+      - Object API/RESTful/res.tvu.ai
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: objectId
+        in: path
+        description: Search for object ID.
+        required: true
+        example: '1031567587869343744'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: Error Code
+                  errorInfo:
+                    type: string
+                    description: Error Info
+                  data:
+                    type: object
+                    properties:
+                      admin:
+                        type: object
+                        properties: {}
+                        description: Admin information.
+                        x-apifox-orders: []
+                      createTimestamp:
+                        type: integer
+                        description: Create Time Stamp.
+                      deleteFlag:
+                        type: integer
+                        description: Delete Flag.
+                      description:
+                        type: string
+                        description: Description
+                      dmaEmbargo:
+                        type: boolean
+                      features:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            feature:
+                              type: string
+                            groups:
+                              type: array
+                              items:
+                                type: string
+                            users:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                          - feature
+                          - groups
+                          - users
+                          x-apifox-orders:
+                          - feature
+                          - groups
+                          - users
+                        description: Feature information.
+                      objectId:
+                        type: string
+                        description: Object Id.
+                      objectName:
+                        type: string
+                        description: Object Name.
+                      objectType:
+                        type: integer
+                        description: Object Type.
+                      origin:
+                        type: string
+                      owner:
+                        type: object
+                        properties:
+                          groups:
+                            type: array
+                            items:
+                              type: string
+                          users:
+                            type: array
+                            items:
+                              type: string
+                        required:
+                        - groups
+                        - users
+                        description: Owner information.
+                        x-apifox-orders:
+                        - groups
+                        - users
+                      updateTimestamp:
+                        type: integer
+                        description: Update Timestamp.
+                    required:
+                    - admin
+                    - createTimestamp
+                    - deleteFlag
+                    - description
+                    - dmaEmbargo
+                    - features
+                    - objectId
+                    - objectName
+                    - objectType
+                    - origin
+                    - owner
+                    - updateTimestamp
+                    x-apifox-orders:
+                    - admin
+                    - createTimestamp
+                    - deleteFlag
+                    - description
+                    - dmaEmbargo
+                    - features
+                    - objectId
+                    - objectName
+                    - objectType
+                    - origin
+                    - owner
+                    - updateTimestamp
+                required:
+                - errorCode
+                - errorInfo
+                - data
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - data
+              example:
+                errorCode: '0x0'
+                errorInfo: ''
+                data:
+                  admin: {}
+                  createTimestamp: 1716788770513
+                  deleteFlag: 0
+                  description: ''
+                  dmaEmbargo: false
+                  features:
+                  - feature: owner
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  - feature: livepreview
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  - feature: rec
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  - feature: takelive
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  objectId: '1031567587869343744'
+                  objectName: 60-1_MRO輪島
+                  objectType: 1
+                  origin: ''
+                  owner:
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  updateTimestamp: 1716788770513
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: XS2drDxN5BGY1qGm_ZV-Z
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: XS2drDxN5BGY1qGm_ZV-Z
+          scopes:
+            XS2drDxN5BGY1qGm_ZV-Z:
+              bearer: []
+      x-apifox-folder: Object API/RESTful/res.tvu.ai
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782322-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782322.md
+  /api/objectd/v1/object:
+    get:
+      summary: get object
+      deprecated: false
+      description: get object by id.
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: objectIds
+        in: query
+        description: The ID list of the object.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: 95cd9476f8d74ad0a4b2be0d78b0ccb1
+        schema:
+          type: string
+      - name: email
+        in: header
+        description: ''
+        required: true
+        example: aidenhuang@tvunetworks.com
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: 6913920FB3EE4E3EAD6A788423D0DF16
+        schema:
+          type: string
+      - name: tagvalue
+        in: header
+        description: ''
+        required: true
+        example: stage
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        owner:
+                          type: object
+                          properties:
+                            groups:
+                              type: array
+                              items:
+                                type: string
+                            users:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                          - groups
+                          - users
+                          x-apifox-orders:
+                          - groups
+                          - users
+                        features:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              feature:
+                                type: string
+                              groups:
+                                type: array
+                                items:
+                                  type: string
+                            required:
+                            - feature
+                            - groups
+                            x-apifox-orders:
+                            - feature
+                            - groups
+                        origin:
+                          type: string
+                        objectName:
+                          type: string
+                        admin:
+                          type: object
+                          properties:
+                            groups:
+                              type: array
+                              items:
+                                type: string
+                            users:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                          - groups
+                          - users
+                          x-apifox-orders:
+                          - groups
+                          - users
+                        description:
+                          type: string
+                        attributes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              attrValue:
+                                type: array
+                                items:
+                                  type: string
+                              attrName:
+                                type: string
+                            x-apifox-orders:
+                            - attrValue
+                            - attrName
+                        location:
+                          type: array
+                          items:
+                            type: string
+                        objectId:
+                          type: string
+                        updateTimestamp:
+                          type: integer
+                        createTimestamp:
+                          type: integer
+                        objectType:
+                          type: integer
+                      x-apifox-orders:
+                      - owner
+                      - features
+                      - origin
+                      - objectName
+                      - admin
+                      - description
+                      - attributes
+                      - location
+                      - objectId
+                      - updateTimestamp
+                      - createTimestamp
+                      - objectType
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: string
+                errorInfo: string
+                result:
+                - owner:
+                    groups:
+                    - string
+                    users:
+                    - string
+                  features:
+                  - feature: string
+                    groups:
+                    - string
+                  origin: string
+                  objectName: string
+                  admin:
+                    groups:
+                    - string
+                    users:
+                    - string
+                  description: string
+                  attributes:
+                  - attrValue:
+                    - string
+                    attrName: string
+                  location:
+                  - string
+                  objectId: string
+                  updateTimestamp: 0
+                  createTimestamp: 0
+                  objectType: 0
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: h1meg27OUWNeqLJTzp7EC
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: h1meg27OUWNeqLJTzp7EC
+          scopes:
+            h1meg27OUWNeqLJTzp7EC:
+              bearer: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782320-run
+      operationId: get_object_321782320
+      x-source-doc: https://docs.tvunetworks.cn/api-321782320.md
+  /api/objectd/v1/query:
+    post:
+      summary: notifyGroupsEvents
+      deprecated: false
+      description: ''
+      operationId: notifyGroupsEvents
+      tags:
+      - Object API/GraphQL/object
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groups:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      groupId:
+                        type: string
+                        description: 变化的groupId
+                      events:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            action:
+                              type: string
+                              description: 变化的操作类型 （add or delete）
+                            users:
+                              type: array
+                              items:
+                                type: string
+                              description: 变化的userId列表
+                          required:
+                          - action
+                          - users
+                          x-apifox-orders:
+                          - action
+                          - users
+                    required:
+                    - groupId
+                    - events
+                    x-apifox-orders:
+                    - groupId
+                    - events
+                  description: List of changed groups.
+              required:
+              - groups
+              x-apifox-orders:
+              - groups
+            example: "mutation{\n  notifyGroupsEvents(input:\n  {\n    groups: [\n      {\n        groupId:\
+              \ \"123344\",\n        events: [\n          {\n            action: \"delete\",\n       \
+              \     users: [\"11111\"]\n          }\n        ]\n      }\n    ]\n  }){\n    errorCode\n\
+              \    errorInfo\n  }\n}"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: Error code
+                  errorInfo:
+                    type: string
+                    description: Error message
+                required:
+                - errorCode
+                - errorInfo
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+              example:
+                data:
+                  notifyGroupsEvents:
+                    errorCode: '0x0'
+                    errorInfo: Succ
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: ki9DLM-SuqKr5jDe8tmCo
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: ki9DLM-SuqKr5jDe8tmCo
+          scopes:
+            ki9DLM-SuqKr5jDe8tmCo:
+              bearer: []
+      x-apifox-folder: Object API/GraphQL/object
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782279-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782279.md
+  /api/objectd/v1/t/{resourceType}/{tangibleId}:
+    get:
+      summary: tangible
+      deprecated: false
+      description: Retrieve tangible data using the tangible ID and parameters. Currently, we only use
+        tangibleId to obtain the data.
+      operationId: /api/objectd/v1/t/{resourceType}/{tangibleId}
+      tags:
+      - Object API/RESTful/res.tvu.ai
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: resourceType
+        in: path
+        description: Tangible IDs include project, slug, audio, NDI, R, Facebook, etc.
+        required: true
+        example: audio
+        schema:
+          type: string
+      - name: tangibleId
+        in: path
+        description: Special tangible IDs.
+        required: true
+        example: 7a9c95085b044a5aa4a960fc96c316ad
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: Error Code.
+                  errorInfo:
+                    type: string
+                    description: Error Infomation.
+                  data:
+                    type: object
+                    properties:
+                      tangibleId:
+                        type: string
+                        description: Tangible Id.
+                      tangibleType:
+                        type: string
+                        description: Tangible Type.
+                      tangibleName:
+                        type: string
+                        description: Tangible Name.
+                      extraInfo:
+                        type: object
+                        properties:
+                          abitrate:
+                            type: integer
+                            description: Audio bitrate.
+                          acls:
+                            type: string
+                            description: AWS file privilege.
+                          bucket:
+                            type: string
+                            description: Aws Bucket.
+                          bucketId:
+                            type: integer
+                            description: Aws Bucket Id.
+                          createTime:
+                            type: integer
+                            description: Create time in millionseconds.
+                          deleteFlag:
+                            type: boolean
+                            description: Delete Flag.
+                          driveId:
+                            type: string
+                            description: Drive Id.
+                          duration:
+                            type: integer
+                            description: The file duration.
+                          etag:
+                            type: string
+                            description: etag Info.
+                          file:
+                            type: boolean
+                          fileLength:
+                            type: integer
+                            description: The length of the file.
+                          id:
+                            type: string
+                          isDirectory:
+                            type: boolean
+                          isUserBucket:
+                            type: boolean
+                          isVirtual:
+                            type: boolean
+                          lastModified:
+                            type: integer
+                            description: Last modified time in milliseconds.
+                          name:
+                            type: string
+                            description: Object Name.
+                          objectId:
+                            type: string
+                            description: Object Id.
+                          objectKey:
+                            type: string
+                            description: Object Key.
+                          ownerId:
+                            type: string
+                            description: Owner Id.
+                          ownerType:
+                            type: string
+                            description: 'Owner Type. '
+                          pid:
+                            type: string
+                            description: P's Id.
+                          region:
+                            type: string
+                            description: AWS Region.
+                          suffix:
+                            type: string
+                          updateTime:
+                            type: integer
+                            description: Update time in milliseconds.
+                          uploadUser:
+                            type: string
+                            description: Upload User Info.
+                          url:
+                            type: string
+                            description: File path in AWS bucket.
+                          vbitrate:
+                            type: integer
+                            description: Video bitrate.
+                          visible:
+                            type: boolean
+                        required:
+                        - abitrate
+                        - acls
+                        - bucket
+                        - bucketId
+                        - createTime
+                        - deleteFlag
+                        - driveId
+                        - duration
+                        - etag
+                        - file
+                        - fileLength
+                        - id
+                        - isDirectory
+                        - isUserBucket
+                        - isVirtual
+                        - lastModified
+                        - name
+                        - objectId
+                        - objectKey
+                        - ownerId
+                        - ownerType
+                        - pid
+                        - region
+                        - suffix
+                        - updateTime
+                        - uploadUser
+                        - url
+                        - vbitrate
+                        - visible
+                        x-apifox-orders:
+                        - abitrate
+                        - acls
+                        - bucket
+                        - bucketId
+                        - createTime
+                        - deleteFlag
+                        - driveId
+                        - duration
+                        - etag
+                        - file
+                        - fileLength
+                        - id
+                        - isDirectory
+                        - isUserBucket
+                        - isVirtual
+                        - lastModified
+                        - name
+                        - objectId
+                        - objectKey
+                        - ownerId
+                        - ownerType
+                        - pid
+                        - region
+                        - suffix
+                        - updateTime
+                        - uploadUser
+                        - url
+                        - vbitrate
+                        - visible
+                    required:
+                    - tangibleId
+                    - tangibleType
+                    - tangibleName
+                    - extraInfo
+                    x-apifox-orders:
+                    - tangibleId
+                    - tangibleType
+                    - tangibleName
+                    - extraInfo
+                required:
+                - errorCode
+                - errorInfo
+                - data
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - data
+              example:
+                errorCode: '0x0'
+                errorInfo: ''
+                data:
+                  tangibleId: 7a9c95085b044a5aa4a960fc96c316ad
+                  tangibleType: audio
+                  tangibleName: 01 SHERO(2010臺北國際花卉博覽會指定主題曲).mp3
+                  extraInfo:
+                    abitrate: 320000
+                    acls: PublicRead
+                    bucket: pp-va-001
+                    bucketId: 35858706206720
+                    createTime: 1698220991
+                    deleteFlag: false
+                    driveId: 7bd71dd6987f48e9bef1354e03434afc
+                    duration: 191
+                    etag: 427ceda274c2cc272a8f541cd417a730
+                    file: true
+                    fileLength: 7675016
+                    id: 7a9c95085b044a5aa4a960fc96c316ad
+                    isDirectory: false
+                    isUserBucket: false
+                    isVirtual: false
+                    lastModified: 1698220991000
+                    name: 01 SHERO(2010臺北國際花卉博覽會指定主題曲).mp3
+                    objectId: '1166768933819265024'
+                    objectKey: '***LITERAL_REMOVED*** SHERO(2010臺北國際花卉博覽會指定主題曲).mp3'
+                    ownerId: d996a900fd6d402b92dea05f7c6f4ceb
+                    ownerType: '1'
+                    pid: '35858706206720'
+                    region: us-east-1
+                    suffix: mp3
+                    updateTime: 1698221016
+                    uploadUser: d996a900fd6d402b92dea05f7c6f4ceb
+                    url: https://pp-va-001.s3.amazonaws.com/***LITERAL_REMOVED***%20SHERO%282010%E8%87%BA%E5%8C%97%E5%9C%8B%E9%9A%9B%E8%8A%B1%E5%8D%89%E5%8D%9A%E8%A6%BD%E6%9C%83%E6%8C%87%E5%AE%9A%E4%B8%BB%E9%A1%8C%E6%9B%B2%29.mp3
+                    vbitrate: 320140
+                    visible: true
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: JwJHgnneCOLkzv2DTrmi5
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: JwJHgnneCOLkzv2DTrmi5
+          scopes:
+            JwJHgnneCOLkzv2DTrmi5:
+              bearer: []
+      x-apifox-folder: Object API/RESTful/res.tvu.ai
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782323-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782323.md
+  /api/objectd/v1/t/{resourceType}/{tangibleId}/{subType}/{id}:
+    get:
+      summary: tangible 2
+      deprecated: true
+      description: Retrieve tangible data using the tangible ID and parameters. Currently, we only use
+        tangibleId to obtain the data.
+      operationId: /api/objectd/v1/t/{resourceType}/{tangibleId}/{subType}/{id}
+      tags:
+      - Object API/RESTful/res.tvu.ai
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: resourceType
+        in: path
+        description: Tangible IDs include project, slug, audio, NDI, R, Facebook, etc.
+        required: true
+        example: audio
+        schema:
+          type: string
+      - name: tangibleId
+        in: path
+        description: Special tangible IDs.
+        required: true
+        example: 7a9c95085b044a5aa4a960fc96c316ad
+        schema:
+          type: string
+      - name: subType
+        in: path
+        description: subType, not use currently.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: id, not use currently.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: error code
+                  errorInfo:
+                    type: string
+                    description: error information
+                  data:
+                    type: object
+                    properties:
+                      tangibleId:
+                        type: string
+                      tangibleType:
+                        type: string
+                      tangibleName:
+                        type: string
+                      extraInfo:
+                        type: object
+                        properties:
+                          abitrate:
+                            type: integer
+                          acls:
+                            type: string
+                          bucket:
+                            type: string
+                          bucketId:
+                            type: integer
+                          createTime:
+                            type: integer
+                          deleteFlag:
+                            type: boolean
+                          driveId:
+                            type: string
+                          duration:
+                            type: integer
+                          etag:
+                            type: string
+                          file:
+                            type: boolean
+                          fileLength:
+                            type: integer
+                          id:
+                            type: string
+                          isDirectory:
+                            type: boolean
+                          isUserBucket:
+                            type: boolean
+                          isVirtual:
+                            type: boolean
+                          lastModified:
+                            type: integer
+                          name:
+                            type: string
+                          objectId:
+                            type: string
+                          objectKey:
+                            type: string
+                          ownerId:
+                            type: string
+                          ownerType:
+                            type: string
+                          pid:
+                            type: string
+                          region:
+                            type: string
+                          suffix:
+                            type: string
+                          updateTime:
+                            type: integer
+                          uploadUser:
+                            type: string
+                          url:
+                            type: string
+                          vbitrate:
+                            type: integer
+                          visible:
+                            type: boolean
+                        required:
+                        - abitrate
+                        - acls
+                        - bucket
+                        - bucketId
+                        - createTime
+                        - deleteFlag
+                        - driveId
+                        - duration
+                        - etag
+                        - file
+                        - fileLength
+                        - id
+                        - isDirectory
+                        - isUserBucket
+                        - isVirtual
+                        - lastModified
+                        - name
+                        - objectId
+                        - objectKey
+                        - ownerId
+                        - ownerType
+                        - pid
+                        - region
+                        - suffix
+                        - updateTime
+                        - uploadUser
+                        - url
+                        - vbitrate
+                        - visible
+                        x-apifox-orders:
+                        - abitrate
+                        - acls
+                        - bucket
+                        - bucketId
+                        - createTime
+                        - deleteFlag
+                        - driveId
+                        - duration
+                        - etag
+                        - file
+                        - fileLength
+                        - id
+                        - isDirectory
+                        - isUserBucket
+                        - isVirtual
+                        - lastModified
+                        - name
+                        - objectId
+                        - objectKey
+                        - ownerId
+                        - ownerType
+                        - pid
+                        - region
+                        - suffix
+                        - updateTime
+                        - uploadUser
+                        - url
+                        - vbitrate
+                        - visible
+                    required:
+                    - tangibleId
+                    - tangibleType
+                    - tangibleName
+                    - extraInfo
+                    x-apifox-orders:
+                    - tangibleId
+                    - tangibleType
+                    - tangibleName
+                    - extraInfo
+                required:
+                - errorCode
+                - errorInfo
+                - data
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - data
+              example:
+                errorCode: '0x0'
+                errorInfo: ''
+                data:
+                  tangibleId: 7a9c95085b044a5aa4a960fc96c316ad
+                  tangibleType: audio
+                  tangibleName: 01 SHERO(2010臺北國際花卉博覽會指定主題曲).mp3
+                  extraInfo:
+                    abitrate: 320000
+                    acls: PublicRead
+                    bucket: pp-va-001
+                    bucketId: 35858706206720
+                    createTime: 1698220991
+                    deleteFlag: false
+                    driveId: 7bd71dd6987f48e9bef1354e03434afc
+                    duration: 191
+                    etag: 427ceda274c2cc272a8f541cd417a730
+                    file: true
+                    fileLength: 7675016
+                    id: 7a9c95085b044a5aa4a960fc96c316ad
+                    isDirectory: false
+                    isUserBucket: false
+                    isVirtual: false
+                    lastModified: 1698220991000
+                    name: 01 SHERO(2010臺北國際花卉博覽會指定主題曲).mp3
+                    objectId: '1166768933819265024'
+                    objectKey: '***LITERAL_REMOVED*** SHERO(2010臺北國際花卉博覽會指定主題曲).mp3'
+                    ownerId: d996a900fd6d402b92dea05f7c6f4ceb
+                    ownerType: '1'
+                    pid: '35858706206720'
+                    region: us-east-1
+                    suffix: mp3
+                    updateTime: 1698221016
+                    uploadUser: d996a900fd6d402b92dea05f7c6f4ceb
+                    url: https://pp-va-001.s3.amazonaws.com/***LITERAL_REMOVED***%20SHERO%282010%E8%87%BA%E5%8C%97%E5%9C%8B%E9%9A%9B%E8%8A%B1%E5%8D%89%E5%8D%9A%E8%A6%BD%E6%9C%83%E6%8C%87%E5%AE%9A%E4%B8%BB%E9%A1%8C%E6%9B%B2%29.mp3
+                    vbitrate: 320140
+                    visible: true
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: oHcUbK-PvPZKATxj_h6tP
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: oHcUbK-PvPZKATxj_h6tP
+          scopes:
+            oHcUbK-PvPZKATxj_h6tP:
+              bearer: []
+      x-apifox-folder: Object API/RESTful/res.tvu.ai
+      x-apifox-status: deprecated
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782324-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782324.md
+  /api/objectd/v1/tag:
+    post:
+      summary: create object tag
+      deprecated: false
+      description: Create an object tag using the specified parameters. This API will return the original
+        data that exists in the database.
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: Authorization
+        in: header
+        description: ''
+        required: false
+        example: E7D22038502649EE86109A4CD045DFD7
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tagName:
+                  type: string
+                  description: The name of the object tag.
+                classification:
+                  type: integer
+                  description: 'Object tag permissions:  0 - Private 1 - Group 2 - Public 3 - Admin'
+                groupId:
+                  type: string
+                  description: The group object tag requires setting group permissions, defaulting to
+                    the user's root group.
+                userId:
+                  type: string
+                  description: The private object tag requires setting user permissions, defaulting to
+                    the gateway user ID.
+              required:
+              - tagName
+              - classification
+              x-apifox-orders:
+              - tagName
+              - classification
+              - groupId
+              - userId
+            example:
+              tagName: soffee-123
+              classification: 0
+              groupId: 16d219d093fe4d268a721bbce00d7de8
+              userId: 95cd9476f8d74ad0a4b2be0d78b0ccb1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: error code
+                  errorInfo:
+                    type: string
+                    description: error Information
+                  result:
+                    type: object
+                    properties:
+                      tagId:
+                        type: string
+                        description: The ID of the object tag.
+                      tagName:
+                        type: string
+                        description: The name of the object tag.
+                      classification:
+                        type: integer
+                        description: The permission type of the object tag.
+                      groupId:
+                        type: string
+                        description: The group permissions of the object
+                      userId:
+                        type: string
+                        description: The user permissions of the object tag.
+                    required:
+                    - tagId
+                    - tagName
+                    - classification
+                    x-apifox-orders:
+                    - tagId
+                    - tagName
+                    - classification
+                    - groupId
+                    - userId
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Succ
+                result:
+                  tagId: 1231-sdf-1231231-sdfads
+                  tagName: 科少府信
+                  classification: 1
+                  groupId: '12231312312312'
+                  userId: sadfsdfasdfasdfaswe
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: j-Ngm0zJQjUBzOgS1DaPZ
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: j-Ngm0zJQjUBzOgS1DaPZ
+          scopes:
+            j-Ngm0zJQjUBzOgS1DaPZ:
+              bearer: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782313-run
+      operationId: create_object_tag_321782313
+      x-source-doc: https://docs.tvunetworks.cn/api-321782313.md
+    put:
+      summary: update object tag
+      deprecated: false
+      description: update object tag info by parameters.
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tagId:
+                  type: string
+                  description: The ID of the object tag.
+                tagName:
+                  type: string
+                  description: The new name of the object tag.
+              required:
+              - tagName
+              - tagId
+              x-apifox-orders:
+              - tagId
+              - tagName
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: 'error code '
+                  errorInfo:
+                    type: string
+                    description: error information
+                required:
+                - errorCode
+                - errorInfo
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+              example:
+                errorCode: '0x0'
+                errorInfo: Succ
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: u4L14XYAhBNg0GPLYxFQp
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: u4L14XYAhBNg0GPLYxFQp
+          scopes:
+            u4L14XYAhBNg0GPLYxFQp:
+              bearer: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782314-run
+      operationId: update_object_tag_321782314
+      x-source-doc: https://docs.tvunetworks.cn/api-321782314.md
+    delete:
+      summary: delete object tag
+      deprecated: false
+      description: delete object tag by objecttag id.
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tagIds:
+                  type: array
+                  items:
+                    type: string
+              required:
+              - tagIds
+              x-apifox-orders:
+              - tagIds
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: error code
+                  errorInfo:
+                    type: string
+                    description: error information
+                required:
+                - errorCode
+                - errorInfo
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+              example:
+                errorCode: '0x0'
+                errorInfo: Succ
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: N7GaRny2uN6g6ffNJKXxT
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: N7GaRny2uN6g6ffNJKXxT
+          scopes:
+            N7GaRny2uN6g6ffNJKXxT:
+              bearer: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782316-run
+      operationId: delete_object_tag_321782316
+      x-source-doc: https://docs.tvunetworks.cn/api-321782316.md
+    get:
+      summary: get object tag
+      deprecated: false
+      description: search object tag by parameters.
+      tags:
+      - Object API/RESTful
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: tagId
+        in: query
+        description: The ID of the object tag.
+        required: false
+        schema:
+          type: string
+      - name: tagName
+        in: query
+        description: The name of the object tag.
+        required: false
+        schema:
+          type: string
+      - name: classification
+        in: query
+        description: 'Object tag permissions:  default 0
+
+
+          0 - Private
+
+          1 - Group
+
+          2 - Public
+
+          3 - Admin'
+        required: false
+        schema:
+          type: string
+      - name: groupIds
+        in: query
+        description: The list of group permissions for the object, defaulting to the user's group.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        in: query
+        description: The list of user permissions for the object tag, provided by the default authorization.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: 95cd9476f8d74ad0a4b2be0d78b0ccb1
+        schema:
+          type: string
+      - name: email
+        in: header
+        description: ''
+        required: true
+        example: aidenhuang@tvunetworks.com
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: 6913920FB3EE4E3EAD6A788423D0DF16
+        schema:
+          type: string
+      - name: tagvalue
+        in: header
+        description: ''
+        required: true
+        example: stage
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: error code
+                  errorInfo:
+                    type: string
+                    description: error information
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        tagId:
+                          type: string
+                          description: The ID of the object tag.
+                        tagName:
+                          type: string
+                          description: The name of the object tag.
+                        classification:
+                          type: integer
+                          description: 'Object tag permissions: 0 - Private 1 - Group 2 - Public 3 - Admin'
+                        groupId:
+                          type: string
+                          description: The group permissions of the object.
+                        userId:
+                          type: string
+                          description: The user permissions of the object tag.
+                      required:
+                      - tagId
+                      - tagName
+                      - classification
+                      x-apifox-orders:
+                      - tagId
+                      - tagName
+                      - classification
+                      - groupId
+                      - userId
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Succ
+                result:
+                - tagId: 1231-sdf-1231231-sdfads
+                  tagName: 科少府信
+                  classification: 1
+                  groupId: '12231312312312'
+                  userId: sadfsdfasdfasdfaswe
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: 3FOsdcjwKg-D_vgUr7kj-
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: 3FOsdcjwKg-D_vgUr7kj-
+          scopes:
+            3FOsdcjwKg-D_vgUr7kj-:
+              bearer: []
+      x-apifox-folder: Object API/RESTful
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782317-run
+      operationId: get_object_tag_321782317
+      x-source-doc: https://docs.tvunetworks.cn/api-321782317.md
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

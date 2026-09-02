@@ -1,0 +1,375 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Media Info
+  description: Media Info operations of the TVU Networks public HTTP API, assembled verbatim from the
+    per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /metadata:
+    get:
+      summary: Get technical metadata for a video
+      deprecated: false
+      description: 'Probes a video file or HLS playlist via `ffprobe` and returns a key-value map of
+
+        technical properties: codec, resolution, frame rate, duration, bitrate, and more.
+
+        Use this to inspect source recordings before scheduling an export, or to validate
+
+        output files after export.
+
+
+        This is a **synchronous** endpoint — it returns immediately with the result.
+
+
+        `videoUrl` must be a publicly reachable HTTP(S) URL. HLS playlists (`.m3u8`) and
+
+        direct video files (`.mp4`, `.ts`, etc.) are both supported. The probe may time out
+
+        for very large or slow-to-open sources, in which case `errorCode: -1` is returned
+
+        with a descriptive message.
+
+
+        The exact keys in `data` depend on the source format; all values are returned as-is
+
+        from `ffprobe` output.
+
+
+        ### Error Codes
+
+
+        | Code | Message | Cause |
+
+        |------|---------|-------|
+
+        | `0` | success | Metadata is in the `data` field |
+
+        | `-1` | get video format failed, err: ... | `videoUrl` is unreachable, unsupported format, or
+        timed out |
+
+        | `-1` | json unmarshal failed, err: ... | Probe output could not be parsed; contact TVU Support
+        |
+
+        '
+      operationId: getMetadata
+      tags:
+      - Media Info
+      - Media Info
+      parameters:
+      - name: videoUrl
+        in: query
+        description: HTTP(S) URL of the video file or HLS playlist to probe.
+        required: true
+        example: https://media-export-bucket.s3.us-east-1.amazonaws.com/export/clip_20231114_30s.mp4
+        schema:
+          type: string
+          format: uri
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: Media metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMetadataRes'
+              examples:
+                success:
+                  summary: success
+                  value:
+                    errorCode: 0
+                    errorMessage: success
+                    data:
+                      duration: 30.5
+                      width: 1920
+                      height: 1080
+                      codec: h264
+                      framerate: '29.97'
+                      bitrate: 5000000
+                error:
+                  summary: error
+                  value:
+                    errorCode: -1
+                    errorMessage: 'get video format failed, err: connection timeout'
+                    data: null
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Media Info
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290201-run
+      x-source-doc: https://docs.tvunetworks.cn/api-473290201.md
+  /thumbnail:
+    get:
+      summary: Get a thumbnail image from a video
+      deprecated: false
+      description: 'Extracts a single JPEG frame from a video at the given `Offset` (milliseconds from
+
+        the beginning of the stream), uploads it to the TVU image server, and returns the
+
+        server-relative path. The caller prepends the image server''s base URL to form the
+
+        full HTTP URL.
+
+
+        This is a **synchronous** endpoint — it returns immediately with the result.
+
+
+        **Source URL**: provide either `LivePath` (an HLS playlist or MPD URL) or `VodUrl`
+
+        (a direct video file URL). When both are present, `VodUrl` takes precedence. The
+
+        service locates the correct TS segment from the playlist index, downloads it, runs
+
+        `ffmpeg` to extract the frame, then uploads the JPEG.
+
+
+        Thumbnail generation fails (`1099`) if `Offset` falls outside the available recording
+
+        range or if the source segment is corrupt.
+
+
+        ### Error Codes
+
+
+        | Code | Message | Cause |
+
+        |------|---------|-------|
+
+        | `1000` | success | Thumbnail is available at `ImagePath` |
+
+        | `1018` | the request param abnormal. | `LivePath` is malformed or cannot be parsed |
+
+        | `1019` | init aws s3 sdk failed, please contact TVU Support. | S3 SDK initialization failed
+        for the source bucket |
+
+        | `1024` | open or create file fail. | Failed to read the generated local thumbnail file |
+
+        | `1050` | (locate ts source failed) | Cannot find the TS segment at the requested `Offset` |
+
+        | `1077` | upload fail | Generated thumbnail failed to upload to the image server |
+
+        | `1086` | get source ts signature url fail. | Failed to generate a signed URL for the source
+        TS file |
+
+        | `1099` | Media processing encountered an exception. Please retry... | Thumbnail generation (ffmpeg)
+        failed; possibly invalid time offset |
+
+        '
+      operationId: getThumbnailV2
+      tags:
+      - Media Info
+      - Media Info
+      parameters:
+      - name: LivePath
+        in: query
+        description: 'HTTP(S) URL of the HLS playlist (`play.m3u8`) or MPD (`stream.mpd`). Either
+
+          `LivePath` or `VodUrl` must be provided. URL-encoding is supported.
+
+          '
+        required: false
+        example: https://mma-video-new.s3.us-east-1.amazonaws.com/ts/PRODUCER_RECORDINGS/source-001/live-001/1/play.m3u8
+        schema:
+          type: string
+          format: uri
+      - name: VodUrl
+        in: query
+        description: 'HTTP(S) URL of a VOD video file. Either `LivePath` or `VodUrl` must be provided.
+
+          When both are provided, `VodUrl` takes precedence.
+
+          '
+        required: false
+        example: https://media-export-bucket.s3.us-east-1.amazonaws.com/export/clip_20231114_30s.mp4
+        schema:
+          type: string
+          format: uri
+      - name: Offset
+        in: query
+        description: 'Time offset from the beginning of the video in **milliseconds** at which to
+
+          capture the thumbnail.
+
+          '
+        required: true
+        example: 15000
+        schema:
+          type: integer
+          format: int64
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: Thumbnail image path
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetThumbnailResV2'
+              examples:
+                success:
+                  summary: success
+                  value:
+                    ErrorCode: 1000
+                    ErrorMessage: success
+                    ImagePath: /export/4B999DC458FBC4C80000000000000002/00_13_12.jpg
+                    Resolution: 1920x1080
+                gen_failed:
+                  summary: Thumbnail generation failed (bad offset or corrupt source)
+                  value:
+                    ErrorCode: 1099
+                    ErrorMessage: gen thumbnail failed
+                    ImagePath: ''
+                    Resolution: ''
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Media Info
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290200-run
+      x-source-doc: https://docs.tvunetworks.cn/api-473290200.md
+components:
+  schemas:
+    GetThumbnailResV2:
+      type: object
+      properties:
+        ErrorCode:
+          type: integer
+          description: '- `1000` — Success
+
+            - `1018` — Invalid `LivePath` parameter
+
+            - `1019` — S3 SDK initialization failed
+
+            - `1024` — Failed to read generated thumbnail file
+
+            - `1050` — Cannot locate TS segment at the requested offset
+
+            - `1077` — Thumbnail upload to image server failed
+
+            - `1086` — Failed to sign source TS URL
+
+            - `1099` — Thumbnail generation failed (ffmpeg error or bad time offset)
+
+            '
+          examples:
+          - 1000
+        ErrorMessage:
+          type: string
+          examples:
+          - success
+        ImagePath:
+          type: string
+          description: 'Server-relative path to the generated thumbnail image on the image server.
+
+            Prepend the image server base URL to construct the full HTTP URL.
+
+            Populated when `ErrorCode == 1000`.
+
+            '
+          examples:
+          - /export/4B999DC458FBC4C80000000000000002/00_13_12.jpg
+        Resolution:
+          type: string
+          description: Image resolution in `WIDTHxHEIGHT` format. Populated when `ErrorCode == 1000`.
+          examples:
+          - 1920x1080
+      x-apifox-orders:
+      - ErrorCode
+      - ErrorMessage
+      - ImagePath
+      - Resolution
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    GetMetadataRes:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: '- `0` — Success
+
+            - `-1` — Probe failed (see `errorMessage` for detail; typically URL unreachable or unsupported
+            format)
+
+            '
+          examples:
+          - 0
+        errorMessage:
+          type: string
+          examples:
+          - success
+        data:
+          type: object
+          description: 'Key-value map of technical media properties returned by ffprobe. Typical keys:
+
+
+            | Key | Type | Description |
+
+            |-----|------|-------------|
+
+            | `duration` | number | Duration in seconds |
+
+            | `width` | integer | Frame width in pixels |
+
+            | `height` | integer | Frame height in pixels |
+
+            | `codec` | string | Video codec name (e.g. `"h264"`) |
+
+            | `framerate` | string | Frame rate (e.g. `"29.97"`) |
+
+            | `bitrate` | integer | Total bitrate in bps |
+
+
+            Additional keys may be present depending on the source format.
+
+            '
+          additionalProperties: true
+          x-apifox-orders: []
+          examples:
+          - duration: 30.5
+            width: 1920
+            height: 1080
+            codec: h264
+            framerate: '29.97'
+            bitrate: 5000000
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorMessage
+      - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

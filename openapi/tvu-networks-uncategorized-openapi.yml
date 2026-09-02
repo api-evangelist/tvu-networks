@@ -1,0 +1,3212 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Uncategorized
+  description: Uncategorized operations of the TVU Networks public HTTP API, assembled verbatim from the
+    per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /_dashboards/api/console/proxy:
+    post:
+      summary: 查询Object信息
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: path
+        in: query
+        description: ''
+        required: false
+        example: '%2Ftvu-object-2024%2F_search'
+        schema:
+          type: string
+      - name: method
+        in: query
+        description: ''
+        required: false
+        example: GET
+        schema:
+          type: string
+      - name: osd-version
+        in: header
+        description: ''
+        required: false
+        example: '{{osd-version}}'
+        schema:
+          type: string
+      - name: osd-xsrf
+        in: header
+        description: ''
+        required: false
+        example: '{{osd-xsrf}}'
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: false
+        example: '{{cookie_es}}'
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: ''
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              query:
+                term:
+                  objectId:
+                    value: '1220745129208463360'
+              sort:
+              - createTimestamp:
+                  order: desc
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: ''
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: jQeJvs0qKIU08YWjz4NfP
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: jQeJvs0qKIU08YWjz4NfP
+          scopes:
+            jQeJvs0qKIU08YWjz4NfP:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290257-run
+      operationId: Object_473290257
+      x-source-doc: https://docs.tvunetworks.cn/api-473290257.md
+  /api/maintain/v1/version:
+    get:
+      summary: version
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-365413469-run
+      operationId: version_365413469
+      x-source-doc: https://docs.tvunetworks.cn/api-365413469.md
+  /api/resource/v2/estimate-video-size:
+    get:
+      summary: estimate-video-size
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                highResolutionMediaFilePath:
+                  type: string
+                  description: the corresponding hls http link
+                startTime:
+                  type: integer
+                  description: start time of the clipping interval
+                duration:
+                  type: integer
+                  description: duration of the clipping interval
+                fileName:
+                  type: string
+                  description: cut video file naming
+                userAccount:
+                  type: string
+                  description: user account(email or userid)
+              required:
+              - highResolutionMediaFilePath
+              - startTime
+              - duration
+              - fileName
+              - userAccount
+              x-apifox-orders:
+              - highResolutionMediaFilePath
+              - startTime
+              - duration
+              - fileName
+              - userAccount
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                    description: error code
+                  errorMsg:
+                    type: string
+                    description: error message
+                  videoSize:
+                    type: integer
+                    description: estimated video size
+                required:
+                - errorCode
+                - errorMsg
+                - videoSize
+                x-apifox-orders:
+                - errorCode
+                - errorMsg
+                - videoSize
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: ctFFLtgDgD8qZxxQtyvRo
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: ctFFLtgDgD8qZxxQtyvRo
+          scopes:
+            ctFFLtgDgD8qZxxQtyvRo:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956071-run
+      operationId: estimate_video_size_351956071
+      x-source-doc: https://docs.tvunetworks.cn/api-351956071.md
+    post:
+      summary: estimate-video-size
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+      - name: tagvalue
+        in: header
+        description: ''
+        required: false
+        example: '{{tagvalue}}'
+        schema:
+          type: string
+          default: '{{tagvalue}}'
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filePath:
+                  type: string
+                  description: the corresponding hls http link or live path
+                startTime:
+                  type: integer
+                  description: start time of the clipping interval
+                duration:
+                  type: integer
+                  description: duration of the clipping interval
+                recMode:
+                  type: integer
+                  description: '0: mma (default) 1: rrs'
+                storageInfo:
+                  type: string
+                fileName:
+                  type: string
+                  description: cut video file naming
+                userAccount:
+                  type: string
+                  description: user account(email or userid)
+              required:
+              - filePath
+              - startTime
+              - duration
+              - fileName
+              - userAccount
+              - recMode
+              - storageInfo
+              x-apifox-orders:
+              - filePath
+              - startTime
+              - duration
+              - recMode
+              - storageInfo
+              - fileName
+              - userAccount
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                    description: error code
+                  errorMsg:
+                    type: string
+                    description: error message
+                  videoSize:
+                    type: integer
+                    description: estimated video size
+                required:
+                - errorCode
+                - errorMsg
+                - videoSize
+                x-apifox-orders:
+                - errorCode
+                - errorMsg
+                - videoSize
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: 4E8mPXcbyynZF1Co80TLK
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: 4E8mPXcbyynZF1Co80TLK
+          scopes:
+            4E8mPXcbyynZF1Co80TLK:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-352513764-run
+      operationId: estimate_video_size_352513764
+      x-source-doc: https://docs.tvunetworks.cn/api-352513764.md
+  /api/resource/v2/metadata:
+    get:
+      summary: metadata
+      deprecated: false
+      description: Retrieve video media information
+      tags: []
+      parameters:
+      - name: videoUrl
+        in: query
+        description: Readable video file HTTP/HTTPS link
+        required: true
+        schema:
+          type: string
+      - name: tagvalue
+        in: header
+        description: ''
+        required: false
+        example: '{{tagvalue}}'
+        schema:
+          type: string
+          default: '{{tagvalue}}'
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                    description: '0：success   -1: failed'
+                  errorMessage:
+                    type: string
+                    description: error message
+                  data:
+                    type: object
+                    properties: {}
+                    description: video foramt info data
+                    x-apifox-orders: []
+                    nullable: true
+                required:
+                - errorCode
+                - errorMessage
+                x-apifox-orders:
+                - errorCode
+                - errorMessage
+                - data
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: kFhI7Pv1eCqIoYD5PyUPb
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: kFhI7Pv1eCqIoYD5PyUPb
+          scopes:
+            kFhI7Pv1eCqIoYD5PyUPb:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956069-run
+      operationId: metadata_351956069
+      x-source-doc: https://docs.tvunetworks.cn/api-351956069.md
+  /api/resource/v2/upload-to-zype:
+    post:
+      summary: upload-to-zype
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                videoUrl:
+                  type: string
+                objectId:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                zypeAuth:
+                  type: object
+                  properties:
+                    type:
+                      type: integer
+                      description: 0 -> api key   1-> app key  2-> access token
+                    apiKey:
+                      type: string
+                    appKey:
+                      type: string
+                    oauth:
+                      type: object
+                      properties:
+                        clientId:
+                          type: string
+                        clientSecret:
+                          type: string
+                        endpointUrl:
+                          type: string
+                        scopes:
+                          type: string
+                      x-apifox-orders:
+                      - clientId
+                      - clientSecret
+                      - endpointUrl
+                      - scopes
+                  required:
+                  - type
+                  x-apifox-orders:
+                  - type
+                  - apiKey
+                  - appKey
+                  - oauth
+              required:
+              - title
+              - videoUrl
+              - objectId
+              - zypeAuth
+              - tags
+              x-apifox-orders:
+              - title
+              - videoUrl
+              - objectId
+              - tags
+              - zypeAuth
+            example:
+              title: ewsNation The Hill 4
+              videoUrl: https://mma-video-new.S3.us-east-1.amazonaws.com/export/bb36103b64f6cdd4661cea190761e37d/NewsNation
+                The Hill _sSK6.mp4
+              objectId: '1397586210230243328'
+              zypeAuth:
+                type: 0
+                apiKey: iAwBhi95jqaWEYbg4VTua78fxiI5psPo3EqCJT8xCod2Jz0OLDmON892jMZICYue
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: 0 -> success  -1 -> failed
+                  errorMessage:
+                    type: string
+                required:
+                - errorCode
+                - errorMessage
+                x-apifox-orders:
+                - errorCode
+                - errorMessage
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: oFdYgU7Q_-wiZ0-Fo4-fI
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: oFdYgU7Q_-wiZ0-Fo4-fI
+          scopes:
+            oFdYgU7Q_-wiZ0-Fo4-fI:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956070-run
+      operationId: upload_to_zype_351956070
+      x-source-doc: https://docs.tvunetworks.cn/api-351956070.md
+  /route-object/object-service/api/v1/object:
+    post:
+      summary: Create a new object
+      deprecated: false
+      description: "<p>\nCreates an object in objectd with full field support including features, geo\
+        \ info,\nadmin/owner info, tags, and optional tangible binding.\n</p>\n<p>\nExample request:\n\
+        <pre>\nPOST /api/v1/object\n{\n  \"objectName\": \"Studio Camera 1\",\n  \"objectType\": 1,\n\
+        \  \"tangibleId\": \"tgb-001\",\n  \"tangibleType\": \"SDI\",\n  \"tangibleName\": \"SDI Input\
+        \ 1\",\n  \"isAsyn\": false\n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: unified object creation parameter with all supported fields
+              type: object
+              properties:
+                objectId:
+                  type: integer
+                  description: Unique object ID (Long). Null when creating a new object; populated on
+                    response.
+                  format: int64
+                objectName:
+                  type: string
+                  description: Human-readable name of the object. Required for creation.
+                objectType:
+                  type: integer
+                  description: Integer type code of the object (e.g., 1 = source, 2 = project). Required
+                    for creation.
+                tangibleId:
+                  type: string
+                  description: ID of the tangible (physical device/source) to bind to this object.
+                tangibleType:
+                  type: string
+                  description: Type of the tangible (e.g., SDI, PACK, EXT, ANYWHERE).
+                tangibleName:
+                  type: string
+                  description: Human-readable name of the tangible device.
+                distinction:
+                  type: string
+                  description: Distinction label used to differentiate multiple tangibles on the same
+                    object.
+                admin:
+                  $ref: '#/components/schemas/AdminInfo'
+                  description: Admin user info (userId and email of the object administrator).
+                owner:
+                  $ref: '#/components/schemas/OwnerInfo'
+                  description: Owner user info (userId and email of the object owner).
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: List of tag strings to apply to the object (e.g., "broadcast", "live").
+                features:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/FeatureInfo'
+                    description: ''
+                  description: List of feature flags to enable on the object (e.g., recording, publicSlug).
+                extraInfo:
+                  type: string
+                  description: Extra JSON metadata string for additional tangible-specific information.
+                origin:
+                  type: string
+                  description: Origin identifier indicating the service or system creating the object.
+                geoInfo:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/GeoInfo'
+                    description: ''
+                  description: List of geographic coordinates associated with the object.
+                location:
+                  type: array
+                  items:
+                    type: string
+                  description: List of location name strings (e.g., city, country).
+                dmaEmbargo:
+                  type: boolean
+                  description: Whether the object has a DMA embargo restriction applied.
+                description:
+                  type: string
+                  description: Free-text description of the object.
+                url:
+                  type: string
+                  description: Special SDI URL for MediaHub objects requiring URL-based tangible resolution.
+                attributes:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CreateObjectAttr'
+                    description: com.tvunetworks.model.objectd.CreateObjectAttr
+                  description: List of custom attributes to attach to the object on creation.
+                priority:
+                  type: integer
+                  description: Priority for the tangible binding when an object is bound to multiple tangibles.
+                    0 = highest priority.
+                isAsyn:
+                  type: boolean
+                  description: 'If{@code true}, the object is created asynchronously. Default: false (synchronous).'
+              x-apifox-orders:
+              - objectId
+              - objectName
+              - objectType
+              - tangibleId
+              - tangibleType
+              - tangibleName
+              - distinction
+              - admin
+              - owner
+              - tags
+              - features
+              - extraInfo
+              - origin
+              - geoInfo
+              - location
+              - dmaEmbargo
+              - description
+              - url
+              - attributes
+              - priority
+              - isAsyn
+              x-apifox-ignore-properties: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: string
+                    description: created object ID
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                description: '[ProcessResult] wrapping the created object ID as a string'
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-ignore-properties: []
+              example:
+                errorCode: '0x0'
+                errorInfo: success
+                result: string
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290259-run
+      operationId: Create_a_new_object_473290259
+      x-source-doc: https://docs.tvunetworks.cn/api-473290259.md
+    put:
+      summary: Update an existing object.
+      deprecated: false
+      description: "<p>\nUpdates object metadata in objectd. Only fields provided in the request body\
+        \ are updated.\n</p>\n<p>\nExample request:\n<pre>\nPUT /api/v1/object\n{\n  \"objectId\": \"\
+        123456\",\n  \"objectName\": \"Updated Camera Name\",\n  \"description\": \"Primary broadcast\
+        \ camera\",\n  \"tags\": [\"live\", \"broadcast\"]\n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: update parameter containing the objectId (required) and fields to update
+              type: object
+              properties:
+                objectId:
+                  type: string
+                  description: Unique ID of the object to update. Required.
+                objectName:
+                  type: string
+                  description: New name for the object. Leave null to keep the existing name.
+                nestedObjects:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/NestedObjects'
+                    description: ''
+                  description: Updated list of nested child objects. Replaces the existing nested object
+                    list if provided.
+                description:
+                  type: string
+                  description: Updated free-text description. Leave null to keep the existing description.
+                admin:
+                  $ref: '#/components/schemas/AdminInfo'
+                  description: Updated admin user info. Leave null to keep the existing admin.
+                owner:
+                  $ref: '#/components/schemas/OwnerInfo'
+                  description: Updated owner user info. Leave null to keep the existing owner.
+                features:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/FeatureInfo'
+                    description: ''
+                  description: Updated list of feature flags. Replaces the existing features list if provided.
+                dmaEmbargo:
+                  type: boolean
+                  description: Updated DMA embargo flag. Leave null to keep the existing value.
+                geoInfo:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/GeoInfo'
+                    description: ''
+                  description: Updated list of geographic coordinates. Leave null to keep existing geo
+                    info.
+                location:
+                  type: array
+                  items:
+                    type: string
+                  description: Updated list of location name strings. Leave null to keep existing locations.
+                origin:
+                  type: string
+                  description: Updated origin identifier. Leave null to keep the existing value.
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: Updated list of tag strings. Replaces the existing tags list if provided.
+              x-apifox-orders:
+              - objectId
+              - objectName
+              - nestedObjects
+              - description
+              - admin
+              - owner
+              - features
+              - dmaEmbargo
+              - geoInfo
+              - location
+              - origin
+              - tags
+              x-apifox-ignore-properties: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphqlResult'
+                description: '[Standard result wrapper for objectd GraphQL operations.
+
+                  A successful response has{@code errorCode = "0x0"}.] with errorCode {@code 0x0} on success,
+                  or error details on failure'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290260-run
+      operationId: Update_an_existing_object_473290260
+      x-source-doc: https://docs.tvunetworks.cn/api-473290260.md
+    delete:
+      summary: Delete an object (requires authentication).
+      deprecated: false
+      description: "<p>\nDeletes the specified object using the given deleteType. Requires user authentication\
+        \ via\n{@code @Authorization}; the userId is populated automatically from the auth context.\n\
+        </p>\n<p>\nExample request:\n<pre>\nDELETE /api/v1/object?serviceName=media-service\n{\n  \"objectId\"\
+        : \"123456\",\n  \"deleteType\": 2,\n  \"forceDelete\": false\n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: serviceName
+        in: query
+        description: name of the calling service for audit logging (required)
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: "delete parameter containing required objectId, deleteType (1=ready-to-delete,\
+                \ 2=delete, 3=to-app-delete), and forceDelete flag;\n                      userId is populated\
+                \ from the auth context"
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: ID of the user requesting the delete. Populated from auth context when
+                    using authenticated endpoints.
+                objectId:
+                  type: string
+                  description: ID of the object to delete. Required.
+                deleteType:
+                  type: integer
+                  description: "Delete operation type.\n<ul>\n  <li>1 = ready-to-delete (move to recycling\
+                    \ bin)</li>\n  <li>2 = hard delete</li>\n  <li>3 = to-app-delete (notify app service\
+                    \ before deletion)</li>\n</ul>"
+                forceDelete:
+                  type: boolean
+                  description: 'If{@code true}, the object is deleted even if it is currently locked.
+                    Default: false.'
+              required:
+              - objectId
+              x-apifox-orders:
+              - userId
+              - objectId
+              - deleteType
+              - forceDelete
+              x-apifox-ignore-properties: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphqlResult'
+                description: '[Standard result wrapper for objectd GraphQL operations.
+
+                  A successful response has{@code errorCode = "0x0"}.] with errorCode {@code 0x0} on success,
+                  or error details on failure'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290261-run
+      operationId: Delete_an_object_requires_authentication_473290261
+      x-source-doc: https://docs.tvunetworks.cn/api-473290261.md
+  /route-object/object-service/api/v1/object/bytangible/{tangibleId}:
+    get:
+      summary: Query all objects bound to a given tangible ID.
+      deprecated: false
+      description: '<p>
+
+        Returns full object details for all objects associated with the specified tangible.
+
+        </p>
+
+        <p>
+
+        Example request:
+
+        <pre>
+
+        GET /api/v1/object/bytangible/tgb-001
+
+        </pre>
+
+        </p>'
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: tangibleId
+        in: path
+        description: the tangible ID to look up (path variable)
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ObjectDetailsInfo'
+                  description: Detailed information for an object returned by queries.
+                description: list of [Detailed information for an object returned by queries.] with full
+                  object details for each bound object
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290263-run
+      operationId: Query_all_objects_bound_to_a_given_tangible_ID_473290263
+      x-source-doc: https://docs.tvunetworks.cn/api-473290263.md
+  /route-object/object-service/api/v1/object/checkfeature:
+    post:
+      summary: Check whether a specific feature is enabled for a set of objects.
+      deprecated: false
+      description: "<p>\nReturns a map of objectId to boolean indicating if the named feature is enabled\
+        \ for each object.\n</p>\n<p>\nExample request:\n<pre>\nPOST /api/v1/object/checkfeature\n{\n\
+        \  \"userId\": \"user-abc\",\n  \"objectIds\": [\"123456\", \"789012\"],\n  \"featureName\": \"\
+        recording\"\n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckObjectFeature'
+              description: parameter containing userId, the list of objectIds, and the featureName to
+                check
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessResultMapBoolean'
+                description: '[ProcessResult] wrapping a {@code Map<String, Boolean>} where key is objectId
+                  and value indicates whether the feature is enabled'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290264-run
+      operationId: Check_whether_a_specific_feature_is_enabled_for_a_set_of_objects_473290264
+      x-source-doc: https://docs.tvunetworks.cn/api-473290264.md
+  /route-object/object-service/api/v1/object/checkowneradmin:
+    post:
+      summary: Check whether the specified user is an admin or owner of the given object.
+      deprecated: false
+      description: "<p>\nReturns{@code true} if the user has admin or owner privileges on the object,{@code\
+        \ false} otherwise.\n</p>\n<p>\nExample request:\n<pre>\nPOST /api/v1/object/checkowneradmin\n\
+        {\n  \"userId\": \"user-abc\",\n  \"objectId\": \"123456\"\n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckObjectAdmin'
+              description: parameter containing the userId and objectId to check
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessResultBoolean'
+                description: '[ProcessResult] wrapping a boolean: {@code true} if the user is an admin/owner,
+                  {@code false} otherwise'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290265-run
+      operationId: Check_whether_the_specified_user_is_an_admin_or_owner_of_the_given_object_473290265
+      x-source-doc: https://docs.tvunetworks.cn/api-473290265.md
+  /route-object/object-service/api/v1/object/copy:
+    post:
+      summary: Copy an object and bind the copy to a new tangible.
+      deprecated: false
+      description: "<p>\nCreates a copy of the specified object and binds the new copy to the given tangibleId.\n\
+        The copied object inherits all metadata from the source object.\n</p>\n<p>\nExample request:\n\
+        <pre>\nPOST /api/v1/object/copy\n{\n  \"objectId\": \"123456\",\n  \"tangibleId\": \"tgb-new-001\"\
+        ,\n  \"userId\": \"user-abc\"\n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CopyObjectParam'
+              description: copy parameter containing the required source objectId, required target tangibleId,
+                and required userId
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessResult'
+                description: '[ProcessResult] wrapping the newly created object ID'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290268-run
+      operationId: Copy_an_object_and_bind_the_copy_to_a_new_tangible_473290268
+      x-source-doc: https://docs.tvunetworks.cn/api-473290268.md
+  /route-object/object-service/api/v1/object/hold:
+    post:
+      summary: Place a hold on an object to reserve it for exclusive use by an application.
+      deprecated: false
+      description: "<p>\nLocks the object so that it cannot be used by other applications until explicitly\
+        \ released.\nAn optional callback URL is invoked when the hold state changes.\n</p>\n<p>\nExample\
+        \ request:\n<pre>\nPOST /api/v1/object/hold\n{\n  \"appName\": \"media-encoder\",\n  \"objectId\"\
+        : \"123456\",\n  \"user\": \"user-abc\",\n  \"callbackUrl\": \"https://example.com/callback\"\
+        ,\n  \"tangibleId\": \"tgb-001\",\n  \"features\": [\"recording\"]\n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HoldObjectParam'
+              description: "hold parameter containing required appName, required objectId, required user\
+                \ (userId),\n                        and optional callbackUrl, requestHeader, description,\
+                \ tangibleId, and features list"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphqlResult'
+                description: '[Standard result wrapper for objectd GraphQL operations.
+
+                  A successful response has{@code errorCode = "0x0"}.] with errorCode {@code 0x0} on success,
+                  or error details on failure'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290269-run
+      operationId: Place_a_hold_on_an_object_to_reserve_it_for_exclusive_use_by_an_application_473290269
+      x-source-doc: https://docs.tvunetworks.cn/api-473290269.md
+  /route-object/object-service/api/v1/object/info/ids:
+    post:
+      summary: Query detailed object information by a list of object IDs.
+      deprecated: false
+      description: '<p>
+
+        Batch retrieves full object details for each ID in the list from the search index.
+
+        </p>
+
+        <p>
+
+        Example request:
+
+        <pre>
+
+        POST /api/v1/object/info/ids
+
+        ["123456", "789012", "345678"]
+
+        </pre>
+
+        </p>'
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+              description: list of object IDs to retrieve
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessResultListObjectDetailsInfo'
+                description: '[ProcessResult] wrapping a list of [Detailed information for an object returned
+                  by queries.] with full object details'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290262-run
+      operationId: Query_detailed_object_information_by_a_list_of_object_IDs_473290262
+      x-source-doc: https://docs.tvunetworks.cn/api-473290262.md
+  /route-object/object-service/api/v1/object/release:
+    post:
+      summary: Release a previously held object.
+      deprecated: false
+      description: "<p>\nRemoves the hold placed on the object by the specified application and user,\n\
+        making it available for other applications.\n</p>\n<p>\nExample request:\n<pre>\nPOST /api/v1/object/release\n\
+        {\n  \"appName\": \"media-encoder\",\n  \"objectId\": \"123456\",\n  \"user\": \"user-abc\",\n\
+        \  \"tangibleId\": \"tgb-001\"\n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseObjectParam'
+              description: release parameter containing required appName, required objectId, required
+                user (userId), and optional tangibleId
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphqlResult'
+                description: '[Standard result wrapper for objectd GraphQL operations.
+
+                  A successful response has{@code errorCode = "0x0"}.] with errorCode {@code 0x0} on success,
+                  or error details on failure'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290270-run
+      operationId: Release_a_previously_held_object_473290270
+      x-source-doc: https://docs.tvunetworks.cn/api-473290270.md
+  /route-object/object-service/api/v1/object/tangible/bind:
+    post:
+      summary: Bind a tangible to an object.
+      deprecated: false
+      description: "<p>\nCreates a binding between an existing object and an existing tangible.\nThe priority\
+        \ field controls the ordering when an object is bound to multiple tangibles (0 = highest priority).\n\
+        </p>\n<p>\nExample request:\n<pre>\nPOST /api/v1/object/tangible/bind\n{\n  \"objectId\": \"123456\"\
+        ,\n  \"tangibleId\": \"tgb-001\",\n  \"priority\": 0\n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjTgbRelation'
+              description: parameter containing the required objectId, required tangibleId, and optional
+                priority (0 = highest)
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphqlResult'
+                description: '[Standard result wrapper for objectd GraphQL operations.
+
+                  A successful response has{@code errorCode = "0x0"}.] with errorCode {@code 0x0} on success,
+                  or error details on failure'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290267-run
+      operationId: Bind_a_tangible_to_an_object_473290267
+      x-source-doc: https://docs.tvunetworks.cn/api-473290267.md
+  /route-object/object-service/api/v1/object/tangible/unlink:
+    post:
+      summary: Unlink (detach) a tangible from an object.
+      deprecated: false
+      description: "<p>\nRemoves the binding between the specified object and tangible.\nAfter unlinking,\
+        \ the tangible is no longer associated with the object.\n</p>\n<p>\nExample request:\n<pre>\n\
+        POST /api/v1/object/tangible/unlink\n{\n  \"objectId\": \"123456\",\n  \"tangibleId\": \"tgb-001\"\
+        \n}\n</pre>\n</p>"
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjTgbRelation'
+              description: parameter containing the required objectId and required tangibleId to unlink
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphqlResult'
+                description: '[Standard result wrapper for objectd GraphQL operations.
+
+                  A successful response has{@code errorCode = "0x0"}.] with errorCode {@code 0x0} on success,
+                  or error details on failure'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290266-run
+      operationId: Unlink_detach_a_tangible_from_an_object_473290266
+      x-source-doc: https://docs.tvunetworks.cn/api-473290266.md
+  /route-object/object-service/api/v1/object/{id}:
+    get:
+      summary: Get object information from the search index by object ID.
+      deprecated: false
+      description: '<p>
+
+        Retrieves the full object details stored in the search/ES index for the specified object.
+
+        </p>
+
+        <p>
+
+        Example request:
+
+        <pre>
+
+        GET /api/v1/object/123456
+
+        </pre>
+
+        </p>'
+      tags: []
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: id
+        in: path
+        description: the object ID to retrieve (path variable)
+        required: true
+        example: '1377420057780555776'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      tangibleId:
+                        type: string
+                      tangibleName:
+                        type: string
+                      tangibleType:
+                        type: string
+                      objectId:
+                        type: string
+                      objectName:
+                        type: string
+                      objectType:
+                        type: integer
+                      nestedObjects:
+                        type: 'null'
+                      description:
+                        type: string
+                      admin:
+                        type: object
+                        properties:
+                          users:
+                            type: array
+                            items:
+                              type: string
+                          groups:
+                            type: array
+                            items:
+                              type: string
+                        required:
+                        - users
+                        - groups
+                        x-apifox-orders:
+                        - users
+                        - groups
+                      owner:
+                        type: object
+                        properties:
+                          users:
+                            type: array
+                            items:
+                              type: string
+                          groups:
+                            type: array
+                            items:
+                              type: string
+                        required:
+                        - users
+                        - groups
+                        x-apifox-orders:
+                        - users
+                        - groups
+                      operator:
+                        type: 'null'
+                      features:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            feature:
+                              type: string
+                            users:
+                              type: array
+                              items:
+                                type: string
+                            groups:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                          - feature
+                          - users
+                          - groups
+                          x-apifox-orders:
+                          - feature
+                          - users
+                          - groups
+                      createTimestamp:
+                        type: integer
+                      updateTimestamp:
+                        type: integer
+                      recyclingBinTime:
+                        type: 'null'
+                      deleteFlag:
+                        type: 'null'
+                      dmaEmbargo:
+                        type: 'null'
+                      geoInfo:
+                        type: 'null'
+                      location:
+                        type: array
+                        items:
+                          type: string
+                      origin:
+                        type: string
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                      holdType:
+                        type: 'null'
+                      tangibleInfo:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            distinction:
+                              type: 'null'
+                            tangibleId:
+                              type: string
+                            tangibleName:
+                              type: string
+                            tangibleType:
+                              type: string
+                            extraInfo:
+                              type: string
+                            createTimestamp:
+                              type: integer
+                          required:
+                          - distinction
+                          - tangibleId
+                          - tangibleName
+                          - tangibleType
+                          - extraInfo
+                          - createTimestamp
+                          x-apifox-orders:
+                          - distinction
+                          - tangibleId
+                          - tangibleName
+                          - tangibleType
+                          - extraInfo
+                          - createTimestamp
+                      tagsInfo:
+                        type: 'null'
+                      highlight:
+                        type: 'null'
+                    required:
+                    - tangibleId
+                    - tangibleName
+                    - tangibleType
+                    - objectId
+                    - objectName
+                    - objectType
+                    - nestedObjects
+                    - description
+                    - admin
+                    - owner
+                    - operator
+                    - features
+                    - createTimestamp
+                    - updateTimestamp
+                    - recyclingBinTime
+                    - deleteFlag
+                    - dmaEmbargo
+                    - geoInfo
+                    - location
+                    - origin
+                    - tags
+                    - holdType
+                    - tangibleInfo
+                    - tagsInfo
+                    - highlight
+                    x-apifox-orders:
+                    - tangibleId
+                    - tangibleName
+                    - tangibleType
+                    - objectId
+                    - objectName
+                    - objectType
+                    - nestedObjects
+                    - description
+                    - admin
+                    - owner
+                    - operator
+                    - features
+                    - createTimestamp
+                    - updateTimestamp
+                    - recyclingBinTime
+                    - deleteFlag
+                    - dmaEmbargo
+                    - geoInfo
+                    - location
+                    - origin
+                    - tags
+                    - holdType
+                    - tangibleInfo
+                    - tagsInfo
+                    - highlight
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                description: '[ProcessResult] wrapping the object info as a JSON string from the search
+                  index'
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: success
+                result:
+                  tangibleId: 55524c204558544c0000019bedaaedca
+                  tangibleName: VSiN POC
+                  tangibleType: SRT
+                  objectId: '1377420057780555776'
+                  objectName: VSiN POC
+                  objectType: 1
+                  nestedObjects: null
+                  description: ''
+                  admin:
+                    users: []
+                    groups:
+                    - d10ec1d08ae44d4282f4d1ebc0e2fd6d
+                    - a8f42e664ea74331811292b8763673c5
+                  owner:
+                    users:
+                    - c04cdf97756849268c61c82c5cf63a55
+                    groups:
+                    - 3ee6f96c07804280babaa699f4c93a74
+                  operator: null
+                  features:
+                  - feature: livepreview
+                    users: []
+                    groups:
+                    - d10ec1d08ae44d4282f4d1ebc0e2fd6d
+                  - feature: takelive
+                    users: []
+                    groups:
+                    - d10ec1d08ae44d4282f4d1ebc0e2fd6d
+                  - feature: rec
+                    users: []
+                    groups:
+                    - d10ec1d08ae44d4282f4d1ebc0e2fd6d
+                  - feature: stt
+                    users: []
+                    groups:
+                    - d10ec1d08ae44d4282f4d1ebc0e2fd6d
+                  - feature: face
+                    users: []
+                    groups:
+                    - d10ec1d08ae44d4282f4d1ebc0e2fd6d
+                  - feature: gpt
+                    users: []
+                    groups:
+                    - d10ec1d08ae44d4282f4d1ebc0e2fd6d
+                  - feature: slug
+                    users: []
+                    groups:
+                    - d10ec1d08ae44d4282f4d1ebc0e2fd6d
+                  - feature: owner
+                    users: []
+                    groups: []
+                  createTimestamp: 1748444133099
+                  updateTimestamp: 1772683146000
+                  recyclingBinTime: null
+                  deleteFlag: null
+                  dmaEmbargo: null
+                  geoInfo: null
+                  location: []
+                  origin: object-service
+                  tags: []
+                  holdType: null
+                  tangibleInfo:
+                  - distinction: null
+                    tangibleId: 55524c204558544c0000019bedaaedca
+                    tangibleName: VSiN POC
+                    tangibleType: SRT
+                    extraInfo: '{"urLoadTier":"TVUDECFVA4","url":"srt://192.33.1.61:60120"}'
+                    createTimestamp: 1769218961178
+                  - distinction: null
+                    tangibleId: 13aa0fe7646346c58338b997ecb50cb1
+                    tangibleName: 01KJY2CBB8RTAZTYYAZDX06MY1:input_srt_decoder_b493c70926494f49856abad33093e503
+                    tangibleType: SHM
+                    extraInfo: '{"SubType":"srt_decoder","ObjectId":"1377420057780555776","Zone":"us-east-1a","AudioShm":"A13aa0fe7646346c58338b997ecb50cb1","VideoShm":"V13aa0fe7646346c58338b997ecb50cb1","Originating":"J2N/0.2.36+9169031688","Vendor":1,"SaaSZone":"us-east-1a","BoxId":"3501ad9193d8412bbaa4035aaa74ac26","SaaSVendor":"AWS","Type":"SHM","DataShm":"D13aa0fe7646346c58338b997ecb50cb1","Version":4,"SaaSRegion":"us-east-1","Huan":"huan:mx::::srt_decoder:13aa0fe7646346c58338b997ecb50cb1","Region":"us-east-1","ProcessId":"13aa0fe7646346c58338b997ecb50cb1","RegionId":"SaaSRegion","TvuLiveShm":"SHMD13aa0fe7646346c58338b997ecb50cb1","CreateTimestamp":1772683145612,"TangibleId":"13aa0fe7646346c58338b997ecb50cb1"}'
+                    createTimestamp: 1772683145766
+                  tagsInfo: null
+                  highlight: null
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290258-run
+      operationId: Get_object_information_from_the_search_index_by_object_ID_473290258
+      x-source-doc: https://docs.tvunetworks.cn/api-473290258.md
+  /search/v2/media/createSlugRecord:
+    post:
+      summary: Create a new slug and trigger recording.
+      deprecated: false
+      description: "Creates a new slug bound to the specified source object and immediately applies\n\
+        the recording configuration determined by recordingType. The authenticated user's\nID is resolved\
+        \ automatically from the request context.\n\nOnly one recording backend is applied, strictly determined\
+        \ by recordingType:\nrecordingType=0 uses mmaRecordingParameters, recordingType=1 uses rrsRecordingParameters.\n\
+        All switch fields (recording, livePreview, transcriber, etc.) use a unified convention:\n0=Close,\
+        \ 1=Enable.\n\nRequest example (MMA, POST v2/media/createSlugRecord):\n{\n  \"sourceObjectId\"\
+        : \"obj-abc123\",\n  \"slug\": \"evening-news\",\n  \"title\": \"Evening News\",\n  \"report\"\
+        : \"Daily report\",\n  \"startTime\": 1713000000000,\n  \"endTime\": 1713003600000,\n  \"recordingType\"\
+        : 0,\n  \"mmaRecordingParameters\":{\n    \"livePreview\": 1,\n    \"gridDistribution\": 0,\n\
+        \    \"recording\": 1,\n    \"speechTranscription\": 1,\n    \"faceDetection\": 0,\n    \"transcriberInfo\"\
+        : \"{\\\"LanguageCode\\\":\\\"en-US\\\"}\",\n    \"sourceResolution\": 0\n  }\n}\n\nRequest example\
+        \ (RRS, POST v2/media/createSlugRecord):\n{\n  \"sourceObjectId\": \"obj-abc123\",\n  \"title\"\
+        : \"Evening News\",\n  \"startTime\": 1713000000000,\n  \"recordingType\": 1,\n  \"rrsRecordingParameters\"\
+        :{\n    \"templateId\": \"default\",\n    \"recording\": 1,\n    \"transcriber\": 1,\n    \"vision\"\
+        : 0,\n    \"transcriberParameter\": \"{\\\"aiproxy\\\":{\\\"strLanguage\\\":\\\"en-US\\\"}}\"\
+        ,\n    \"rrsCustomParameter\": \"{\\\"storage_info.bucket_name\\\":\\\"mma-video-new\\\"}\"\n\
+        \  }\n}\n\nResponse example (success):\n{\n  \"errorCode\": \"0x0\",\n  \"errorInfo\": \"success\"\
+        ,\n  \"result\": null\n}\n\nResponse example (parameter error):\n{\n  \"errorCode\": \"80B00101\"\
+        ,\n  \"errorInfo\": \"Parameter error\",\n  \"result\": null\n}"
+      tags: []
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSlugRecordParam'
+              description: "Request body. sourceObjectId and recordingType are required.\n           \
+                \   When recordingType=0, mmaRecordingParameters is required.\n              When recordingType=1,\
+                \ rrsRecordingParameters is required."
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      deleteFlag:
+                        type: integer
+                      createTime:
+                        type: integer
+                      updateTime:
+                        type: integer
+                      peerId:
+                        type: string
+                      gridLinkMetadata:
+                        type: string
+                      globalGridMetadata:
+                        type: 'null'
+                      sourceName:
+                        type: 'null'
+                      sourceType:
+                        type: 'null'
+                      endTime:
+                        type: integer
+                      externalId:
+                        type: 'null'
+                      repeatId:
+                        type: string
+                      executeRepeatId:
+                        type: 'null'
+                      slug:
+                        type: string
+                      title:
+                        type: string
+                      report:
+                        type: string
+                      color:
+                        type: integer
+                      operationRepeatParam:
+                        type: 'null'
+                      objectId:
+                        type: string
+                      slugObjectId:
+                        type: string
+                      insertTime:
+                        type: integer
+                      startTimeCode:
+                        type: 'null'
+                      endTimeCode:
+                        type: 'null'
+                      slugAdvanced:
+                        type: 'null'
+                      slugRecord:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          deleteFlag:
+                            type: integer
+                          createTime:
+                            type: integer
+                          updateTime:
+                            type: integer
+                          slugId:
+                            type: string
+                          rrsTaskId:
+                            type: 'null'
+                          userId:
+                            type: string
+                          sourceObjectId:
+                            type: string
+                          status:
+                            type: integer
+                          sourceId:
+                            type: string
+                          inputTaskId:
+                            type: 'null'
+                          templateId:
+                            type: string
+                          mmaId:
+                            type: 'null'
+                          recording:
+                            type: integer
+                          transcriber:
+                            type: integer
+                          vision:
+                            type: integer
+                          transcriberParameter:
+                            type: string
+                          rrsCustomParameter:
+                            type: string
+                          groupId:
+                            type: string
+                        required:
+                        - id
+                        - deleteFlag
+                        - createTime
+                        - updateTime
+                        - slugId
+                        - rrsTaskId
+                        - userId
+                        - sourceObjectId
+                        - status
+                        - sourceId
+                        - inputTaskId
+                        - templateId
+                        - mmaId
+                        - recording
+                        - transcriber
+                        - vision
+                        - transcriberParameter
+                        - rrsCustomParameter
+                        - groupId
+                        x-apifox-orders:
+                        - id
+                        - deleteFlag
+                        - createTime
+                        - updateTime
+                        - slugId
+                        - rrsTaskId
+                        - userId
+                        - sourceObjectId
+                        - status
+                        - sourceId
+                        - inputTaskId
+                        - templateId
+                        - mmaId
+                        - recording
+                        - transcriber
+                        - vision
+                        - transcriberParameter
+                        - rrsCustomParameter
+                        - groupId
+                        x-apifox-ignore-properties: []
+                      thumbnailPath:
+                        type: 'null'
+                      userId:
+                        type: string
+                      groupId:
+                        type: string
+                      ingestFile:
+                        type: integer
+                      type:
+                        type: integer
+                      repeatAssociatedId:
+                        type: string
+                      obj:
+                        type: 'null'
+                      tags:
+                        type: 'null'
+                      noController:
+                        type: boolean
+                    required:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - peerId
+                    - gridLinkMetadata
+                    - globalGridMetadata
+                    - sourceName
+                    - sourceType
+                    - endTime
+                    - externalId
+                    - repeatId
+                    - executeRepeatId
+                    - slug
+                    - title
+                    - report
+                    - color
+                    - operationRepeatParam
+                    - objectId
+                    - slugObjectId
+                    - insertTime
+                    - startTimeCode
+                    - endTimeCode
+                    - slugAdvanced
+                    - slugRecord
+                    - thumbnailPath
+                    - userId
+                    - groupId
+                    - ingestFile
+                    - type
+                    - repeatAssociatedId
+                    - obj
+                    - tags
+                    - noController
+                    x-apifox-orders:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - peerId
+                    - gridLinkMetadata
+                    - globalGridMetadata
+                    - sourceName
+                    - sourceType
+                    - endTime
+                    - externalId
+                    - repeatId
+                    - executeRepeatId
+                    - slug
+                    - title
+                    - report
+                    - color
+                    - operationRepeatParam
+                    - objectId
+                    - slugObjectId
+                    - insertTime
+                    - startTimeCode
+                    - endTimeCode
+                    - slugAdvanced
+                    - slugRecord
+                    - thumbnailPath
+                    - userId
+                    - groupId
+                    - ingestFile
+                    - type
+                    - repeatAssociatedId
+                    - obj
+                    - tags
+                    - noController
+                    x-apifox-ignore-properties: []
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                description: ProcessResult with errorCode "0x0" on success, or an error code on failure.
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-ignore-properties: []
+              example:
+                errorCode: '0x0'
+                errorInfo: success
+                result:
+                  id: 950ec1ca518d4cca8b6681a458d28726
+                  deleteFlag: 0
+                  createTime: 1776209035182
+                  updateTime: 1776209035182
+                  peerId: 55524c204558544c0000019d6eead497
+                  gridLinkMetadata: 1304_Test_Johannes
+                  globalGridMetadata: null
+                  sourceName: null
+                  sourceType: null
+                  endTime: 1776216235182
+                  externalId: null
+                  repeatId: ''
+                  executeRepeatId: null
+                  slug: 1304_Test_Johannes-1304_Test_Johannes
+                  title: 1304_Test_Johannes
+                  report: ''
+                  color: 0
+                  operationRepeatParam: null
+                  objectId: '1491665535908319232'
+                  slugObjectId: '1493874586218008576'
+                  insertTime: 1776209054947
+                  startTimeCode: null
+                  endTimeCode: null
+                  slugAdvanced: null
+                  slugRecord:
+                    id: d5083d48338349eaa2ff4b8f5ec0954f
+                    deleteFlag: 0
+                    createTime: 1776209056221
+                    updateTime: 1776209056221
+                    slugId: 950ec1ca518d4cca8b6681a458d28726
+                    rrsTaskId: null
+                    userId: 3c5cad3220ab49469e9094c391aeaac1
+                    sourceObjectId: '1491665535908319232'
+                    status: 0
+                    sourceId: 55524c204558544c0000019d6eead497
+                    inputTaskId: null
+                    templateId: default
+                    mmaId: null
+                    recording: 0
+                    transcriber: 1
+                    vision: 1
+                    transcriberParameter: '{"aiproxy": {"strLanguage": "en-US"}}'
+                    rrsCustomParameter: '{"storage_info.bucket_name": "mma-video-new"}'
+                    groupId: 64437f15eaf74741ad749b0d7d2457ec
+                  thumbnailPath: null
+                  userId: 3c5cad3220ab49469e9094c391aeaac1
+                  groupId: 64437f15eaf74741ad749b0d7d2457ec
+                  ingestFile: 0
+                  type: 0
+                  repeatAssociatedId: 950ec1ca518d4cca8b6681a458d28726
+                  obj: null
+                  tags: null
+                  noController: false
+          headers: {}
+          x-apifox-name: ''
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: dorUvluuWafg8M-wE7PjU
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: dorUvluuWafg8M-wE7PjU
+          scopes:
+            dorUvluuWafg8M-wE7PjU:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-450372672-run
+      operationId: Create_a_new_slug_and_trigger_recording_450372672
+      x-source-doc: https://docs.tvunetworks.cn/api-450372672.md
+  /search/v2/media/updateSlugRecord:
+    post:
+      summary: Update an existing slug and its recording configuration.
+      deprecated: false
+      description: "Updates the metadata and recording parameters of an existing slug identified by slugId.\n\
+        Only the fields that are explicitly provided will be updated; omitted fields retain their\ncurrent\
+        \ values. The authenticated user's ID is resolved automatically from the request context.\n\n\
+        Only one recording backend is applied, strictly determined by recordingType:\nrecordingType=1\
+        \ uses mmaRecordingParameters, recordingType=2 uses rrsRecordingParameters.\nAll switch fields\
+        \ (recording, livePreview, transcriber, etc.) use a unified convention:\n0=Close, 1=Enable.\n\n\
+        Request example (RRS, POST v2/media/updateSlugRecord):\n{\n  \"slugId\": \"slug-xyz789\",\n  \"\
+        title\": \"Evening News Updated\",\n  \"endTime\": 1713007200000,\n  \"recordingType\": 1,\n \
+        \ \"rrsRecordingParameters\":{\n    \"templateId\": \"default\",\n    \"recording\": 1,\n    \"\
+        transcriber\": 1,\n    \"vision\": 0,\n    \"transcriberParameter\": \"{\\\"aiproxy\\\":{\\\"\
+        strLanguage\\\":\\\"en-US\\\"}}\",\n    \"rrsCustomParameter\": \"{\\\"storage_info.bucket_name\\\
+        \":\\\"mma-video-new\\\"}\"\n  }\n}\n\nRequest example (MMA, POST v2/media/updateSlugRecord):\n\
+        {\n  \"slugId\": \"slug-xyz789\",\n  \"recordingType\": 0,\n  \"mmaRecordingParameters\":{\n \
+        \   \"recording\": 1,\n    \"livePreview\": 1,\n    \"sourceResolution\": 0\n  }\n}\n\nResponse\
+        \ example (success):\n{\n  \"errorCode\": \"0x0\",\n  \"errorInfo\": \"success\",\n  \"result\"\
+        : null\n}\n\nResponse example (parameter error):\n{\n  \"errorCode\": \"80B00101\",\n  \"errorInfo\"\
+        : \"Parameter error\",\n  \"result\": null\n}"
+      tags: []
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSlugRecordParam'
+              description: "Request body. slugId and recordingType are required.\n              When recordingType=0,\
+                \ mmaRecordingParameters is required.\n              When recordingType=1, rrsRecordingParameters\
+                \ is required."
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessResultObject'
+                description: ProcessResult with errorCode "0x0" on success, or an error code on failure.
+          headers: {}
+          x-apifox-name: ''
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: pIfH_P7SGkQDZQwQtwQhH
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: pIfH_P7SGkQDZQwQtwQhH
+          scopes:
+            pIfH_P7SGkQDZQwQtwQhH:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-450372673-run
+      operationId: Update_an_existing_slug_and_its_recording_configuration_450372673
+      x-source-doc: https://docs.tvunetworks.cn/api-450372673.md
+components:
+  schemas:
+    CreateSlugRecordParam:
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+          description: source object id
+        slug:
+          type: string
+          description: slug
+        title:
+          type: string
+          description: The display title of the slug/event.
+        report:
+          type: string
+          description: The report or description text for the slug.
+        startTime:
+          type: integer
+          description: 'Slug start time as a Unix timestamp in milliseconds.
+
+            When this time is reached, recording will be triggered automatically.
+
+            Defaults to the current time if not provided.'
+          format: int64
+        endTime:
+          type: integer
+          description: 'Slug end time as a Unix timestamp in milliseconds.
+
+            When this time is reached, recording will be stopped automatically.
+
+            Defaults to 9999999999999 (no expiry) if not provided.'
+          format: int64
+        recordingType:
+          type: integer
+          description: 'Recording backend type. Optional.
+
+            null or 0 - Simple slug creation, no recording is triggered.
+
+            1 - MMA (Media Mind Application). Requires mmaRecordingParameters.
+
+            2 - RRS (Remote Recording Service). Requires rrsRecordingParameters.'
+        mmaRecordingParameters:
+          $ref: '#/components/schemas/MmaRecordingParam'
+          description: MMA recording configuration parameters. Required when recordingType = 1.
+        rrsRecordingParameters:
+          $ref: '#/components/schemas/RrsRecordingParam'
+          description: RRS recording configuration parameters. Required when recordingType = 2.
+      required:
+      - sourceObjectId
+      - slug
+      x-apifox-orders:
+      - sourceObjectId
+      - slug
+      - title
+      - report
+      - startTime
+      - endTime
+      - recordingType
+      - mmaRecordingParameters
+      - rrsRecordingParameters
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RrsRecordingParam:
+      type: object
+      properties:
+        templateId:
+          type: string
+          description: 'Template ID used to start the corresponding RRS module, sourced from mma-admin.
+
+            Use "default" if no specific template is required.'
+        recording:
+          type: integer
+          description: 'Recording switch. Defaults to enabled if not set in the template.
+
+            0 - Close
+
+            1 - Enable (default)'
+        transcriber:
+          type: integer
+          description: 'Transcriber (speech-to-text) switch.
+
+            When not set, the template''s default value is used.
+
+            0 - Close
+
+            1 - Enable'
+        vision:
+          type: integer
+          description: 'Vision (AI video analysis) switch.
+
+            When not set, the template''s default value is used.
+
+            0 - Close
+
+            1 - Enable'
+        transcriberParameter:
+          type: string
+          description: 'Custom transcriber configuration in JSON string format.
+
+            Example:{"aiproxy":{"strLanguage":"en-US"}}'
+        rrsCustomParameter:
+          type: string
+          description: 'Custom RRS configuration in JSON string format.
+
+            Example:{"storage_info.bucket_name":"mma-video-new"}'
+      x-apifox-orders:
+      - templateId
+      - recording
+      - transcriber
+      - vision
+      - transcriberParameter
+      - rrsCustomParameter
+      x--orders:
+      - templateId
+      - recording
+      - transcriber
+      - vision
+      - transcriberParameter
+      - rrsCustomParameter
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    MmaRecordingParam:
+      type: object
+      properties:
+        livePreview:
+          type: integer
+          description: 'Live preview switch.
+
+            0 - Close (default)
+
+            1 - Enable'
+        gridDistribution:
+          type: integer
+          description: 'Grid distribution switch.
+
+            0 - Close (default)
+
+            1 - Enable'
+        recording:
+          type: integer
+          description: 'Recording switch.
+
+            0 - Close (default)
+
+            1 - Enable'
+        speechTranscription:
+          type: integer
+          description: 'Speech transcription switch.
+
+            0 - Close (default)
+
+            1 - Enable'
+        faceDetection:
+          type: integer
+          description: 'Face detection switch.
+
+            0 - Close (default)
+
+            1 - Enable'
+        transcriberInfo:
+          type: string
+          description: 'Transcriber configuration in JSON string format.
+
+            Example:{"LanguageCode":"en-US"}'
+        sourceResolution:
+          type: integer
+          description: 'Source resolution setting.
+
+            0 - 1080p60 (default)
+
+            1 - Lower resolution
+
+            2 - 4Kp30'
+      x-apifox-orders:
+      - livePreview
+      - gridDistribution
+      - recording
+      - speechTranscription
+      - faceDetection
+      - transcriberInfo
+      - sourceResolution
+      x--orders:
+      - livePreview
+      - gridDistribution
+      - recording
+      - speechTranscription
+      - faceDetection
+      - transcriberInfo
+      - sourceResolution
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    UpdateSlugRecordParam:
+      type: object
+      properties:
+        slugId:
+          type: string
+          description: slug id
+        slug:
+          type: string
+          description: The slug identifier string (event identifier). Optional; updates only when provided.
+        title:
+          type: string
+          description: The display title of the slug/event. Optional; updates only when provided.
+        report:
+          type: string
+          description: The report or description text for the slug. Optional; updates only when provided.
+        startTime:
+          type: integer
+          description: 'Slug start time as a Unix timestamp in milliseconds. Optional; updates only when
+            provided.
+
+            When this time is reached, recording will be triggered automatically.'
+          format: int64
+        endTime:
+          type: integer
+          description: 'Slug end time as a Unix timestamp in milliseconds. Optional; updates only when
+            provided.
+
+            When this time is reached, recording will be stopped automatically.'
+          format: int64
+        recordingType:
+          type: integer
+          description: "Recording backend type. Optional.\nnull or 0 - No recording update.\n1 - MMA (Media\
+            \ Mind Application). Requires mmaRecordingParameters.\n    Cannot be used if the slug was\
+            \ originally created with RRS.\n2 - RRS (Remote Recording Service). Requires rrsRecordingParameters.\n\
+            \    Cannot be used if the slug was originally created with MMA.\nIf the slug was created\
+            \ without recording, either type can be added here."
+        mmaRecordingParameters:
+          $ref: '#/components/schemas/MmaRecordingParam'
+          description: MMA recording configuration parameters. Required when recordingType = 1.
+        rrsRecordingParameters:
+          $ref: '#/components/schemas/RrsRecordingParam'
+          description: RRS recording configuration parameters. Required when recordingType = 2.
+      required:
+      - slugId
+      x-apifox-orders:
+      - slugId
+      - slug
+      - title
+      - report
+      - startTime
+      - endTime
+      - recordingType
+      - mmaRecordingParameters
+      - rrsRecordingParameters
+      x--orders:
+      - slugId
+      - slug
+      - title
+      - report
+      - startTime
+      - endTime
+      - recordingType
+      - mmaRecordingParameters
+      - rrsRecordingParameters
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ProcessResultObject:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: 'Error code. "0x0" indicates success; any other value indicates an error.
+
+            Common codes: "0x0"=success, "80B00101"=parameter error, "0x80100002"=null record,
+
+            "0x80100003"=exception, "0x80100008"=request timeout.'
+        errorInfo:
+          type: string
+          description: 'Human-readable error message corresponding to errorCode.
+
+            "success" when errorCode is "0x0".'
+        result:
+          type: object
+          properties: {}
+          x--orders: []
+          x--ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    CreateObjectAttr:
+      type: object
+      properties:
+        attrName:
+          type: string
+          description: ''
+        attrValue:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - attrName
+      - attrValue
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    GeoInfo:
+      type: object
+      properties:
+        lat:
+          type: number
+          description: ''
+        lon:
+          type: number
+          description: ''
+      x-apifox-orders:
+      - lat
+      - lon
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    FeatureInfo:
+      type: object
+      properties:
+        feature:
+          type: string
+          description: ''
+        users:
+          type: array
+          items:
+            type: string
+          description: ''
+        groups:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - feature
+      - users
+      - groups
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OwnerInfo:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: string
+          description: ''
+        groups:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - users
+      - groups
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AdminInfo:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: string
+          description: ''
+        groups:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - users
+      - groups
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    NestedObjects:
+      type: object
+      properties:
+        objectList:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - objectList
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    GraphqlResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Error code returned by objectd.{@code "0x0"} indicates success; any other value
+            indicates an error.
+        errorInfo:
+          type: string
+          description: Human-readable error message. Populated when errorCode is not{@code "0x0"}.
+        result:
+          type: string
+          description: JSON string containing the operation result data. Populated on success.
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProcessResultListObjectDetailsInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: ''
+        errorInfo:
+          type: string
+          description: ''
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectDetailsInfo'
+            description: Detailed information for an object returned by queries.
+          description: ''
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ObjectDetailsInfo:
+      type: object
+      properties:
+        tangibleId:
+          type: string
+          description: Primary tangible ID bound to this object. Populated for legacy MX compatibility.
+        tangibleName:
+          type: string
+          description: Primary tangible name bound to this object. Populated for legacy MX compatibility.
+        tangibleType:
+          type: string
+          description: Primary tangible type (e.g., SDI, PACK, EXT). Populated for legacy MX compatibility.
+        objectId:
+          type: string
+          description: Unique object ID string.
+        objectName:
+          type: string
+          description: Human-readable name of the object.
+        objectType:
+          type: integer
+          description: Integer type code of the object (e.g., 1 = source, 2 = project).
+        nestedObjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/NestedObjects'
+            description: ''
+          description: List of nested child objects associated with this object.
+        description:
+          type: string
+          description: Free-text description of the object.
+        admin:
+          $ref: '#/components/schemas/AdminInfo'
+          description: Admin user info (userId and email of the object administrator).
+        owner:
+          $ref: '#/components/schemas/OwnerInfo'
+          description: Owner user info (userId and email of the object owner).
+        operator:
+          $ref: '#/components/schemas/OperatorInfo'
+          description: Operator info recording the last user who modified the object.
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureInfo'
+            description: ''
+          description: List of feature flags enabled for this object (e.g., recording, publicSlug).
+        createTimestamp:
+          type: integer
+          description: Unix timestamp (milliseconds) when the object was created.
+          format: int64
+        updateTimestamp:
+          type: integer
+          description: Unix timestamp (milliseconds) when the object was last updated.
+          format: int64
+        recyclingBinTime:
+          type: integer
+          description: Unix timestamp (milliseconds) when the object was moved to the recycling bin. Null
+            if not in bin.
+          format: int64
+        deleteFlag:
+          type: integer
+          description: 'Soft-delete flag: 0 = active, 1 = deleted.'
+        dmaEmbargo:
+          type: boolean
+          description: Whether the object has a DMA embargo restriction applied.
+        geoInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoInfo'
+            description: ''
+          description: List of geographic location coordinates associated with the object.
+        location:
+          type: array
+          items:
+            type: string
+          description: List of location name strings (e.g., city, country).
+        origin:
+          type: string
+          description: Origin identifier indicating the service or system that created the object.
+        tags:
+          type: array
+          items:
+            type: string
+          description: List of tag strings applied to the object (e.g., "broadcast", "live").
+        holdType:
+          type: integer
+          description: 'Hold type indicator: non-null when the object is held by an application.'
+        tangibleInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/TangibleInfo'
+            description: 'Tangible (physical device or source) metadata model.
+
+              Used both as a request parameter for create/update operations and as a response field within
+              object details.'
+          description: Full list of tangibles bound to this object, including all binding metadata.
+        tagsInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagInfo'
+            description: ''
+          description: Detailed tag information list, including tag key/value pairs.
+        highlight:
+          type: string
+          description: Search highlight snippet showing matched query terms in context.
+      x-apifox-orders:
+      - tangibleId
+      - tangibleName
+      - tangibleType
+      - objectId
+      - objectName
+      - objectType
+      - nestedObjects
+      - description
+      - admin
+      - owner
+      - operator
+      - features
+      - createTimestamp
+      - updateTimestamp
+      - recyclingBinTime
+      - deleteFlag
+      - dmaEmbargo
+      - geoInfo
+      - location
+      - origin
+      - tags
+      - holdType
+      - tangibleInfo
+      - tagsInfo
+      - highlight
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    TagInfo:
+      type: object
+      properties:
+        tagId:
+          type: string
+          description: ''
+        tagName:
+          type: string
+          description: ''
+        classification:
+          type: integer
+          description: ''
+        createTimestamp:
+          type: integer
+          description: ''
+          format: int64
+        groupId:
+          type: string
+          description: ''
+        userId:
+          type: string
+          description: ''
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/TypeInfo'
+            description: ''
+          description: ''
+        num:
+          type: integer
+          description: ''
+        thumbnail:
+          type: string
+          description: ''
+        sortIndex:
+          type: integer
+          description: ''
+      x-apifox-orders:
+      - tagId
+      - tagName
+      - classification
+      - createTimestamp
+      - groupId
+      - userId
+      - detail
+      - num
+      - thumbnail
+      - sortIndex
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    TypeInfo:
+      type: object
+      properties:
+        ObjectType:
+          type: string
+          description: ''
+        num:
+          type: integer
+          description: ''
+      x-apifox-orders:
+      - ObjectType
+      - num
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    TangibleInfo:
+      type: object
+      properties:
+        distinction:
+          type: string
+          description: Optional label to distinguish between multiple tangibles of the same type on one
+            object.
+        tangibleId:
+          type: string
+          description: Unique ID of the tangible device or source. Required for update/bind operations.
+        tangibleName:
+          type: string
+          description: Human-readable name of the tangible device.
+        tangibleType:
+          type: string
+          description: Type of the tangible (e.g., SDI, PACK, EXT, ANYWHERE, GRID_SDI).
+        extraInfo:
+          type: string
+          description: 'JSON string containing extra tangible-specific metadata. Default: "{}".'
+          default: '{}'
+        createTimestamp:
+          type: integer
+          description: Unix timestamp (milliseconds) when the tangible was created.
+          format: int64
+      x-apifox-orders:
+      - distinction
+      - tangibleId
+      - tangibleName
+      - tangibleType
+      - extraInfo
+      - createTimestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OperatorInfo:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: string
+          description: ''
+        groups:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - users
+      - groups
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CheckObjectFeature:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: ID of the user making the request, used for permission scoping. Optional.
+        objectIds:
+          type: array
+          items:
+            type: string
+          description: List of object IDs to check features for. Required.
+        featureName:
+          type: string
+          description: Name of the specific feature to check (e.g., "recording", "publicSlug"). Required
+            for checkObjectFeature; optional for objectFeatureList.
+      x-apifox-orders:
+      - userId
+      - objectIds
+      - featureName
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProcessResultMapBoolean:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: ''
+        errorInfo:
+          type: string
+          description: ''
+        result:
+          $ref: '#/components/schemas/MapBoolean'
+          description: ''
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    MapBoolean:
+      type: object
+      properties:
+        key:
+          type: boolean
+      x-apifox-orders:
+      - key
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CheckObjectAdmin:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: ''
+        objectId:
+          type: string
+          description: ''
+      x-apifox-orders:
+      - userId
+      - objectId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProcessResultBoolean:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: ''
+        errorInfo:
+          type: string
+          description: ''
+        result:
+          type: boolean
+          description: ''
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ObjTgbRelation:
+      type: object
+      properties:
+        objectId:
+          type: string
+          description: ID of the object to bind or unbind. Required.
+        tangibleId:
+          type: string
+          description: ID of the tangible (device/source) to bind or unbind. Required.
+        priority:
+          type: integer
+          description: Binding priority when an object is associated with multiple tangibles. 0 = highest
+            priority. Optional.
+      required:
+      - objectId
+      - tangibleId
+      x-apifox-orders:
+      - objectId
+      - tangibleId
+      - priority
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CopyObjectParam:
+      type: object
+      properties:
+        objectId:
+          type: string
+          description: ''
+        tangibleId:
+          type: string
+          description: ''
+        userId:
+          type: string
+          description: ''
+      required:
+      - objectId
+      - tangibleId
+      - userId
+      x-apifox-orders:
+      - objectId
+      - tangibleId
+      - userId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProcessResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: ''
+        errorInfo:
+          type: string
+          description: ''
+        result:
+          description: ''
+          type: object
+          properties: {}
+        processResponse:
+          type: string
+          description: ''
+          enum:
+          - SUCCESS
+          - PARAMETER_ERROR
+          - EXCEPTION
+          - API_EXCEPTION
+          - ALREADY_EXIST
+          - NOT_EXIST
+          - OBJECT_IS_LOCKED
+          - OPERATION_FAIL
+          - AUTHORIZATION_FAIL
+          - MISSING_USER_INFO
+          - NO_PERMISSION
+          - NO_SET_PROJECT_CONFIG
+          - NO_SET_DELETE_CONFIG
+          - NO_SET_READ_CONFIG
+          - NO_SET_UPDATE_CONFIG
+          - NO_ORIGIN_SERVICE
+          - WRONG_DELETE_TYPE
+          - USER_NOT_EXIST
+          - TRY_LOCK_FAIL
+          - BIND_RELATION_FAIL
+          - CREATE_FAIL
+          - UPDATE_FAIL
+          - NO_OBJECT_INFO
+          - NO_GROUP_INFO
+          - TANGIBLE_ID_SAME
+          - TANGIBLE_HAS_BIND_BIND_OBJECT
+          - CREATE_TOKEN_FAIL
+          - CORRELATE_USER_DEVICE_FAIL
+          - NO_ADMIN_OWNER_PERMISSION
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - processResponse
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ? ''
+    : type: object
+      properties:
+        sid:
+          type: string
+        email:
+          type: string
+        tagValue:
+          $ref: '#/components/schemas/tagValue'
+      x-apifox-orders:
+      - sid
+      - email
+      - tagValue
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    tagValue:
+      type: object
+      properties:
+        tagKey:
+          type: string
+          description: ''
+        tagValue:
+          type: string
+          description: ''
+        targetClient:
+          type: string
+          description: ''
+      x-apifox-orders:
+      - tagKey
+      - tagValue
+      - targetClient
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    HoldObjectParam:
+      type: object
+      properties:
+        appName:
+          type: string
+          description: Name of the application placing the hold (e.g., "media-encoder"). Required.
+        objectId:
+          type: string
+          description: ID of the object to hold. Required.
+        user:
+          type: string
+          description: User ID of the user placing the hold. Required.
+        callbackUrl:
+          type: string
+          description: Callback URL to invoke when the hold state changes (e.g., released or expired).
+            Optional.
+        requestHeader:
+          type: string
+          description: HTTP request headers to include when calling the callbackUrl. Optional JSON string.
+        description:
+          type: string
+          description: Human-readable reason or description for this hold. Optional.
+        tangibleId:
+          type: string
+          description: ID of the specific tangible to hold. Optional; if omitted, the hold applies to
+            the object globally.
+        features:
+          type: array
+          items:
+            type: string
+          description: List of feature names that the hold should lock (e.g., ["recording"]). Optional.
+      required:
+      - appName
+      - objectId
+      - user
+      x-apifox-orders:
+      - appName
+      - objectId
+      - user
+      - callbackUrl
+      - requestHeader
+      - description
+      - tangibleId
+      - features
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ReleaseObjectParam:
+      type: object
+      properties:
+        appName:
+          type: string
+          description: Name of the application that originally placed the hold. Required.
+        objectId:
+          type: string
+          description: ID of the object to release. Required.
+        user:
+          type: string
+          description: User ID of the user releasing the hold. Required.
+        tangibleId:
+          type: string
+          description: ID of the specific tangible to release. Optional; if omitted, the entire object
+            hold is released.
+      required:
+      - appName
+      - objectId
+      - user
+      x-apifox-orders:
+      - appName
+      - objectId
+      - user
+      - tangibleId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

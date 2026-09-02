@@ -1,0 +1,156 @@
+generated: '2026-09-01'
+method: derived
+source: >-
+  openapi/*.yml (352 operations assembled from TVU's own per-endpoint OpenAPI exports) plus the
+  TVU documentation site (https://docs.tvunetworks.cn/ — Authentication, Ingest Integration
+  Workflow, MediaHub API and ERROR CODE pages)
+auth:
+  style: 'Three parallel schemes — Authorization: Bearer <AppSecret>, an SID session header, and an AccessKey + timestamp + MD5 signature header.'
+  detail: authentication/tvu-networks-authentication.yml
+  note: >-
+    No operation in the exported specs carries a `security:` requirement, so the contract itself
+    never states which scheme an operation accepts. Several operations instead declare SID,
+    Authorization, Cookie and sid as required plain header parameters.
+error_envelope:
+  style: envelope
+  format: proprietary
+  rfc9457: false
+  media_type: application/json
+  fields:
+  - {name: errorCode, type: string, note: 'Hex-style success sentinel "0x0"; numeric codes such as 1010, 1099 on failure'}
+  - {name: errorInfo, type: string, note: 'Human-readable message, "OK" or "success" on the happy path'}
+  - {name: result, type: object, note: 'Payload; null on failure'}
+  - {name: async, type: boolean, note: 'Present on job-submitting operations'}
+  note: >-
+    TVU returns HTTP 200 with an in-body errorCode for most application-level failures. An agent
+    that branches on the HTTP status alone will read a failed export as a success. See
+    errors/tvu-networks-problem-types.yml.
+pagination:
+  style: page-number
+  params:
+  - {name: pageNum, in: query, note: '1-based page index'}
+  - {name: pageSize, in: query, note: 'Rows per page'}
+  - {name: Offset, in: query, note: 'Used by Search API and Media Info instead of pageNum/pageSize'}
+  - {name: offset, in: query, note: 'Used by MediaHub list operations'}
+  response_fields: []
+  note: >-
+    Two different pagination idioms coexist across the surface (pageNum/pageSize on
+    Input&Output, Workflow and most of Search; Offset on Search extract and Media Info; offset on
+    MediaHub). No total-count or next-cursor field is declared in any response schema, so a
+    client cannot tell from the contract when it has reached the last page.
+idempotency:
+  supported: partial
+  mechanism: client-supplied uuid on export jobs
+  header: null
+  field: uuid
+  scope: export and thumbnail job submission
+  retention: null
+  docs: https://docs.tvunetworks.cn/
+  evidence: openapi/tvu-networks-export-openapi.yml
+  note: >-
+    The export surface documents it explicitly — "Idempotency: supply `uuid` to prevent duplicate
+    jobs — re-submitting the same `uuid` returns the existing job", and error 1100 ("export file
+    already existed and can be downloaded directly") is the observable outcome. No
+    Idempotency-Key header exists, and no other write surface (MediaHub routing, Producer,
+    Grid, Partyline) offers any deduplication mechanism at all, so a retried route connect or
+    startLive can double-fire.
+request_id_tracing:
+  supported: unknown
+  note: 'No request-id or correlation-id header is declared in any exported response.'
+versioning:
+  style: path
+  detail: >-
+    Versions are embedded in the path and are inconsistent across services — /openapi/3.0/,
+    /openapi/device/3.0/, /mediahub/api/v2/, /urcaller/api/v1/ and /urcaller/api/v2/ (both live),
+    /search/v2/, /api/objectd/v1/, /api/resource/v2/, /input-docker/api/v1/. There is no header or
+    query version negotiation and no published version policy.
+  see: lifecycle/tvu-networks-lifecycle.yml
+rate_limit_signaling:
+  documented: false
+  headers: []
+  exhaustion_status: null
+  note: 'No 429 response and no RateLimit-*/X-RateLimit-*/Retry-After header appears anywhere in the 352 exported operations, and no limit is published in the docs.'
+field_expansion:
+  supported: false
+metadata:
+  supported: true
+  note: >-
+    TVU models arbitrary metadata as first-class resources — grid metadata
+    (getGridMetadata/updateGridMetadata), object tags, and a metadata upload/webhook service on
+    the Search surface.
+reversibility:
+  grade: documented
+  applicable: true
+  note: >-
+    The API has a large write surface and every major state change has a real reversal
+    operation, but TVU publishes NO time window for any of them — not for delete, not for
+    release, not for the export jobs it stores. Grade is `documented`, not `verified`, purely
+    because no window is stated anywhere in the docs. Do not read a window into these rows.
+  surfaces:
+  - action: 'Connect a live MediaHub route'
+    operationId: connect
+    reversal: disconnect
+    reversal_operationId: disconnect
+    window: null
+    window_source: null
+    note: 'Signal routing is bidirectional and immediate; the destination variant is destinationStopLive.'
+  - action: 'Start a live transmission from a paired device'
+    operationId: startLive_250778504
+    reversal: stopLive
+    reversal_operationId: stopLive_250778505
+    window: null
+    window_source: null
+  - action: 'Start pushing an Anywhere live stream'
+    operationId: startPushLive_250778494
+    reversal: stopPushLive
+    reversal_operationId: stopPushLive_250778495
+    window: null
+    window_source: null
+  - action: 'Hold an object for exclusive application use'
+    operationId: Place_a_hold_on_an_object_to_reserve_it_for_exclusive_use_by_an_application_473290269
+    reversal: release
+    reversal_operationId: Release_a_previously_held_object_473290270
+    window: null
+    window_source: null
+    note: 'A callbackUrl may be supplied and is invoked when the hold state changes.'
+  - action: 'Bind a tangible to an object'
+    operationId: Bind_a_tangible_to_an_object_473290267
+    reversal: unlink
+    reversal_operationId: Unlink_detach_a_tangible_from_an_object_473290266
+    window: null
+    window_source: null
+  - action: 'Create a recording slug and start recording'
+    operationId: Create_a_new_slug_and_trigger_recording_450372672
+    reversal: deleteSlug
+    reversal_operationId: delete_slug_351711929
+    window: null
+    window_source: null
+  - action: 'Set white balance on a MediaHub project'
+    operationId: setWhiteBalance
+    reversal: resetWhiteBalance
+    reversal_operationId: resetWhiteBalance
+    window: null
+    window_source: null
+  - action: 'Create MediaHub sources, outputs, encoding profiles, destinations, projects'
+    operationId: 'createSourceObject, createOutput, createEncodingProfile, createProject'
+    reversal: 'deleteSourceObjectInfo, deleteOutput, deleteEncodingProfile, deleteDestination, deleteProject'
+    window: null
+    window_source: null
+    note: 'Hard deletes. No restore, undelete or trash operation exists anywhere in the surface.'
+  no_reversal:
+  - action: 'Submit an export or thumbnail job'
+    note: >-
+      There is no cancel or abort operation for an in-progress export. Once error 1001 ("export
+      task in progress") is returned the job runs to completion; the only related control is the
+      idempotency uuid that prevents a duplicate being created.
+  - action: 'Inject a manual SCTE-35 cue into a live playout'
+    note: 'Adding_ManualSCTE_via_API_250778585 and Enable_Scte_250778644 have no documented reversal — an inserted ad marker in a live stream cannot be recalled.'
+dry_run_mode:
+  supported: false
+  note: 'No dry-run, preview, validate-only or simulate parameter appears in any of the 352 operations.'
+cross_links:
+  errors: errors/tvu-networks-problem-types.yml
+  lifecycle: lifecycle/tvu-networks-lifecycle.yml
+  authentication: authentication/tvu-networks-authentication.yml
+  rate_limits: rate-limits/tvu-networks-rate-limits.yml
+  webhooks: asyncapi/tvu-networks-webhooks.yml

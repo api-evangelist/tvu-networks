@@ -1,0 +1,33 @@
+generated: '2026-09-01'
+method: searched
+source: >-
+  npm registry search (registry.npmjs.org/-/v1/search?text=tvunetworks), pypi.org/pypi/tvunetworks/json,
+  packagist.org search, rubygems.org search, github.com/tvunetworks repo listing,
+  https://www.tvunetworks.com/tvu-developer/ and https://www.tvunetworks.com/story/free-software-kit-tvu-anywhere/
+package_count: 0
+official_count: 0
+note: >-
+  TVU Networks publishes no first-party client library to any public package registry.
+  npm search for "tvunetworks" returns 0 results; pypi.org/pypi/tvunetworks/json returns 404;
+  Packagist and RubyGems both return empty result sets. The github.com/tvunetworks organisation
+  exists with 8 public repositories, but all are 2013-2018 Rockchip/MediaTek kernel and firmware
+  trees (picuntu, MTK5931, rt3573sta, rk-tools) with no relationship to the TVU public HTTP API —
+  none is an SDK. The one SDK TVU does advertise, the TVU Anywhere SDK for iOS and Android, is not
+  distributed through a registry: the developer page states "Fill out the form to access the TVU
+  Developer's Portal", so the SDK is obtained by sales/support request and carries no public
+  version or release date that can be read.
+packages: []
+gated_sdks:
+- name: TVU Anywhere SDK
+  platforms: [ios, android]
+  registry: null
+  version: null
+  published: null
+  official: true
+  distribution: request-form
+  url: https://www.tvunetworks.com/tvu-developer/
+  note: >-
+    Announced publicly (https://www.tvunetworks.com/story/free-software-kit-tvu-anywhere/) and
+    described as adding low-latency live video transmission to an iOS or Android app. There is no
+    registry metadata endpoint to query and no download URL is published, so version and published
+    date are recorded null — checked, nothing to record, not "not checked".

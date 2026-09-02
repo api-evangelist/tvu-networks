@@ -1,0 +1,2721 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Grid API
+  description: Grid API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint
+    OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /openapi/3.0/bookingEvent/addEvent:
+    post:
+      summary: addEvent
+      deprecated: false
+      description: add one booking event
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                  description: Event description
+                startTime:
+                  type: string
+                  description: Event Start time
+                endTime:
+                  type: string
+                  description: Event end time
+                tname:
+                  type: string
+                  description: Source peer name
+                tpeerid:
+                  type: string
+                  description: Source ID
+                ttype:
+                  type: string
+                  description: Source type
+                delay:
+                  type: string
+                  description: delay
+                bitrate:
+                  type: string
+                  description: bitrate
+                rpeerid:
+                  type: string
+                  description: Receiver ID
+                session:
+                  type: string
+                  description: Session from getSession API
+              required:
+              - title
+              - description
+              - startTime
+              - endTime
+              - tname
+              - tpeerid
+              - ttype
+              - delay
+              - bitrate
+              - rpeerid
+              - session
+              x-apifox-orders:
+              - title
+              - description
+              - startTime
+              - endTime
+              - tname
+              - tpeerid
+              - ttype
+              - delay
+              - bitrate
+              - rpeerid
+              - session
+            example:
+              title: '11'
+              description: '33'
+              startTime: '1714126541000'
+              endTime: '1714130141000'
+              tname: 6525T1
+              tpeerid: 6d428002ee306525
+              ttype: t
+              delay: '2'
+              bitrate: '100'
+              rpeerid: c046fb42f36d3c49
+              session: 7393919BB8744CCBB897F00FDA2049FF
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778496-run
+      operationId: addEvent_250778496
+      x-source-doc: https://docs.tvunetworks.cn/api-250778496.md
+  /openapi/3.0/bookingEvent/batchHandleEvent:
+    post:
+      summary: batchHandleEvent
+      deprecated: false
+      description: Batch Handle Event booking event
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              properties: {}
+              items:
+                type: object
+                properties:
+                  actionType:
+                    type: string
+                    description: add,delete,query,edit
+                  title:
+                    type: string
+                    description: Event title
+                  description:
+                    type: string
+                    description: Event description
+                  startTime:
+                    type: string
+                    description: Event start time
+                  endTime:
+                    type: string
+                    description: Event end time
+                  peerName:
+                    type: string
+                    description: Source name
+                  peerFullId:
+                    type: string
+                    description: ource id
+                  type:
+                    type: string
+                    description: Source type
+                  delay:
+                    type: string
+                    description: Event delay
+                  bitrate:
+                    type: string
+                    description: Event bitrate
+                  fullId:
+                    type: string
+                    description: Receiver id
+                  outputFilterId:
+                    type: string
+                    description: Output filter id
+                  switchType:
+                    type: string
+                    description: Switch type
+                  eventId:
+                    type: string
+                    description: Event id
+                  tname:
+                    type: string
+                  tpeerid:
+                    type: string
+                  rpeerid:
+                    type: string
+                  ttype:
+                    type: string
+                required:
+                - actionType
+                - eventId
+                - startTime
+                - endTime
+                - peerName
+                - peerFullId
+                - type
+                - fullId
+                x-apifox-orders:
+                - actionType
+                - title
+                - description
+                - startTime
+                - endTime
+                - peerName
+                - peerFullId
+                - type
+                - delay
+                - bitrate
+                - fullId
+                - outputFilterId
+                - switchType
+                - eventId
+                - tname
+                - tpeerid
+                - rpeerid
+                - ttype
+            example:
+            - actionType: add
+              title: new Event
+              description: 9d3c
+              startTime: '1599732634000'
+              endTime: '1599819034000'
+              peerName: webteam_a7fe
+              peerFullId: c60d05ab8d93a7fe
+              type: t
+              delay: '5'
+              bitrate: '300'
+              fullId: 1998ffef1f409d3c
+              outputFilterId: ''
+              switchType: ''
+            - actionType: delete
+              eventId: '4512'
+            - actionType: edit
+              eventId: '4519'
+              description: 33sssssssssss
+              startTime: '1600516262000'
+              endTime: '1600692662000'
+              tname: webteam_a7fe
+              tpeerid: c60d05ab8d93a7fe
+              rpeerid: 1998ffef1f409d3c
+              ttype: t
+              delay: '5'
+              bitrate: '300'
+              title: '300'
+            - actionType: query
+              eventId: '4511'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778500-run
+      operationId: batchHandleEvent_250778500
+      x-source-doc: https://docs.tvunetworks.cn/api-250778500.md
+  /openapi/3.0/bookingEvent/deleteEvent:
+    post:
+      summary: deleteEvent
+      deprecated: false
+      description: Delete one booking event
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              eventId: '4510'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778497-run
+      operationId: deleteEvent_250778497
+      x-source-doc: https://docs.tvunetworks.cn/api-250778497.md
+  /openapi/3.0/bookingEvent/listEvent:
+    get:
+      summary: listEvent
+      deprecated: false
+      description: 'Query list event '
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                peerId:
+                  type: string
+                  description: rpeerid
+                startTime:
+                  type: string
+                  description: Query from tion
+                endTime:
+                  type: string
+                  description: Query to time
+              required:
+              - peerId
+              - startTime
+              - endTime
+              x-apifox-orders:
+              - peerId
+              - startTime
+              - endTime
+            example:
+              peerId: 1998ffef1f409d3c
+              startTime: '1714119341000'
+              endTime: '1714122941000'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778498-run
+      operationId: listEvent_250778498
+      x-source-doc: https://docs.tvunetworks.cn/api-250778498.md
+  /openapi/3.0/bookingEvent/queryEvent:
+    get:
+      summary: queryEvent
+      deprecated: false
+      description: query booking event
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventId:
+                  type: string
+              required:
+              - eventId
+              x-apifox-orders:
+              - eventId
+            example:
+              eventId: '4510'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778499-run
+      operationId: queryEvent_250778499
+      x-source-doc: https://docs.tvunetworks.cn/api-250778499.md
+  /openapi/3.0/bookingEvent/setLiveParameters:
+    post:
+      summary: setLiveParameters
+      deprecated: false
+      description: ''
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sourceId:
+                  type: string
+                  description: The unique ID of the Source.
+                bitrate:
+                  type: string
+                  description: 'Can be empty. If the type of T is source, then it must have a value. Range:
+                    100 to 10240, in the unit of “kbps”.'
+                delay:
+                  type: string
+                  description: 'Can be empty. If the type of T is source, then it must have a value. Range:
+                    0.3 to 50, in the unit of “second”.'
+              required:
+              - sourceId
+              - bitrate
+              - delay
+              x-apifox-orders:
+              - sourceId
+              - bitrate
+              - delay
+            example:
+              sourceId: 9a57eb2xxxaaa0233axxx3c447b35a8f8
+              bitrate: '200'
+              delay: '3'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778503-run
+      operationId: setLiveParameters_250778503
+      x-source-doc: https://docs.tvunetworks.cn/api-250778503.md
+  /openapi/device/3.0/device/deleteExt:
+    post:
+      summary: deleteExt
+      deprecated: false
+      description: Delete an external source.
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                peerId:
+                  type: string
+                  description: The Peer ID of the external source.
+              required:
+              - peerId
+              x-apifox-orders:
+              - peerId
+            example:
+              peerId: '3214'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778491-run
+      operationId: deleteExt_250778491
+      x-source-doc: https://docs.tvunetworks.cn/api-250778491.md
+  /openapi/device/3.0/device/getAvailableDevice:
+    post:
+      summary: getAvailableDevice
+      deprecated: false
+      description: 'Obtain the available list of devices owned bythe user according to the session, including
+        the SourceList and DestinationList. '
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: string
+                  description: The session ID returned by getSession.
+                deviceType:
+                  type: string
+                  description: The device type default value R
+                startTime:
+                  type: integer
+                  description: booking receiver startTime
+                endTime:
+                  type: integer
+                  description: booking receiver endTime
+                currentPageNum:
+                  type: integer
+                  description: Current page number.
+                everyPageNum:
+                  type: integer
+                  description: The number of pages returned,The default 10. Max value is 200
+              required:
+              - session
+              - deviceType
+              - startTime
+              - endTime
+              - currentPageNum
+              - everyPageNum
+              x-apifox-orders:
+              - session
+              - deviceType
+              - startTime
+              - endTime
+              - currentPageNum
+              - everyPageNum
+            example:
+              session: 2CE0E619ABF3454198A7D448D7A2A3B5
+              deviceType: R
+              startTime: 1714119341000
+              endTime: 1714119341000
+              currentPageNum: 1
+              everyPageNum: 100
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      list:
+                        type: array
+                        items:
+                          type: string
+                      pageNum:
+                        type: integer
+                      pageSize:
+                        type: integer
+                      size:
+                        type: integer
+                      startRow:
+                        type: integer
+                      endRow:
+                        type: integer
+                      pages:
+                        type: integer
+                      prePage:
+                        type: integer
+                      nextPage:
+                        type: integer
+                      isFirstPage:
+                        type: boolean
+                      isLastPage:
+                        type: boolean
+                      hasPreviousPage:
+                        type: boolean
+                      hasNextPage:
+                        type: boolean
+                      navigatePages:
+                        type: integer
+                      navigatepageNums:
+                        type: array
+                        items:
+                          type: string
+                      navigateFirstPage:
+                        type: integer
+                      navigateLastPage:
+                        type: integer
+                      firstPage:
+                        type: integer
+                      lastPage:
+                        type: integer
+                    required:
+                    - total
+                    - list
+                    - pageNum
+                    - pageSize
+                    - size
+                    - startRow
+                    - endRow
+                    - pages
+                    - prePage
+                    - nextPage
+                    - isFirstPage
+                    - isLastPage
+                    - hasPreviousPage
+                    - hasNextPage
+                    - navigatePages
+                    - navigatepageNums
+                    - navigateFirstPage
+                    - navigateLastPage
+                    - firstPage
+                    - lastPage
+                    x-apifox-orders:
+                    - total
+                    - list
+                    - pageNum
+                    - pageSize
+                    - size
+                    - startRow
+                    - endRow
+                    - pages
+                    - prePage
+                    - nextPage
+                    - isFirstPage
+                    - isLastPage
+                    - hasPreviousPage
+                    - hasNextPage
+                    - navigatePages
+                    - navigatepageNums
+                    - navigateFirstPage
+                    - navigateLastPage
+                    - firstPage
+                    - lastPage
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778507-run
+      operationId: getAvailableDevice_250778507
+      x-source-doc: https://docs.tvunetworks.cn/api-250778507.md
+  /openapi/device/3.0/device/getDeviceList:
+    post:
+      summary: getDeviceList
+      deprecated: false
+      description: 'Obtain the list of devices owned bythe user according to the session, including the
+        SourceList and DestinationList. '
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: string
+                  description: The session ID returned by getSession.
+                anyWhere:
+                  type: boolean
+                  description: Filter anyWhere devices.
+                currentPageNum:
+                  type: integer
+                  description: Current page number.
+                everyPageNum:
+                  type: integer
+                  description: Filter gridSdi devices.
+                pack:
+                  type: boolean
+                  description: Filter pack devices.
+                gridPack:
+                  type: boolean
+                  description: Filter gridPack devices.
+                gridSdi:
+                  type: boolean
+                  description: Filter gridSdi devices.
+                ext:
+                  type: boolean
+                  description: Filter ext devices.
+                receiver:
+                  type: boolean
+                  description: Filter receiver devices.
+              required:
+              - session
+              x-apifox-orders:
+              - session
+              - pack
+              - gridPack
+              - gridSdi
+              - anyWhere
+              - ext
+              - receiver
+              - currentPageNum
+              - everyPageNum
+            example:
+              session: 1981F8093CBA41CDBDAEB0D8E9D798C5
+              anyWhere: true
+              currentPageNum: 1
+              everyPageNum: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      list:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            peerId:
+                              type: string
+                            type:
+                              type: string
+                            status:
+                              type: string
+                            ip:
+                              type: string
+                            port:
+                              type: string
+                            timeStamp:
+                              type: string
+                            times:
+                              type: string
+                            livePeerId:
+                              type: string
+                              nullable: true
+                            livePeerName:
+                              type: 'null'
+                            resourceId:
+                              type: string
+                            remark:
+                              type: string
+                            platform:
+                              type: string
+                            version:
+                              type: string
+                            url:
+                              type: string
+                            available:
+                              type: string
+                            batteryInfo:
+                              type: 'null'
+                            bookmarks:
+                              type: 'null'
+                            tokenStatus:
+                              type: 'null'
+                            gridLivePeerId:
+                              type: 'null'
+                            gridLivePeerName:
+                              type: 'null'
+                            postion:
+                              type: integer
+                            metaData:
+                              type: 'null'
+                            isRelay:
+                              type: string
+                            build:
+                              type: 'null'
+                            ext:
+                              type: 'null'
+                            portAggregate:
+                              type: 'null'
+                            portAggregateWeb:
+                              type: 'null'
+                            releaseStr:
+                              type: 'null'
+                            fs:
+                              type: string
+                              nullable: true
+                            ei:
+                              type: string
+                              nullable: true
+                            userBookmarkDevice:
+                              type: 'null'
+                            parentBookmarkDevice:
+                              type: 'null'
+                          required:
+                          - id
+                          - name
+                          - peerId
+                          - type
+                          - status
+                          - ip
+                          - port
+                          - timeStamp
+                          - times
+                          - livePeerId
+                          - livePeerName
+                          - resourceId
+                          - remark
+                          - platform
+                          - version
+                          - url
+                          - available
+                          - batteryInfo
+                          - bookmarks
+                          - tokenStatus
+                          - gridLivePeerId
+                          - gridLivePeerName
+                          - postion
+                          - metaData
+                          - isRelay
+                          - build
+                          - ext
+                          - portAggregate
+                          - portAggregateWeb
+                          - releaseStr
+                          - fs
+                          - ei
+                          - userBookmarkDevice
+                          - parentBookmarkDevice
+                          x-apifox-orders:
+                          - id
+                          - name
+                          - peerId
+                          - type
+                          - status
+                          - ip
+                          - port
+                          - timeStamp
+                          - times
+                          - livePeerId
+                          - livePeerName
+                          - resourceId
+                          - remark
+                          - platform
+                          - version
+                          - url
+                          - available
+                          - batteryInfo
+                          - bookmarks
+                          - tokenStatus
+                          - gridLivePeerId
+                          - gridLivePeerName
+                          - postion
+                          - metaData
+                          - isRelay
+                          - build
+                          - ext
+                          - portAggregate
+                          - portAggregateWeb
+                          - releaseStr
+                          - fs
+                          - ei
+                          - userBookmarkDevice
+                          - parentBookmarkDevice
+                      pageNum:
+                        type: integer
+                      pageSize:
+                        type: integer
+                      size:
+                        type: integer
+                      startRow:
+                        type: integer
+                      endRow:
+                        type: integer
+                      pages:
+                        type: integer
+                      prePage:
+                        type: integer
+                      nextPage:
+                        type: integer
+                      isFirstPage:
+                        type: boolean
+                      isLastPage:
+                        type: boolean
+                      hasPreviousPage:
+                        type: boolean
+                      hasNextPage:
+                        type: boolean
+                      navigatePages:
+                        type: integer
+                      navigatepageNums:
+                        type: array
+                        items:
+                          type: integer
+                      navigateFirstPage:
+                        type: integer
+                      navigateLastPage:
+                        type: integer
+                      firstPage:
+                        type: integer
+                      lastPage:
+                        type: integer
+                    required:
+                    - total
+                    - list
+                    - pageNum
+                    - pageSize
+                    - size
+                    - startRow
+                    - endRow
+                    - pages
+                    - prePage
+                    - nextPage
+                    - isFirstPage
+                    - isLastPage
+                    - hasPreviousPage
+                    - hasNextPage
+                    - navigatePages
+                    - navigatepageNums
+                    - navigateFirstPage
+                    - navigateLastPage
+                    - firstPage
+                    - lastPage
+                    x-apifox-orders:
+                    - total
+                    - list
+                    - pageNum
+                    - pageSize
+                    - size
+                    - startRow
+                    - endRow
+                    - pages
+                    - prePage
+                    - nextPage
+                    - isFirstPage
+                    - isLastPage
+                    - hasPreviousPage
+                    - hasNextPage
+                    - navigatePages
+                    - navigatepageNums
+                    - navigateFirstPage
+                    - navigateLastPage
+                    - firstPage
+                    - lastPage
+                    description: ' All device information returned.'
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                  total: 22
+                  list:
+                  - id: f1ca5696336d11ec995b0ef87e863fcd
+                    name: ANY_MATT13
+                    peerId: 745e2924a2a83e6b
+                    type: T
+                    status: '0'
+                    ip: 107.115.32.50
+                    port: '31826'
+                    timeStamp: '1713799615000'
+                    times: '0'
+                    livePeerId: ''
+                    livePeerName: null
+                    resourceId: ''
+                    remark: ''
+                    platform: '10'
+                    version: '10.3.5.1171 '
+                    url: ''
+                    available: '0'
+                    batteryInfo: null
+                    bookmarks: null
+                    tokenStatus: null
+                    gridLivePeerId: null
+                    gridLivePeerName: null
+                    postion: 0
+                    metaData: null
+                    isRelay: ''
+                    build: null
+                    ext: null
+                    portAggregate: null
+                    portAggregateWeb: null
+                    releaseStr: null
+                    fs: null
+                    ei: null
+                    userBookmarkDevice: null
+                    parentBookmarkDevice: null
+                  - id: 03f54a63ea8911eeb7a5023709f00aef
+                    name: ios12
+                    peerId: 444db4c9fc69c6f5
+                    type: T
+                    status: '1'
+                    ip: 8.210.198.133
+                    port: '56239'
+                    timeStamp: '1714033674000'
+                    times: '0'
+                    livePeerId: null
+                    livePeerName: null
+                    resourceId: ''
+                    remark: ''
+                    platform: '10'
+                    version: '10.3.5.1171 '
+                    url: ''
+                    available: '0'
+                    batteryInfo: null
+                    bookmarks: null
+                    tokenStatus: null
+                    gridLivePeerId: null
+                    gridLivePeerName: null
+                    postion: 0
+                    metaData: null
+                    isRelay: ''
+                    build: null
+                    ext: null
+                    portAggregate: null
+                    portAggregateWeb: null
+                    releaseStr: null
+                    fs: iPhone_17.4.1
+                    ei: "VER=10.3.5.1171 \nPLT=10 \nFS=iPhone_17.4.1"
+                    userBookmarkDevice: null
+                    parentBookmarkDevice: null
+                  pageNum: 1
+                  pageSize: 2
+                  size: 2
+                  startRow: 1
+                  endRow: 2
+                  pages: 11
+                  prePage: 0
+                  nextPage: 2
+                  isFirstPage: true
+                  isLastPage: false
+                  hasPreviousPage: false
+                  hasNextPage: true
+                  navigatePages: 8
+                  navigatepageNums:
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                  navigateFirstPage: 1
+                  navigateLastPage: 8
+                  firstPage: 1
+                  lastPage: 8
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778483-run
+      operationId: getDeviceList_250778483
+      x-source-doc: https://docs.tvunetworks.cn/api-250778483.md
+  /openapi/device/3.0/device/getGridMetadata:
+    post:
+      summary: getGridMetadata
+      deprecated: false
+      description: ''
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Appkey:
+                  type: string
+                  description: Provided by TVU.
+                Timestamp:
+                  type: string
+                  description: The current timestamp value (precise to milliseconds).
+                Signature:
+                  type: string
+                  description: 'The signature generated according to rule #2 above.'
+                PeerId:
+                  type: string
+                  description: Grid source ID.
+              required:
+              - Appkey
+              - Timestamp
+              - Signature
+              - PeerId
+              x-apifox-orders:
+              - Appkey
+              - Timestamp
+              - Signature
+              - PeerId
+            example:
+              Appkey: '{{appkey}}'
+              Timestamp: '{{timestamp}}'
+              Signature: '{{signature}}'
+              PeerId: d31da123e34e974e0000000000000001
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      deleteFlag:
+                        type: integer
+                      createTime:
+                        type: integer
+                      updateTime:
+                        type: integer
+                      peerId:
+                        type: string
+                      title:
+                        type: string
+                      location:
+                        type: 'null'
+                      longitude:
+                        type: 'null'
+                      latitude:
+                        type: 'null'
+                      reporter:
+                        type: 'null'
+                      expireTime:
+                        type: 'null'
+                      startTime:
+                        type: integer
+                      expireFlag:
+                        type: integer
+                      storySlug:
+                        type: 'null'
+                      stationName:
+                        type: 'null'
+                      stationAddress:
+                        type: 'null'
+                      phone:
+                        type: 'null'
+                      email:
+                        type: 'null'
+                      extraneousInfo:
+                        type: string
+                    required:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - peerId
+                    - title
+                    - location
+                    - longitude
+                    - latitude
+                    - reporter
+                    - expireTime
+                    - startTime
+                    - expireFlag
+                    - storySlug
+                    - stationName
+                    - stationAddress
+                    - phone
+                    - email
+                    - extraneousInfo
+                    x-apifox-orders:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - peerId
+                    - title
+                    - location
+                    - longitude
+                    - latitude
+                    - reporter
+                    - expireTime
+                    - startTime
+                    - expireFlag
+                    - storySlug
+                    - stationName
+                    - stationAddress
+                    - phone
+                    - email
+                    - extraneousInfo
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                  id: 6c57a768e7a94dd6a4cb9a01a0672ae0
+                  deleteFlag: 0
+                  createTime: 1592375953284
+                  updateTime: 1592379820124
+                  peerId: d31da123e34e974e0000000000000001
+                  title: test
+                  location: null
+                  longitude: null
+                  latitude: null
+                  reporter: null
+                  expireTime: null
+                  startTime: 1546509813000
+                  expireFlag: 0
+                  storySlug: null
+                  stationName: null
+                  stationAddress: null
+                  phone: null
+                  email: null
+                  extraneousInfo: abc
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778489-run
+      operationId: getGridMetadata_250778489
+      x-source-doc: https://docs.tvunetworks.cn/api-250778489.md
+  /openapi/device/3.0/device/getRealTimeLiveParameters:
+    get:
+      summary: getRealTimeLiveParameters
+      deprecated: false
+      description: ''
+      tags:
+      - Grid API
+      parameters:
+      - name: packId
+        in: query
+        description: The Peer ID of the pack.
+        required: false
+        example: 2e6abc4d8f3de1fd
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778509-run
+      operationId: getRealTimeLiveParameters_250778509
+      x-source-doc: https://docs.tvunetworks.cn/api-250778509.md
+  /openapi/device/3.0/device/getStatus:
+    post:
+      summary: getStatus
+      deprecated: false
+      description: Able to query the status of the devices.
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                peerIds:
+                  type: string
+                  description: String value of peerIds
+              required:
+              - peerIds
+              x-apifox-orders:
+              - peerIds
+              description: String value of peerIds
+            example:
+              peerIds: fd417fb5f4866ffd,e06a52928eaa55fa,38bf4e2bf2a262db,5a9d1ac3e3657d98
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        peerId:
+                          type: string
+                          description: The unique ID of device.
+                        version:
+                          type: string
+                          description: The version of the device.
+                          nullable: true
+                        status:
+                          type: string
+                          description: The status of the device(0 :offline,1 :online, 2 :live ,3 :online
+                            ,but no camera)
+                          nullable: true
+                        livePeerId:
+                          type: string
+                          nullable: true
+                        resultCode:
+                          type: string
+                        resultDesc:
+                          type: string
+                          nullable: true
+                      required:
+                      - peerId
+                      - version
+                      - status
+                      - livePeerId
+                      - resultCode
+                      - resultDesc
+                      x-apifox-orders:
+                      - peerId
+                      - version
+                      - status
+                      - livePeerId
+                      - resultCode
+                      - resultDesc
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                - peerId: fd417fb5f4866ffd
+                  version: '6.0'
+                  status: '0'
+                  livePeerId: ''
+                  resultCode: '0x0'
+                  resultDesc: null
+                - peerId: e06a52928eaa55fa
+                  version: null
+                  status: null
+                  livePeerId: null
+                  resultCode: '80050025'
+                  resultDesc: Device not exist
+                - peerId: 38bf4e2bf2a262db
+                  version: null
+                  status: null
+                  livePeerId: null
+                  resultCode: '80050025'
+                  resultDesc: Device not exist
+                - peerId: 5a9d1ac3e3657d98
+                  version: null
+                  status: null
+                  livePeerId: null
+                  resultCode: '80050025'
+                  resultDesc: Device not exist
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778501-run
+      operationId: getStatus_250778501
+      x-source-doc: https://docs.tvunetworks.cn/api-250778501.md
+  /openapi/device/3.0/device/queryPairedTGeoByRid:
+    post:
+      summary: queryPairedTGeoByRid
+      deprecated: false
+      description: 'Get Geolocation of all Packs that are Paired with a Particular Receiver '
+      tags:
+      - Grid API
+      parameters:
+      - name: jsonOrXml
+        in: query
+        description: ''
+        required: false
+        example: JSON
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              appkey: '{{appkey}}'
+              timestamp: '{{timestamp}}'
+              signature: '{{signature}}'
+              session: 52EBCC55E97645149B1140E5C5ADCC61
+              rid: fdc506xxxxxac5f5
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778502-run
+      operationId: queryPairedTGeoByRid_250778502
+      x-source-doc: https://docs.tvunetworks.cn/api-250778502.md
+  /openapi/device/3.0/device/startLive:
+    post:
+      summary: startLive
+      deprecated: false
+      description: Start a live with receiver and source
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rid:
+                  type: string
+                sourceId:
+                  type: string
+                  description: The unique ID of the Source.
+                bitrate:
+                  type: string
+                  description: 'Can be empty. If the type of T is source, then it must have a value. Range:
+                    100 to 10240, in the unit of “kbps”.'
+                delay:
+                  type: string
+                  description: 'Can be empty. If the type of T is source, then it must have a value. Range:
+                    0.3 to 50, in the unit of “second”.'
+              required:
+              - rid
+              - sourceId
+              - bitrate
+              - delay
+              x-apifox-orders:
+              - rid
+              - sourceId
+              - bitrate
+              - delay
+            example:
+              rid: bc227ae8d23f6d2a
+              sourceId: f2ada36faf9fa03a
+              bitrate: '2300'
+              delay: '2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: string
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778504-run
+      operationId: startLive_250778504
+      x-source-doc: https://docs.tvunetworks.cn/api-250778504.md
+  /openapi/device/3.0/device/stopLive:
+    post:
+      summary: stopLive
+      deprecated: false
+      description: Stop live .
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rid:
+                  type: string
+                sourceId:
+                  type: string
+              required:
+              - rid
+              - sourceId
+              x-apifox-orders:
+              - rid
+              - sourceId
+            example:
+              rid: bc227ae8d23f6d2a
+              sourceId: f2ada36faf9fa03a
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778505-run
+      operationId: stopLive_250778505
+      x-source-doc: https://docs.tvunetworks.cn/api-250778505.md
+  /openapi/device/3.0/device/updateGridMetadata:
+    post:
+      summary: updateGridMetadata
+      deprecated: false
+      description: Update/Add Source Metadata Information
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Appkey:
+                  type: string
+                  description: Provided by TVU.
+                Timestamp:
+                  type: string
+                  description: The current timestamp value (precise to milliseconds).
+                Signature:
+                  type: string
+                  description: 'The signature generated according to rule #2 above.'
+                PeerId:
+                  type: string
+                  description: Grid source ID
+                Longitude:
+                  type: string
+                  description: The longitude of the location
+                Latitude:
+                  type: string
+                  description: The latitude of the location
+                Location:
+                  type: string
+                  description: Location of the event
+                StartTime:
+                  type: string
+                  description: Millisecond timestamp
+                ExpireTime:
+                  type: string
+                  description: Millisecond timestamp Expire time cannot be less than start time
+                ExtraneousInfo:
+                  type: string
+                  description: Additional information
+                CreateTime:
+                  type: string
+                  description: Slug start time
+                Title:
+                  type: string
+                  description: Title of the story or event
+                Reporter:
+                  type: string
+                  description: Name of the reporter
+                StorySlug:
+                  type: string
+                  description: The description of the story or event
+                StationName:
+                  type: string
+                  description: Name of the station
+                StationAddress:
+                  type: string
+                  description: Address of the station
+                Phone:
+                  type: string
+                  description: Phone number
+                Email:
+                  type: string
+                  description: Email address
+              required:
+              - Appkey
+              - Timestamp
+              - Signature
+              - PeerId
+              - Longitude
+              - Latitude
+              - Location
+              - StartTime
+              - ExpireTime
+              - ExtraneousInfo
+              x-apifox-orders:
+              - Appkey
+              - Timestamp
+              - Signature
+              - PeerId
+              - Longitude
+              - Latitude
+              - Location
+              - StartTime
+              - ExpireTime
+              - ExtraneousInfo
+              - CreateTime
+              - Title
+              - Reporter
+              - StorySlug
+              - StationName
+              - StationAddress
+              - Phone
+              - Email
+            example:
+              Appkey: '{{appkey}}'
+              Timestamp: '{{timestamp}}'
+              Signature: '{{signature}}'
+              PeerId: d31da123e34e974e0000000000000001
+              Longitude: '132.05475'
+              Latitude: '-25.22891'
+              Location: Lasseter Hwy, Petermann NT 0872, Australia
+              StartTime: '1546509813000'
+              ExpireTime: '1714039775000'
+              ExtraneousInfo: ExtraneousInfo
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778490-run
+      operationId: updateGridMetadata_250778490
+      x-source-doc: https://docs.tvunetworks.cn/api-250778490.md
+  /openapi/media/3.0/anywhere/listSocialAccount:
+    post:
+      summary: listSocialAccount
+      deprecated: false
+      description: ''
+      tags:
+      - Grid API
+      parameters:
+      - name: Authorization
+        in: header
+        description: Session
+        required: false
+        example: D28A12A707744E66BADE9F253AD05DD8
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778493-run
+      operationId: listSocialAccount_250778493
+      x-source-doc: https://docs.tvunetworks.cn/api-250778493.md
+  /openapi/media/3.0/media/listShareAccount:
+    post:
+      summary: listShareAccount
+      deprecated: false
+      description: ''
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: string
+                  description: The session ID returned by getSession.
+                pageNum:
+                  type: integer
+                pageSize:
+                  type: integer
+              required:
+              - session
+              - pageNum
+              - pageSize
+              x-apifox-orders:
+              - session
+              - pageNum
+              - pageSize
+            example:
+              session: F9CA78488C324D15B9F46A3FC220CC6A
+              pageNum: 1
+              pageSize: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      list:
+                        type: array
+                        items:
+                          type: string
+                      pageNum:
+                        type: integer
+                      pageSize:
+                        type: integer
+                      size:
+                        type: integer
+                      startRow:
+                        type: integer
+                      endRow:
+                        type: integer
+                      pages:
+                        type: integer
+                      prePage:
+                        type: integer
+                      nextPage:
+                        type: integer
+                      isFirstPage:
+                        type: boolean
+                      isLastPage:
+                        type: boolean
+                      hasPreviousPage:
+                        type: boolean
+                      hasNextPage:
+                        type: boolean
+                      navigatePages:
+                        type: integer
+                      navigatepageNums:
+                        type: array
+                        items:
+                          type: string
+                      navigateFirstPage:
+                        type: integer
+                      navigateLastPage:
+                        type: integer
+                      firstPage:
+                        type: integer
+                      lastPage:
+                        type: integer
+                    required:
+                    - total
+                    - list
+                    - pageNum
+                    - pageSize
+                    - size
+                    - startRow
+                    - endRow
+                    - pages
+                    - prePage
+                    - nextPage
+                    - isFirstPage
+                    - isLastPage
+                    - hasPreviousPage
+                    - hasNextPage
+                    - navigatePages
+                    - navigatepageNums
+                    - navigateFirstPage
+                    - navigateLastPage
+                    - firstPage
+                    - lastPage
+                    x-apifox-orders:
+                    - total
+                    - list
+                    - pageNum
+                    - pageSize
+                    - size
+                    - startRow
+                    - endRow
+                    - pages
+                    - prePage
+                    - nextPage
+                    - isFirstPage
+                    - isLastPage
+                    - hasPreviousPage
+                    - hasNextPage
+                    - navigatePages
+                    - navigatepageNums
+                    - navigateFirstPage
+                    - navigateLastPage
+                    - firstPage
+                    - lastPage
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778508-run
+      operationId: listShareAccount_250778508
+      x-source-doc: https://docs.tvunetworks.cn/api-250778508.md
+  /openapi/share/3.0/anywhere/startPushLive:
+    post:
+      summary: startPushLive
+      deprecated: false
+      description: ''
+      tags:
+      - Grid API
+      parameters:
+      - name: Authorization
+        in: header
+        description: Session
+        required: false
+        example: D28A12A707744E66BADE9F253AD05DD8
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rid:
+                  type: string
+                tid:
+                  type: string
+                name:
+                  type: string
+                  description: social account name
+              required:
+              - rid
+              - tid
+              - name
+              x-apifox-orders:
+              - rid
+              - tid
+              - name
+            example:
+              rid: 791c4630f04b09d6
+              tid: aa9ee81ec220d270
+              name: tdp1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778494-run
+      operationId: startPushLive_250778494
+      x-source-doc: https://docs.tvunetworks.cn/api-250778494.md
+  /openapi/share/3.0/anywhere/stopPushLive:
+    post:
+      summary: stopPushLive
+      deprecated: false
+      description: ''
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              rid: 791c4630f04b09d6
+              name: tdp1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778495-run
+      operationId: stopPushLive_250778495
+      x-source-doc: https://docs.tvunetworks.cn/api-250778495.md
+  /openapi/thumbnail/3.0/thumbnail/getThumbnail:
+    post:
+      summary: getThumbnail
+      deprecated: false
+      description: Get Thumbnail Information
+      tags:
+      - Grid API
+      parameters:
+      - name: jsonOrXml
+        in: query
+        description: ''
+        required: false
+        example: JSON
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Version:
+                  type: string
+                  description: Version 1.0.
+                Appkey:
+                  type: string
+                  description: Provided by TVU.
+                Timestamp:
+                  type: string
+                  description: The current timestamp value (precise to millisecond).
+                Signature:
+                  type: string
+                  description: 'The signature generated according to rule #2 above.'
+                Data:
+                  type: object
+                  properties:
+                    PeerIds:
+                      type: string
+                  required:
+                  - PeerIds
+                  x-apifox-orders:
+                  - PeerIds
+                  description: Need to get the device id of the thumbnail.
+              required:
+              - Version
+              - Appkey
+              - Timestamp
+              - Signature
+              - Data
+              x-apifox-orders:
+              - Version
+              - Appkey
+              - Timestamp
+              - Signature
+              - Data
+            example:
+              Version: '1.0'
+              Appkey: '{{appkey}}'
+              Timestamp: '{{timestamp}}'
+              Signature: '{{signature}}'
+              Data:
+                PeerIds: 148b3543e46b4507,f2ada36faf9fa03a
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        peerId:
+                          type: string
+                        url:
+                          type: string
+                      required:
+                      - peerId
+                      - url
+                      x-apifox-orders:
+                      - peerId
+                      - url
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                required:
+                - data
+                - errorCode
+                - errorInfo
+                x-apifox-orders:
+                - data
+                - errorCode
+                - errorInfo
+              example:
+                data:
+                - peerId: 148b3543e46b4507
+                  url: ewogICJlcnJvciI6ICJnZXQgZnJvbSByZWRpcyBub3QgZm91bmQiCn0=
+                - peerId: f2ada36faf9fa03a
+                  url: ewogICJlcnJvciI6ICJnZXQgZnJvbSByZWRpcyBub3QgZm91bmQiCn0=
+                errorCode: '0'
+                errorInfo: Success
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778492-run
+      operationId: getThumbnail_250778492
+      x-source-doc: https://docs.tvunetworks.cn/api-250778492.md
+  /openapi/token/3.0/token/addPackToken:
+    get:
+      summary: addPackToken
+      deprecated: false
+      description: ''
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: string
+                  description: Get through getsession interface
+                receiverIds:
+                  type: array
+                  items:
+                    type: string
+                  description: ID of R
+                packId:
+                  type: string
+                  description: ID of T
+              required:
+              - session
+              - receiverIds
+              - packId
+              x-apifox-orders:
+              - session
+              - receiverIds
+              - packId
+            example:
+              session: 1D4C7F1C3AE4419B8877C709760D801D
+              receiverIds:
+              - e6a486c604ee520a
+              packId: 1601f6b865cddd9d
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  failedItem:
+                    type: 'null'
+                    description: Not matched successfully
+                required:
+                - errorCode
+                - errorInfo
+                - failedItem
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - failedItem
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778484-run
+      operationId: addPackToken_250778484
+      x-source-doc: https://docs.tvunetworks.cn/api-250778484.md
+  /openapi/token/3.0/token/queryPairedR:
+    get:
+      summary: queryPairedR
+      deprecated: false
+      description: Query the matched R information through the ID of the pack
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: string
+                  description: Get through getsession interface
+                packId:
+                  type: string
+                  description: ID of T
+              required:
+              - session
+              - packId
+              x-apifox-orders:
+              - session
+              - packId
+            example:
+              session: 1D4C7F1C3AE4419B8877C709760D801D
+              packId: 1601f6b865cddd9d
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      type: string
+                    description: Return on results
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778486-run
+      operationId: queryPairedR_250778486
+      x-source-doc: https://docs.tvunetworks.cn/api-250778486.md
+  /openapi/token/3.0/token/queryPairedT:
+    get:
+      summary: queryPairedT
+      deprecated: false
+      description: ''
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: string
+                  description: Get through getsession interface
+                receiverId:
+                  type: string
+                  description: ID of R
+              required:
+              - session
+              - receiverId
+              x-apifox-orders:
+              - session
+              - receiverId
+            example:
+              session: 1D4C7F1C3AE4419B8877C709760D801D
+              receiverId: e6a486c604ee520a
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      type: string
+                    description: Return on results
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778487-run
+      operationId: queryPairedT_250778487
+      x-source-doc: https://docs.tvunetworks.cn/api-250778487.md
+  /openapi/token/3.0/token/queryPairedToken:
+    get:
+      summary: queryPairedToken
+      deprecated: false
+      description: Query pairing information
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: string
+                  description: Get through getsession interface
+              required:
+              - session
+              x-apifox-orders:
+              - session
+            example:
+              session: D28A12A707744E66BADE9F253AD05DD8
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778488-run
+      operationId: queryPairedToken_250778488
+      x-source-doc: https://docs.tvunetworks.cn/api-250778488.md
+  /openapi/token/3.0/token/removePackToken:
+    get:
+      summary: removePackToken
+      deprecated: false
+      description: remove token interface
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: string
+                  description: Get through getsession interface
+                receiverIds:
+                  type: array
+                  items:
+                    type: string
+                  description: ID of R
+                packId:
+                  type: string
+                  description: ID of T
+              required:
+              - session
+              - receiverIds
+              - packId
+              x-apifox-orders:
+              - session
+              - receiverIds
+              - packId
+            example:
+              session: 1D4C7F1C3AE4419B8877C709760D801D
+              receiverIds:
+              - e6a486c604ee520a
+              packId: 1601f6b865cddd9d
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  failedItem:
+                    type: 'null'
+                    description: Not matched successfully
+                required:
+                - errorCode
+                - errorInfo
+                - failedItem
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - failedItem
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778485-run
+      operationId: removePackToken_250778485
+      x-source-doc: https://docs.tvunetworks.cn/api-250778485.md
+  /openapi/user/3.0/user/addExt:
+    post:
+      summary: addExt
+      deprecated: false
+      description: Add an external source.
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+                  description: The session ID returned by getSession.
+                extName:
+                  type: string
+                  description: The name of the external source.
+                extUrl:
+                  type: string
+                  description: 'The URL of the external source. '
+              required:
+              - sessionId
+              - extName
+              - extUrl
+              x-apifox-orders:
+              - sessionId
+              - extName
+              - extUrl
+            example:
+              sessionId: 2CE0E619ABF3454198A7D448D7A2A3B5
+              extName: testEXT
+              extUrl: https://img.tukuppt.com/video_show/2418175/00/02/22/5b52e01dad564.mp4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: string
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result: 55524c204558544c0000018f19d25c65
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778506-run
+      operationId: addExt_250778506
+      x-source-doc: https://docs.tvunetworks.cn/api-250778506.md
+  /openapi/user/3.0/user/getSession:
+    post:
+      summary: getSession
+      deprecated: false
+      description: Authenticate the user with the system and obtain the auth_token.
+      tags:
+      - Grid API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pwd:
+                  type: string
+                  description: The encryption value of TVU account password. pwd is encrypted by the SHA-512
+                    encryption.
+                email:
+                  type: string
+                  description: The email address of the user’s TVU account.
+              required:
+              - pwd
+              - email
+              x-apifox-orders:
+              - pwd
+              - email
+            example:
+              pwd: '{{pwd}}'
+              email: marcusma@tvunetworks.com
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: string
+                    description: ' Result is the session that you get,and it will be invalid in 2 hours(120
+                      minutes).'
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result: 1D4C7F1C3AE4419B8877C709760D801D
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Grid API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778482-run
+      operationId: getSession_250778482
+      x-source-doc: https://docs.tvunetworks.cn/api-250778482.md
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

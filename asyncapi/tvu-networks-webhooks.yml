@@ -1,0 +1,65 @@
+generated: '2026-09-01'
+method: searched
+source: >-
+  https://docs.tvunetworks.cn/api-414798733 (register webhook), the export surface's callbackUrl
+  field (https://docs.tvunetworks.cn/ Export folder) and the object-hold callbackUrl
+  (route-object object service), all captured verbatim in openapi/
+asyncapi_published: false
+asyncapi_note: >-
+  TVU publishes no AsyncAPI document. Searched the documentation site index (403 endpoints), the
+  github.com/tvunetworks organisation and /asyncapi.yaml on every TVU host — nothing. The event
+  surface below is real and documented, but it is described only inside the REST contract, so
+  a consumer must read prose and examples to learn the delivered payload shape.
+transport: https
+delivery: 'HTTP POST to a consumer-supplied URL'
+security: 'None documented — TVU publishes no signing secret, HMAC header, or replay/timestamp guard for webhook delivery.'
+retry_policy: 'Not published.'
+subscriptions:
+- name: metadata-uploader
+  kind: registration-endpoint
+  operationId: register_webhook_414798733
+  path: /api/metadataproto/MetadataUploader.RegisterWebhook
+  method: post
+  host: https://mma.tvunetworks.com
+  spec: openapi/tvu-networks-search-api-openapi.yml
+  docs: https://docs.tvunetworks.cn/api-414798733
+  register_body:
+    webhookURL: 'string (required) — the consumer URL TVU will POST to'
+    operation: 'string (required) — "register" or "unregister"'
+    sourceObject: 'array of string (required) — sourceObject IDs to watch; an empty list means all sourceObjects'
+  delivered_payload:
+    status: 'string — "start" or "stop"'
+    sourceObjectId: string
+    mediaObjectId: string
+    previewMediaPath: '{path, duration, fileSize, startTimestamp, endTimestamp}'
+    highResMediaPath: '{path, duration, fileSize, startTimestamp, endTimestamp}'
+    thumbnailPath: string
+    mediaFileType: integer
+  note: >-
+    The delivered body is documented only as a fenced example inside the operation description —
+    it is not modelled as a schema, so no generator can produce a typed consumer from this
+    contract. Registration is the only lifecycle control: there is no list-subscriptions or
+    test-delivery operation.
+- name: export-job-completion
+  kind: per-request-callback
+  field: callbackUrl
+  spec: openapi/tvu-networks-export-openapi.yml
+  description: 'Webhook URL to notify when the export completes, supplied on the export job request alongside the idempotency uuid.'
+  delivered_payload: 'Not published.'
+- name: object-hold-state-change
+  kind: per-request-callback
+  field: callbackUrl
+  spec: openapi/tvu-networks-uncategorized-openapi.yml
+  operationId: Place_a_hold_on_an_object_to_reserve_it_for_exclusive_use_by_an_application_473290269
+  description: 'An optional callback URL is invoked when the hold state of a held object changes.'
+  delivered_payload: 'Not published.'
+streaming_note: >-
+  TVU's actual real-time surface is media transport, not an event bus: SRT, RTMP, RTSP, HLS,
+  NDI, RTP/Pro-MPEG-FEC, Zixi and TVU's own ISSP container, each with a published URL grammar
+  (https://docs.tvunetworks.cn/doc-5661551). Those are media protocols, not an AsyncAPI-shaped
+  message API, and are recorded in conformance/ rather than here.
+gaps:
+- 'No AsyncAPI document.'
+- 'No signature, shared secret or timestamp on delivered webhooks — a consumer cannot verify a delivery came from TVU.'
+- 'No published retry, backoff or dead-letter behaviour.'
+- 'Two of the three event surfaces publish no payload shape at all.'

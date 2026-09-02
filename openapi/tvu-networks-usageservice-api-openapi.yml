@@ -1,0 +1,107 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — UsageService API
+  description: UsageService API operations of the TVU Networks public HTTP API, assembled verbatim from
+    the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /usage-service/tpds/getDeviceInfo:
+    get:
+      summary: Get DeviceInfo By PeerId
+      deprecated: false
+      description: 'Get DeviceInfo By PeerId
+
+
+        Query by Peer ID.
+
+
+        Result
+
+
+        Platform = Platform ID of the hardware
+
+        LastOnlineDate = Last online date in UNIX time
+
+        gpsModule = Does the unit have a GPS module installed on it? If yes, the coordinates data is more
+        accurate, if not, less so.
+
+        coordinates = The last known coordiantes of that unit
+
+        radiusMeters = Specifies the radius of a circle, drawn around the coordinates attribute. This
+        circle represents the potential area where the unit could be located.'
+      tags:
+      - UsageService API
+      parameters:
+      - name: peerId
+        in: query
+        description: ''
+        required: false
+        example: 7874239bf6acc29e
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'authentication string, details: https://document.tvunetworks.com/api-6146656'
+        required: true
+        example: FA879783A2FD4A0CA1E7ECAA16BDF24D
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorInfo: OK
+                errorCode: '0x0'
+                result:
+                  platform: '50121'
+                  lastOnlineDate: '1717129310125'
+                  gpsModule: false
+                  coordinates: -33.7597809,151.087738
+                  radiusInMeters: null
+                repeated: null
+          headers: {}
+          x-apifox-name: success
+      security: []
+      x-apifox-folder: UsageService API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778586-run
+      operationId: Get_DeviceInfo_By_PeerId_250778586
+      x-source-doc: https://docs.tvunetworks.cn/api-250778586.md
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

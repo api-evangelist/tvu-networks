@@ -1,0 +1,494 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Workflow API
+  description: Workflow API operations of the TVU Networks public HTTP API, assembled verbatim from the
+    per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /urcaller/api/v1/workflow:
+    get:
+      summary: queryWorkflow
+      deprecated: false
+      description: Query workflow by workflowId
+      operationId: queryWorkflow
+      tags:
+      - Workflow API
+      - work-flow-api
+      parameters:
+      - name: workflowId
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema: &id001
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema: *id001
+          headers: {}
+          x-apifox-name: Bad Request
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Unauthorized
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema: *id001
+          headers: {}
+          x-apifox-name: '405'
+      security: []
+      x-apifox-folder: Workflow API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778634-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778634.md
+    put:
+      summary: updateWorkflow
+      deprecated: false
+      description: Update Workflow
+      operationId: updateWorkflow
+      tags:
+      - Workflow API
+      - work-flow-api
+      parameters:
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentUpdateWorkFlowDTO'
+            example: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema: &id002
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema: *id002
+          headers: {}
+          x-apifox-name: Bad Request
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Unauthorized
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema: *id002
+          headers: {}
+          x-apifox-name: '405'
+      security: []
+      x-apifox-folder: Workflow API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778635-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778635.md
+    post:
+      summary: createWorkflow
+      deprecated: false
+      description: Creating an workflow
+      operationId: createWorkflow
+      tags:
+      - Workflow API
+      - work-flow-api
+      parameters:
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentWorkFlowDTO'
+            example: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema: &id003
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema: *id003
+          headers: {}
+          x-apifox-name: Bad Request
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Unauthorized
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema: *id003
+          headers: {}
+          x-apifox-name: '405'
+      security: []
+      x-apifox-folder: Workflow API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778636-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778636.md
+    delete:
+      summary: deleteWorkflow
+      deprecated: false
+      description: Delete Workflow
+      operationId: deleteWorkflow
+      tags:
+      - Workflow API
+      - work-flow-api
+      parameters:
+      - name: workflowId
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema: &id004
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema: *id004
+          headers: {}
+          x-apifox-name: Bad Request
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Unauthorized
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema: *id004
+          headers: {}
+          x-apifox-name: '405'
+      security: []
+      x-apifox-folder: Workflow API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778637-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778637.md
+  /urcaller/api/v1/workflows:
+    get:
+      summary: listWorkflows
+      deprecated: false
+      description: List workflows
+      operationId: listWorkflows
+      tags:
+      - Workflow API
+      - work-flow-api
+      parameters:
+      - name: pageNum
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: pageSize
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema: &id005
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema: *id005
+          headers: {}
+          x-apifox-name: Bad Request
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Unauthorized
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema: *id005
+          headers: {}
+          x-apifox-name: '405'
+      security: []
+      x-apifox-folder: Workflow API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778638-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778638.md
+components:
+  schemas:
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Result:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AgentUpdateWorkFlowDTO:
+      required:
+      - name
+      - description
+      - input
+      - output
+      type: object
+      properties:
+        name:
+          type: string
+          description: workflow name
+          examples:
+          - workflowTest
+        description:
+          type: string
+          description: workflow description
+          examples:
+          - workflow test description
+        input:
+          $ref: '#/components/schemas/Input'
+        output:
+          $ref: '#/components/schemas/Output'
+        workflowId:
+          type: string
+      x-apifox-orders:
+      - name
+      - description
+      - input
+      - output
+      - workflowId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Output:
+      required:
+      - url
+      - boxId
+      type: object
+      properties:
+        url:
+          type: string
+          description: destination address
+          examples:
+          - rtmp://a.rtmp.youtube.com/live2/ustb-05h1-7hf1-qwp0-7z2d
+        boxId:
+          type: string
+          description: agent boxId
+          examples:
+          - 671ef779b95be309c368a965
+      x-apifox-orders:
+      - url
+      - boxId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Input:
+      required:
+      - pid
+      - boxId
+      type: object
+      properties:
+        pid:
+          type: string
+          description: ( pack | anywhere) pid
+          examples:
+          - B1BD4C8F339CB707
+        boxId:
+          type: string
+          description: agent boxId
+          examples:
+          - 671ef779b95be309c368a965
+      x-apifox-orders:
+      - pid
+      - boxId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AgentWorkFlowDTO:
+      required:
+      - name
+      - description
+      - input
+      - output
+      type: object
+      properties:
+        name:
+          type: string
+          description: workflow name
+          examples:
+          - workflowTest
+        description:
+          type: string
+          description: workflow description
+          examples:
+          - workflow test description
+        input:
+          $ref: '#/components/schemas/Input'
+        output:
+          $ref: '#/components/schemas/Output'
+      x-apifox-orders:
+      - name
+      - description
+      - input
+      - output
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

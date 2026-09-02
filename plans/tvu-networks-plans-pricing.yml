@@ -1,0 +1,18 @@
+generated: '2026-09-01'
+method: searched
+source: >-
+  https://www.tvunetworks.com/products/tvu-mediahub-cloud-router/ and
+  https://www.tvunetworks.com/tvu-developer/ — no /pricing/ page exists on tvunetworks.com (404)
+plan_count: 0
+currency: null
+billing_model: contact-sales
+note: >-
+  TVU Networks publishes no plans, tiers or prices. https://www.tvunetworks.com/pricing/ returns
+  404 and is absent from the site's own page sitemap. The MediaHub product page states the model
+  in prose — "Pay for only what you need, with pricing based on inputs/outputs and managed
+  resources" — and routes every pricing question through a "Get started" contact form; no dollar
+  amount, unit rate or billing period is published anywhere on tvunetworks.com. API access
+  itself is gated the same way: the developer page says "Fill out the form to access the TVU
+  Developer's Portal". Third-party articles quote per-core and per-month figures for MediaHub and
+  Channel, but those are not provider-published and are deliberately not recorded here.
+plans: []

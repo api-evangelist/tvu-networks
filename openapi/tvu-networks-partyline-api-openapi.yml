@@ -1,0 +1,2431 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Partyline API
+  description: Partyline API operations of the TVU Networks public HTTP API, assembled verbatim from the
+    per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /member/noLogin/queryByPartyCode/140:
+    post:
+      summary: queryByPartyCode
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              platform: '4'
+              title: demoData
+              desc: demoData
+              type: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778608-run
+      operationId: queryByPartyCode_250778608
+      x-source-doc: https://docs.tvunetworks.cn/api-250778608.md
+  /member/noLogin/queryByRtilCode/33021:
+    post:
+      summary: queryByRtilCode
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      accountId:
+                        type: string
+                        description: memberId, deviceId, userId, timestamp
+                      type:
+                        type: integer
+                      name:
+                        type: 'null'
+                      rtilCode:
+                        type: integer
+                      createTime:
+                        type: integer
+                      updateTime:
+                        type: integer
+                      deleteFlag:
+                        type: boolean
+                      partyCode:
+                        type: 'null'
+                      deviceType:
+                        type: string
+                        description: T or R
+                      deviceName:
+                        type: string
+                      devicePeerId:
+                        type: string
+                      devicePlatform:
+                        type: string
+                      rtilCodeType:
+                        type: integer
+                      version:
+                        type: string
+                      originMemberId:
+                        type: string
+                    required:
+                    - id
+                    - accountId
+                    - type
+                    - name
+                    - rtilCode
+                    - createTime
+                    - updateTime
+                    - deleteFlag
+                    - partyCode
+                    - deviceType
+                    - deviceName
+                    - devicePeerId
+                    - devicePlatform
+                    - rtilCodeType
+                    - version
+                    - originMemberId
+                    x-apifox-orders:
+                    - id
+                    - accountId
+                    - type
+                    - name
+                    - rtilCode
+                    - createTime
+                    - updateTime
+                    - deleteFlag
+                    - partyCode
+                    - deviceType
+                    - deviceName
+                    - devicePeerId
+                    - devicePlatform
+                    - rtilCodeType
+                    - version
+                    - originMemberId
+                  errorResult:
+                    type: 'null'
+                  repeated:
+                    type: 'null'
+                required:
+                - errorInfo
+                - errorCode
+                - result
+                - errorResult
+                - repeated
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - result
+                - errorResult
+                - repeated
+              example:
+                errorInfo: OK
+                errorCode: '0x0'
+                result:
+                  id: 3445674909952
+                  accountId: 00AE6B5AAC046B89
+                  type: 0
+                  name: null
+                  rtilCode: 27481
+                  createTime: 1681887836308
+                  updateTime: 1703607911747
+                  deleteFlag: false
+                  partyCode: null
+                  deviceType: T
+                  deviceName: henry_tvua_op
+                  devicePeerId: 00ae6b5aac046b89
+                  devicePlatform: '11'
+                  rtilCodeType: 1
+                  version: '10.3.4.1012 '
+                  originMemberId: 00AE6B5AAC046B89
+                errorResult: null
+                repeated: null
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778607-run
+      operationId: queryByRtilCode_250778607
+      x-source-doc: https://docs.tvunetworks.cn/api-250778607.md
+  /party/create:
+    post:
+      summary: create
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: false
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              createUserId: F754C0C1C1B9426E9BA0982355AE0291
+              type: 2
+              appType: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778621-run
+      operationId: create_250778621
+      x-source-doc: https://docs.tvunetworks.cn/api-250778621.md
+  /party/delete:
+    post:
+      summary: delete
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              idList:
+              - 458850403597
+              - 458850338061
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778617-run
+      operationId: delete_250778617
+      x-source-doc: https://docs.tvunetworks.cn/api-250778617.md
+  /party/getOnlineUserList/593186006139:
+    get:
+      summary: getOnlineUserList
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778618-run
+      operationId: getOnlineUserList_250778618
+      x-source-doc: https://docs.tvunetworks.cn/api-250778618.md
+  /party/listCurrentPartyByUserID:
+    post:
+      summary: listCurrentPartyByUserID
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              paging: false
+              state: '1'
+              pageIndex: 1
+              pageSize: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778609-run
+      operationId: listCurrentPartyByUserID_250778609
+      x-source-doc: https://docs.tvunetworks.cn/api-250778609.md
+  /party/noLogin/check:
+    get:
+      summary: check
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: partyCode
+        in: query
+        description: ''
+        required: true
+        example: '926333337384'
+        schema:
+          type: string
+      - name: clientType
+        in: query
+        description: ''
+        required: true
+        example: '0'
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: ''
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: false
+        example: 8a8c96d951320921015133dac5790003
+        schema:
+          type: string
+      - name: email
+        in: header
+        description: ''
+        required: false
+        example: '3333'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778623-run
+      operationId: check_250778623
+      x-source-doc: https://docs.tvunetworks.cn/api-250778623.md
+  /party/noLogin/checkV2:
+    get:
+      summary: checkV2
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: partyCode
+        in: query
+        description: party code
+        required: false
+        example: 106775225404
+        schema:
+          type: integer
+      - name: memberId
+        in: query
+        description: member id
+        required: false
+        schema:
+          type: string
+      - name: clientType
+        in: query
+        description: client type
+        required: false
+        schema:
+          type: integer
+      - name: queryTag
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result%C2%ABCheckPartyVo%C2%BB'
+                description: Result
+              example:
+                errorInfo: ''
+                errorCode: ''
+                result:
+                  channelModel: 0
+                  userEmail: ''
+                  login: false
+                  owner: false
+                  coHost: false
+                  tagKey: ''
+                  tagValue: ''
+                  hasPartyCode: false
+                  env: ''
+                  tagList:
+                  - tagKey: ''
+                    tagValue: ''
+                  commentatorTagList:
+                  - tagKey: ''
+                    tagValue: ''
+                  commentatorTagKey: ''
+                  commentatorTagValue: ''
+                  audioMixerTagList:
+                  - tagKey: ''
+                    tagValue: ''
+                  audioMixerTagKey: ''
+                  audioMixerTagValue: ''
+                  apiEnv: ''
+                  inviteMode: 0
+                  deleteFlag: 0
+                  arriveMaximumOnlineCollaborate: false
+                  commonPartyInfo:
+                    id: ''
+                    joinCode: ''
+                    partyName: ''
+                    createTime: 0
+                    updateTime: 0
+                    nickname: ''
+                  enable: 0
+                  platform: 0
+                errorResult: {}
+                repeated: false
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778600-run
+      operationId: checkV2_250778600
+      x-source-doc: https://docs.tvunetworks.cn/api-250778600.md
+  /party/noLogin/command:
+    post:
+      summary: command managerMute
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example: "{\r\n    \"partyCode\": {{partyCode}},\r\n    \"module\": \"managerMute\",\r\n \
+              \   \"msg\": {\r\n        \"rtilCode\":\"125\"\r\n    }\r\n}"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778610-run
+      operationId: command_managerMute_250778610
+      x-source-doc: https://docs.tvunetworks.cn/api-250778610.md
+  /party/noLogin/join:
+    post:
+      summary: join
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: ' _ga=GA1.2.1013358633.1627021250; _hjid=c02de826-5900-45da-92d3-1d8958f8d433; _gid=GA1.2.1760843735.1627293831;
+          _hjShownFeedbackMessage=true; _hjAbsoluteSessionInProgress=0; testSearch=test; _hjIncludedInPageviewSample=1;
+          _hjIncludedInSessionSample=1; producert2=pp2; audiomixer2=am2; commentator2=ct2; partylinet2=plt2;
+          playout1=potest1; nativegraphicsp2=ngp2; environmentStage=stage; SID=DA1072F4BCDE410AB6C2B2B10D312017;
+          _hjUserAttributesHash=1b9aee27b6315b8f63f150b7f3d66240'
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: false
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: false
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                memberId:
+                  type: string
+                partyCode:
+                  type: string
+                role:
+                  type: integer
+                type:
+                  type: integer
+                groupId:
+                  type: string
+                host:
+                  type: string
+                behaviorKeyList:
+                  type: array
+                  items:
+                    type: string
+                pageNum:
+                  type: integer
+              required:
+              - memberId
+              - partyCode
+              - role
+              - type
+              - groupId
+              - host
+              - behaviorKeyList
+              - pageNum
+              x-apifox-orders:
+              - memberId
+              - partyCode
+              - role
+              - type
+              - groupId
+              - host
+              - behaviorKeyList
+              - pageNum
+            example:
+              memberId: xxx22233
+              partyCode: '667089706038'
+              role: 0
+              type: 0
+              groupId: '8744496062239492'
+              behaviorKeyList:
+              - hearSelf
+              - speaker
+              - nickName
+              - mic
+              - camera
+              - audioOnlyType
+              - checkAudioMainWindow
+              - flipVideo
+              pageNum: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778598-run
+      operationId: join_250778598
+      x-source-doc: https://docs.tvunetworks.cn/api-250778598.md
+  /party/noLogin/listPartyMembers/3921273566982378:
+    get:
+      summary: listPartyMembers
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778619-run
+      operationId: listPartyMembers_250778619
+      x-source-doc: https://docs.tvunetworks.cn/api-250778619.md
+  /party/noLogin/meetingAnywhere/592064840960:
+    get:
+      summary: meetingAnywhere
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: false
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: false
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example: "{\r\n    \"memberId\": \"896783b05cc12ec7\",\r\n    \"partyCode\": {{partyCode}},\r\
+              \n    \"role\": 0,\r\n    \"type\": 3\r\n}"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778605-run
+      operationId: meetingAnywhere_250778605
+      x-source-doc: https://docs.tvunetworks.cn/api-250778605.md
+  /party/noLogin/partyStatus/{partyCode}:
+    get:
+      summary: party status
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: partyCode
+        in: path
+        description: partyCode
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result%C2%ABMap%C2%ABObject%C2%BB%C2%BB'
+                description: Result
+              example:
+                errorInfo: ''
+                errorCode: ''
+                result:
+                  ? ''
+                  : {}
+                errorResult: {}
+                repeated: false
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778599-run
+      operationId: party_status_250778599
+      x-source-doc: https://docs.tvunetworks.cn/api-250778599.md
+  /party/noLogin/reportUserChange:
+    post:
+      summary: reportUserChange
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+            example:
+              partyCode: '{{partyCode}}'
+              addRtilCodes:
+              - 1
+              removeRtilCodes: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778620-run
+      operationId: reportUserChange_250778620
+      x-source-doc: https://docs.tvunetworks.cn/api-250778620.md
+  /party/noLogin/resetStatus/{partyCode}:
+    get:
+      summary: reset status
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: partyCode
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778616-run
+      operationId: reset_status_250778616
+      x-source-doc: https://docs.tvunetworks.cn/api-250778616.md
+  /party/noLogin/status/{partyCode}:
+    get:
+      summary: status
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: partyCode
+        in: path
+        description: ''
+        required: true
+        example: '667089706038'
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorInfo: OK
+                errorCode: '0x0'
+                result:
+                  privateConversation: null
+                  pipVolume: 100
+                  shareMsg: null
+                  hearThemSelf: 0
+                  outputSource: null
+                  outputTimestamp: 1719308603695
+                  videoQuality: low
+                  talkBackList: []
+                  output: null
+                  autoDeviceRecovery: 0
+                  enable: 1
+                  loginButton: 1
+                  privateTextChat: true
+                  sttLanguage: '["en-US","zh-CN"]'
+                  lockName: 1
+                  talkBack: null
+                  audioMatrix: 0
+                  shareScreenBitrate: null
+                  voiceCommandProduction: null
+                  vfbBitrate: 2000K
+                  hasCopy: 1
+                  fullScreen: 1
+                  volume: 100
+                  stt: true
+                  pushToTalk: 1
+                  forwardMetadata: false
+                  receiverNickname: null
+                  pipPushToTalk: 1
+                  micCameraIconInPip: 1
+                  anywhereGlobalSetting: 0
+                  volumeEffect: 0
+                  outputType: null
+                  noSubscribeRtil: []
+                  shareScreen: null
+                  crew: null
+                  undefined: -2
+                  outputId: null
+                  vfbResolution: 1280x720
+                  default: 0
+                  publicTextChat: true
+                  vfbFrameRate: '30'
+                  intercom: 0
+                  cloudProxy: 0
+                  shareScreenResolution: null
+                  timestamp: 1725863150665
+                  managerRtil: 17243
+                  participantAudioMatrix: 0
+                  voiceCommand: 0
+                  shareScreenFrameRate: null
+                  muteAll: 1
+                errorResult: null
+                repeated: null
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778615-run
+      operationId: status_250778615
+      x-source-doc: https://docs.tvunetworks.cn/api-250778615.md
+  /party/noLogin/voIPStatus/796305937973:
+    get:
+      summary: voIPStaus
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: rtilCode
+        in: query
+        description: ''
+        required: true
+        example: '5247'
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778625-run
+      operationId: voIPStaus_250778625
+      x-source-doc: https://docs.tvunetworks.cn/api-250778625.md
+  /party/page:
+    post:
+      summary: page
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pageSize:
+                  type: integer
+                pageNum:
+                  type: integer
+                sortField:
+                  type: string
+                sortDirection:
+                  type: string
+              required:
+              - pageSize
+              - pageNum
+              - sortField
+              - sortDirection
+              x-apifox-orders:
+              - pageSize
+              - pageNum
+              - sortField
+              - sortDirection
+            example:
+              pageSize: 20
+              pageNum: 1
+              sortField: createTime
+              sortDirection: desc
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778603-run
+      operationId: page_250778603
+      x-source-doc: https://docs.tvunetworks.cn/api-250778603.md
+  /party/receiverJoin:
+    post:
+      summary: Receiver Join party_ccR
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              receiverId: fffffffbb2eee6cb
+              partyCode: 559533625225
+              output: true
+              source: FileShimRevolver0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778611-run
+      operationId: Receiver_Join_party_ccR_250778611
+      x-source-doc: https://docs.tvunetworks.cn/api-250778611.md
+  /party/receiverLeave:
+    post:
+      summary: Receiver leave party
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              receiverId: fffffffbb000712b
+              origin: pp
+              partyCode: 604558761892
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778613-run
+      operationId: Receiver_leave_party_250778613
+      x-source-doc: https://docs.tvunetworks.cn/api-250778613.md
+  /party/receiverStartParty:
+    post:
+      summary: Receiver start gallery
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              receiverId: F24701D737C5DF98
+              groupId: '1017348286642274'
+              pageNum: 1
+              source: group
+              output: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778614-run
+      operationId: Receiver_start_gallery_250778614
+      x-source-doc: https://docs.tvunetworks.cn/api-250778614.md
+  /party/update:
+    post:
+      summary: update
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              id: 651766531329
+              title: The allen show
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778622-run
+      operationId: update_250778622
+      x-source-doc: https://docs.tvunetworks.cn/api-250778622.md
+  /party/{partyCode}:
+    get:
+      summary: get by code
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: partyCode
+        in: path
+        description: ''
+        required: true
+        example: '667089706038'
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: ''
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      partyCode:
+                        type: integer
+                      appType:
+                        type: integer
+                      title:
+                        type: string
+                      desc:
+                        type: 'null'
+                      platform:
+                        type: 'null'
+                      refId:
+                        type: 'null'
+                      createUserId:
+                        type: string
+                      state:
+                        type: integer
+                      type:
+                        type: integer
+                      remark:
+                        type: 'null'
+                      startPartyTime:
+                        type: integer
+                      endPartyTime:
+                        type: 'null'
+                      createTime:
+                        type: integer
+                      updateTime:
+                        type: integer
+                      deleteFalg:
+                        type: boolean
+                      rtilCode:
+                        type: integer
+                      tokenCode:
+                        type: string
+                      appId:
+                        type: string
+                      lockName:
+                        type: boolean
+                      hasCopy:
+                        type: boolean
+                      code:
+                        type: string
+                      coHost:
+                        type: integer
+                      partyBasicStatus:
+                        type: 'null'
+                      maxPeopleCount:
+                        type: 'null'
+                      channelMode:
+                        type: integer
+                    required:
+                    - id
+                    - partyCode
+                    - appType
+                    - title
+                    - desc
+                    - platform
+                    - refId
+                    - createUserId
+                    - state
+                    - type
+                    - remark
+                    - startPartyTime
+                    - endPartyTime
+                    - createTime
+                    - updateTime
+                    - deleteFalg
+                    - rtilCode
+                    - tokenCode
+                    - appId
+                    - lockName
+                    - hasCopy
+                    - code
+                    - coHost
+                    - partyBasicStatus
+                    - maxPeopleCount
+                    - channelMode
+                    x-apifox-orders:
+                    - id
+                    - partyCode
+                    - appType
+                    - title
+                    - desc
+                    - platform
+                    - refId
+                    - createUserId
+                    - state
+                    - type
+                    - remark
+                    - startPartyTime
+                    - endPartyTime
+                    - createTime
+                    - updateTime
+                    - deleteFalg
+                    - rtilCode
+                    - tokenCode
+                    - appId
+                    - lockName
+                    - hasCopy
+                    - code
+                    - coHost
+                    - partyBasicStatus
+                    - maxPeopleCount
+                    - channelMode
+                  errorResult:
+                    type: 'null'
+                  repeated:
+                    type: 'null'
+                required:
+                - errorInfo
+                - errorCode
+                - result
+                - errorResult
+                - repeated
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - result
+                - errorResult
+                - repeated
+              examples:
+                '1':
+                  summary: Success
+                  value:
+                    errorInfo: OK
+                    errorCode: '0x0'
+                    result:
+                      id: 4553033228544
+                      partyCode: 667089706038
+                      appType: 10
+                      title: Hello134
+                      desc: null
+                      platform: null
+                      refId: null
+                      createUserId: 276e0fb172684f3cb8cb9183a72cfafc
+                      state: 1
+                      type: 10
+                      remark: null
+                      startPartyTime: 1715681730086
+                      endPartyTime: null
+                      createTime: 1715681730086
+                      updateTime: 1716793158057
+                      deleteFalg: false
+                      rtilCode: 17243
+                      tokenCode: 007eJxTYHhyqG6+4b3u/hMzdv1+vCyOP+z+joXChivYvdQUv0hO/aemwGCUZJhobphoYGmUamaSmGKUlGhubpmUlmaRmmJsZpSc/HzKvTSGa80M7+zOWzMyQCCIz8NgZmZuYGFpbmBmYGzBymBobmRiDAD1LiWT
+                      appId: 2b1a71a092e64ad2ba779bff8ed362cc
+                      lockName: false
+                      hasCopy: true
+                      code: '667089706038'
+                      coHost: 0
+                      partyBasicStatus: null
+                      maxPeopleCount: null
+                      channelMode: 0
+                    errorResult: null
+                    repeated: null
+                '2':
+                  summary: Success
+                  value:
+                    errorInfo: OK
+                    errorCode: '0x0'
+                    result:
+                      id: 4553033228544
+                      partyCode: 667089706038
+                      appType: null
+                      title: Hello134
+                      desc: null
+                      platform: null
+                      refId: null
+                      createUserId: 276e0fb172684f3cb8cb9183a72cfafc
+                      state: 1
+                      type: 10
+                      remark: null
+                      startPartyTime: 1715681730086
+                      endPartyTime: null
+                      createTime: 1715681730086
+                      updateTime: 1716793158057
+                      deleteFalg: false
+                      rtilCode: null
+                      tokenCode: null
+                      appId: null
+                      lockName: false
+                      hasCopy: true
+                      code: '667089706038'
+                      coHost: 0
+                      partyBasicStatus: null
+                      maxPeopleCount: null
+                      channelMode: 0
+                    errorResult: null
+                    repeated: null
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778602-run
+      operationId: get_by_code_250778602
+      x-source-doc: https://docs.tvunetworks.cn/api-250778602.md
+  /partyExtendInfo/noLogin/checkInvite:
+    post:
+      summary: checkInvite
+      deprecated: false
+      description: ''
+      tags:
+      - Partyline API/party
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: false
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: ff8080814c0198ca014c01a9e3da0000
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                partyCode:
+                  type: string
+                invitePassCode:
+                  type: string
+                memberId:
+                  type: string
+              required:
+              - partyCode
+              - invitePassCode
+              - memberId
+              x-apifox-orders:
+              - partyCode
+              - invitePassCode
+              - memberId
+            example:
+              partyCode: '853400756480'
+              invitePassCode: ''
+              memberId: 045C94FEE1F553E4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Partyline API/party
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778624-run
+      operationId: checkInvite_250778624
+      x-source-doc: https://docs.tvunetworks.cn/api-250778624.md
+components:
+  schemas:
+    Result«Map«Object»»:
+      type: object
+      properties:
+        errorInfo:
+          type: string
+          description: ''
+          nullable: true
+        errorCode:
+          type: string
+          description: ''
+          nullable: true
+        result:
+          $ref: '#/components/schemas/Map%C2%ABObject%C2%BB'
+          description: ''
+        errorResult:
+          $ref: '#/components/schemas/Object'
+          description: ''
+        repeated:
+          type: boolean
+          description: ''
+          nullable: true
+      x-apifox-orders:
+      - errorInfo
+      - errorCode
+      - result
+      - errorResult
+      - repeated
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Object:
+      type: object
+      x-apifox-orders: []
+      x--orders: []
+      properties: {}
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    Map«Object»:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/key'
+      x-apifox-orders:
+      - key
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    key:
+      type: object
+      properties: {}
+      x-apifox-orders: []
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Result«CheckPartyVo»:
+      type: object
+      properties:
+        errorInfo:
+          type: string
+          description: ''
+          nullable: true
+        errorCode:
+          type: string
+          description: ''
+          nullable: true
+        result:
+          $ref: '#/components/schemas/CheckPartyVo'
+          description: ''
+        errorResult:
+          $ref: '#/components/schemas/Object'
+          description: ''
+        repeated:
+          type: boolean
+          description: ''
+          nullable: true
+      x-apifox-orders:
+      - errorInfo
+      - errorCode
+      - result
+      - errorResult
+      - repeated
+      x--orders:
+      - errorInfo
+      - errorCode
+      - result
+      - errorResult
+      - repeated
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    CheckPartyVo:
+      type: object
+      properties:
+        channelModel:
+          type: integer
+          description: ''
+          enum:
+          - '-1'
+          - '0'
+          - '1'
+          - '11'
+          - '2'
+          - '3'
+          - '4'
+          - '7'
+          - '8'
+          - '9'
+          - '12'
+          - '13'
+          - '14'
+          - '17'
+          x-apifox:
+            enumDescriptions:
+              '0': Common party
+              '1': Gallery
+              '2': Conference
+              '3': External party
+              '4': 'Scene
+
+                「已废弃」'
+              '7': 'Canvas
+
+                「已废弃」'
+              '8': 'Section
+
+                「已废弃」'
+              '9': Commentator parent
+              '11': Gallery Sub party
+              '12': Commentator sub party
+              '13': Kiosk party
+              '14': Kiosk 子 party
+              '17': GLOBAL CONTROL
+              '-1': 未知 party
+          nullable: true
+        userEmail:
+          type: string
+          description: ''
+          nullable: true
+        login:
+          type: boolean
+          description: ''
+          default: 'false'
+          nullable: true
+        owner:
+          type: boolean
+          description: ''
+          default: 'false'
+          nullable: true
+        coHost:
+          type: boolean
+          description: ''
+          default: 'false'
+          nullable: true
+        tagKey:
+          type: string
+          description: ''
+          nullable: true
+        tagValue:
+          type: string
+          description: ''
+          nullable: true
+        hasPartyCode:
+          type: boolean
+          description: ''
+          default: 'true'
+          nullable: true
+        env:
+          type: string
+          description: '「已废弃」使用 cookie 作为路由，这个字段保留只是为了兼容
+
+            「已废弃」'
+          nullable: true
+        tagList:
+          type: array
+          items: &id001
+            $ref: '#/components/schemas/TagValueVo'
+            description: com.tvunetworks.center.common.model.vo.TagValueVo
+          description: ''
+          default: new ArrayList<>()
+          nullable: true
+        commentatorTagList:
+          type: array
+          items: *id001
+          description: Commentator 相关的 Tag 信息
+          default: new ArrayList<>()
+          nullable: true
+        commentatorTagKey:
+          type: string
+          description: ''
+          nullable: true
+        commentatorTagValue:
+          type: string
+          description: ''
+          nullable: true
+        audioMixerTagList:
+          type: array
+          items: *id001
+          description: Audio Mixer 相关的 Tag 信息
+          default: new ArrayList<>()
+          nullable: true
+        audioMixerTagKey:
+          type: string
+          description: ''
+          nullable: true
+        audioMixerTagValue:
+          type: string
+          description: ''
+          nullable: true
+        apiEnv:
+          type: string
+          description: 'uniform api env
+
+
+            「已废弃」使用 cookie 作为路由，这个字段保留只是为了兼容
+
+            「已废弃」'
+          nullable: true
+        inviteMode:
+          type: integer
+          description: ''
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '0'
+          - '1'
+          - '2'
+          x-apifox:
+            enumDescriptions:
+              '0': join 接口验证invite
+              '1': checkParty 接口验证invite
+              '2': checkInvite 接口验证invite
+              '3': passCode
+          nullable: true
+        deleteFlag:
+          type: integer
+          description: '{@link LocalConstants#DELETED}
+
+            {@link LocalConstants#NOT_DELETED}'
+          nullable: true
+        arriveMaximumOnlineCollaborate:
+          type: boolean
+          description: 是否超出当前 co-host 最大人数
+          nullable: true
+        commonPartyInfo:
+          $ref: '#/components/schemas/CommonPartyInfo'
+          description: Common Party Information
+        enable:
+          type: integer
+          description: Party is disabled or not
+          default: PartyStatusEnum.ButtonType.ENABLE.getDefaultValue()
+          nullable: true
+        platform:
+          type: integer
+          description: 平台来源：1:cc 2:pp 3:callcenter
+          nullable: true
+      x-apifox-orders:
+      - channelModel
+      - userEmail
+      - login
+      - owner
+      - coHost
+      - tagKey
+      - tagValue
+      - hasPartyCode
+      - env
+      - tagList
+      - commentatorTagList
+      - commentatorTagKey
+      - commentatorTagValue
+      - audioMixerTagList
+      - audioMixerTagKey
+      - audioMixerTagValue
+      - apiEnv
+      - inviteMode
+      - deleteFlag
+      - arriveMaximumOnlineCollaborate
+      - commonPartyInfo
+      - enable
+      - platform
+      x--orders:
+      - channelModel
+      - userEmail
+      - login
+      - owner
+      - coHost
+      - tagKey
+      - tagValue
+      - hasPartyCode
+      - env
+      - tagList
+      - commentatorTagList
+      - commentatorTagKey
+      - commentatorTagValue
+      - audioMixerTagList
+      - audioMixerTagKey
+      - audioMixerTagValue
+      - apiEnv
+      - inviteMode
+      - deleteFlag
+      - arriveMaximumOnlineCollaborate
+      - commonPartyInfo
+      - enable
+      - platform
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    CommonPartyInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+          nullable: true
+        joinCode:
+          type: string
+          description: ''
+          nullable: true
+        partyName:
+          type: string
+          description: ''
+          nullable: true
+        createTime:
+          type: integer
+          description: ''
+          nullable: true
+        updateTime:
+          type: integer
+          description: ''
+          nullable: true
+        nickname:
+          type: string
+          description: ''
+          nullable: true
+      x-apifox-orders:
+      - id
+      - joinCode
+      - partyName
+      - createTime
+      - updateTime
+      - nickname
+      x--orders:
+      - id
+      - joinCode
+      - partyName
+      - createTime
+      - updateTime
+      - nickname
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    TagValueVo:
+      type: object
+      properties:
+        tagKey:
+          type: string
+          description: ''
+          nullable: true
+        tagValue:
+          type: string
+          description: ''
+          nullable: true
+      x-apifox-orders:
+      - tagKey
+      - tagValue
+      x--orders:
+      - tagKey
+      - tagValue
+      x--ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

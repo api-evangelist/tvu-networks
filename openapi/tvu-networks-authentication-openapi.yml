@@ -1,0 +1,93 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Authentication
+  description: Authentication operations of the TVU Networks public HTTP API, assembled verbatim from
+    the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /userAuth/token/getToken:
+    post:
+      summary: get `SID` for authentication
+      deprecated: false
+      description: 'This API is to generate `SID`(a.k.a `Session ID`).
+
+
+        Please include it in the HTTP request header as either SID (most commonly) or Authorization (less
+        often), depending on the specific endpoint you''re interacting with.
+
+
+        You can use [the online tool](https://emn178.github.io/online-tools/sha512.html) to generate the
+        SHA512 hash of your password.'
+      tags:
+      - Authentication
+      - Authentication API
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: YourAccount
+                password:
+                  type: string
+                  description: CryptoJS.SHA512(YourPassword).toString(CryptoJS.enc.Hex);
+                expireTime:
+                  type: integer
+                  description: in second, maximum is 7200
+              required:
+              - email
+              - password
+              - expireTime
+              x-apifox-orders:
+              - email
+              - password
+              - expireTime
+            example:
+              email: '{{email}}'
+              password: '{{password}}'
+              expireTime: 360
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Authentication
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-236527354-run
+      operationId: get_SID_for_authentication_236527354
+      x-source-doc: https://docs.tvunetworks.cn/api-236527354.md
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

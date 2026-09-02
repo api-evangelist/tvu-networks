@@ -1,0 +1,969 @@
+# TVU Public API Stage
+
+## Docs
+- [Ingest Integration Workflow](https://docs.tvunetworks.cn/doc-8184935.md): 
+- [Authentication](https://docs.tvunetworks.cn/folder-45770135.md): 
+- [MediaHub API](https://docs.tvunetworks.cn/folder-47022365.md): This project supports both Authentication Bearer and SID as methods for authentication. Please disable other unnecessary request headers.
+- MediaHub API [Explanation of URL and Type for Source and Output](https://docs.tvunetworks.cn/doc-5661551.md): 
+- [Search API](https://docs.tvunetworks.cn/folder-45770137.md): 
+- Search API > extract [ERROR CODE](https://docs.tvunetworks.cn/doc-5808220.md): 
+- [MediaMind Story Creation](https://docs.tvunetworks.cn/folder-45770138.md): 
+- [Object API](https://docs.tvunetworks.cn/folder-45770147.md): 
+- Object API > GraphQL [Error Code](https://docs.tvunetworks.cn/doc-7030011.md): 
+- Object API > GraphQL [Object Interface Related Structures](https://docs.tvunetworks.cn/doc-7030012.md): 
+- Object API > GraphQL [Examples](https://docs.tvunetworks.cn/doc-7030013.md): 
+- Object API > GraphQL [Object Interface Related Structures Copy](https://docs.tvunetworks.cn/doc-8874580.md): 
+- Object API > RESTful [ErrorCode](https://docs.tvunetworks.cn/doc-7030014.md): 
+- Object API > status [objectd callback](https://docs.tvunetworks.cn/doc-7030015.md): 
+- Object API > 文档 [合并tangible需要执行的命令](https://docs.tvunetworks.cn/doc-8874581.md): 
+- Object API > 文档 [索引详情](https://docs.tvunetworks.cn/doc-8874582.md): 
+- Producer API [GraphQL API Use Specification](https://docs.tvunetworks.cn/doc-5779719.md): 
+- [Media Service For Producer](https://docs.tvunetworks.cn/folder-48352915.md): 
+- Media Service For Producer [tvucc-share](https://docs.tvunetworks.cn/folder-48352934.md): 
+- Media Service For Producer > tvucc-share [output](https://docs.tvunetworks.cn/folder-48352936.md): 
+- Media Service For Producer > tvucc-share [share Video](https://docs.tvunetworks.cn/folder-48352937.md): 
+- Media Service For Producer [tvucc-media](https://docs.tvunetworks.cn/folder-48352935.md): 
+- Media Service For Producer > tvucc-media [output Setting](https://docs.tvunetworks.cn/folder-48352938.md): 
+- [Workflow API](https://docs.tvunetworks.cn/folder-48352918.md): 
+- [MOS Gateway API](https://docs.tvunetworks.cn/folder-48352941.md): 
+- MOS Gateway API [Channel for MOS](https://docs.tvunetworks.cn/folder-48352942.md): 
+
+## API Docs
+- Authentication [get `SID` for authentication](https://docs.tvunetworks.cn/api-236527354.md): This API is to generate `SID`(a.k.a `Session ID`).
+- MediaHub API > project-api [whiteBalanceDetail](https://docs.tvunetworks.cn/api-243498597.md): 
+- MediaHub API > project-api [setWhiteBalance](https://docs.tvunetworks.cn/api-243498596.md): 
+- MediaHub API > project-api [setAudioOffset](https://docs.tvunetworks.cn/api-329846474.md): 
+- MediaHub API > project-api [resetWhiteBalance](https://docs.tvunetworks.cn/api-243498598.md): 
+- MediaHub API > project-api [listProjects](https://docs.tvunetworks.cn/api-304598681.md): query project list
+- MediaHub API > project-api [deleteProjects](https://docs.tvunetworks.cn/api-243498595.md): 
+- MediaHub API > project-api [queryStatus](https://docs.tvunetworks.cn/api-243498599.md): 
+- MediaHub API > project-api [getProject](https://docs.tvunetworks.cn/api-243498601.md): 
+- MediaHub API > project-api [updateProject](https://docs.tvunetworks.cn/api-243498603.md): 
+- MediaHub API > project-api [createProject](https://docs.tvunetworks.cn/api-243498600.md): create project
+- MediaHub API > project-api [deleteProject](https://docs.tvunetworks.cn/api-243498602.md): 
+- MediaHub API > source-object-api [listSourceObjects](https://docs.tvunetworks.cn/api-243498608.md): 
+- MediaHub API > source-object-api [sourceObjectInfo](https://docs.tvunetworks.cn/api-243498604.md): 
+- MediaHub API > source-object-api [deleteSourceObjectInfo](https://docs.tvunetworks.cn/api-243498605.md): 
+- MediaHub API > source-object-api [deleteSourceObjectInfoBulk](https://docs.tvunetworks.cn/api-243498609.md): 
+- MediaHub API > source-object-api [updateSourceObjectInfo](https://docs.tvunetworks.cn/api-243498607.md): 
+- MediaHub API > source-object-api [createSourceObject](https://docs.tvunetworks.cn/api-243498606.md): 
+- MediaHub API > output-encoder-api [outputPairedWithEncodingProfile](https://docs.tvunetworks.cn/api-243498613.md): update pair by outputEncodingProfilePairId
+- MediaHub API > output-encoder-api [outputPairedWithEncodingProfile](https://docs.tvunetworks.cn/api-243498611.md): output paired with encodingProfile
+- MediaHub API > output-encoder-api [deletePairedOfOutputEncodingProfile](https://docs.tvunetworks.cn/api-243498612.md): Delete the paired relationship between output and encodingprofile
+- MediaHub API > output-encoder-api [updateOutput](https://docs.tvunetworks.cn/api-243498616.md): update output account
+- MediaHub API > output-encoder-api [createOutput](https://docs.tvunetworks.cn/api-243498614.md): create output account
+- MediaHub API > output-encoder-api [deleteOutput](https://docs.tvunetworks.cn/api-243498615.md): delete output by outputId
+- MediaHub API > output-encoder-api [listOutputs](https://docs.tvunetworks.cn/api-243498617.md): Query user output account list
+- MediaHub API > output-encoder-api [queryOutputEncodingProfilePairs](https://docs.tvunetworks.cn/api-243498610.md): Query the paired list of output and encoding profiles
+- MediaHub API > encoder-profile-api [queryEncodingProfile](https://docs.tvunetworks.cn/api-243498619.md): Creating an encodingProfile
+- MediaHub API > encoder-profile-api [encodingProfile](https://docs.tvunetworks.cn/api-243498621.md): Update an encodingProfile
+- MediaHub API > encoder-profile-api [createEncodingProfile](https://docs.tvunetworks.cn/api-243498618.md): Creating an encodingProfile
+- MediaHub API > encoder-profile-api [deleteEncodingProfile](https://docs.tvunetworks.cn/api-243498620.md): delete encodingProfile
+- MediaHub API > encoder-profile-api [queryEncodingProfiles](https://docs.tvunetworks.cn/api-243498622.md): Query the encodingProfile list
+- MediaHub API > encoder-profile-api [queryEncodingProfileDict](https://docs.tvunetworks.cn/api-243498623.md): query encodingProfile dict
+- MediaHub API > route-api [switchConnect(project mode)](https://docs.tvunetworks.cn/api-355991162.md): 
+- MediaHub API > route-api [singleOutputEnableStreaming(project mode)](https://docs.tvunetworks.cn/api-243498626.md): 
+- MediaHub API > route-api [singleOutputDisableStreaming(project mode)](https://docs.tvunetworks.cn/api-243498624.md): 
+- MediaHub API > route-api [disconnect(project mode)](https://docs.tvunetworks.cn/api-243498627.md): 
+- MediaHub API > route-api [connect(project mode)](https://docs.tvunetworks.cn/api-243498625.md): 
+- MediaHub API > setting-api [getSupportKeys](https://docs.tvunetworks.cn/api-243498630.md): get support keys
+- MediaHub API > setting-api [getGroupAttr](https://docs.tvunetworks.cn/api-243498629.md): get group attribute
+- MediaHub API > setting-api [setGroupAttr](https://docs.tvunetworks.cn/api-243498628.md): set group attribute
+- MediaHub API > preview-decoder-api [stopPreview](https://docs.tvunetworks.cn/api-329846476.md): stop preview by objectId
+- MediaHub API > preview-decoder-api [startPreview](https://docs.tvunetworks.cn/api-329846475.md): start preview by objectId
+- MediaHub API > switcher-api [setAudioDelay](https://docs.tvunetworks.cn/api-355991163.md): set audio delay
+- MediaHub API > RouteApi [destinationSwitch(destination mode)](https://docs.tvunetworks.cn/api-430970837.md): Switch the source of an active destination stream to a new source object. sourceObjectId, destinationObjectId and appName are required.
+- MediaHub API > RouteApi [destinationStopLive(destination mode)](https://docs.tvunetworks.cn/api-430970838.md): Stop live streaming for the specified destination object. Only destinationObjectId is required in the request body.
+- MediaHub API > RouteApi [destinationStartLive(destination mode)](https://docs.tvunetworks.cn/api-430970839.md): Start live streaming in destination mode (one-to-one: sourceObject → destinationObject). The caller must supply sourceObjectId, destinationObjectId and appName. userId and email are resolved automatically from the Authorization token.
+- MediaHub API > destination-api [updateDestination](https://docs.tvunetworks.cn/api-430970840.md): update destination
+- MediaHub API > destination-api [createDestination](https://docs.tvunetworks.cn/api-430970841.md): create destination
+- MediaHub API > destination-api [deleteDestination](https://docs.tvunetworks.cn/api-430970842.md): delete destination by objectId
+- MediaHub API > destination-api [listDestinations](https://docs.tvunetworks.cn/api-430970843.md): Query user destination list
+- MediaHub API > destination-api [destinationPairedWithEncodingProfile](https://docs.tvunetworks.cn/api-430970844.md): destination paired with encodingProfile
+- Search API > event [slug with ingest setting](https://docs.tvunetworks.cn/api-351711926.md): Create a slug for the source object. If you need to trigger MMA recording, you will need the slugRecord information. If you need to trigger RRS recording, you will need the slugAdvanced information. You can choose either one. If no recording is required, then there is no need for the slugRecord and slugAdvanced information.
+- Search API > event [query slug](https://docs.tvunetworks.cn/api-351711927.md): Gets all slug of the sourceobject for a period of time.
+- Search API > event [delete slug](https://docs.tvunetworks.cn/api-351711929.md): Delete slug by slugId.
+- Search API > event [create slug](https://docs.tvunetworks.cn/api-351711928.md): Create a new slug or updated an existing slug for the sourceObject.
+- Search API > event [retrieve slug](https://docs.tvunetworks.cn/api-351711930.md): The slugId gets slug information.
+- Search API > event [current slug](https://docs.tvunetworks.cn/api-351711931.md): Get the slug corresponding to the current time of the sourceObject.
+- Search API > event [add the mark file to PP](https://docs.tvunetworks.cn/api-351711925.md): Place the clip object into the playback list of Produce.
+- Search API > event [create clip object](https://docs.tvunetworks.cn/api-351711924.md): Create a clip object.
+- Search API > search > session [Send session heartbeat to track user activity](https://docs.tvunetworks.cn/api-468959085.md): Sends a heartbeat to update the user's last-active timestamp, keeping the session alive and enabling real-time active-user tracking. Call this periodically (recommended every 30–60 seconds) while the user is viewing the application. The optional 'page' parameter records which page the user is currently on for per-page analytics.
+- Search API > search > query [Run an auto-search query](https://docs.tvunetworks.cn/api-468959086.md): Executes an active search across media objects using the provided criteria and time range, returning matched results grouped by source object.
+- Search API > search > query [Search stored summarizations by time range](https://docs.tvunetworks.cn/api-468959087.md): Returns stored AI summarization items for the specified source object and time range, sorted chronologically.
+- Search API > search > query [Get AI summarization for a media segment](https://docs.tvunetworks.cn/api-468959088.md): Returns an AI-generated text summarization for the specified source object and time range.
+- Search API > search > person [List persons detected in a media file by face recognition](https://docs.tvunetworks.cn/api-468959089.md): Returns a paginated list of persons identified via face recognition within the specified media recording and time window. Identify the recording by 'ph_path' (required); optionally narrow to a specific TVU device using 'peerid'. Each result includes the person's ID, name, thumbnail, and detected timestamps. Sort options: sort=1 ranks persons by how frequently they appear (useful for recurrence scoring); sort=2 lists persons in the order they first appear as on-screen guests. Session ID required.
+- Search API > search > person [Search persons globally by name or ID tags](https://docs.tvunetworks.cn/api-468959090.md): Searches for named persons across all accessible groups and data sources. Accepts a free-text name query (e.g. 'John Smith') and/or a list of known person IDs as tag filters to narrow results. Unlike the group-scoped name search, this endpoint queries the global person index and returns matches from any group library accessible to the caller. Each result includes person profile metadata. Pagination via pageNum/pageSize. Session ID required.
+- Search API > search > slug [Search media content by tags and free text](https://docs.tvunetworks.cn/api-468959091.md): Searches TVU media content across multiple types (assets, captions, sources) using structured tag filters combined with an optional free-text query. Tag filters include person IDs, story IDs, media UIDs, feature keywords, and object categories (objectSources, objectUserIds, objectGroupIds). When AI search is enabled, free-text queries are automatically parsed to extract person name filters and keyword intents. Use the 'source' array to restrict which content types are searched. Results are paginated and sorted per the 'sort' parameter. Session ID required.
+- Search API > search > object [Fetch all tags across objects](https://docs.tvunetworks.cn/api-468959092.md): Returns all object tag records matching the request criteria, including total count and paginated results.
+- Search API > search > object [Fetch tags for an object](https://docs.tvunetworks.cn/api-468959093.md): Returns the tag records associated with the specified object, with total count and result list.
+- Search API > search > object [Retrieve detailed object info](https://docs.tvunetworks.cn/api-468959094.md): Returns full detail of an object including its attributes, type, and tangible associations.
+- Search API > search > object [Search objects with tag filters](https://docs.tvunetworks.cn/api-468959095.md): Returns a list of objects matching the query along with aggregated tag and type maps, respecting user permission groups.
+- Search API > search > object [Get tag autocomplete suggestions for an object](https://docs.tvunetworks.cn/api-468959096.md): Returns suggested tag values based on a partial input string for the specified object.
+- Search API > search > object [Search file format info by path](https://docs.tvunetworks.cn/api-468959097.md): Returns the file format details (codec, container, resolution) for a media file identified by its path.
+- Search API > search > object [Search media objects by ID list](https://docs.tvunetworks.cn/api-468959098.md): Returns media object records for the provided list of object IDs.
+- Search API > search > object [Find object IDs by media paths](https://docs.tvunetworks.cn/api-468959099.md): Returns object records whose media paths match any of the provided path strings.
+- Search API > search > recording [Retrieve recording info array by task ID](https://docs.tvunetworks.cn/api-468959100.md): Returns an array of recording information for the specified task ID. This v2 endpoint returns an ordered array rather than a single object.
+- Search API > search > recording [Get recording intervals by path](https://docs.tvunetworks.cn/api-468959101.md): Retrieve recording interval information for one or more file paths.
+- Search API > search > caption [List caption supported languages](https://docs.tvunetworks.cn/api-468959102.md): Returns the supported caption languages available for a given media path and time range.
+- Search API > search > caption [Retrieve caption transcript within a media time range](https://docs.tvunetworks.cn/api-468959103.md): Returns speech-to-text caption segments (each containing transcript text and start/end timestamps) from a broadcast recording within the specified time window. Identify the recording using 'peerid' (TVU device peer ID) and 'ph_path' (placeholder file path). 'pathtype' must be provided to route the request correctly, and 'language_type' must match the language used during transcription. Use this to extract the spoken transcript for any segment of a live or recorded broadcast. Session ID required.
+- Search API > search > srt [Generate a marked SRT subtitle file](https://docs.tvunetworks.cn/api-468959104.md): Generates an SRT subtitle file for the specified media segment and mark range, returning the output file path.
+- Search API > search > scene [Query SCTE-35 marker events by time range](https://docs.tvunetworks.cn/api-468959105.md): Returns SCTE-35 splice/marker events for the specified source object within the given time range.
+- Search API > search > doc [Record a user click on a search result](https://docs.tvunetworks.cn/api-468959106.md): Records a user's click on a specific search result, incrementing that document's click-through count and logging the query context (query string, rank position, language, user agent, session) for search relevance analytics. Setting 'order' to 1 additionally writes the query to the search query frequency log. Call this once per result click from the client after the user opens a result. Session ID required.
+- Search API > search > health [Get deployed service version](https://docs.tvunetworks.cn/api-468959107.md): Returns the version string of the currently deployed search service instance. Useful for build verification, compatibility checks, and troubleshooting. The version is read from 'VERSION.txt' bundled with the deployment; returns 'unknown_test' if the file is absent or unreadable.
+- Search API > search > apiv2 [AI agent search](https://docs.tvunetworks.cn/api-468959108.md): Perform a natural language AI-powered search. Supports conversational context via memoryId.
+- Search API > search > appearance [Get appearance relations v2](https://docs.tvunetworks.cn/api-468959109.md): Get relations between appearances (v2, JSON body).
+- Search API > search > appearance [Get appearance name suggestions v2](https://docs.tvunetworks.cn/api-468959110.md): Get appearance entity name suggestions for autocomplete (v2 JSON body variant).
+- Search API > search [Get appearance list](https://docs.tvunetworks.cn/api-284816688.md): Get appearance detection results by sourceObjectId. Supports cursor-based pagination via pageSize and afterContent.
+- Search API > search [Get content click v2](https://docs.tvunetworks.cn/api-239970996.md): Get detected content click data by source object ID. Supports cursor-based pagination via pageSize and afterContent.
+- Search API > search [Get caption by source object](https://docs.tvunetworks.cn/api-236527400.md): Generate and download caption file (SRT/VTT/TXT/DOCX) for a given source object and time range. The response body is raw caption text (not JSON). On error, returns a JSON object with errorCode and errorInfo fields.
+- Search API > search [Get TVU 264 status](https://docs.tvunetworks.cn/api-256196990.md): Get TVU 264 status
+- Search API > search [Get appearance relations](https://docs.tvunetworks.cn/api-284249304.md): Get relations between appearances.
+- Search API > search [Search captions by keyword](https://docs.tvunetworks.cn/api-373310990.md): Search caption records within a source object and time range by fuzzy prefix match or exact keywords. Returns paginated results.
+- Search API > search [Get scene change info v2](https://docs.tvunetworks.cn/api-239970999.md): Search scene change info by source object ID
+- Search API > search [Search events by source object and time](https://docs.tvunetworks.cn/api-236527405.md): Search asset/event records for given source objects within a time range.
+- Search API > search [Cross-type media content search (v2)](https://docs.tvunetworks.cn/api-236527406.md): Full-featured media content search across captions (STT transcripts), media assets, person detections, and source recordings. Authenticate via JWT Bearer token in the Authorization request header. When AI search is enabled, natural-language queries are automatically decomposed into person name filters and keyword matches. Time range defaults to the last 7 days when omitted. Results are scoped to the caller's access permissions. Use the 'dataSource' array to restrict which content types are searched ('caption', 'event', 'person', 'source'). Sort options include relevance score (0), creation time descending (1), creation time ascending (2), and custom field ordering.
+- Search API > search [Appearance search](https://docs.tvunetworks.cn/api-284249305.md): Search appearances by filter and time range.
+- Search API > search [Get latest event for source objects](https://docs.tvunetworks.cn/api-345609808.md): Get the most recent event/slug for given source objects. Option 1: event containing current time. Option 2: last event on the source.
+- Search API > search [Get appearance name suggestions](https://docs.tvunetworks.cn/api-289161095.md): Get appearance entity name suggestions for autocomplete, filtered by query text and source objects.
+- Search API > search [Get recordings for an event object](https://docs.tvunetworks.cn/api-345609807.md): Get all recording media files associated with a given event object ID.
+- Search API > search [Get media files](https://docs.tvunetworks.cn/api-236527404.md): Search media files by source object IDs and time range.
+- Search API > search [Get media files by IDs](https://docs.tvunetworks.cn/api-351735323.md): Search media files by a list of source object IDs.
+- Search API > search [Get name suggestions](https://docs.tvunetworks.cn/api-239970997.md): Get person name suggestions for autocomplete within source objects and time range.
+- Search API > search [Auto complete](https://docs.tvunetworks.cn/api-239970998.md): Auto complete
+- Search API > search [Search user source objects](https://docs.tvunetworks.cn/api-236527398.md): Search source objects belonging to a user, optionally filtered by object IDs and type.
+- Search API > search [Search persons by source object](https://docs.tvunetworks.cn/api-236527399.md): Search detected persons within the given source objects and time range.
+- Search API > search [Search person face appearances](https://docs.tvunetworks.cn/api-236527402.md): Search face appearance records for a specific person within source objects and time range. Supports pagination via searchAfterId.
+- Search API > search [Search person track by source object](https://docs.tvunetworks.cn/api-236527401.md): Search person tracking data (appearance timeline) within given source objects and time range.
+- Search API > search [Get settings](https://docs.tvunetworks.cn/api-416429886.md): Get configuration settings for a given source object.
+- Search API > search [Get search suggestions](https://docs.tvunetworks.cn/api-236527403.md): Get keyword/caption suggestions for autocomplete within a source object and time range.
+- Search API > search [Get supported languages](https://docs.tvunetworks.cn/api-236527407.md): Get supported caption languages for a given source object and time range.
+- Search API > search [Get recorded files](https://docs.tvunetworks.cn/api-236527409.md): Search recorded files by user account and time range.
+- Search API > search [Search words](https://docs.tvunetworks.cn/api-236527408.md): Search caption words/keywords for a given source object and time range.
+- Search API > search [import test](https://docs.tvunetworks.cn/api-346167500.md): 
+- Search API > search [ai search](https://docs.tvunetworks.cn/api-425008842.md): Search data using natural language.
+- Search API > extract [export](https://docs.tvunetworks.cn/api-236527410.md): 
+- Search API > extract [cut-json](https://docs.tvunetworks.cn/api-236527411.md): Cut JSON: Only modify the offset field values in the root JSON, including chunk_begin_timestamp, chunk_end_timestamp, begin_offset, and end_offset; the HLS source remains unchanged.
+- Search API > extract [thumbnail](https://docs.tvunetworks.cn/api-236527413.md): get thumbnail api
+- Search API > extract [longexport](https://docs.tvunetworks.cn/api-236527412.md): 
+- Search API > extract [exportaudio](https://docs.tvunetworks.cn/api-236527414.md): export audio
+- Search API > public [register webhook](https://docs.tvunetworks.cn/api-414798733.md): register webhook
+- MediaMind Story Creation [create story](https://docs.tvunetworks.cn/api-236527415.md): create story. API user provides its StoryID, TVU will return a TVU’s StoryID.
+- Object API > GraphQL > object [notifyGroupsEvents](https://docs.tvunetworks.cn/api-321782279.md): 
+- Object API > GraphQL > object [createObjectAndBind](https://docs.tvunetworks.cn/api-321782280.md): Create an object and a tangible, then bind them together. The default priority for the tangible is set to 0 (the highest level).
+- Object API > GraphQL > object [getObject](https://docs.tvunetworks.cn/api-321782281.md): Query object details based on conditions and permissions.
+- Object API > GraphQL > object [getObjectAttr](https://docs.tvunetworks.cn/api-321782282.md): Query object properties.
+- Object API > GraphQL > object [getObjectByTangible](https://docs.tvunetworks.cn/api-321782283.md): Query the list of objectIds bound by tangibleId.
+- Object API > GraphQL > object [getObjectByID](https://docs.tvunetworks.cn/api-321782284.md): Query the details of the objects bound by objectId.
+- Object API > GraphQL > object [getObjectByName](https://docs.tvunetworks.cn/api-321782285.md): Query the details of the objects bound by object name.
+- Object API > GraphQL > object [getObjectByOwner](https://docs.tvunetworks.cn/api-321782286.md): Query the details of the objects bound by object owner.
+- Object API > GraphQL > object [getObjectBySource](https://docs.tvunetworks.cn/api-321782287.md): Query objects related to the source object through the source object, such as clip objects.
+- Object API > GraphQL > object [getOrCreateObjectByTangible](https://docs.tvunetworks.cn/api-321782288.md): Query for an object by tangible; if not found, create the tangible and object, and bind their relationship.
+- Object API > GraphQL > object [bulkGetObjectByTangible](https://docs.tvunetworks.cn/api-321782289.md): Query corresponding objects by a list of tangibleIds in batch.
+- Object API > GraphQL > object [updateObject](https://docs.tvunetworks.cn/api-321782290.md): Update object properties.
+- Object API > GraphQL > object [updateObjectAttr](https://docs.tvunetworks.cn/api-321782291.md): Change object properties.
+- Object API > GraphQL > object [bulkUpdateObject](https://docs.tvunetworks.cn/api-321782292.md): Bulk update object properties.
+- Object API > GraphQL > object [deleteObject](https://docs.tvunetworks.cn/api-321782293.md): Delete object.
+- Object API > GraphQL > tangible [createTangible](https://docs.tvunetworks.cn/api-321782298.md): Create tangible.
+- Object API > GraphQL > tangible [createTangibleAndBind](https://docs.tvunetworks.cn/api-321782299.md): Create tangible and bind to object.
+- Object API > GraphQL > tangible [updateTangible](https://docs.tvunetworks.cn/api-321782300.md): Update tangible information.
+- Object API > GraphQL > tangible [deleteObjectByGroupId](https://docs.tvunetworks.cn/api-321782294.md): Delete all objects who's owner/admin contains the groupId.
+- Object API > GraphQL > tangible [batchDeleteObject](https://docs.tvunetworks.cn/api-321782295.md): Batch delete objects; the deletion time for these objects is the same as when they were placed in the recycle bin.
+- Object API > GraphQL > tangible [updateObjectStatus](https://docs.tvunetworks.cn/api-321782296.md): update object status
+- Object API > GraphQL > tangible [updateEventObjectBySource](https://docs.tvunetworks.cn/api-321782297.md): Update the properties of all slugs within the source time range (currently only permissions are supported).
+- Object API > GraphQL > relationship [bindRelation](https://docs.tvunetworks.cn/api-321782306.md): Bind the relationship between an object and a tangible.
+- Object API > GraphQL > relationship [bindObjectRelation](https://docs.tvunetworks.cn/api-321782307.md): Bind the relationship between objects.
+- Object API > GraphQL > relationship [bindMultiObjectRelation](https://docs.tvunetworks.cn/api-321782308.md): Batch bind the relationships between objects.
+- Object API > GraphQL > relationship [bulkUpdateTangible](https://docs.tvunetworks.cn/api-321782301.md): Bulk update tangible information.
+- Object API > GraphQL > relationship [getLatestObjectRelation](https://docs.tvunetworks.cn/api-321782309.md): Query all child objects of an object (returned by object type), and then return the latest bound object from all child objects.
+- Object API > GraphQL > relationship [getTangible](https://docs.tvunetworks.cn/api-321782302.md): Query tangible details.
+- Object API > GraphQL > relationship [getTangibleByObject](https://docs.tvunetworks.cn/api-321782303.md): Query the list of tangibleIds bound to an objectId.
+- Object API > GraphQL > relationship [deleteTangible](https://docs.tvunetworks.cn/api-321782304.md): Delete tangible.
+- Object API > GraphQL > relationship [updateTangible Copy](https://docs.tvunetworks.cn/api-321782305.md): Update tangible information.
+- Object API > GraphQL > object tag [getObjectRelation](https://docs.tvunetworks.cn/api-321782310.md): Query the parent object's corresponding child relationships.
+- Object API > GraphQL > object tag [replaceRelation](https://docs.tvunetworks.cn/api-321782311.md): Replace the tangible bound to an object. Unbind the old tangible from its corresponding object, bind the new tangible to the object, bind the new tangible to the old object, and create a new object for the old tangible. Then update the new tangible's name.
+- Object API > GraphQL > object tag [removeRelation](https://docs.tvunetworks.cn/api-321782312.md): Unbind the relationship between a tangible and an object.
+- Object API > RESTful > res.tvu.ai [object](https://docs.tvunetworks.cn/api-321782322.md): Retrieve all attributes of an object using its objectID.
+- Object API > RESTful > res.tvu.ai [tangible](https://docs.tvunetworks.cn/api-321782323.md): Retrieve tangible data using the tangible ID and parameters. Currently, we only use tangibleId to obtain the data.
+- Object API > RESTful > res.tvu.ai [tangible 2](https://docs.tvunetworks.cn/api-321782324.md): Retrieve tangible data using the tangible ID and parameters. Currently, we only use tangibleId to obtain the data.
+- Object API > RESTful [create object tag](https://docs.tvunetworks.cn/api-321782313.md): Create an object tag using the specified parameters. This API will return the original data that exists in the database.
+- Object API > RESTful [update object tag](https://docs.tvunetworks.cn/api-321782314.md): update object tag info by parameters.
+- Object API > RESTful [delete object tag](https://docs.tvunetworks.cn/api-321782316.md): delete object tag by objecttag id.
+- Object API > RESTful [get object tag](https://docs.tvunetworks.cn/api-321782317.md): search object tag by parameters.
+- Object API > RESTful [update object attributes](https://docs.tvunetworks.cn/api-321782315.md): 
+- Object API > RESTful [get objects' attribute](https://docs.tvunetworks.cn/api-321782318.md): 
+- Object API > RESTful [Get objects with the attribute set to a specific value.](https://docs.tvunetworks.cn/api-465089519.md): Get object where the attribute equals a specific value.
+- Object API > RESTful [get objects' single attribute](https://docs.tvunetworks.cn/api-321782319.md): get objects' single attribute value.
+- Object API > RESTful [get object](https://docs.tvunetworks.cn/api-321782320.md): get object by id.
+- Object API > RESTful [Get objects with the publicslug attribute set to true.](https://docs.tvunetworks.cn/api-321782321.md): Get objects with the publicslug attribute set to true.
+- Object API > status [createObjectTag](https://docs.tvunetworks.cn/api-321782328.md): Create Object Tag
+- Object API > status [hold](https://docs.tvunetworks.cn/api-321782331.md): the resource's user should call it if want to occupy the resource.  "resource" includes "object" or "tangible".
+- Object API > status [updateObjectTag](https://docs.tvunetworks.cn/api-321782329.md): Update Object Tag, only the tag name can be modified.
+- Object API > status [deleteObjectTag](https://docs.tvunetworks.cn/api-321782330.md): Delete Object Tag
+- Object API > status [removeObjectRelation](https://docs.tvunetworks.cn/api-321782325.md): Unbind the relationship between objects.
+- Object API > status [release](https://docs.tvunetworks.cn/api-465089520.md): Release the held object or tangible item.
+- Object API > status [removeMultiObjectRelation](https://docs.tvunetworks.cn/api-321782326.md): Unbind the multi relationship between objects.
+- Object API > status [watch](https://docs.tvunetworks.cn/api-465089521.md):  The service responsible for reclaiming the resource should call it to get notifications about who starts to use this resource.
+- Object API > status [removeRelationByTangible](https://docs.tvunetworks.cn/api-321782327.md): Delete all binding relationships of a tangible without deleting the objects.
+- Object API > status [unwatch](https://docs.tvunetworks.cn/api-465089522.md): Release the watch object or tangible item.
+- Object API > status [query the hold status of object](https://docs.tvunetworks.cn/api-465089523.md): Query the hold status of object.
+- Object API > status [query the hold status of tangible](https://docs.tvunetworks.cn/api-465089524.md): Query the hold status of tangible.
+- Grid API [getSession](https://docs.tvunetworks.cn/api-250778482.md): Authenticate the user with the system and obtain the auth_token.
+- Grid API [getDeviceList](https://docs.tvunetworks.cn/api-250778483.md): Obtain the list of devices owned bythe user according to the session, including the SourceList and DestinationList. 
+- Grid API [addPackToken](https://docs.tvunetworks.cn/api-250778484.md): 
+- Grid API [removePackToken](https://docs.tvunetworks.cn/api-250778485.md): remove token interface
+- Grid API [queryPairedR](https://docs.tvunetworks.cn/api-250778486.md): Query the matched R information through the ID of the pack
+- Grid API [queryPairedT](https://docs.tvunetworks.cn/api-250778487.md): 
+- Grid API [queryPairedToken](https://docs.tvunetworks.cn/api-250778488.md): Query pairing information
+- Grid API [getGridMetadata](https://docs.tvunetworks.cn/api-250778489.md): 
+- Grid API [updateGridMetadata](https://docs.tvunetworks.cn/api-250778490.md): Update/Add Source Metadata Information
+- Grid API [deleteExt](https://docs.tvunetworks.cn/api-250778491.md): Delete an external source.
+- Grid API [getThumbnail](https://docs.tvunetworks.cn/api-250778492.md): Get Thumbnail Information
+- Grid API [listSocialAccount](https://docs.tvunetworks.cn/api-250778493.md): 
+- Grid API [startPushLive](https://docs.tvunetworks.cn/api-250778494.md): 
+- Grid API [stopPushLive](https://docs.tvunetworks.cn/api-250778495.md): 
+- Grid API [addEvent](https://docs.tvunetworks.cn/api-250778496.md): add one booking event
+- Grid API [deleteEvent](https://docs.tvunetworks.cn/api-250778497.md): Delete one booking event
+- Grid API [listEvent](https://docs.tvunetworks.cn/api-250778498.md): Query list event 
+- Grid API [queryEvent](https://docs.tvunetworks.cn/api-250778499.md): query booking event
+- Grid API [batchHandleEvent](https://docs.tvunetworks.cn/api-250778500.md): Batch Handle Event booking event
+- Grid API [getStatus](https://docs.tvunetworks.cn/api-250778501.md): Able to query the status of the devices.
+- Grid API [queryPairedTGeoByRid](https://docs.tvunetworks.cn/api-250778502.md): Get Geolocation of all Packs that are Paired with a Particular Receiver 
+- Grid API [setLiveParameters](https://docs.tvunetworks.cn/api-250778503.md): 
+- Grid API [startLive](https://docs.tvunetworks.cn/api-250778504.md): Start a live with receiver and source
+- Grid API [stopLive](https://docs.tvunetworks.cn/api-250778505.md): Stop live .
+- Grid API [addExt](https://docs.tvunetworks.cn/api-250778506.md): Add an external source.
+- Grid API [getAvailableDevice](https://docs.tvunetworks.cn/api-250778507.md): Obtain the available list of devices owned bythe user according to the session, including the SourceList and DestinationList. 
+- Grid API [listShareAccount](https://docs.tvunetworks.cn/api-250778508.md): 
+- Grid API [getRealTimeLiveParameters](https://docs.tvunetworks.cn/api-250778509.md): 
+- Producer API > Programs [program query](https://docs.tvunetworks.cn/api-250778510.md): Program Paging Query, used to query the current user's programs, including programs as collaborator
+- Producer API > Programs [program data](https://docs.tvunetworks.cn/api-250778511.md): get program data by program id, program id should come from the programs API
+- Producer API > Programs [create program](https://docs.tvunetworks.cn/api-250778512.md): Create a program
+- Producer API > Programs [update program](https://docs.tvunetworks.cn/api-250778513.md): update an exist program
+- Producer API > Programs [delete program](https://docs.tvunetworks.cn/api-250778514.md): delete program by its id
+- Producer API > Programs [start](https://docs.tvunetworks.cn/api-250778515.md): start a new session/production for a program, if there is already one, then return its
+- Producer API > Programs [stop](https://docs.tvunetworks.cn/api-250778516.md): stop running session/production by program id
+- Producer API > Input Source [create EXT source](https://docs.tvunetworks.cn/api-250778517.md): create EXT source
+- Producer API > Input Source [create RTMP push source](https://docs.tvunetworks.cn/api-250778518.md): 
+- Producer API > Input Source [create RTPFEC source](https://docs.tvunetworks.cn/api-250778519.md): 
+- Producer API > Input Source [create SRT source](https://docs.tvunetworks.cn/api-250778520.md): 
+- Producer API > Input Source [create HTML source](https://docs.tvunetworks.cn/api-250778521.md): create HTML source
+- Producer API > Input Source [delete IP source](https://docs.tvunetworks.cn/api-250778522.md): delete IP source (include EXT/RTMP/RTPFEC/SRT source)
+- Producer API > Input Source [add source to slot](https://docs.tvunetworks.cn/api-250778523.md): add a source(IP or Device) to slot to live
+- Producer API > Input Source [remove source from slot](https://docs.tvunetworks.cn/api-250778524.md): remove source on slot
+- Producer API > Input Source [cut slot to PVW](https://docs.tvunetworks.cn/api-250778525.md): cut slot to PVW
+- Producer API > Input Source [cut slot to PGM](https://docs.tvunetworks.cn/api-250778526.md): Cut a slot to PGM, the source on slot will be cut to PGM as current output video, the parameter, subTimestamp is the cut point, if you has the source previewing on your application, you should extract its value, form video stream to obtain accurate cut
+- Producer API > Input Source [set source delay](https://docs.tvunetworks.cn/api-250778527.md): set source delay
+- Producer API > Clip Player [media files](https://docs.tvunetworks.cn/api-250778528.md): list clip files on TVU Cloud Drive which are supported to add to Clip Player
+- Producer API > Clip Player [add clip to clip player](https://docs.tvunetworks.cn/api-250778529.md): add a media file to a clip player after file uploaded to S3
+- Producer API > Clip Player [remove clip from clip player](https://docs.tvunetworks.cn/api-250778530.md): remove a media file from a clip player
+- Producer API > Clip Player [edit clip](https://docs.tvunetworks.cn/api-250778531.md): set markin/markout and name
+- Producer API > Clip Player [play clip player](https://docs.tvunetworks.cn/api-250778532.md): play clip file
+- Producer API > Clip Player [pause clip player](https://docs.tvunetworks.cn/api-250778533.md): pause clip file
+- Producer API > Clip Player [resume clip player](https://docs.tvunetworks.cn/api-250778534.md): resume clip file
+- Producer API > Clip Player [stop clip player](https://docs.tvunetworks.cn/api-250778535.md): stop clip file
+- Producer API > Clip Player [move clip position](https://docs.tvunetworks.cn/api-250778536.md): move clip file position
+- Producer API > Clip Player [Play multiple clip players at same time](https://docs.tvunetworks.cn/api-250778537.md): 
+- Producer API > Overlay [add overlay to PVW](https://docs.tvunetworks.cn/api-250778538.md): Add overlay to PVW
+- Producer API > Overlay [add overlay to PGM](https://docs.tvunetworks.cn/api-250778539.md): Add overlay to PGM directly
+- Producer API > Overlay [clear overlay on PVW](https://docs.tvunetworks.cn/api-250778540.md): Clear all overlay ON PVW
+- Producer API > Overlay [clear overlay on PGM](https://docs.tvunetworks.cn/api-250778541.md): Clear all overlay ON PGM
+- Producer API > Overlay [remove overlay from PGM](https://docs.tvunetworks.cn/api-250778542.md): Remove overlay from PGM
+- Producer API > Overlay [cut overlay](https://docs.tvunetworks.cn/api-250778543.md): copy all overlay on PVW to PGM, the overlays on PGM will replaced by these on PVW
+- Producer API > Overlay [logo files](https://docs.tvunetworks.cn/api-250778544.md): list logo files on TVU Cloud Drive which are supported to add to Overlay
+- Producer API > Overlay [request upload param](https://docs.tvunetworks.cn/api-250778545.md): -------Request file upload parameters, client use returned parameters to upload file to S3 directly
+- Producer API > Overlay [add logo to program](https://docs.tvunetworks.cn/api-250778546.md): Add logo file to program logos after file uploaded to S3
+- Producer API > Overlay [remove logo](https://docs.tvunetworks.cn/api-250778547.md): Remove logo from program logo list
+- Producer API > Overlay [move logo position](https://docs.tvunetworks.cn/api-250778548.md): Move logo position
+- Producer API > Overlay [save singular app token](https://docs.tvunetworks.cn/api-250778549.md): save singular app token
+- Producer API > Overlay [switch singular](https://docs.tvunetworks.cn/api-250778550.md): switch singular on or off
+- Producer API > Overlay [delete singular](https://docs.tvunetworks.cn/api-250778551.md): delete singular app url
+- Producer API > Overlay [save graphic url](https://docs.tvunetworks.cn/api-250778552.md): save graphic url
+- Producer API > Overlay [delete and remove graphic url](https://docs.tvunetworks.cn/api-250778553.md): remove graphic url from PGM and unbind it from program
+- Producer API > Collaborator [create collaborator](https://docs.tvunetworks.cn/api-250778554.md): add a tvu user into program
+- Producer API > Collaborator [remove collaborator](https://docs.tvunetworks.cn/api-250778555.md): remove remember
+- Producer API > Collaborator [update collaborator roles](https://docs.tvunetworks.cn/api-250778556.md): update roles of collaborator in a program
+- Producer API > Followers [available slave programs](https://docs.tvunetworks.cn/api-250778557.md): show which programs can be set as slaver
+- Producer API > Followers [add or update gangs](https://docs.tvunetworks.cn/api-250778558.md): set follower programs of the program
+- Producer API > Followers [remove gang](https://docs.tvunetworks.cn/api-250778559.md): remove follower programs from current program
+- Producer API > Producer AI [update AI Setting](https://docs.tvunetworks.cn/api-250778560.md): 
+- Producer API > Producer AI [play all clip players](https://docs.tvunetworks.cn/api-250778561.md): 
+- Producer API > Producer AI [play all clip players from the beginning](https://docs.tvunetworks.cn/api-250778562.md): 
+- Producer API > Producer AI [upload source thumbnail](https://docs.tvunetworks.cn/api-250778563.md): 
+- Producer API > Audio Mixer [Audio Transaction](https://docs.tvunetworks.cn/api-250778564.md): By this API you can do a audio transaction, transaction effect is: the current source's volume will vary from currentSourceStartSliderPosition to currentSourceEndSliderPosition in the effect duration period, and at same time, the next source's volume will vary from nextSourceStartSliderPosition to nextSourceEndSliderPosition in the effect duration period
+- Producer API > Playlist for Clip Player [create a playlist](https://docs.tvunetworks.cn/api-250778565.md): 
+- Producer API > Playlist for Clip Player [get a playlist by id](https://docs.tvunetworks.cn/api-250778566.md): 
+- Producer API > Playlist for Clip Player [switch to the playlist](https://docs.tvunetworks.cn/api-250778567.md): 
+- Producer API > Playlist for Clip Player [update a playlist name](https://docs.tvunetworks.cn/api-250778568.md): 
+- Producer API > Playlist for Clip Player [delete a playlist](https://docs.tvunetworks.cn/api-250778569.md): 
+- Producer API > Playlist for Clip Player [list program playlists by programId and fileShimNo](https://docs.tvunetworks.cn/api-250778570.md): 
+- Producer API > Playlist for Clip Player [page query program playlist](https://docs.tvunetworks.cn/api-250778571.md): 
+- Channel API > clone [mirror clone](https://docs.tvunetworks.cn/api-250778580.md): mirror clone
+- Channel API > clone [enable/disable sync at start of Broadcast day ](https://docs.tvunetworks.cn/api-250778581.md): enable/disable sync at start of Broadcast day 
+- Channel API > scheduleMapping [addScheduleMappingTemplate](https://docs.tvunetworks.cn/api-250778582.md): 
+- Channel API > Event [batch add event](https://docs.tvunetworks.cn/api-250778583.md): 
+- Channel API > Event [Get sourceId based on sourceType and sourceName](https://docs.tvunetworks.cn/api-250778584.md): 
+- Channel API > SCTE [Adding ManualSCTE via API](https://docs.tvunetworks.cn/api-250778585.md): 
+- Channel API [epg file export](https://docs.tvunetworks.cn/api-250778572.md): epg file export
+- Channel API [Take Breaking Source](https://docs.tvunetworks.cn/api-250778573.md): Page is triggered by clicking the button "Take Breaking Source"
+- Channel API [Take Next](https://docs.tvunetworks.cn/api-250778574.md): Page is triggered by clicking the button "Take Next"
+- Channel API [Emergency Switch](https://docs.tvunetworks.cn/api-250778575.md): Page is triggered by clicking the button "Emergency Switch"
+- Channel API [Turn on/off craw](https://docs.tvunetworks.cn/api-250778576.md): Turn on/off craw
+- Channel API [Turn on/off logo](https://docs.tvunetworks.cn/api-250778577.md): Turn on/off logo
+- Channel API [Turn on/off cc](https://docs.tvunetworks.cn/api-250778578.md): Turn on/off cc
+- Channel API [Take PlayList](https://docs.tvunetworks.cn/api-250778579.md): Page is triggered by clicking the button "Take PlayList"
+- UsageService API [Get DeviceInfo By PeerId](https://docs.tvunetworks.cn/api-250778586.md): Get DeviceInfo By PeerId
+- Media Service For Producer > tvucc-share > output [stopOutput](https://docs.tvunetworks.cn/api-250778587.md): # Description
+- Media Service For Producer > tvucc-share > output [liveOutput](https://docs.tvunetworks.cn/api-250778588.md): # Description
+- Media Service For Producer > tvucc-share > share Video [stopRtmpOutput](https://docs.tvunetworks.cn/api-250778589.md): 
+- Media Service For Producer > tvucc-share > share Video [liveRtmpOutputAccount](https://docs.tvunetworks.cn/api-250778590.md):  **Request Param**
+- Media Service For Producer > tvucc-media > output Setting [updateOutputAccount](https://docs.tvunetworks.cn/api-250778594.md): # Description
+- Media Service For Producer > tvucc-media > output Setting [deleteOutputAccount](https://docs.tvunetworks.cn/api-250778595.md): # Description
+- Media Service For Producer > tvucc-media > output Setting [addOutPutAccount](https://docs.tvunetworks.cn/api-250778596.md): **Request URL**
+- Media Service For Producer > tvucc-media > output Setting [getOutputAccount](https://docs.tvunetworks.cn/api-250778597.md): # Description
+- Media Service For Producer > tvucc-media [ListOutputAccount](https://docs.tvunetworks.cn/api-250778591.md): **request URL：** 
+- Media Service For Producer > tvucc-media [deleteRtmpAccount](https://docs.tvunetworks.cn/api-250778592.md): delete rtmp output account
+- Media Service For Producer > tvucc-media [addRtmpOutputAccount](https://docs.tvunetworks.cn/api-250778593.md): **Request Param：** 
+- Partyline API > party [join](https://docs.tvunetworks.cn/api-250778598.md): 
+- Partyline API > party [party status](https://docs.tvunetworks.cn/api-250778599.md): 
+- Partyline API > party [checkV2](https://docs.tvunetworks.cn/api-250778600.md): 
+- Partyline API > party [gallery join](https://docs.tvunetworks.cn/api-250778601.md): 
+- Partyline API > party [get by code](https://docs.tvunetworks.cn/api-250778602.md): 
+- Partyline API > party [page](https://docs.tvunetworks.cn/api-250778603.md): 
+- Partyline API > party [join anywhere](https://docs.tvunetworks.cn/api-250778604.md): 
+- Partyline API > party [meetingAnywhere](https://docs.tvunetworks.cn/api-250778605.md): 
+- Partyline API > party [anywhere join](https://docs.tvunetworks.cn/api-250778606.md): 
+- Partyline API > party [queryByRtilCode](https://docs.tvunetworks.cn/api-250778607.md): 
+- Partyline API > party [queryByPartyCode](https://docs.tvunetworks.cn/api-250778608.md): 
+- Partyline API > party [listCurrentPartyByUserID](https://docs.tvunetworks.cn/api-250778609.md): 
+- Partyline API > party [command managerMute](https://docs.tvunetworks.cn/api-250778610.md): 
+- Partyline API > party [Receiver Join party_ccR](https://docs.tvunetworks.cn/api-250778611.md): 
+- Partyline API > party [Receiver Join party_ppR](https://docs.tvunetworks.cn/api-250778612.md): 
+- Partyline API > party [Receiver leave party](https://docs.tvunetworks.cn/api-250778613.md): 
+- Partyline API > party [Receiver start gallery](https://docs.tvunetworks.cn/api-250778614.md): 
+- Partyline API > party [status](https://docs.tvunetworks.cn/api-250778615.md): 
+- Partyline API > party [reset status](https://docs.tvunetworks.cn/api-250778616.md): 
+- Partyline API > party [delete](https://docs.tvunetworks.cn/api-250778617.md): 
+- Partyline API > party [getOnlineUserList](https://docs.tvunetworks.cn/api-250778618.md): 
+- Partyline API > party [listPartyMembers](https://docs.tvunetworks.cn/api-250778619.md): 
+- Partyline API > party [reportUserChange](https://docs.tvunetworks.cn/api-250778620.md): 
+- Partyline API > party [create](https://docs.tvunetworks.cn/api-250778621.md): 
+- Partyline API > party [update](https://docs.tvunetworks.cn/api-250778622.md): 
+- Partyline API > party [check](https://docs.tvunetworks.cn/api-250778623.md): 
+- Partyline API > party [checkInvite](https://docs.tvunetworks.cn/api-250778624.md): 
+- Partyline API > party [voIPStaus](https://docs.tvunetworks.cn/api-250778625.md): 
+- Commentator API > event [page](https://docs.tvunetworks.cn/api-250778626.md): 
+- Commentator API > event [create event](https://docs.tvunetworks.cn/api-250778627.md): 
+- Commentator API > event [reuse](https://docs.tvunetworks.cn/api-250778628.md): 
+- Commentator API > event [update](https://docs.tvunetworks.cn/api-250778629.md): 
+- Commentator API > event [info](https://docs.tvunetworks.cn/api-250778630.md): 
+- Commentator API > event [delete](https://docs.tvunetworks.cn/api-250778631.md): 
+- Commentator API > event [stop](https://docs.tvunetworks.cn/api-250778632.md): 
+- Commentator API > event [switch](https://docs.tvunetworks.cn/api-250778633.md): 
+- Workflow API [queryWorkflow](https://docs.tvunetworks.cn/api-250778634.md): Query workflow by workflowId
+- Workflow API [updateWorkflow](https://docs.tvunetworks.cn/api-250778635.md): Update Workflow
+- Workflow API [createWorkflow](https://docs.tvunetworks.cn/api-250778636.md): Creating an workflow
+- Workflow API [deleteWorkflow](https://docs.tvunetworks.cn/api-250778637.md): Delete Workflow
+- Workflow API [listWorkflows](https://docs.tvunetworks.cn/api-250778638.md): List workflows
+- shortcut API [get user shortcuts](https://docs.tvunetworks.cn/api-250778639.md): 
+- shortcut API [get short cut modules](https://docs.tvunetworks.cn/api-250778640.md): 
+- shortcut API [trigger](https://docs.tvunetworks.cn/api-250778641.md): 
+- shortcut API [update user shortcuts](https://docs.tvunetworks.cn/api-250778642.md): 
+- shortcut API [delete shortcut](https://docs.tvunetworks.cn/api-250778643.md): 
+- ScteService API [Enable Scte](https://docs.tvunetworks.cn/api-250778644.md): 
+- ScteService API [enableScteToSwitcher](https://docs.tvunetworks.cn/api-250778645.md): 
+- MOS Gateway API > Channel for MOS [channelEventSync](https://docs.tvunetworks.cn/api-250778651.md): provided by Channel used by customers, specifies which VM's schedule should be mapped, i.e. sending event to MOS Gateway in real time.
+- MOS Gateway API > Channel for MOS [env-check](https://docs.tvunetworks.cn/api-251623170.md): 
+- MOS Gateway API [route](https://docs.tvunetworks.cn/api-250778650.md): provided by MOS Gateway used by customers, specifies the mapping of sources to destinations.
+- Input&Output Module API > Authentication API [get "session id" for authentication](https://docs.tvunetworks.cn/api-256728334.md): This API is to generate `session ID` that is required by [the authentication approach](https://document.tvunetworks.com/folder-1028103#2-http-request-header).
+- Input&Output Module API > input-module-api [query input list](https://docs.tvunetworks.cn/api-256728335.md): get input module by identification source
+- Input&Output Module API > input-module-api [update input](https://docs.tvunetworks.cn/api-256728336.md): update input by identification source
+- Input&Output Module API > input-module-api [run input](https://docs.tvunetworks.cn/api-256728337.md): run input module by identification source
+- Input&Output Module API > input-module-api [query input](https://docs.tvunetworks.cn/api-256728338.md): get input record by identification source
+- Input&Output Module API > input-module-api [delete input](https://docs.tvunetworks.cn/api-256728339.md): delete input record by identification source
+- Input&Output Module API > encoder-profile-api [createEncodingProfile](https://docs.tvunetworks.cn/api-256728340.md): Creating an encodingProfile
+- Input&Output Module API > encoder-profile-api [queryEncodingProfile](https://docs.tvunetworks.cn/api-256728341.md): Creating an encodingProfile
+- Input&Output Module API > encoder-profile-api [deleteEncodingProfile](https://docs.tvunetworks.cn/api-256728342.md): delete encodingProfile
+- Input&Output Module API > encoder-profile-api [encodingProfile](https://docs.tvunetworks.cn/api-256728343.md): Update an encodingProfile
+- Input&Output Module API > encoder-profile-api [createEncodingProfile](https://docs.tvunetworks.cn/api-256728344.md): Creating an encodingProfile
+- Input&Output Module API > encoder-profile-api [queryEncodingProfile](https://docs.tvunetworks.cn/api-256728345.md): Creating an encodingProfile
+- Input&Output Module API > encoder-profile-api [deleteEncodingProfile](https://docs.tvunetworks.cn/api-256728346.md): delete encodingProfile
+- Input&Output Module API > encoder-profile-api [encodingProfile](https://docs.tvunetworks.cn/api-256728347.md): Update an encodingProfile
+- Input&Output Module API > encoder-profile-api [queryEncodingProfiles](https://docs.tvunetworks.cn/api-256728348.md): Query the encodingProfile list
+- Input&Output Module API > encoder-profile-api [queryEncodingProfiles](https://docs.tvunetworks.cn/api-256728349.md): Query the encodingProfile list
+- Input&Output Module API > encoder-profile-api [queryEncodingProfileDict](https://docs.tvunetworks.cn/api-256728350.md): query encodingProfile dict
+- Input&Output Module API > encoder-profile-api [queryEncodingProfileDict](https://docs.tvunetworks.cn/api-256728351.md): query encodingProfile dict
+- Input&Output Module API > output-module-api [run output ](https://docs.tvunetworks.cn/api-256728352.md): run output module connect with input
+- Input&Output Module API > output-module-api [update output](https://docs.tvunetworks.cn/api-256728353.md): update output module connect with input
+- Input&Output Module API > output-module-api [query output list](https://docs.tvunetworks.cn/api-256728354.md): 
+- Input&Output Module API > output-module-api [query output](https://docs.tvunetworks.cn/api-256728355.md): 
+- Input&Output Module API > output-module-api [delete output](https://docs.tvunetworks.cn/api-256728356.md): 
+- public [data-delete](https://docs.tvunetworks.cn/api-351956080.md): delete data api, 请求参数示例： {"users":\["mikkoxu@tvunetworks.com"\],"group\_id":"","project":"rrs","operator":"caleb@tvunetworks.com","start\_time":0,"end\_time":1687920321000}
+- public [data-delete-retry](https://docs.tvunetworks.cn/api-351956081.md): retry delete data api
+- public [data-query](https://docs.tvunetworks.cn/api-351956082.md): query data api, 请求参数示例： {"users":\["mikkoxu@tvunetworks.com"\],"group\_id":"","project":"rrs","operator":"caleb@tvunetworks.com","start\_time":0,"end\_time":1687920321000}
+- public [log-query](https://docs.tvunetworks.cn/api-351956083.md): log query api, 请求参数示例： {"rule\_id": 1,"page\_num":1, "page\_size": 5, "operator":"calebtest@tvunetworks.com"}
+- Export [Export a video clip](https://docs.tvunetworks.cn/api-473290194.md): Trims a video clip from a TVU high-resolution recording archive (HLS/MPD) and uploads
+- Export [Export a long video clip in chunks](https://docs.tvunetworks.cn/api-473290195.md): Exports a long recording segment by automatically splitting it into sequential chunk
+- Export [Estimate output file size before exporting](https://docs.tvunetworks.cn/api-473290196.md): Probes the source recording to estimate the output file size (in bytes) for a given
+- Export [Export an audio clip](https://docs.tvunetworks.cn/api-473290197.md): Extracts and encodes an audio-only clip from a TVU MediaMind media object and uploads
+- Export [Merge multiple video files into one](https://docs.tvunetworks.cn/api-473290198.md): Concatenates an ordered list of S3 video segments into a single output file and uploads
+- Export [Trim a JSON edit list to a time range](https://docs.tvunetworks.cn/api-473290199.md): Fetches a TVU MediaMind JSON timeline/edit-list from `jsonUrl`, trims it to the
+- Media Info [Get a thumbnail image from a video](https://docs.tvunetworks.cn/api-473290200.md): Extracts a single JPEG frame from a video at the given `Offset` (milliseconds from
+- Media Info [Get technical metadata for a video](https://docs.tvunetworks.cn/api-473290201.md): Probes a video file or HLS playlist via `ffprobe` and returns a key-value map of
+- [Create a new slug and trigger recording.](https://docs.tvunetworks.cn/api-450372672.md): Creates a new slug bound to the specified source object and immediately applies
+- [version](https://docs.tvunetworks.cn/api-365413469.md): 
+- [Update an existing slug and its recording configuration.](https://docs.tvunetworks.cn/api-450372673.md): Updates the metadata and recording parameters of an existing slug identified by slugId.
+- [metadata](https://docs.tvunetworks.cn/api-351956069.md): Retrieve video media information
+- [upload-to-zype](https://docs.tvunetworks.cn/api-351956070.md): 
+- [estimate-video-size](https://docs.tvunetworks.cn/api-352513764.md): 
+- [estimate-video-size](https://docs.tvunetworks.cn/api-351956071.md): 
+- [查询Object信息](https://docs.tvunetworks.cn/api-473290257.md): 
+- [Get object information from the search index by object ID.](https://docs.tvunetworks.cn/api-473290258.md): <p>
+- [Create a new object](https://docs.tvunetworks.cn/api-473290259.md): <p>
+- [Update an existing object.](https://docs.tvunetworks.cn/api-473290260.md): <p>
+- [Delete an object (requires authentication).](https://docs.tvunetworks.cn/api-473290261.md): <p>
+- [Query detailed object information by a list of object IDs.](https://docs.tvunetworks.cn/api-473290262.md): <p>
+- [Query all objects bound to a given tangible ID.](https://docs.tvunetworks.cn/api-473290263.md): <p>
+- [Check whether a specific feature is enabled for a set of objects.](https://docs.tvunetworks.cn/api-473290264.md): <p>
+- [Check whether the specified user is an admin or owner of the given object.](https://docs.tvunetworks.cn/api-473290265.md): <p>
+- [Unlink (detach) a tangible from an object.](https://docs.tvunetworks.cn/api-473290266.md): <p>
+- [Bind a tangible to an object.](https://docs.tvunetworks.cn/api-473290267.md): <p>
+- [Copy an object and bind the copy to a new tangible.](https://docs.tvunetworks.cn/api-473290268.md): <p>
+- [Place a hold on an object to reserve it for exclusive use by an application.](https://docs.tvunetworks.cn/api-473290269.md): <p>
+- [Release a previously held object.](https://docs.tvunetworks.cn/api-473290270.md): <p>
+- [Create a new tangible and bind it to an existing object in a single operation.](https://docs.tvunetworks.cn/api-473290271.md): <p>
+
+## Schemas
+- Schemas [Pet](https://docs.tvunetworks.cn/schema-98662930.md): 
+- Schemas [Category](https://docs.tvunetworks.cn/schema-98662931.md): 
+- Schemas [controllers.QueryAnalyzeReq](https://docs.tvunetworks.cn/schema-98662727.md): 
+- Schemas [PageShortcut](https://docs.tvunetworks.cn/schema-132544846.md): 
+- Schemas [Tag](https://docs.tvunetworks.cn/schema-98662932.md): 
+- Schemas [MediaProfileDTO](https://docs.tvunetworks.cn/schema-85665267.md): 
+- Schemas [controllers.GenMarkSrtBySIDReq](https://docs.tvunetworks.cn/schema-118247357.md): 
+- Schemas [ResultRunOutputVO](https://docs.tvunetworks.cn/schema-144149035.md): 
+- Schemas [UserShortcutQuery](https://docs.tvunetworks.cn/schema-132544847.md): 
+- Schemas [controllers.QuerySuggestReq](https://docs.tvunetworks.cn/schema-98662729.md): 
+- Schemas [TriggerRequest](https://docs.tvunetworks.cn/schema-132544848.md): 
+- Schemas [RunOutputVO](https://docs.tvunetworks.cn/schema-144149036.md): 
+- Schemas [Object](https://docs.tvunetworks.cn/schema-132544849.md): 
+- Schemas [controllers.AutoGenerateFileResp](https://docs.tvunetworks.cn/schema-98662730.md): 
+- Schemas [ResultVoid](https://docs.tvunetworks.cn/schema-144149037.md): 
+- Schemas [controllers.ApiCapTagParm](https://docs.tvunetworks.cn/schema-98662731.md): 
+- Schemas [AgentUpdateWorkFlowDTO](https://docs.tvunetworks.cn/schema-132544850.md): 
+- Schemas [controllers.QuerySynonymsReq](https://docs.tvunetworks.cn/schema-98662732.md): 
+- Schemas [Shortcut](https://docs.tvunetworks.cn/schema-132544851.md): 
+- Schemas [RunInputVO](https://docs.tvunetworks.cn/schema-144149038.md): 
+- Schemas [RunOutPutDTO](https://docs.tvunetworks.cn/schema-144149039.md): 
+- Schemas [controllers.ApiClickParm](https://docs.tvunetworks.cn/schema-98662734.md): 
+- Schemas [Input](https://docs.tvunetworks.cn/schema-132544852.md): 
+- Schemas [GetUserShortcutRequest](https://docs.tvunetworks.cn/schema-132544853.md): 
+- Schemas [ResultPageInfoRunInputVO](https://docs.tvunetworks.cn/schema-144149040.md): 
+- Schemas [controllers.CheckHealthResponse](https://docs.tvunetworks.cn/schema-98662736.md): 
+- Schemas [RunInputDTO](https://docs.tvunetworks.cn/schema-144149041.md): 
+- Schemas [Output](https://docs.tvunetworks.cn/schema-132544854.md): 
+- Schemas [controllers.ApiFaceFrameParm](https://docs.tvunetworks.cn/schema-98662737.md): 
+- Schemas [ShortcutUpdateRequest](https://docs.tvunetworks.cn/schema-132544855.md): 
+- Schemas [models.AutoGenerateReq](https://docs.tvunetworks.cn/schema-98662738.md): 
+- Schemas [PageInfoRunInputVO](https://docs.tvunetworks.cn/schema-144149042.md): 
+- Schemas [controllers.DrawFaceFrameResp](https://docs.tvunetworks.cn/schema-98662739.md): 
+- Schemas [AgentWorkFlowDTO](https://docs.tvunetworks.cn/schema-132544856.md): 
+- Schemas [ResultRunInputVO](https://docs.tvunetworks.cn/schema-144149043.md): 
+- Schemas [controllers.ApiFramePersonParm](https://docs.tvunetworks.cn/schema-98662740.md): 
+- Schemas [SortField](https://docs.tvunetworks.cn/schema-132544857.md): 
+- Schemas [controllers.DrawFaceFrameRetuen](https://docs.tvunetworks.cn/schema-98662742.md): 
+- Schemas [SourceObjectListDTO](https://docs.tvunetworks.cn/schema-85665300.md): 
+- Schemas [controllers.ApiGetFaceParm](https://docs.tvunetworks.cn/schema-98662743.md): 
+- Schemas [AddSourceObjectDTO](https://docs.tvunetworks.cn/schema-85665305.md): 
+- Schemas [controllers.FaceGlobalListResp](https://docs.tvunetworks.cn/schema-98662745.md): 
+- Schemas [controllers.ApiGetSrtByPeerIdParm](https://docs.tvunetworks.cn/schema-98662746.md): 
+- Schemas [LoginUser](https://docs.tvunetworks.cn/schema-205871064.md): 
+- Schemas [controllers.FaceInfoReturnData](https://docs.tvunetworks.cn/schema-98662748.md): 
+- Schemas [controllers.ApiGetSrtParm](https://docs.tvunetworks.cn/schema-98662749.md): 
+- Schemas [OutputLiveVo](https://docs.tvunetworks.cn/schema-85665316.md): 
+- Schemas [ProjectRecordVo](https://docs.tvunetworks.cn/schema-85665317.md): 
+- Schemas [ResponseResultProjectRecordVo](https://docs.tvunetworks.cn/schema-85665318.md): 
+- Schemas [controllers.FaceListResp](https://docs.tvunetworks.cn/schema-98662751.md): 
+- Schemas [models.QueryHintsReq](https://docs.tvunetworks.cn/schema-98662752.md): 
+- Schemas [models.SceneInfoRequest](https://docs.tvunetworks.cn/schema-98662754.md): 
+- Schemas [controllers.FramePersonInfoResp](https://docs.tvunetworks.cn/schema-98662755.md): 
+- Schemas [controllers.CapReturnHandleData](https://docs.tvunetworks.cn/schema-98662756.md): 
+- Schemas [controllers.GenMarkSrtReq](https://docs.tvunetworks.cn/schema-98662758.md): 
+- Schemas [controllers.CapTagResp](https://docs.tvunetworks.cn/schema-98662759.md): 
+- Schemas [models.SearchCapWithTagsReq](https://docs.tvunetworks.cn/schema-98662760.md): 
+- Schemas [controllers.GenUploadSrt](https://docs.tvunetworks.cn/schema-98662763.md): 
+- Schemas [controllers.ClickQueryResp](https://docs.tvunetworks.cn/schema-98662764.md): 
+- Schemas [controllers.GetFaceAssetNumResp](https://docs.tvunetworks.cn/schema-98662766.md): 
+- Schemas [controllers.ClickQueryReturnData](https://docs.tvunetworks.cn/schema-98662767.md): 
+- Schemas [controllers.GetLangReq](https://docs.tvunetworks.cn/schema-98662769.md): 
+- Schemas [controllers.GetMarkerResp](https://docs.tvunetworks.cn/schema-98662771.md): 
+- Schemas [controllers.GetObjectByTangibleResp](https://docs.tvunetworks.cn/schema-98662773.md): 
+- Schemas [controllers.FaceFrameResp](https://docs.tvunetworks.cn/schema-98662774.md): 
+- Schemas [controllers.GetObjectFeatureConfResp](https://docs.tvunetworks.cn/schema-98662778.md): 
+- Schemas [controllers.GetRRSTaskListResp](https://docs.tvunetworks.cn/schema-98662780.md): 
+- Schemas [controllers.GetRecordContentResp](https://docs.tvunetworks.cn/schema-98662781.md): 
+- Schemas [controllers.GetRecordingInfoResp](https://docs.tvunetworks.cn/schema-98662782.md): 
+- Schemas [controllers.FramePersonResp](https://docs.tvunetworks.cn/schema-98662783.md): 
+- Schemas [controllers.GetStoreInfoByGroupIdReq](https://docs.tvunetworks.cn/schema-98662786.md): 
+- Schemas [controllers.GetFacePosition](https://docs.tvunetworks.cn/schema-98662787.md): 
+- Schemas [controllers.GetStoreInfoByGroupIdResp](https://docs.tvunetworks.cn/schema-98662788.md): 
+- Schemas [controllers.GetFaceResp](https://docs.tvunetworks.cn/schema-98662789.md): 
+- Schemas [controllers.GetFaceReturnData](https://docs.tvunetworks.cn/schema-98662791.md): 
+- Schemas [controllers.GetTagValueByTaskIdResp](https://docs.tvunetworks.cn/schema-98662792.md): 
+- Schemas [controllers.GetFaceReturnDataList](https://docs.tvunetworks.cn/schema-98662793.md): 
+- Schemas [controllers.HealthReturnData](https://docs.tvunetworks.cn/schema-98662795.md): 
+- Schemas [controllers.MergeListResp](https://docs.tvunetworks.cn/schema-98662796.md): 
+- Schemas [controllers.NameSuggestMergeListResp](https://docs.tvunetworks.cn/schema-98662797.md): 
+- Schemas [controllers.PersonFaceAssetNumReq](https://docs.tvunetworks.cn/schema-98662798.md): 
+- Schemas [controllers.PersonInfoV3Resp](https://docs.tvunetworks.cn/schema-98662799.md): 
+- Schemas [controllers.PersonListResp](https://docs.tvunetworks.cn/schema-98662801.md): 
+- Schemas [controllers.PersonNameResp](https://docs.tvunetworks.cn/schema-98662802.md): 
+- Schemas [controllers.QueryAnalyzeResp](https://docs.tvunetworks.cn/schema-98662804.md): 
+- Schemas [controllers.QueryHintsResp](https://docs.tvunetworks.cn/schema-98662805.md): 
+- Schemas [controllers.GetSrtResp](https://docs.tvunetworks.cn/schema-98662806.md): 
+- Schemas [controllers.QuerySuggestResp](https://docs.tvunetworks.cn/schema-98662807.md): 
+- Schemas [controllers.QuerySynonymsResp](https://docs.tvunetworks.cn/schema-98662808.md): 
+- Schemas [controllers.SceneChangeInfoReturn](https://docs.tvunetworks.cn/schema-98662811.md): 
+- Schemas [controllers.SearchCombtagsCaptionResp](https://docs.tvunetworks.cn/schema-98662812.md): 
+- Schemas [controllers.SearchDurationIntervalReq](https://docs.tvunetworks.cn/schema-98662815.md): 
+- Schemas [controllers.SearchMediaByMpdResp](https://docs.tvunetworks.cn/schema-98662816.md): 
+- Schemas [controllers.SearchDurationIntervalResp](https://docs.tvunetworks.cn/schema-98662817.md): 
+- Schemas [controllers.SearchMediaByTsResp](https://docs.tvunetworks.cn/schema-98662818.md): 
+- Schemas [controllers.SearchMediaByUidResp](https://docs.tvunetworks.cn/schema-98662819.md): 
+- Schemas [controllers.SearchMediaObjectResp](https://docs.tvunetworks.cn/schema-98662820.md): 
+- Schemas [controllers.SearchPersonListResp](https://docs.tvunetworks.cn/schema-98662823.md): 
+- Schemas [controllers.SearchSlugCapWithTagsResp](https://docs.tvunetworks.cn/schema-98662825.md): 
+- Schemas [controllers.QuerySubTittle](https://docs.tvunetworks.cn/schema-98662826.md): 
+- Schemas [controllers.SearchSlugWithTagsResp](https://docs.tvunetworks.cn/schema-98662827.md): 
+- Schemas [controllers.SearchStoryResp](https://docs.tvunetworks.cn/schema-98662828.md): 
+- Schemas [controllers.SimpleMarkSrtReq](https://docs.tvunetworks.cn/schema-98662831.md): 
+- Schemas [controllers.SlotStrengthResp](https://docs.tvunetworks.cn/schema-98662832.md): 
+- Schemas [controllers.SearchTaskIntervalReq](https://docs.tvunetworks.cn/schema-98662833.md): 
+- Schemas [controllers.SearchCapWithTagsTittle](https://docs.tvunetworks.cn/schema-98662834.md): 
+- Schemas [controllers.StoryGlobalListResp](https://docs.tvunetworks.cn/schema-98662835.md): 
+- Schemas [controllers.SearchTaskIntervalResp](https://docs.tvunetworks.cn/schema-98662836.md): 
+- Schemas [controllers.StoryListResp](https://docs.tvunetworks.cn/schema-98662837.md): 
+- Schemas [controllers.StoryReturnData](https://docs.tvunetworks.cn/schema-98662838.md): 
+- Schemas [controllers.SubstanceListReturnData](https://docs.tvunetworks.cn/schema-98662840.md): 
+- Schemas [controllers.TestInterResponse](https://docs.tvunetworks.cn/schema-98662841.md): 
+- Schemas [controllers.TaskOperationIntervalReq](https://docs.tvunetworks.cn/schema-98662844.md): 
+- Schemas [controllers.UpdatePortraitReq](https://docs.tvunetworks.cn/schema-98662847.md): 
+- Schemas [controllers.UpdatePortraitResp](https://docs.tvunetworks.cn/schema-98662848.md): 
+- Schemas [controllers.UrlAddrResp](https://docs.tvunetworks.cn/schema-98662849.md): 
+- Schemas [controllers.UrlInfoResp](https://docs.tvunetworks.cn/schema-98662850.md): 
+- Schemas [controllers.UrlReturnData](https://docs.tvunetworks.cn/schema-98662851.md): 
+- Schemas [models.EsAdminInfo](https://docs.tvunetworks.cn/schema-98662854.md): 
+- Schemas [models.EsFaceFrameStateData](https://docs.tvunetworks.cn/schema-98662855.md): 
+- Schemas [controllers.SrtSubTittle](https://docs.tvunetworks.cn/schema-98662856.md): 
+- Schemas [models.EsFeatureInfo](https://docs.tvunetworks.cn/schema-98662857.md): 
+- Schemas [models.EsGpsInfo](https://docs.tvunetworks.cn/schema-98662858.md): 
+- Schemas [models.EsMarkerReturnData](https://docs.tvunetworks.cn/schema-98662859.md): 
+- Schemas [models.EsObjectData](https://docs.tvunetworks.cn/schema-98662860.md): 
+- Schemas [models.EsObjectFeature](https://docs.tvunetworks.cn/schema-98662861.md): 
+- Schemas [controllers.SuggestParm](https://docs.tvunetworks.cn/schema-98662863.md): 
+- Schemas [models.EsOwnerInfo](https://docs.tvunetworks.cn/schema-98662864.md): 
+- Schemas [models.EsPlaceholdersData](https://docs.tvunetworks.cn/schema-98662865.md): 
+- Schemas [models.EsStoryData](https://docs.tvunetworks.cn/schema-98662866.md): 
+- Schemas [models.EsSynonymsData](https://docs.tvunetworks.cn/schema-98662867.md): 
+- Schemas [models.FaceAssetNumReturnData](https://docs.tvunetworks.cn/schema-98662868.md): 
+- Schemas [models.FaceInfoQReq](https://docs.tvunetworks.cn/schema-98662869.md): 
+- Schemas [models.GetObjectByTangibleReq](https://docs.tvunetworks.cn/schema-98662872.md): 
+- Schemas [models.GetObjectFeatureConfReq](https://docs.tvunetworks.cn/schema-98662873.md): 
+- Schemas [models.FileListItem](https://docs.tvunetworks.cn/schema-98662876.md): 
+- Schemas [models.HlStory](https://docs.tvunetworks.cn/schema-98662879.md): 
+- Schemas [models.MMAStoreGroup](https://docs.tvunetworks.cn/schema-98662880.md): 
+- Schemas [models.MarkerQReq](https://docs.tvunetworks.cn/schema-98662881.md): 
+- Schemas [models.MediaObjectByUidQReq](https://docs.tvunetworks.cn/schema-98662890.md): 
+- Schemas [models.MediaObjectQReq](https://docs.tvunetworks.cn/schema-98662891.md): 
+- Schemas [models.MediaObjectResult](https://docs.tvunetworks.cn/schema-98662892.md): 
+- Schemas [models.PeerIdAgg](https://docs.tvunetworks.cn/schema-98662897.md): 
+- Schemas [models.PeerIdBuckets](https://docs.tvunetworks.cn/schema-98662898.md): 
+- Schemas [models.PilotQReq](https://docs.tvunetworks.cn/schema-98662900.md): 
+- Schemas [models.RRSTaskCompleteList](https://docs.tvunetworks.cn/schema-98662904.md): 
+- Schemas [models.RRSTaskListQInfo](https://docs.tvunetworks.cn/schema-98662905.md): 
+- Schemas [models.RRSTaskListQReqFilter](https://docs.tvunetworks.cn/schema-98662906.md): 
+- Schemas [models.RecordContentQReq](https://docs.tvunetworks.cn/schema-98662907.md): 
+- Schemas [models.RestoreDuration](https://docs.tvunetworks.cn/schema-98662912.md): 
+- Schemas [models.SearchCombTagCaptionReq](https://docs.tvunetworks.cn/schema-98662913.md): 
+- Schemas [models.RestoreInfo](https://docs.tvunetworks.cn/schema-98662914.md): 
+- Schemas [models.SearchMediaByMpdReq](https://docs.tvunetworks.cn/schema-98662918.md): 
+- Schemas [models.SearchMediaByTsReq](https://docs.tvunetworks.cn/schema-98662919.md): 
+- Schemas [models.SearchStoryWithTagsReq](https://docs.tvunetworks.cn/schema-98662922.md): 
+- Schemas [models.Size](https://docs.tvunetworks.cn/schema-98662923.md): 
+- Schemas [models.UrlInfoData](https://docs.tvunetworks.cn/schema-98662926.md): 
+- Schemas [models.UserUsage](https://docs.tvunetworks.cn/schema-98662927.md): 
+- Schemas [service.AnaData](https://docs.tvunetworks.cn/schema-98662928.md): 
+- Schemas [models.SearchCapReturnData](https://docs.tvunetworks.cn/schema-98662929.md): 
+- Producer > Schemas [SourceSwitchVo](https://docs.tvunetworks.cn/schema-132544858.md): 
+- Producer > Schemas [PlayListItem](https://docs.tvunetworks.cn/schema-132544859.md): 
+- Producer > Schemas [UserSingularApp](https://docs.tvunetworks.cn/schema-132544860.md): 
+- Producer > Schemas [SourcePVWSwitchVo](https://docs.tvunetworks.cn/schema-132544861.md): 
+- Producer > Schemas [PlayList](https://docs.tvunetworks.cn/schema-132544862.md): 
+- Producer > Schemas [VideoMotion](https://docs.tvunetworks.cn/schema-132544863.md): 
+- Producer > Schemas [ProgramGang](https://docs.tvunetworks.cn/schema-132544864.md): 
+- Producer > Schemas [UpdateAISettingRequest](https://docs.tvunetworks.cn/schema-132544865.md): 
+- Producer > Schemas [PlayReq](https://docs.tvunetworks.cn/schema-132544866.md): 
+- Producer > Schemas [PlayAllClipPlayerRequest](https://docs.tvunetworks.cn/schema-132544867.md): 
+- Producer > Schemas [UserCustomSource](https://docs.tvunetworks.cn/schema-132544868.md): 
+- Producer > Schemas [AudioTransactionReqVo](https://docs.tvunetworks.cn/schema-132544869.md): 
+- Producer > Schemas [ProgramSource](https://docs.tvunetworks.cn/schema-132544870.md): 
+- Producer > Schemas [FileInfo](https://docs.tvunetworks.cn/schema-132544871.md): 
+- Producer > Schemas [ProgramPlaylist](https://docs.tvunetworks.cn/schema-132544872.md): 
+- Producer > Schemas [AddSourceParam](https://docs.tvunetworks.cn/schema-132544873.md): 
+- Producer > Schemas [ProgramPlaylistQuery](https://docs.tvunetworks.cn/schema-132544874.md): 
+- Producer > Schemas [StopLiveRequest](https://docs.tvunetworks.cn/schema-132544875.md): 
+- Producer > Schemas [UploadSourceThumbnailRequest](https://docs.tvunetworks.cn/schema-132544876.md): 
+- Producer > Schemas [Overlay](https://docs.tvunetworks.cn/schema-132544877.md): 
+- Producer > Schemas [OverlayRequest](https://docs.tvunetworks.cn/schema-132544878.md): 
+- Producer > Schemas [SourceParamVo](https://docs.tvunetworks.cn/schema-132544879.md): 
+- Producer > Schemas [ClipPlayer](https://docs.tvunetworks.cn/schema-132544880.md): 
+- Producer > Schemas [Program](https://docs.tvunetworks.cn/schema-132544881.md): 
+- Producer > Schemas [CreateRTPFECSourceParam](https://docs.tvunetworks.cn/schema-132544882.md): 
+- Producer > Schemas [ProgramGraphicUrl](https://docs.tvunetworks.cn/schema-132544883.md): 
+- Producer > Schemas [OverlayPIP](https://docs.tvunetworks.cn/schema-132544884.md): 
+- Producer > Schemas [ProgramQuery](https://docs.tvunetworks.cn/schema-132544885.md): 
+- Producer > Schemas [ProgramVO](https://docs.tvunetworks.cn/schema-132544886.md): 
+- Producer > Schemas [ProgramInput](https://docs.tvunetworks.cn/schema-132544887.md): 
+- Producer > Schemas [Slot](https://docs.tvunetworks.cn/schema-132544888.md): 
+- Producer > Schemas [PvwPgm](https://docs.tvunetworks.cn/schema-132544889.md): 
+- Producer > Schemas [RTILUser](https://docs.tvunetworks.cn/schema-132544890.md): 
+- Producer > Schemas [AddOrRemoveMembersRequest](https://docs.tvunetworks.cn/schema-132544891.md): 
+- Producer > Schemas [CreateSRTSourceParam](https://docs.tvunetworks.cn/schema-132544892.md): 
+- Producer > Schemas [FileUploadResponseForS3](https://docs.tvunetworks.cn/schema-132544893.md): 
+- Producer > Schemas [ProgramFeaturesInput](https://docs.tvunetworks.cn/schema-132544894.md): 
+- Producer > Schemas [SourceDelayRequest](https://docs.tvunetworks.cn/schema-132544895.md): 
+- Producer > Schemas [ProgramTeamMember](https://docs.tvunetworks.cn/schema-132544896.md): 
+- Producer > Schemas [SlaveProgramAndFeature](https://docs.tvunetworks.cn/schema-132544897.md): 
+- Producer > Schemas [GangOperateRequest](https://docs.tvunetworks.cn/schema-132544898.md): 
+- Producer > Schemas [FileInfoQueryRequest](https://docs.tvunetworks.cn/schema-132544899.md): 
+- Producer > Schemas [StudioLogo](https://docs.tvunetworks.cn/schema-132544900.md): 
+- Producer > Schemas [UploadSourceResult](https://docs.tvunetworks.cn/schema-132544901.md): 
+- Producer > Schemas [ProgramPrivateServer](https://docs.tvunetworks.cn/schema-132544902.md): 
+- Producer > Schemas [Features](https://docs.tvunetworks.cn/schema-132544903.md): 
+- Producer > Schemas [OverlayLogo](https://docs.tvunetworks.cn/schema-132544904.md): 
+- Producer > Schemas [ObjectResource](https://docs.tvunetworks.cn/schema-132544905.md): 
+- Producer > Schemas [ProgramFeature](https://docs.tvunetworks.cn/schema-132544906.md): 
+- Producer > Schemas [ProductionUser](https://docs.tvunetworks.cn/schema-132544907.md): 
+- Producer > Schemas [ProgramButton](https://docs.tvunetworks.cn/schema-132544908.md): 
+- Producer > Schemas [LBand](https://docs.tvunetworks.cn/schema-132544909.md): 
+- Producer > Schemas [FileSourceActionVo](https://docs.tvunetworks.cn/schema-132544910.md): 
+- Producer > Schemas [LocalVideo](https://docs.tvunetworks.cn/schema-132544911.md): 
+- Producer > Schemas [UploadFile](https://docs.tvunetworks.cn/schema-132544912.md): 
+- Producer > Schemas [OverlayUrl](https://docs.tvunetworks.cn/schema-132544913.md): 
+- Producer > Schemas [UploadSourceRequest](https://docs.tvunetworks.cn/schema-132544914.md): 
+- Producer > Schemas [Transition](https://docs.tvunetworks.cn/schema-132544915.md): 
+- [ResponseResult](https://docs.tvunetworks.cn/schema-85665264.md): 
+- [Result«Map«Object»»](https://docs.tvunetworks.cn/schema-132544839.md): 
+- [Obj](https://docs.tvunetworks.cn/schema-284828235.md): 
+- [controllers.SubstanceListClickReq](https://docs.tvunetworks.cn/schema-98662839.md): 
+- [PublicDestination](https://docs.tvunetworks.cn/schema-100464738.md): 
+- [tagValue](https://docs.tvunetworks.cn/schema-299061878.md): 
+- [controllers.ActiveSearchResp](https://docs.tvunetworks.cn/schema-98662728.md): 
+- [记录不存在](https://docs.tvunetworks.cn/schema-221821913.md): 
+- [Record not found](https://docs.tvunetworks.cn/schema-221821915.md): 
+- [MmaRecordingParam](https://docs.tvunetworks.cn/schema-269096192.md): 
+- [AudioPaddingInfo](https://docs.tvunetworks.cn/schema-284828183.md): 
+- [sortOptions](https://docs.tvunetworks.cn/schema-252682284.md): 
+- [OutputDTO](https://docs.tvunetworks.cn/schema-85665265.md): 
+- [ObjectDetailsInfo](https://docs.tvunetworks.cn/schema-284828236.md): 
+- [controllers.AgentSearchItems](https://docs.tvunetworks.cn/schema-281870688.md): 
+- [](https://docs.tvunetworks.cn/schema-278790342.md): 
+- [参数不正确](https://docs.tvunetworks.cn/schema-221821914.md): 
+- [Invalid input](https://docs.tvunetworks.cn/schema-221821916.md): 
+- [UpdateVideoEncoderReq](https://docs.tvunetworks.cn/schema-189138657.md): 
+- [RrsRecordingParam](https://docs.tvunetworks.cn/schema-269096193.md): 
+- [VideoPaddingInfo](https://docs.tvunetworks.cn/schema-284828184.md): 
+- [Result](https://docs.tvunetworks.cn/schema-85665266.md): 
+- [ProcessResultListObjectDetailsInfo](https://docs.tvunetworks.cn/schema-284828237.md): 
+- [controllers.AgentSearchReq](https://docs.tvunetworks.cn/schema-281870689.md): 
+- [ReTranscribe](https://docs.tvunetworks.cn/schema-118866485.md): 
+- [ProcessResultObject](https://docs.tvunetworks.cn/schema-269096191.md): 
+- [CreateSlugRecordParam](https://docs.tvunetworks.cn/schema-269096194.md): 
+- [ThumbnailBaseInfo](https://docs.tvunetworks.cn/schema-284828185.md): 
+- [Map«Object»](https://docs.tvunetworks.cn/schema-132544840.md): 
+- [GraphqlResult](https://docs.tvunetworks.cn/schema-284828238.md): 
+- [controllers.AgentSearchResp](https://docs.tvunetworks.cn/schema-281870690.md): 
+- [UpdateSlugRecordParam](https://docs.tvunetworks.cn/schema-269096195.md): 
+- [VideoBaseInfo](https://docs.tvunetworks.cn/schema-284828186.md): 
+- [AudioEncoderParam](https://docs.tvunetworks.cn/schema-85665268.md): 
+- [key](https://docs.tvunetworks.cn/schema-132544841.md): 
+- [UpdateObjectParam](https://docs.tvunetworks.cn/schema-284828239.md): 
+- [controllers.AutoCompleteResp](https://docs.tvunetworks.cn/schema-281870691.md): 
+- [SourceObj](https://docs.tvunetworks.cn/schema-86720473.md): 
+- [SourceFile](https://docs.tvunetworks.cn/schema-284828187.md): 
+- [EditEncodingProfileDTO](https://docs.tvunetworks.cn/schema-85665269.md): 
+- [Result«CheckPartyVo»](https://docs.tvunetworks.cn/schema-132544842.md): 
+- [ProcessResult](https://docs.tvunetworks.cn/schema-284828240.md): 
+- [controllers.CapReturnData](https://docs.tvunetworks.cn/schema-98662733.md): 
+- [Destination](https://docs.tvunetworks.cn/schema-284828188.md): 
+- [VideoEncoderParam](https://docs.tvunetworks.cn/schema-85665270.md): 
+- [CheckPartyVo](https://docs.tvunetworks.cn/schema-132544843.md): 
+- [CopyObjectParam](https://docs.tvunetworks.cn/schema-284828241.md): 
+- [controllers.CaptionResp](https://docs.tvunetworks.cn/schema-281870692.md): 
+- [StopPreviewParam](https://docs.tvunetworks.cn/schema-189138658.md): 
+- [Transcribe](https://docs.tvunetworks.cn/schema-284828189.md): 
+- [ProfileApiVo](https://docs.tvunetworks.cn/schema-85665271.md): 
+- [TagValueVo](https://docs.tvunetworks.cn/schema-132544844.md): 
+- [DeleteObject](https://docs.tvunetworks.cn/schema-284828242.md): 
+- [controllers.CaptionSearchReq](https://docs.tvunetworks.cn/schema-281870693.md): 
+- [ResponseResultProfileApiVo](https://docs.tvunetworks.cn/schema-85665272.md): 
+- [CommonPartyInfo](https://docs.tvunetworks.cn/schema-132544845.md): 
+- [ProcessResultBoolean](https://docs.tvunetworks.cn/schema-284828243.md): 
+- [controllers.CaptionSearchResp](https://docs.tvunetworks.cn/schema-281870694.md): 
+- [VideoInfo](https://docs.tvunetworks.cn/schema-118866484.md): 
+- [OutputQueryDTO](https://docs.tvunetworks.cn/schema-85665273.md): 
+- [ProcessResultMapBoolean](https://docs.tvunetworks.cn/schema-284828244.md): 
+- [PublicExportReq](https://docs.tvunetworks.cn/schema-100464737.md): 
+- [controllers.CaptionSearchResult](https://docs.tvunetworks.cn/schema-281870695.md): 
+- [BasePreviewVO](https://docs.tvunetworks.cn/schema-189138659.md): 
+- [PublicLongexportReq](https://docs.tvunetworks.cn/schema-284828190.md): 
+- [OutputVo](https://docs.tvunetworks.cn/schema-85665274.md): 
+- [CheckObjectFeature](https://docs.tvunetworks.cn/schema-284828245.md): 
+- [EnableOutputDTO](https://docs.tvunetworks.cn/schema-86720474.md): 
+- [controllers.ContentV2Item](https://docs.tvunetworks.cn/schema-281870696.md): 
+- [Attribute](https://docs.tvunetworks.cn/schema-173485962.md): 
+- [EstimateVideoSizeReq](https://docs.tvunetworks.cn/schema-284828191.md): 
+- [PageResultOutputVo](https://docs.tvunetworks.cn/schema-85665275.md): 
+- [CheckObjectAdmin](https://docs.tvunetworks.cn/schema-284828246.md): 
+- [controllers.ContentV2Resp](https://docs.tvunetworks.cn/schema-281870697.md): 
+- [ExportAudioReqV2](https://docs.tvunetworks.cn/schema-284828192.md): 
+- [ResultPageResultOutputVo](https://docs.tvunetworks.cn/schema-85665276.md): 
+- [ObjTgbRelation](https://docs.tvunetworks.cn/schema-284828247.md): 
+- [controllers.EventItem](https://docs.tvunetworks.cn/schema-281870698.md): 
+- [MergeVideoReq](https://docs.tvunetworks.cn/schema-284828193.md): 
+- [CreateOutputDTO](https://docs.tvunetworks.cn/schema-85665277.md): 
+- [HoldObjectParam](https://docs.tvunetworks.cn/schema-284828248.md): 
+- [ProjectRecord](https://docs.tvunetworks.cn/schema-86720475.md): 
+- [controllers.EventRecordingsResp](https://docs.tvunetworks.cn/schema-281870699.md): 
+- [OutputEncodingProfilePairDTO](https://docs.tvunetworks.cn/schema-85665278.md): 
+- [ReleaseObjectParam](https://docs.tvunetworks.cn/schema-284828249.md): 
+- [CutJsonReqV2](https://docs.tvunetworks.cn/schema-118866483.md): 
+- [controllers.EventResp](https://docs.tvunetworks.cn/schema-281870700.md): 
+- [UpdateAudioEncoderReq](https://docs.tvunetworks.cn/schema-189138660.md): 
+- [PairVo](https://docs.tvunetworks.cn/schema-85665279.md): 
+- [CreateTangibleAndBind](https://docs.tvunetworks.cn/schema-284828250.md): 
+- [PublicExportRes](https://docs.tvunetworks.cn/schema-100464739.md): 
+- [controllers.FetchAllObjectTagResp](https://docs.tvunetworks.cn/schema-98662753.md): 
+- [ResponseResultBasePreviewVO](https://docs.tvunetworks.cn/schema-189138661.md): 
+- [PublicLongexportRes](https://docs.tvunetworks.cn/schema-284828194.md): 
+- [ResponseResultListPairVo](https://docs.tvunetworks.cn/schema-85665280.md): 
+- [AdminInfo](https://docs.tvunetworks.cn/schema-284828251.md): 
+- [controllers.GenMarkSrtResp](https://docs.tvunetworks.cn/schema-98662761.md): 
+- [EstimateVideoSizeRes](https://docs.tvunetworks.cn/schema-284828195.md): 
+- [EncodingProfileDTO](https://docs.tvunetworks.cn/schema-85665281.md): 
+- [OwnerInfo](https://docs.tvunetworks.cn/schema-284828252.md): 
+- [controllers.GetInterValReq](https://docs.tvunetworks.cn/schema-281870701.md): 
+- [ExportAudioResV2](https://docs.tvunetworks.cn/schema-284828196.md): 
+- [PairDetailVO](https://docs.tvunetworks.cn/schema-85665282.md): 
+- [FeatureInfo](https://docs.tvunetworks.cn/schema-284828253.md): 
+- [DisableOutputDTO](https://docs.tvunetworks.cn/schema-86720476.md): 
+- [controllers.GetIntervalResp](https://docs.tvunetworks.cn/schema-281870702.md): 
+- [MergeVideoRes](https://docs.tvunetworks.cn/schema-284828197.md): 
+- [ResponseResultListPairDetailVO](https://docs.tvunetworks.cn/schema-85665283.md): 
+- [GeoInfo](https://docs.tvunetworks.cn/schema-284828254.md): 
+- [controllers.GetObjectDetailResp](https://docs.tvunetworks.cn/schema-98662776.md): 
+- [AudioEncoderRes](https://docs.tvunetworks.cn/schema-85665284.md): 
+- [ObjectRecyclingBin](https://docs.tvunetworks.cn/schema-284828255.md): 
+- [CutJsonRes](https://docs.tvunetworks.cn/schema-118866482.md): 
+- [controllers.GetObjectTagSuggestionResp](https://docs.tvunetworks.cn/schema-98662779.md): 
+- [GetThumbnailResV2](https://docs.tvunetworks.cn/schema-284828198.md): 
+- [EncodingTier](https://docs.tvunetworks.cn/schema-85665285.md): 
+- [CreateObjectAttr](https://docs.tvunetworks.cn/schema-284828256.md): 
+- [controllers.GetRecordingInfoV2Resp](https://docs.tvunetworks.cn/schema-98662784.md): 
+- [GetMetadataRes](https://docs.tvunetworks.cn/schema-284828199.md): 
+- [ResponseResultListSingleTierEncodingProfileRes](https://docs.tvunetworks.cn/schema-85665286.md): 
+- [NestedObjects](https://docs.tvunetworks.cn/schema-284828257.md): 
+- [controllers.GetScteMarkerInfoResp](https://docs.tvunetworks.cn/schema-98662785.md): 
+- [SingleTierEncodingProfileRes](https://docs.tvunetworks.cn/schema-85665287.md): 
+- [OperatorInfo](https://docs.tvunetworks.cn/schema-284828258.md): 
+- [ObjectConnectInfo](https://docs.tvunetworks.cn/schema-86720477.md): 
+- [controllers.GetSummarizationResp](https://docs.tvunetworks.cn/schema-98662790.md): 
+- [VideoEncoderRes](https://docs.tvunetworks.cn/schema-85665288.md): 
+- [TangibleInfo](https://docs.tvunetworks.cn/schema-284828259.md): 
+- [controllers.GetVersionResponse](https://docs.tvunetworks.cn/schema-98662794.md): 
+- [QueryEncodingProfileVO](https://docs.tvunetworks.cn/schema-85665289.md): 
+- [TagInfo](https://docs.tvunetworks.cn/schema-284828260.md): 
+- [controllers.LatestEventResp](https://docs.tvunetworks.cn/schema-281870703.md): 
+- [ResponseResultQueryEncodingProfileVO](https://docs.tvunetworks.cn/schema-85665290.md): 
+- [TypeInfo](https://docs.tvunetworks.cn/schema-284828261.md): 
+- [controllers.MediaFileByIdsReq](https://docs.tvunetworks.cn/schema-281870704.md): 
+- [Audio](https://docs.tvunetworks.cn/schema-85665291.md): 
+- [controllers.MediaFileByIdsResp](https://docs.tvunetworks.cn/schema-281870705.md): 
+- [DestinationLiveDTO](https://docs.tvunetworks.cn/schema-255856890.md): 
+- [LabelAndValue](https://docs.tvunetworks.cn/schema-85665292.md): 
+- [MapBoolean](https://docs.tvunetworks.cn/schema-284828262.md): 
+- [controllers.MediaFileResp](https://docs.tvunetworks.cn/schema-281870706.md): 
+- [ProfileTemplateVo](https://docs.tvunetworks.cn/schema-85665293.md): 
+- [controllers.MediafileItem](https://docs.tvunetworks.cn/schema-281870707.md): 
+- [ResponseResultProfileTemplateVo](https://docs.tvunetworks.cn/schema-85665294.md): 
+- [controllers.NameSuggestionResp](https://docs.tvunetworks.cn/schema-281870708.md): 
+- [Video](https://docs.tvunetworks.cn/schema-85665295.md): 
+- [controllers.ObjectItem](https://docs.tvunetworks.cn/schema-281870709.md): 
+- [UpdateSourceObjectDTO](https://docs.tvunetworks.cn/schema-85665296.md): 
+- [controllers.ObjectResp](https://docs.tvunetworks.cn/schema-281870710.md): 
+- [PermissionDTO](https://docs.tvunetworks.cn/schema-255856891.md): 
+- [ObjectInfoDTO](https://docs.tvunetworks.cn/schema-85665297.md): 
+- [controllers.PersonInfoItem](https://docs.tvunetworks.cn/schema-281870711.md): 
+- [ResponseResultObjectInfoDTO](https://docs.tvunetworks.cn/schema-85665298.md): 
+- [controllers.PersonInfoResp](https://docs.tvunetworks.cn/schema-281870712.md): 
+- [ProjectDTO](https://docs.tvunetworks.cn/schema-129702705.md): 
+- [UpdateProjectDTO](https://docs.tvunetworks.cn/schema-85665299.md): 
+- [controllers.PersonItem](https://docs.tvunetworks.cn/schema-281870713.md): 
+- [controllers.PersonListClickResp](https://docs.tvunetworks.cn/schema-98662800.md): 
+- [ResponseResultSourceSearchPageVo](https://docs.tvunetworks.cn/schema-85665301.md): 
+- [controllers.PersonResp](https://docs.tvunetworks.cn/schema-281870714.md): 
+- [SourceSearchObject](https://docs.tvunetworks.cn/schema-85665302.md): 
+- [WhiteBalanceAdjustDTO](https://docs.tvunetworks.cn/schema-126430687.md): 
+- [controllers.PersonTrackItem](https://docs.tvunetworks.cn/schema-281870715.md): 
+- [SourceSearchPageVo](https://docs.tvunetworks.cn/schema-85665303.md): 
+- [RgbDTO](https://docs.tvunetworks.cn/schema-126430688.md): 
+- [controllers.PersonTrackResp](https://docs.tvunetworks.cn/schema-281870716.md): 
+- [SourceSearchTag](https://docs.tvunetworks.cn/schema-85665304.md): 
+- [AddSourceObjectParam](https://docs.tvunetworks.cn/schema-86720478.md): 
+- [WhiteBalanceDTO](https://docs.tvunetworks.cn/schema-126430689.md): 
+- [controllers.PublicSearchItem](https://docs.tvunetworks.cn/schema-281870717.md): 
+- [controllers.PublicSearchResp](https://docs.tvunetworks.cn/schema-98662803.md): 
+- [ConnectDTO](https://docs.tvunetworks.cn/schema-85665306.md): 
+- [controllers.RecordedFileResp](https://docs.tvunetworks.cn/schema-281870718.md): 
+- [ResponseResultString](https://docs.tvunetworks.cn/schema-85665307.md): 
+- [controllers.RecordingInfoReturnData](https://docs.tvunetworks.cn/schema-98662809.md): 
+- [OutputProjectQueryDTO](https://docs.tvunetworks.cn/schema-85665308.md): 
+- [controllers.ReturnData](https://docs.tvunetworks.cn/schema-98662810.md): 
+- [ActiveOutput](https://docs.tvunetworks.cn/schema-85665309.md): 
+- [controllers.SceneChangeInfoItem](https://docs.tvunetworks.cn/schema-281870719.md): 
+- [OutputEncodingPairs](https://docs.tvunetworks.cn/schema-85665310.md): 
+- [controllers.SceneChangeInfoResp](https://docs.tvunetworks.cn/schema-281870720.md): 
+- [OutputProjectApiVo](https://docs.tvunetworks.cn/schema-85665311.md): 
+- [controllers.SearchCombtagsResp](https://docs.tvunetworks.cn/schema-98662813.md): 
+- [PageInfoOutputProjectApiVo](https://docs.tvunetworks.cn/schema-85665312.md): 
+- [controllers.SearchMediaByIdsResp](https://docs.tvunetworks.cn/schema-98662814.md): 
+- [StreamProfile](https://docs.tvunetworks.cn/schema-255856892.md): 
+- [ResponseResultPageInfoOutputProjectApiVo](https://docs.tvunetworks.cn/schema-85665313.md): 
+- [controllers.SearchObjectByMediaResp](https://docs.tvunetworks.cn/schema-98662821.md): 
+- [CreateProjectDTO](https://docs.tvunetworks.cn/schema-85665314.md): 
+- [SourceAttrPO](https://docs.tvunetworks.cn/schema-121204379.md): 
+- [SwitchConnectDTO](https://docs.tvunetworks.cn/schema-205871065.md): 
+- [controllers.SearchObjectTagsResp](https://docs.tvunetworks.cn/schema-98662822.md): 
+- [ResponseResultOutputProjectApiVo](https://docs.tvunetworks.cn/schema-85665315.md): 
+- [ResponseResultProjectRecord](https://docs.tvunetworks.cn/schema-86720479.md): 
+- [controllers.SearchPersonNameWithTagsResp](https://docs.tvunetworks.cn/schema-98662824.md): 
+- [controllers.SearchSummarizationResp](https://docs.tvunetworks.cn/schema-98662829.md): 
+- [controllers.SearchWordsResp](https://docs.tvunetworks.cn/schema-98662830.md): 
+- [SourceObjectListParam](https://docs.tvunetworks.cn/schema-86720480.md): 
+- [controllers.SettingsResp](https://docs.tvunetworks.cn/schema-281870721.md): 
+- [DestinationVO](https://docs.tvunetworks.cn/schema-255856893.md): 
+- [OrderItem](https://docs.tvunetworks.cn/schema-121204380.md): 
+- [controllers.SuggestionResp](https://docs.tvunetworks.cn/schema-281870722.md): 
+- [PageResultDestinationVO](https://docs.tvunetworks.cn/schema-255856894.md): 
+- [controllers.SupportLangItem](https://docs.tvunetworks.cn/schema-281870723.md): 
+- [ResultPageResultDestinationVO](https://docs.tvunetworks.cn/schema-255856895.md): 
+- [controllers.SupportLangResp](https://docs.tvunetworks.cn/schema-281870724.md): 
+- [ResultDestinationVO](https://docs.tvunetworks.cn/schema-255856896.md): 
+- [controllers.Tvu264StatusItem](https://docs.tvunetworks.cn/schema-281870725.md): 
+- [DestinationObjectEncodingProfileDTO](https://docs.tvunetworks.cn/schema-255856897.md): 
+- [controllers.Tvu264StatusResp](https://docs.tvunetworks.cn/schema-281870726.md): 
+- [controllers.UpdateActivityReq](https://docs.tvunetworks.cn/schema-98662842.md): 
+- [AudioOffsetDTO](https://docs.tvunetworks.cn/schema-189138662.md): 
+- [controllers.UpdateActivityResp](https://docs.tvunetworks.cn/schema-98662843.md): 
+- [controllers.UpdateClickCntResp](https://docs.tvunetworks.cn/schema-98662845.md): 
+- [controllers.UpdateClickReq](https://docs.tvunetworks.cn/schema-98662846.md): 
+- [controllers.WebPersonReturnData](https://docs.tvunetworks.cn/schema-98662852.md): 
+- [ResponseResultWhiteBalanceDetailVO](https://docs.tvunetworks.cn/schema-126430690.md): 
+- [controllers.WordsItem](https://docs.tvunetworks.cn/schema-281870727.md): 
+- [WhiteBalanceDetailVO](https://docs.tvunetworks.cn/schema-126430691.md): 
+- [controllers.WordsResp](https://docs.tvunetworks.cn/schema-281870728.md): 
+- [Scopes](https://docs.tvunetworks.cn/schema-126430692.md): 
+- [models.AccessPermission](https://docs.tvunetworks.cn/schema-98662735.md): 
+- [models.AccessPermissionV2](https://docs.tvunetworks.cn/schema-98662853.md): 
+- [Vector](https://docs.tvunetworks.cn/schema-126430693.md): 
+- [ScopeInfo](https://docs.tvunetworks.cn/schema-126430694.md): 
+- [models.AppearanceAffiliated](https://docs.tvunetworks.cn/schema-281870729.md): 
+- [models.AppearanceAffiliatedContent](https://docs.tvunetworks.cn/schema-281870730.md): 
+- [models.AppearanceContent](https://docs.tvunetworks.cn/schema-281870731.md): 
+- [StreamProfileParam](https://docs.tvunetworks.cn/schema-255856898.md): 
+- [models.AppearanceData](https://docs.tvunetworks.cn/schema-281870732.md): 
+- [models.AppearanceEvent](https://docs.tvunetworks.cn/schema-281870733.md): 
+- [BasePreviewDTO](https://docs.tvunetworks.cn/schema-189138663.md): 
+- [WhiteBalanceParentDTO](https://docs.tvunetworks.cn/schema-126430695.md): 
+- [models.AppearanceFilter](https://docs.tvunetworks.cn/schema-281870734.md): 
+- [ResultOutputDTO](https://docs.tvunetworks.cn/schema-126430696.md): 
+- [models.AppearanceListItem](https://docs.tvunetworks.cn/schema-281870735.md): 
+- [models.AppearanceListResponse](https://docs.tvunetworks.cn/schema-281870736.md): 
+- [models.AppearanceRelationItem](https://docs.tvunetworks.cn/schema-281870737.md): 
+- [models.AppearanceRelations](https://docs.tvunetworks.cn/schema-281870738.md): 
+- [models.AppearanceRelationsRequestV2](https://docs.tvunetworks.cn/schema-281870739.md): 
+- [models.AppearanceRelationsResponse](https://docs.tvunetworks.cn/schema-281870740.md): 
+- [models.AppearanceRelationsResult](https://docs.tvunetworks.cn/schema-281870741.md): 
+- [models.AppearanceSearchFilter](https://docs.tvunetworks.cn/schema-281870742.md): 
+- [models.AppearanceSearchRequest](https://docs.tvunetworks.cn/schema-281870743.md): 
+- [models.AppearanceSearchResponse](https://docs.tvunetworks.cn/schema-281870744.md): 
+- [models.AppearanceSearchResult](https://docs.tvunetworks.cn/schema-281870745.md): 
+- [models.AppearanceSuggestionRequestV2](https://docs.tvunetworks.cn/schema-281870746.md): 
+- [models.AppearanceSuggestionResponse](https://docs.tvunetworks.cn/schema-281870747.md): 
+- [models.AutoSearchReq](https://docs.tvunetworks.cn/schema-98662741.md): 
+- [models.CriteriasCondition](https://docs.tvunetworks.cn/schema-98662744.md): 
+- [models.EsCapfullReturnData](https://docs.tvunetworks.cn/schema-281870748.md): 
+- [models.EsCapfullReturnDataV3](https://docs.tvunetworks.cn/schema-281870749.md): 
+- [models.EsObjectTagData](https://docs.tvunetworks.cn/schema-98662862.md): 
+- [models.EsWordsData](https://docs.tvunetworks.cn/schema-281870750.md): 
+- [models.EventCondition](https://docs.tvunetworks.cn/schema-98662747.md): 
+- [models.EventObjectRecordingsResult](https://docs.tvunetworks.cn/schema-281870751.md): 
+- [models.FetchAllObjectTagReq](https://docs.tvunetworks.cn/schema-98662870.md): 
+- [models.FetchObjectTagReq](https://docs.tvunetworks.cn/schema-98662871.md): 
+- [models.GetIntervalItems](https://docs.tvunetworks.cn/schema-281870752.md): 
+- [models.GetObjectReq](https://docs.tvunetworks.cn/schema-98662874.md): 
+- [models.GpsInfo](https://docs.tvunetworks.cn/schema-98662750.md): 
+- [models.HintData](https://docs.tvunetworks.cn/schema-98662875.md): 
+- [models.HintRetureData](https://docs.tvunetworks.cn/schema-98662877.md): 
+- [models.HitSlug](https://docs.tvunetworks.cn/schema-98662878.md): 
+- [models.HostAppearance](https://docs.tvunetworks.cn/schema-281870753.md): 
+- [models.LocationInfo](https://docs.tvunetworks.cn/schema-281870754.md): 
+- [models.MatchCaptionRet](https://docs.tvunetworks.cn/schema-98662882.md): 
+- [models.MatchFaceRet](https://docs.tvunetworks.cn/schema-98662883.md): 
+- [models.MatchListRet](https://docs.tvunetworks.cn/schema-98662884.md): 
+- [models.MatchLogoRet](https://docs.tvunetworks.cn/schema-98662885.md): 
+- [models.MatchResult](https://docs.tvunetworks.cn/schema-98662886.md): 
+- [models.MatchSlugRet](https://docs.tvunetworks.cn/schema-98662887.md): 
+- [models.MediaFileRet](https://docs.tvunetworks.cn/schema-98662888.md): 
+- [models.MediaFileRetrunData](https://docs.tvunetworks.cn/schema-98662889.md): 
+- [models.MediaInfo](https://docs.tvunetworks.cn/schema-281870755.md): 
+- [models.MediaItem](https://docs.tvunetworks.cn/schema-281870756.md): 
+- [models.ObjectDetail](https://docs.tvunetworks.cn/schema-98662893.md): 
+- [models.ObjectQReq](https://docs.tvunetworks.cn/schema-98662894.md): 
+- [models.ObjectReturnData](https://docs.tvunetworks.cn/schema-98662895.md): 
+- [models.ObjectTagSuggestionReq](https://docs.tvunetworks.cn/schema-98662896.md): 
+- [models.PersonInfo](https://docs.tvunetworks.cn/schema-281870757.md): 
+- [models.PersonReturnData](https://docs.tvunetworks.cn/schema-98662899.md): 
+- [models.PersonTrackInfo](https://docs.tvunetworks.cn/schema-281870758.md): 
+- [models.PreViewMediaInfo](https://docs.tvunetworks.cn/schema-281870759.md): 
+- [models.PubSearchBaseReq](https://docs.tvunetworks.cn/schema-98662901.md): 
+- [models.PubSearchFilters](https://docs.tvunetworks.cn/schema-98662902.md): 
+- [models.PubSearchTsRange](https://docs.tvunetworks.cn/schema-98662903.md): 
+- [models.RecordingInfoQReq](https://docs.tvunetworks.cn/schema-98662908.md): 
+- [models.SceneChangeInfoData](https://docs.tvunetworks.cn/schema-98662909.md): 
+- [models.ScteMarkerInfoReq](https://docs.tvunetworks.cn/schema-98662757.md): 
+- [models.ScteMarkerInfoResult](https://docs.tvunetworks.cn/schema-98662910.md): 
+- [models.SearchAssetResult](https://docs.tvunetworks.cn/schema-281870760.md): 
+- [models.SearchBaseTagsReq](https://docs.tvunetworks.cn/schema-98662911.md): 
+- [models.SearchDurationRange](https://docs.tvunetworks.cn/schema-98662762.md): 
+- [models.SearchFileFormatByPathReq](https://docs.tvunetworks.cn/schema-281870761.md): 
+- [models.SearchFilters](https://docs.tvunetworks.cn/schema-98662915.md): 
+- [models.SearchLocation](https://docs.tvunetworks.cn/schema-98662765.md): 
+- [models.SearchMediaByIdsReq](https://docs.tvunetworks.cn/schema-98662916.md): 
+- [models.SearchMediaByIdsReturnData](https://docs.tvunetworks.cn/schema-98662917.md): 
+- [models.SearchMediaFileBySourceObjectId](https://docs.tvunetworks.cn/schema-281870762.md): 
+- [models.SearchObjectByUserId](https://docs.tvunetworks.cn/schema-281870763.md): 
+- [models.SearchObjectIdByMediaReq](https://docs.tvunetworks.cn/schema-98662920.md): 
+- [models.SearchPersonNameWithTagsReq](https://docs.tvunetworks.cn/schema-98662921.md): 
+- [models.SearchSummarizationRequest](https://docs.tvunetworks.cn/schema-98662768.md): 
+- [models.SearchTags](https://docs.tvunetworks.cn/schema-98662770.md): 
+- [models.SearchTsRange](https://docs.tvunetworks.cn/schema-98662772.md): 
+- [models.SortOptions](https://docs.tvunetworks.cn/schema-281870764.md): 
+- [models.SourceCondition](https://docs.tvunetworks.cn/schema-98662775.md): 
+- [models.SubStanceV2](https://docs.tvunetworks.cn/schema-281870765.md): 
+- [models.SummarizationItem](https://docs.tvunetworks.cn/schema-98662924.md): 
+- [models.SummarizationRequest](https://docs.tvunetworks.cn/schema-98662777.md): 
+- [models.TangibleAttributeData](https://docs.tvunetworks.cn/schema-98662925.md): 
+- [models.TermsItem](https://docs.tvunetworks.cn/schema-281870766.md): 
+- [models.TimestampRange](https://docs.tvunetworks.cn/schema-281870767.md): 
+- [models.Tvu264StatusData](https://docs.tvunetworks.cn/schema-281870768.md): 

@@ -1,0 +1,121 @@
+generated: '2026-09-01'
+method: derived
+source: >-
+  openapi/*.yml (352 operations, 352 component schemas) — entity set and relationships derived
+  from declared id-reference fields and $ref links, cross-checked against TVU's own MediaHub
+  workflow narrative (https://docs.tvunetworks.cn/folder-47022365) and the resource-identity
+  grammar at https://docs.tvunetworks.cn/doc-5661551
+identity_scheme:
+  style: 'Two parallel URI namespaces plus opaque snowflake-style numeric IDs'
+  urns:
+  - form: res.tvu.ai/t/{resource_type}/{resource_tangible_ID}/{sub_type}/{id}
+    name: tangible
+    description: 'Addresses a physical or logical device facet — resource_type is one of box/shm/grid/pack/rx/rps/relay/anywhere; sub_type is one of sdi/net/grid/slot.'
+    example: res.tvu.ai/t/rx/a6ad44a438873fd7/sdi/2
+  - form: res.tvu.ai/o/{object ID}
+    name: object
+    description: 'Addresses the logical object bound to a tangible.'
+    example: res.tvu.ai/o/1031568000559497216
+  note: >-
+    The tangible/object split is the spine of the whole model: a tangible is the thing, an object
+    is the identity the platform routes and permissions against, and bind/unlink moves one onto
+    the other. Numeric IDs are 19-digit opaque strings; tangible IDs are 16- or 32-character hex.
+entities:
+- name: SourceObject
+  surface: MediaHub
+  key: sourceObjectId / objectId
+  operations: [createSourceObject, sourceObjectInfo, updateSourceObjectInfo, listSourceObjects, deleteSourceObjectInfo, batchDeleteSourceObject]
+- name: Output
+  surface: MediaHub / URCaller
+  key: outputId
+  operations: [createOutput, updateOutput, listOutputs, deleteOutput]
+- name: EncodingProfile
+  surface: MediaHub / URCaller
+  key: profileId
+  operations: [createEncodingProfile, queryEncodingProfile, encodingProfile, deleteEncodingProfile]
+- name: OutputEncodingProfilePair
+  surface: MediaHub / URCaller
+  key: outputEncodingProfilePairId
+  aka: destination
+  operations: [outputPairedWithEncodingProfile, queryOutputEncodingProfilePairs, deletePairedOfOutputEncodingProfile]
+- name: Project
+  surface: MediaHub
+  key: projectObjectId
+  operations: [createProject, getProject, listProjects, updateProject, deleteProject, deleteProjects]
+- name: Route
+  surface: MediaHub
+  key: null
+  operations: [connect, disconnect, destinationStopLive, queryStatus]
+- name: Object
+  surface: Object service
+  key: objectId
+  operations: [Create_a_new_object_473290259, Update_an_existing_object_473290260, Delete_an_object_requires_authentication_473290261, Copy_an_object_and_bind_the_copy_to_a_new_tangible_473290268]
+- name: Tangible
+  surface: Object service
+  key: tangibleId
+  operations: [Bind_a_tangible_to_an_object_473290267, Unlink_detach_a_tangible_from_an_object_473290266, Query_all_objects_bound_to_a_given_tangible_ID_473290263]
+- name: Device
+  surface: Grid
+  key: 'rid / peerId / boxId'
+  operations: [getDeviceList_250778483, getStatus_250778501, getAvailableDevice_250778507, getGridMetadata_250778489, updateGridMetadata_250778490, queryPairedTGeoByRid_250778502]
+- name: PackToken
+  surface: Grid
+  key: null
+  operations: [addPackToken_250778484, removePackToken_250778485, queryPairedToken_250778488, queryPairedT_250778487, queryPairedR_250778486]
+- name: BookingEvent
+  surface: Grid
+  key: eventId
+  operations: [addEvent_250778496, listEvent_250778498, queryEvent_250778499, batchHandleEvent_250778500, deleteEvent_250778497, setLiveParameters_250778503]
+- name: MediaFile
+  surface: Search / MediaMind
+  key: mediaObjectId
+- name: Slug
+  surface: Search / MediaMind
+  key: null
+  operations: [Create_a_new_slug_and_trigger_recording_450372672, Update_an_existing_slug_and_its_recording_configuration_450372673, delete_slug_351711929]
+- name: Program
+  surface: Producer
+  key: programId
+- name: ClipPlayer / Playlist
+  surface: Producer
+  key: null
+- name: Overlay
+  surface: Producer
+  key: null
+- name: Party
+  surface: Partyline
+  key: partyCode
+- name: Channel
+  surface: Channel
+  key: null
+- name: User
+  surface: User service
+  key: 'userId / groupId / sessionid'
+relationships:
+- {from: Project, to: OutputEncodingProfilePair, type: has_many, via: 'pairIDs paired into the project'}
+- {from: OutputEncodingProfilePair, to: Output, type: belongs_to, via: outputId}
+- {from: OutputEncodingProfilePair, to: EncodingProfile, type: belongs_to, via: profileId}
+- {from: Route, to: SourceObject, type: belongs_to, via: sourceObjectId}
+- {from: Route, to: Project, type: belongs_to, via: projectObjectId}
+- {from: Object, to: Tangible, type: has_one, via: 'tangibleId (bind / unlink)'}
+- {from: Tangible, to: Object, type: has_many, via: 'bytangible/{tangibleId} query'}
+- {from: SourceObject, to: Tangible, type: has_one, via: 'tangibleId returned on create'}
+- {from: BookingEvent, to: Device, type: belongs_to, via: rid}
+- {from: Slug, to: SourceObject, type: belongs_to, via: sourceObjectId}
+- {from: MediaFile, to: SourceObject, type: belongs_to, via: sourceObjectId}
+- {from: Program, to: Overlay, type: has_many, via: 'addOverlayToPGM / removeOverlayFromPGM'}
+- {from: Program, to: ClipPlayer, type: has_many, via: addClipToClipPlayer}
+- {from: Party, to: User, type: has_many, via: 'party membership'}
+canonical_workflow:
+  name: MediaHub complete workflow
+  source: https://docs.tvunetworks.cn/folder-47022365
+  steps:
+  - 'Create an EncodingProfile (POST /urcaller/api/v2/encodingProfile) and keep its id; /urcaller/api/v2/encodingProfile/dict lists the allowed values for every attribute.'
+  - 'Create an Output (POST /urcaller/api/v2/output). If MediaHub runs as a listener the url may be omitted and the API returns one.'
+  - 'Pair profiles to the output (POST /urcaller/api/v2/output/encodingProfile/pair) producing outputEncodingProfilePairIds — the "destinations" of the UI.'
+  - 'Create a Project (POST /mediahub/api/v2/project) pairing one or more pairIds into it.'
+  - 'Create a SourceObject (POST /mediahub/api/v2/sourceObject).'
+  - 'Initiate LIVE (POST /mediahub/api/v2/route/connect); stop with /mediahub/api/v2/route/disconnect.'
+gaps:
+- 'Of 352 component schemas, only 27 are shared across more than one document — the rest are per-operation inline shapes, so the contract encodes almost no reuse and $ref-derived relationships are correspondingly thin.'
+- 'No id-prefix scheme: every identifier is an undifferentiated numeric or hex string, so an agent holding a bare ID cannot tell which entity it addresses without the res.tvu.ai URI form.'

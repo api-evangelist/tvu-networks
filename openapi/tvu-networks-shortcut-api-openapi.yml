@@ -1,0 +1,384 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — shortcut API
+  description: shortcut API operations of the TVU Networks public HTTP API, assembled verbatim from the
+    per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /action/trigger:
+    post:
+      summary: trigger
+      deprecated: false
+      description: ''
+      operationId: e73e5ecc7d3a64a0ccc02f2b4d3699f2
+      tags:
+      - shortcut API
+      - action Task
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+            example:
+              shortcut: ALT+5
+              service: pp
+              version: 5
+              properties:
+                productionId: 10323579
+                timestamp: 1731077766194
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: shortcut API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778641-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778641.md
+  /shortcut/delete/{id}:
+    post:
+      summary: delete shortcut
+      deprecated: false
+      description: ''
+      operationId: 5bc5525eb7a3d3e0500d1792286b7cd8
+      tags:
+      - shortcut API
+      - shortcut
+      parameters:
+      - name: arg0
+        in: path
+        description: ''
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int64
+          examples:
+          - -8864470072814284000
+      - name: id
+        in: path
+        description: ''
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - arg0
+              type: object
+              properties:
+                arg0:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 2372307233803252700
+              x-apifox-orders:
+              - arg0
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: shortcut API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778643-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778643.md
+  /shortcut/getShortCutModules:
+    get:
+      summary: get short cut modules
+      deprecated: false
+      description: ''
+      operationId: d07fcbb806a22b92f13764c0e514edf0
+      tags:
+      - shortcut API
+      - shortcut
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    x-apifox-orders: []
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: shortcut API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778640-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778640.md
+  /shortcut/getUserShortcuts:
+    post:
+      summary: get user shortcuts
+      deprecated: false
+      description: ''
+      operationId: bb06650e80191e99f34439ea33cb5b17
+      tags:
+      - shortcut API
+      - shortcut
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUserShortcutRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PageShortcut'
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: shortcut API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778639-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778639.md
+  /shortcut/updateUserShortcuts:
+    post:
+      summary: update user shortcuts
+      deprecated: false
+      description: ''
+      operationId: 9157d66d0fd7b1da4a2b7cb0437d3eea
+      tags:
+      - shortcut API
+      - shortcut
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShortcutUpdateRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: shortcut API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778642-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778642.md
+components:
+  schemas:
+    GetUserShortcutRequest:
+      type: object
+      properties:
+        pages:
+          type: array
+          items:
+            type: string
+            examples:
+            - '[studio, AudioMixer]'
+        service:
+          type: string
+          examples:
+          - pp
+        searchKeyword:
+          type: string
+          examples:
+          - videocut
+        userId:
+          type: string
+          examples:
+          - QHsSLkZZMldhcKizsNlEAyNDlHutHvcU
+        version:
+          type: integer
+          format: int32
+          examples:
+          - 5
+      x-apifox-orders:
+      - pages
+      - service
+      - searchKeyword
+      - userId
+      - version
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PageShortcut:
+      type: object
+      properties:
+        service:
+          type: string
+        shortcuts:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        page:
+          type: string
+      x-apifox-orders:
+      - service
+      - shortcuts
+      - page
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Object:
+      type: object
+      x-apifox-orders: []
+      properties: {}
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ShortcutUpdateRequest:
+      type: object
+      properties:
+        shortcut:
+          type: string
+          examples:
+          - ALT+5
+        userId:
+          type: string
+          examples:
+          - CantzxXqTGlIFBaNkGWhgdVlDiyawNXY
+        shortcutId:
+          type: integer
+          format: int64
+          examples:
+          - 7067589385339111000
+        enabled:
+          type: boolean
+          examples:
+          - true
+      x-apifox-orders:
+      - shortcut
+      - userId
+      - shortcutId
+      - enabled
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

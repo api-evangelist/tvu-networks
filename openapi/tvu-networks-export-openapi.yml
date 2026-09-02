@@ -1,0 +1,1652 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Export
+  description: Export operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint
+    OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /cut-json:
+    post:
+      summary: Trim a JSON edit list to a time range
+      deprecated: false
+      description: 'Fetches a TVU MediaMind JSON timeline/edit-list from `jsonUrl`, trims it to the
+
+        `markIn`–`markOut` window (milliseconds relative to the timeline origin), uploads
+
+        the trimmed JSON to S3, and returns its URL. Useful for creating sub-clips of a
+
+        JSON-based production without touching the underlying media files.
+
+
+        This is a **synchronous** endpoint — it returns immediately with the result.
+
+
+        **Constraint:** `markOut` must be strictly greater than `markIn`.
+
+
+        The output file is written to `s3://<Bucket>/<uploadPath>/<fileName>_<timestamp>_<duration>.json`.
+
+        If `Bucket` or `uploadPath` are omitted, the service attempts to derive the destination
+
+        from the source `jsonUrl`''s bucket/path. `fileName` is treated as a base name; do not
+
+        include `.json` unless that text should be part of the generated base name.
+
+
+        ### Error Codes
+
+
+        | Code | Message | Cause |
+
+        |------|---------|-------|
+
+        | `0` | success | Trimmed JSON is available at `jsonUrl` |
+
+        | `3001` | The json/hls link exception, please check. | `jsonUrl` is unreachable or returns an
+        invalid response |
+
+        | `3002` | The json content format exception, please check. | JSON content does not match expected
+        format |
+
+        | `3003` | Failed parsing or initialization of JSON''s bucket, please contact the developer to
+        check. | Cannot determine or connect to the destination bucket from the JSON URL |
+
+        | `3004` | Newly generated json upload failed, please contact the developer to check. | Trimmed
+        JSON file failed to upload to S3 |
+
+        '
+      operationId: cutJsonV2
+      tags:
+      - Export
+      - Export
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CutJsonReqV2'
+            example:
+              jsonUrl: https://mma-video-new.s3.us-east-1.amazonaws.com/export/story.json
+              markIn: 5000
+              markOut: 65000
+              fileName: story_trimmed
+              Bucket: media-export-bucket
+              Region: us-east-1
+              uploadPath: trimmed/
+      responses:
+        '200':
+          description: Trimmed JSON URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CutJsonRes'
+              examples:
+                success:
+                  summary: success
+                  value:
+                    errorCode: 0
+                    errorMessage: success
+                    jsonUrl: https://media-export-bucket.s3.us-east-1.amazonaws.com/trimmed/story_trimmed_20231114_120000_60000.json
+                bad_url:
+                  summary: bad_url
+                  value:
+                    errorCode: 3001
+                    errorMessage: The json/hls link exception, please check.
+                    jsonUrl: ''
+                format_error:
+                  summary: format_error
+                  value:
+                    errorCode: 3002
+                    errorMessage: The json content format exception, please check.
+                    jsonUrl: ''
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Export
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290199-run
+      x-source-doc: https://docs.tvunetworks.cn/api-473290199.md
+  /estimate-video-size:
+    post:
+      summary: Estimate output file size before exporting
+      deprecated: false
+      description: "Probes the source recording to estimate the output file size (in bytes) for a given\n\
+        time range without performing the actual export. Use this before calling `/export` to\nenforce\
+        \ storage quotas, display progress previews, or guard against unexpectedly large\nexports.\n\n\
+        This is a **synchronous** endpoint — it returns immediately with the result.\n\n**`recMode`**\
+        \ selects the parsing path used by the service:\n- `1` - URL mode: `filePath` is an HTTP(S) HLS\
+        \ playlist or MPD URL that can be\n  parsed into bucket, key, and region.\n- `0` - storage-info\
+        \ mode: `filePath` is a relative MPD/HLS path under the `TS`\n  storage root described by `storageInfo`.\n\
+        \n**`storageInfo`** is a Base64-encoded JSON array containing the cloud storage credentials\n\
+        and configuration for the source recording. It is parsed by storage-info mode.\n\n### Error Codes\n\
+        \n| Code | Message | Cause |\n|------|---------|-------|\n| `1000` | task created successfully\
+        \ | Success; read `videoSize` |\n| `1018` | the request param abnormal. | Required field missing\
+        \ or invalid (filePath, startTime, duration, recMode, storageInfo, or userAccount) |\n| `1019`\
+        \ | init aws s3 sdk failed, please contact TVU Support. | Storage credentials invalid or unreachable\
+        \ |\n| `1023` | (bucket connection failed) | Failed to connect to the source storage bucket |\n\
+        | `1093` | verify required ts fail. | Source TS file check failed for the requested time range\
+        \ |\n"
+      operationId: estimateVideoSize
+      tags:
+      - Export
+      - Export
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateVideoSizeReq'
+            example:
+              filePath: https://mma-video-new.s3.us-east-1.amazonaws.com/ts/PRODUCER_RECORDINGS/source-001/live-001/1/play.m3u8
+              startTime: 1700000000000
+              duration: 30000
+              recMode: 1
+              storageInfo: W3sic3RvcmFnZV90eXBlIjoiczMiLCJzdG9yYWdlX25hbWUiOiJtbWEtdmlkZW8tbmV3Iiwic3RvcmFnZV9sb2NhdGlvbiI6InVzLWVhc3QtMSIsInN0b3JhZ2VfcHVycG9zZSI6IlRTIiwic3RvcmFnZV9yb290X2ZvbGRlciI6IiJ9XQ==
+              userAccount: user@example.com
+      responses:
+        '200':
+          description: Estimated file size
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateVideoSizeRes'
+              examples:
+                success:
+                  summary: success
+                  value:
+                    errorCode: 1000
+                    errorMsg: ''
+                    videoSize: 52428800
+                error:
+                  summary: error
+                  value:
+                    errorCode: 1093
+                    errorMsg: verify required ts fail.
+                    videoSize: 0
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Export
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290196-run
+      x-source-doc: https://docs.tvunetworks.cn/api-473290196.md
+  /export:
+    post:
+      summary: Export a video clip
+      deprecated: false
+      description: "Trims a video clip from a TVU high-resolution recording archive (HLS/MPD) and uploads\n\
+        the result to a caller-specified cloud storage location.\n\nThis is a **long-polling** endpoint.\
+        \ On the **first call**, the server registers the job\nand returns `errorCode: 1000` with a non-zero\
+        \ `timeWait`. The client must re-submit the\n**identical request body** at `timeWait`-millisecond\
+        \ intervals until `errorCode` reaches\na terminal state:\n- `1005` (Work Finish) — export succeeded;\
+        \ read `videoPath`, `fileSize`, `videoDuration`.\n- Any other non-`1001` code — export failed;\
+        \ read `errorMsg`.\n\n**Task identity** is derived from `fileName` (or an auto-generated hash\
+        \ of\n`highResolutionMediaFilePath` + `startTime` + `duration` when omitted). Submitting the\n\
+        same body while a job is in progress returns the current task state without spawning\na duplicate\
+        \ job.\n\n**Key options**\n- `isDryrun` (default `true`) — validate the request without performing\
+        \ the actual export.\n  Set to `false` to trigger a real export.\n- `isFrameLevel` — enable sub-GOP\
+        \ frame-accurate cut points.\n- `isCover` — overwrite the output file if it already exists (default\
+        \ `false`; returns\n  `1100` if the file exists and this flag is not set).\n- `withMetadataJson`\
+        \ — also produce a companion JSON metadata sidecar alongside the video.\n- `audioPadding` / `videoPadding`\
+        \ — prepend/append silent audio or black-frame padding.\n\n### Error Codes\n\n| Code | Message\
+        \ | Cause |\n|------|---------|-------|\n| `1000` | task created successfully | Task registered;\
+        \ begin polling (`timeWait` > 0) |\n| `1001` | work not finish. | Still processing — wait `timeWait`\
+        \ ms and poll again |\n| `1004` | file already exist. | Source filename conflict (intermediate\
+        \ state) |\n| `1005` | Work Finish | **Export completed successfully** (terminal, `timeWait` =\
+        \ 0) |\n| `1017` | add user task fail. | Internal error creating the export job; retry |\n| `1018`\
+        \ | the request param abnormal. | A required field is missing or invalid |\n| `1019` | init aws\
+        \ s3 sdk failed, please contact TVU Support. | Destination storage credentials are invalid or\
+        \ unreachable |\n| `1020` | tvu264 some error. | Video transcoding process failed |\n| `1021`\
+        \ | upload file fail | Failed to upload the output file to cloud storage |\n| `1026` | file restore\
+        \ error. | Source file is archived (Glacier); restore timed out |\n| `1031` | video export time\
+        \ exceeds limit. | System-wide concurrent export quota reached; try later |\n| `1032` | the number\
+        \ of user max export task exceeds limit. | This user has too many concurrent export jobs |\n|\
+        \ `1035` | open or create file fail. | Server failed to open the output file for writing |\n|\
+        \ `1042` | consume memory task num exceeds limit. | Server memory task limit reached; try later\
+        \ |\n| `1046` | insufficient remaining free space | Server disk is full; contact TVU Support |\n\
+        | `1050` | (locate source failed) | Cannot locate source TS segments for the requested time range\
+        \ |\n| `1051` | (download temp ts error) | Failed to download temporary TS segments |\n| `1052`\
+        \ | (exceed duration limit) | Clip duration exceeds the allowed maximum |\n| `1053` | (metadata\
+        \ json error) | Failed to generate companion metadata JSON (`withMetadataJson=true`) |\n| `1084`\
+        \ | from redis get user task fail. | Cache lookup failed; retry after a moment |\n| `1086` | get\
+        \ source ts signature url fail. | Failed to generate a signed URL for the source media |\n| `1093`\
+        \ | verify required ts fail. | Source TS file integrity check failed |\n| `1099` | Media processing\
+        \ encountered an exception. Please retry... | Unexpected processing error; retry, then contact\
+        \ TVU Support |\n| `1100` | export file already existed. | Output file exists and `isCover` was\
+        \ not set to `true` |\n"
+      operationId: publicExport
+      tags:
+      - Export
+      - Export
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicExportReq'
+            example:
+              highResolutionMediaFilePath: https://mma-video-new.s3.us-east-1.amazonaws.com/ts/PRODUCER_RECORDINGS/source-001/live-001/1/play.m3u8
+              startTime: 1700000000000
+              duration: 30000
+              userAccount: user@example.com
+              fileName: clip_20231114_30s
+              fileType: mp4
+              isDryrun: false
+              destination:
+                cloudVendor: s3
+                bucket: media-export-bucket
+                region: us-east-1
+                folder: export/
+      responses:
+        '200':
+          description: Job status (poll again if `errorCode == 1001`)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicExportRes'
+              examples:
+                success:
+                  summary: Export complete
+                  value:
+                    errorCode: 1005
+                    errorMsg: Work Finish
+                    isDryrun: false
+                    timeWait: 0
+                    videoPath: https://media-export-bucket.s3.us-east-1.amazonaws.com/export/clip_20231114_30s.mp4
+                    fileSize: 52428800
+                    videoDuration: 30000
+                    thumbnailInfo:
+                      url: https://mma-video-new.s3.us-east-1.amazonaws.com/ts/PRODUCER_RECORDINGS/source-001/live-001/source-001_live-001_1700000000000_30000.jpg
+                      width: '1920'
+                      height: '1080'
+                    videoInfo:
+                      url: https://media-export-bucket.s3.us-east-1.amazonaws.com/export/clip_20231114_30s.mp4
+                      type: mp4
+                      bitrate: 5000k
+                      width: '1920'
+                      height: '1080'
+                      framerate: '29.97'
+                      duration: '30'
+                pending:
+                  summary: Still processing — poll again
+                  value:
+                    errorCode: 1001
+                    errorMsg: work not finish.
+                    isDryrun: false
+                    timeWait: 3000
+                user_limit:
+                  summary: User export quota exceeded
+                  value:
+                    errorCode: 1032
+                    errorMsg: the number of user max export task exceeds limit.
+                    timeWait: 0
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Export
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290194-run
+      x-source-doc: https://docs.tvunetworks.cn/api-473290194.md
+  /exportaudio:
+    post:
+      summary: Export an audio clip
+      deprecated: false
+      description: 'Extracts and encodes an audio-only clip from a TVU MediaMind media object and uploads
+
+        the result to cloud storage. The source is identified by `sourceObjectId` (the internal
+
+        TVU MediaMind object ID) rather than a raw file path; the service resolves the underlying
+
+        storage location automatically.
+
+
+        This is a **long-polling** endpoint — keep re-submitting the same body until
+
+        `errorCode` is `1005` (terminal success, `status: 2`) or a non-`1001` error code.
+
+
+        **Output format** is inferred from the `fileName` extension. The `mediaType` field is
+
+        used to select the source media record returned by metadata lookup: use `"mma"` for
+
+        high-resolution media; omit it or use another value for preview media.
+
+
+        **Optional AI transcription** (`reTranscribe.switch: true`): after the audio file is
+
+        exported, it is uploaded to an AI transcription service. The transcription group and
+
+        language are set via `reTranscribe.groupId` and `reTranscribe.language`. If this upload
+
+        fails, the job returns `1029` rather than `1005`.
+
+
+        **Webhook**: set `callbackUrl` to receive an HTTP POST notification when the job
+
+        completes instead of (or in addition to) polling.
+
+
+        **Idempotency**: supply `uuid` to prevent duplicate jobs — re-submitting the same `uuid`
+
+        returns the existing job''s state.
+
+
+        ### Error Codes
+
+
+        | Code | Message | Cause |
+
+        |------|---------|-------|
+
+        | `1000` | task created successfully | Task registered; begin polling (`timeWait` > 0) |
+
+        | `1001` | work not finish. | Still processing — wait `timeWait` ms and poll again |
+
+        | `1005` | Work Finish | **Audio export completed successfully** (terminal, `timeWait` = 0, `status`
+        = 2) |
+
+        | `1017` | add user task fail. | Task creation failed; retry |
+
+        | `1018` | the request param abnormal. | Required field missing (sourceObjectId, etc.) |
+
+        | `1020` | tvu264 some error. | Audio encoding failed |
+
+        | `1021` | upload file fail | Failed to upload output audio to cloud storage |
+
+        | `1029` | failed to upload audio to AI | AI transcription upload failed (only when `reTranscribe.switch=true`)
+        |
+
+        | `1031` | video export time exceeds limit. | System export quota reached |
+
+        | `1032` | the number of user max export task exceeds limit. | User export limit reached |
+
+        | `1033` | The bucket of the media is wrong. | Source media bucket is misconfigured |
+
+        | `1081` | get storage fail. | Failed to retrieve storage configuration |
+
+        | `1084` | from redis get user task fail. | Cache lookup error; retry |
+
+        | `1099` | Media processing encountered an exception. Please retry... | Unexpected processing
+        error |
+
+        '
+      operationId: exportAudioV2
+      tags:
+      - Export
+      - Export
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportAudioReqV2'
+            example:
+              startTime: 1700000000000
+              duration: 60000
+              sourceObjectId: '123456789012345678'
+              fileName: audio_extract.flac
+              sampleRate: 48000
+              mediaType: mma
+      responses:
+        '200':
+          description: Audio export status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportAudioResV2'
+              examples:
+                success:
+                  summary: Export complete
+                  value:
+                    errorCode: 1005
+                    errorMessage: Work Finish
+                    status: 2
+                    timeWait: 0
+                    audioPath: https://mma-video-new.s3.us-east-1.amazonaws.com/export/audio_extract.flac
+                pending:
+                  summary: Still processing
+                  value:
+                    errorCode: 1001
+                    errorMessage: work not finish.
+                    status: 1
+                    timeWait: 2000
+                    audioPath: ''
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Export
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290197-run
+      x-source-doc: https://docs.tvunetworks.cn/api-473290197.md
+  /longexport:
+    post:
+      summary: Export a long video clip in chunks
+      deprecated: false
+      description: "Exports a long recording segment by automatically splitting it into sequential chunk\n\
+        files and uploading each chunk to cloud storage as it completes. Designed for exports\nthat are\
+        \ too long for a single `/export` call (e.g. hours of footage).\n\nThis is a **long-polling**\
+        \ endpoint. On the **first call** the server registers the job\n(`errorCode: 1000`) and begins\
+        \ splitting the total `duration` into sub-tasks of at most\n`maxChunkDuration` milliseconds each.\
+        \ Re-poll the **identical request body** at\n`timeWait`-millisecond intervals to observe progress:\n\
+        - `errorCode: 1001` — processing in progress; `videoList` may already contain\n  completed early\
+        \ chunks.\n- `errorCode: 1005` — all chunks are done; `videoList` is complete.\n\n**Incremental\
+        \ delivery**: each entry in `videoList` has an `isCompleted` flag.\nThe list grows poll-by-poll,\
+        \ so clients can begin downstream processing on completed\nchunks before the overall job finishes.\n\
+        \n`maxChunkDuration` controls the granularity/count of output files. Smaller values\nproduce more\
+        \ chunks but allow faster incremental access.\n\n### Error Codes\n\n| Code | Message | Cause |\n\
+        |------|---------|-------|\n| `1000` | task created successfully | Task registered; begin polling\
+        \ (`timeWait` > 0) |\n| `1001` | work not finish. | Still processing — wait `timeWait` ms and\
+        \ poll again |\n| `1004` | file already exist. | Source filename conflict (intermediate state)\
+        \ |\n| `1005` | Work Finish | **All chunks exported successfully** (terminal, `timeWait` = 0)\
+        \ |\n| `1017` | add user task fail. | Internal error creating the job; retry |\n| `1018` | the\
+        \ request param abnormal. | A required field is missing or invalid |\n| `1019` | init aws s3 sdk\
+        \ failed, please contact TVU Support. | Destination storage credentials are invalid |\n| `1031`\
+        \ | video export time exceeds limit. | System export quota reached |\n| `1032` | the number of\
+        \ user max export task exceeds limit. | User concurrent export limit reached |\n| `1037` | search\
+        \ son dir info fail. | Failed to find source subdirectory information |\n| `1038` | subtask splitting\
+        \ process failed. | Failed to split the duration into sub-tasks |\n| `1046` | insufficient remaining\
+        \ free space | Server disk full |\n| `1050` | (locate source failed) | Cannot find source TS files\
+        \ for the time range |\n| `1084` | from redis get user task fail. | Cache error; retry |\n| `1086`\
+        \ | get source ts signature url fail. | Failed to sign source media URL |\n| `1093` | verify required\
+        \ ts fail. | Source TS file check failed |\n| `1099` | Media processing encountered an exception.\
+        \ Please retry... | Unexpected error |\n"
+      operationId: publicLongExport
+      tags:
+      - Export
+      - Export
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicLongexportReq'
+            example:
+              filePath: https://mma-video-new.s3.us-east-1.amazonaws.com/ts/PRODUCER_RECORDINGS/source-001/live-001/1/play.m3u8
+              startTime: 1700000000000
+              duration: 3600000
+              maxChunkDuration: 600000
+              userAccount: user@example.com
+              fileName: long_clip_20231114
+              fileType: ts
+              destination:
+                cloudVendor: s3
+                bucket: media-export-bucket
+                region: us-east-1
+                folder: export/
+      responses:
+        '200':
+          description: Job status (poll again if `errorCode == 1001`)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicLongexportRes'
+              examples:
+                success:
+                  summary: All chunks complete
+                  value:
+                    errorCode: 1005
+                    errorMsg: Work Finish
+                    timeWait: 0
+                    videoList:
+                    - startTime: 1700000000000
+                      duration: 600000
+                      videoPath: https://media-export-bucket.s3.us-east-1.amazonaws.com/export/long_clip_20231114-1.ts
+                      isCompleted: true
+                    - startTime: 1700000600000
+                      duration: 600000
+                      videoPath: https://media-export-bucket.s3.us-east-1.amazonaws.com/export/long_clip_20231114-2.ts
+                      isCompleted: true
+                pending:
+                  summary: First chunk done, more in progress
+                  value:
+                    errorCode: 1001
+                    errorMsg: work not finish.
+                    timeWait: 5000
+                    videoList:
+                    - startTime: 1700000000000
+                      duration: 600000
+                      videoPath: https://media-export-bucket.s3.us-east-1.amazonaws.com/export/long_clip_20231114-1.ts
+                      isCompleted: true
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Export
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290195-run
+      x-source-doc: https://docs.tvunetworks.cn/api-473290195.md
+  /merge:
+    post:
+      summary: Merge multiple video files into one
+      deprecated: false
+      description: 'Concatenates an ordered list of S3 video segments into a single output file and uploads
+
+        the result to the specified S3 destination. Segments are joined in `order` sequence
+
+        without re-encoding where possible.
+
+
+        This is a **long-polling** endpoint — keep re-submitting the **same body** until
+
+        `ErrorCode == 0` (success) or a non-`1` error code. The task identity key is derived
+
+        from the combination of `user_id` and the destination `full_path`.
+
+
+        **Supported output formats**: `ts`, `mp4`, `mov`, `mkv`, `mxf`.
+
+        JSON (`media_type = "json"`) source files are **not** supported; the job immediately
+
+        returns `ErrorCode: 49`.
+
+
+        **Note:** this endpoint uses a separate error code namespace (`0–99`) distinct from the
+
+        `1000+` range used by `/export` and `/longexport`. The polling sentinel is `ErrorCode: 1`
+
+        ("work not finish"), and the success terminal is `ErrorCode: 0`.
+
+
+        ### Error Codes
+
+
+        | Code | Message | Cause |
+
+        |------|---------|-------|
+
+        | `0` | success | Merge complete; read `VideoPath`/`VideoUrl` |
+
+        | `1` | work not finish. | Still processing — wait `TimeWait` ms and poll again |
+
+        | `17` | add user task fail. | Task creation failed; retry |
+
+        | `20` | tvu264 some error. | Video transcoding/merge process failed |
+
+        | `21` | (upload error) | Failed to upload merged output to cloud storage |
+
+        | `22` | (S3 object error) | Cloud storage object is null; check bucket/region settings |
+
+        | `25` | coding cancel. | Merge job was cancelled |
+
+        | `31` | video export time exceeds limit. | System-wide merge quota reached |
+
+        | `32` | the number of user max export task exceeds limit. | User concurrent merge limit reached
+        |
+
+        | `49` | not support merge and upload json. | JSON media type is not supported for merge |
+
+        | `84` | from redis get user task fail. | Cache lookup failed; retry |
+
+        | `93` | verify required ts fail. | Source file integrity check failed |
+
+        '
+      operationId: mergeVideo
+      tags:
+      - Export
+      - Export
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MergeVideoReq'
+            example:
+              user_id: user@example.com
+              source_file_list:
+              - order: 1
+                bucket: mma-video-new
+                region: us-east-1
+                video_path: export/part1.ts
+              - order: 2
+                bucket: mma-video-new
+                region: us-east-1
+                video_path: export/part2.ts
+              destination:
+                bucket: media-export-bucket
+                region: us-east-1
+                full_path: merged/final
+                media_type: mp4
+      responses:
+        '200':
+          description: Merge job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MergeVideoRes'
+              examples:
+                success:
+                  summary: Merge complete
+                  value:
+                    ErrorCode: 0
+                    ErrorMessage: success
+                    VideoPath: merged/final.mp4
+                    VideoUrl: https://media-export-bucket.s3.us-east-1.amazonaws.com/merged/final.mp4
+                    TimeWait: 0
+                pending:
+                  summary: Still processing
+                  value:
+                    ErrorCode: 1
+                    ErrorMessage: work not finish.
+                    VideoPath: ''
+                    VideoUrl: ''
+                    TimeWait: 3000
+                json_not_supported:
+                  summary: JSON media type rejected
+                  value:
+                    ErrorCode: 49
+                    ErrorMessage: not support merge and upload json.
+                    TimeWait: 0
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Export
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290198-run
+      x-source-doc: https://docs.tvunetworks.cn/api-473290198.md
+components:
+  schemas:
+    PublicExportReq:
+      type: object
+      required:
+      - highResolutionMediaFilePath
+      - startTime
+      - duration
+      - userAccount
+      properties:
+        highResolutionMediaFilePath:
+          type: string
+          format: uri
+          description: HTTP(S) URL to the high-resolution source HLS playlist (`play.m3u8`) or MPD (`stream.mpd`).
+            Relative paths are not accepted by `/export`.
+          examples:
+          - https://mma-video-new.s3.us-east-1.amazonaws.com/ts/PRODUCER_RECORDINGS/source-001/live-001/1/play.m3u8
+        startTime:
+          type: integer
+          format: int64
+          description: Clip start position as a Unix timestamp in **milliseconds**.
+          examples:
+          - 1700000000000
+        duration:
+          type: integer
+          format: int64
+          description: Clip duration in **milliseconds**.
+          examples:
+          - 30000
+        userAccount:
+          type: string
+          description: Email or identifier of the user making the request (used for rate limiting).
+          examples:
+          - user@example.com
+        fileName:
+          type: string
+          description: Desired output file name (without extension). Auto-generated if omitted.
+          examples:
+          - clip_20231114_30s
+        fileType:
+          type: string
+          description: Output container format.
+          enum:
+          - ts
+          - mp4
+          - mov
+          - json
+          default: ts
+          examples:
+          - mp4
+        isFrameLevel:
+          type: boolean
+          description: Enable frame-accurate cutting.
+          default: false
+        withMetadataJson:
+          type: boolean
+          description: Also export a companion metadata JSON file alongside the video.
+          default: false
+        sourceObjectId:
+          type: string
+          description: Source media object identifier.
+        audioVolume:
+          type: string
+          description: Audio volume adjustment expression (e.g. `"1.5"` for 150%).
+        timeZone:
+          type: string
+          description: IANA timezone string used for timestamp formatting.
+          examples:
+          - America/New_York
+        isDryrun:
+          type: boolean
+          description: If `true`, validate the request without performing the actual export.
+          default: true
+        isCover:
+          type: boolean
+          description: Overwrite the output file if it already exists. If `false` and the file exists,
+            returns error `1100`.
+          default: false
+        isMRSS:
+          type: boolean
+          description: Generate an MRSS feed entry for the exported clip.
+          default: false
+        audioAdjustment:
+          type: string
+          description: Advanced audio processing options.
+        serviceCaller:
+          type: string
+          description: Identifier of the upstream service triggering this export.
+        audioPadding:
+          $ref: '#/components/schemas/AudioPaddingInfo'
+        videoPadding:
+          $ref: '#/components/schemas/VideoPaddingInfo'
+        destination:
+          $ref: '#/components/schemas/PublicDestination'
+      x-apifox-orders:
+      - highResolutionMediaFilePath
+      - startTime
+      - duration
+      - userAccount
+      - fileName
+      - fileType
+      - isFrameLevel
+      - withMetadataJson
+      - sourceObjectId
+      - audioVolume
+      - timeZone
+      - isDryrun
+      - isCover
+      - isMRSS
+      - audioAdjustment
+      - serviceCaller
+      - audioPadding
+      - videoPadding
+      - destination
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PublicDestination:
+      type: object
+      description: Target storage location for the output file.
+      properties:
+        cloudVendor:
+          type: string
+          description: Cloud storage vendor. Values are matched case-insensitively by the storage layer
+            (`s3`, `azure`, `oss`, `cos`).
+          examples:
+          - s3
+        bucket:
+          type: string
+          description: Target s3/azure/oss/cos storage bucket name.
+          examples:
+          - media-export-bucket
+        region:
+          type: string
+          description: Bucket region.
+          examples:
+          - us-east-1
+        folder:
+          type: string
+          description: Key prefix / folder path within the bucket (trailing slash recommended).
+          examples:
+          - export/
+      x-apifox-orders:
+      - cloudVendor
+      - bucket
+      - region
+      - folder
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    VideoPaddingInfo:
+      type: object
+      description: Black-frame video padding to prepend/append.
+      properties:
+        mode:
+          type: integer
+          description: Padding mode (0 = none, 1 = black frames).
+          examples:
+          - 1
+        headLen:
+          type: integer
+          format: int64
+          description: Padding duration at the start in milliseconds.
+          examples:
+          - 500
+        tailLen:
+          type: integer
+          format: int64
+          description: Padding duration at the end in milliseconds.
+          examples:
+          - 500
+      x-apifox-orders:
+      - mode
+      - headLen
+      - tailLen
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AudioPaddingInfo:
+      type: object
+      description: Silent audio padding to prepend/append to the output clip.
+      properties:
+        headLen:
+          type: integer
+          format: int64
+          description: Padding duration at the start in milliseconds.
+          examples:
+          - 500
+        tailLen:
+          type: integer
+          format: int64
+          description: Padding duration at the end in milliseconds.
+          examples:
+          - 500
+      x-apifox-orders:
+      - headLen
+      - tailLen
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PublicExportRes:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: 'Job status code. See endpoint description for the full error code table.
+
+            - `1000` — Task registered; keep polling (`timeWait` > 0)
+
+            - `1001` — Still processing; keep polling (`timeWait` > 0)
+
+            - `1005` — Export completed successfully (terminal, `timeWait` = 0)
+
+            - Other — Error (terminal, `timeWait` = 0)
+
+            '
+          examples:
+          - 1005
+        errorMsg:
+          type: string
+          description: Human-readable status/error message.
+          examples:
+          - Work Finish
+        isDryrun:
+          type: boolean
+          description: Echoes the `isDryrun` flag from the request.
+        timeWait:
+          type: integer
+          format: int64
+          description: Milliseconds to wait before the next poll. `0` when the job is done or errored.
+          examples:
+          - 0
+        videoPath:
+          type: string
+          description: S3 path or URL to the exported video file. Populated when `errorCode == 1005`.
+          examples:
+          - https://media-export-bucket.s3.us-east-1.amazonaws.com/export/clip_20231114_30s.mp4
+        baseVideoPath:
+          type: string
+          description: Base path for the video (without storage prefix).
+        metadataJsonPath:
+          type: string
+          description: S3 path to the companion metadata JSON (if `withMetadataJson` was `true`).
+        baseMetadataJsonPath:
+          type: string
+          description: Base path for the metadata JSON.
+        fileSize:
+          type: integer
+          format: int64
+          description: Output file size in bytes. Populated when `errorCode == 1005`.
+          examples:
+          - 52428800
+        videoDuration:
+          type: integer
+          format: int64
+          description: Actual duration of the exported clip in milliseconds.
+          examples:
+          - 30000
+        thumbnailInfo:
+          $ref: '#/components/schemas/ThumbnailBaseInfo'
+        videoInfo:
+          $ref: '#/components/schemas/VideoBaseInfo'
+      x-apifox-orders:
+      - errorCode
+      - errorMsg
+      - isDryrun
+      - timeWait
+      - videoPath
+      - baseVideoPath
+      - metadataJsonPath
+      - baseMetadataJsonPath
+      - fileSize
+      - videoDuration
+      - thumbnailInfo
+      - videoInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    VideoBaseInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL of the output video file.
+        type:
+          type: string
+          description: Container format (e.g. `ts`, `mp4`).
+        bitrate:
+          type: string
+          description: Video bitrate (e.g. `"5000k"`).
+        width:
+          type: string
+          description: Frame width in pixels.
+        height:
+          type: string
+          description: Frame height in pixels.
+        framerate:
+          type: string
+          description: Frame rate (e.g. `"29.97"`).
+        duration:
+          type: string
+          description: Duration in seconds.
+      x-apifox-orders:
+      - url
+      - type
+      - bitrate
+      - width
+      - height
+      - framerate
+      - duration
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ThumbnailBaseInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL of the thumbnail image.
+        width:
+          type: string
+          description: Image width in pixels.
+        height:
+          type: string
+          description: Image height in pixels.
+      x-apifox-orders:
+      - url
+      - width
+      - height
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PublicLongexportReq:
+      type: object
+      required:
+      - filePath
+      - startTime
+      - duration
+      - maxChunkDuration
+      - userAccount
+      - fileName
+      properties:
+        filePath:
+          type: string
+          description: HTTP(S) URL or local relative path to the source HLS playlist (`play.m3u8`) or
+            MPD (`stream.mpd`). URL inputs are parsed into bucket/key/region; relative inputs are treated
+            as local paths.
+          examples:
+          - https://mma-video-new.s3.us-east-1.amazonaws.com/ts/PRODUCER_RECORDINGS/source-001/live-001/1/play.m3u8
+        startTime:
+          type: integer
+          format: int64
+          description: Clip start position as a Unix timestamp in **milliseconds**.
+          examples:
+          - 1700000000000
+        duration:
+          type: integer
+          format: int64
+          description: Total clip duration in **milliseconds**.
+          examples:
+          - 3600000
+        maxChunkDuration:
+          type: integer
+          format: int64
+          description: Maximum duration per output chunk in **milliseconds**.
+          examples:
+          - 600000
+        userAccount:
+          type: string
+          description: Email or identifier of the requesting user.
+          examples:
+          - user@example.com
+        fileName:
+          type: string
+          description: Base name for the output chunk files, without extension. Multiple chunks are named
+            `<fileName>-1.<fileType>`, `<fileName>-2.<fileType>`, etc.
+          examples:
+          - long_clip_20231114
+        fileType:
+          type: string
+          description: Output container format.
+          enum:
+          - ts
+          - mp4
+          - mov
+          default: ts
+          examples:
+          - ts
+        destination:
+          $ref: '#/components/schemas/PublicDestination'
+      x-apifox-orders:
+      - filePath
+      - startTime
+      - duration
+      - maxChunkDuration
+      - userAccount
+      - fileName
+      - fileType
+      - destination
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PublicLongexportRes:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: '- `1000` — Task registered; keep polling (`timeWait` > 0)
+
+            - `1001` — Still processing; keep polling (`timeWait` > 0)
+
+            - `1005` — All chunks exported successfully (terminal, `timeWait` = 0)
+
+            - Other — Error (terminal, `timeWait` = 0)
+
+            '
+          examples:
+          - 1005
+        errorMsg:
+          type: string
+          examples:
+          - ''
+        timeWait:
+          type: integer
+          format: int64
+          description: Milliseconds to wait before the next poll. `0` when done or errored.
+          examples:
+          - 0
+        videoList:
+          type: array
+          description: List of completed (and in-progress) video chunks. Grows with each poll.
+          items:
+            $ref: '#/components/schemas/VideoInfo'
+      x-apifox-orders:
+      - errorCode
+      - errorMsg
+      - timeWait
+      - videoList
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    VideoInfo:
+      type: object
+      properties:
+        startTime:
+          type: integer
+          format: int64
+          description: Chunk start timestamp in milliseconds (Unix epoch ms).
+        duration:
+          type: integer
+          format: int64
+          description: Chunk duration in milliseconds.
+        videoPath:
+          type: string
+          description: S3 path or URL to this chunk's video file.
+        isCompleted:
+          type: boolean
+          description: Whether this chunk has finished processing.
+      x-apifox-orders:
+      - startTime
+      - duration
+      - videoPath
+      - isCompleted
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    EstimateVideoSizeReq:
+      type: object
+      required:
+      - filePath
+      - startTime
+      - duration
+      - recMode
+      - storageInfo
+      - userAccount
+      properties:
+        filePath:
+          type: string
+          description: 'Source media path:
+
+            - URL mode (`recMode=1`): HTTP(S) HLS playlist or MPD URL parseable as bucket/key/region
+
+            - storage-info mode (`recMode=0`): relative MPD/HLS path under the `TS` storage root from
+            `storageInfo`
+
+            '
+          examples:
+          - https://mma-video-new.s3.us-east-1.amazonaws.com/ts/PRODUCER_RECORDINGS/source-001/live-001/1/play.m3u8
+        startTime:
+          type: integer
+          format: int64
+          description: Clip start position as a Unix timestamp in **milliseconds**.
+          examples:
+          - 1700000000000
+        duration:
+          type: integer
+          format: int64
+          description: Clip duration in **milliseconds**.
+          examples:
+          - 30000
+        recMode:
+          type: integer
+          description: Source parsing mode. `1` = HTTP(S) URL mode, `0` = relative path with `storageInfo`.
+          enum:
+          - 0
+          - 1
+          examples:
+          - 1
+        storageInfo:
+          type: string
+          description: Base64-encoded JSON array of storage credential configuration. In storage-info
+            mode, it must include a `storage_purpose` of `TS`.
+          examples:
+          - W3sic3RvcmFnZV90eXBlIjoiczMiLCJzdG9yYWdlX25hbWUiOiJtbWEtdmlkZW8tbmV3Iiwic3RvcmFnZV9sb2NhdGlvbiI6InVzLWVhc3QtMSIsInN0b3JhZ2VfcHVycG9zZSI6IlRTIiwic3RvcmFnZV9yb290X2ZvbGRlciI6IiJ9XQ==
+        userAccount:
+          type: string
+          description: Email or identifier of the requesting user.
+          examples:
+          - user@example.com
+        fileName:
+          type: string
+          description: Optional file name hint (does not affect the size estimate).
+      x-apifox-orders:
+      - filePath
+      - startTime
+      - duration
+      - recMode
+      - storageInfo
+      - userAccount
+      - fileName
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    EstimateVideoSizeRes:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: '- `1000` — Success
+
+            - Other — Error (see endpoint description)
+
+            '
+          examples:
+          - 1000
+        errorMsg:
+          type: string
+          examples:
+          - ''
+        videoSize:
+          type: integer
+          format: int64
+          description: Estimated output file size in **bytes**. `0` on error.
+          examples:
+          - 52428800
+      x-apifox-orders:
+      - errorCode
+      - errorMsg
+      - videoSize
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ExportAudioReqV2:
+      type: object
+      required:
+      - startTime
+      - duration
+      - sourceObjectId
+      - fileName
+      properties:
+        startTime:
+          type: integer
+          format: int64
+          description: Clip start position as a Unix timestamp in **milliseconds**.
+          examples:
+          - 1700000000000
+        duration:
+          type: integer
+          format: int64
+          description: Clip duration in **milliseconds**.
+          examples:
+          - 60000
+        sourceObjectId:
+          type: string
+          description: Numeric identifier of the source media object to extract audio from.
+          examples:
+          - '123456789012345678'
+        fileName:
+          type: string
+          description: Output file name **including extension** (e.g. `"clip.flac"`, `"clip.aac"`).
+          examples:
+          - audio_extract.flac
+        sampleRate:
+          type: integer
+          format: int32
+          description: Sample rate passed to downstream transcription metadata. Use `48000` to match the
+            encoder output used by this service.
+          examples:
+          - 48000
+        fileStartTimecode:
+          type: integer
+          format: int64
+          description: Timecode of the first frame in the source file (ms), used for sub-frame alignment.
+        fileEndTimecode:
+          type: integer
+          format: int64
+          description: Timecode of the last frame in the source file (ms).
+        reTranscribe:
+          $ref: '#/components/schemas/Transcribe'
+        mediaType:
+          type: string
+          description: Source media selector used by metadata lookup. Use `"mma"` for high-resolution
+            media; any other value selects preview media.
+          examples:
+          - mma
+        callbackUrl:
+          type: string
+          description: Webhook URL to notify when the export completes.
+          examples:
+          - https://my-service.example.com/audio-ready
+        uuid:
+          type: string
+          description: Client-supplied idempotency key for this export job.
+      x-apifox-orders:
+      - startTime
+      - duration
+      - sourceObjectId
+      - fileName
+      - sampleRate
+      - fileStartTimecode
+      - fileEndTimecode
+      - reTranscribe
+      - mediaType
+      - callbackUrl
+      - uuid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Transcribe:
+      type: object
+      description: Optional AI re-transcription settings for the exported audio.
+      properties:
+        switch:
+          type: boolean
+          description: Enable re-transcription.
+          default: false
+        groupId:
+          type: string
+          description: Transcription group identifier.
+        language:
+          type: string
+          description: Language code for transcription (e.g. `"en-US"`).
+      x-apifox-orders:
+      - switch
+      - groupId
+      - language
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ExportAudioResV2:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: '- `1000` — Task registered; keep polling (`timeWait` > 0)
+
+            - `1001` — Still processing; keep polling (`timeWait` > 0)
+
+            - `1005` — Audio export completed successfully (`status` = 2, `timeWait` = 0)
+
+            - Other — Error (terminal, `timeWait` = 0)
+
+            '
+          examples:
+          - 1005
+        errorMessage:
+          type: string
+          examples:
+          - task created successfully
+        status:
+          type: integer
+          description: 'Processing state:
+
+            - `1` — In progress
+
+            - `2` — Completed
+
+            '
+          enum:
+          - 1
+          - 2
+          examples:
+          - 2
+        timeWait:
+          type: integer
+          format: int64
+          description: Milliseconds to wait before the next poll. `0` when done or errored.
+          examples:
+          - 0
+        audioPath:
+          type: string
+          description: S3 path or URL to the exported audio file. Populated when `errorCode == 1005`.
+            Empty while processing.
+          examples:
+          - https://mma-video-new.s3.us-east-1.amazonaws.com/export/audio_extract.flac
+      x-apifox-orders:
+      - errorCode
+      - errorMessage
+      - status
+      - timeWait
+      - audioPath
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    MergeVideoReq:
+      type: object
+      required:
+      - user_id
+      - source_file_list
+      - destination
+      properties:
+        user_id:
+          type: string
+          description: User email or identifier who owns the merge job.
+          examples:
+          - user@example.com
+        session_id:
+          type: string
+          description: Optional session identifier for tracking.
+        source_file_list:
+          type: array
+          description: Ordered list of video segments to merge. `order` must be unique and sequential.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/SourceFile'
+        destination:
+          $ref: '#/components/schemas/Destination'
+      x-apifox-orders:
+      - user_id
+      - session_id
+      - source_file_list
+      - destination
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Destination:
+      type: object
+      required:
+      - bucket
+      - region
+      - full_path
+      - media_type
+      properties:
+        bucket:
+          type: string
+          description: Target S3 bucket for merged output.
+          examples:
+          - media-export-bucket
+        region:
+          type: string
+          description: AWS region of the target bucket.
+          examples:
+          - us-east-1
+        full_path:
+          type: string
+          description: Output object key without extension. The service appends `.` + `media_type`.
+          examples:
+          - merged/final
+        media_type:
+          type: string
+          description: Output container format. `json` is not supported for merge.
+          enum:
+          - ts
+          - mp4
+          - mov
+          - mkv
+          - mxf
+          examples:
+          - mp4
+      x-apifox-orders:
+      - bucket
+      - region
+      - full_path
+      - media_type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SourceFile:
+      type: object
+      required:
+      - order
+      - bucket
+      - region
+      - video_path
+      properties:
+        order:
+          type: integer
+          description: 1-based position of this segment in the merged output.
+          examples:
+          - 1
+        bucket:
+          type: string
+          description: S3 bucket containing this segment.
+          examples:
+          - mma-video-new
+        region:
+          type: string
+          description: AWS region of the bucket.
+          examples:
+          - us-east-1
+        video_path:
+          type: string
+          description: Object key of the video segment within the bucket.
+          examples:
+          - export/part1.ts
+      x-apifox-orders:
+      - order
+      - bucket
+      - region
+      - video_path
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    MergeVideoRes:
+      type: object
+      properties:
+        ErrorCode:
+          type: integer
+          description: '- `0` — Merge complete
+
+            - `1` — Still processing
+
+            - Other — Error (see endpoint description)
+
+            '
+          examples:
+          - 0
+        ErrorMessage:
+          type: string
+          examples:
+          - success
+        VideoPath:
+          type: string
+          description: Object key of the merged output file. Populated when `ErrorCode == 0`.
+          examples:
+          - merged/final.mp4
+        VideoUrl:
+          type: string
+          description: Public HTTP(S) URL for the merged output file.
+          examples:
+          - https://media-export-bucket.s3.us-east-1.amazonaws.com/merged/final.mp4
+        TimeWait:
+          type: integer
+          format: int64
+          description: Milliseconds to wait before the next poll. `0` when done or errored.
+          examples:
+          - 0
+      x-apifox-orders:
+      - ErrorCode
+      - ErrorMessage
+      - VideoPath
+      - VideoUrl
+      - TimeWait
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CutJsonReqV2:
+      type: object
+      required:
+      - jsonUrl
+      - markIn
+      - markOut
+      properties:
+        jsonUrl:
+          type: string
+          description: HTTP(S) URL of the source JSON edit list / timeline file.
+          format: uri
+          examples:
+          - https://mma-video-new.s3.us-east-1.amazonaws.com/export/story.json
+        markIn:
+          type: integer
+          format: int64
+          description: Cut-in point in **milliseconds** (relative to the beginning of the JSON timeline).
+          examples:
+          - 5000
+        markOut:
+          type: integer
+          format: int64
+          description: Cut-out point in **milliseconds**. Must be strictly greater than `markIn`.
+          examples:
+          - 65000
+        fileName:
+          type: string
+          description: Output JSON base name. The service appends `_<timestamp>_<duration>.json`.
+          examples:
+          - story_trimmed
+        uploadPath:
+          type: string
+          description: S3 key prefix for the output file.
+          examples:
+          - trimmed/
+        PathId:
+          type: string
+          description: Internal path identifier.
+        Bucket:
+          type: string
+          description: Target S3 bucket for the output JSON file.
+          examples:
+          - media-export-bucket
+        Region:
+          type: string
+          description: AWS region of the target bucket.
+          examples:
+          - us-east-1
+        serviceCaller:
+          type: string
+          description: Identifier of the upstream service making this request.
+      x-apifox-orders:
+      - jsonUrl
+      - markIn
+      - markOut
+      - fileName
+      - uploadPath
+      - PathId
+      - Bucket
+      - Region
+      - serviceCaller
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CutJsonRes:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: '- `0` — Success
+
+            - `3001` — Source JSON URL is invalid or unreachable
+
+            - `3002` — JSON content format is invalid
+
+            - `3003` — Bucket configuration error
+
+            - `3004` — Output upload failed
+
+            '
+          examples:
+          - 0
+        errorMessage:
+          type: string
+          examples:
+          - success
+        jsonUrl:
+          type: string
+          description: HTTP(S) URL to the trimmed output JSON file. Empty on error.
+          examples:
+          - https://media-export-bucket.s3.us-east-1.amazonaws.com/trimmed/story_trimmed_20231114_120000_60000.json
+      x-apifox-orders:
+      - errorCode
+      - errorMessage
+      - jsonUrl
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

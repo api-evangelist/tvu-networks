@@ -1,0 +1,124 @@
+generated: '2026-09-01'
+method: derived
+source: >-
+  openapi/*.yml (352 operations assembled from TVU's own per-endpoint OpenAPI 3.0.1 exports),
+  https://docs.tvunetworks.cn/ documentation pages, and live probes of TVU hosts on 2026-09-01
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: >-
+    Every one of the 21 assembled documents is OpenAPI 3.0.1, because that is the format TVU's
+    own documentation site emits per endpoint (https://docs.tvunetworks.cn/api-<id>.md carries a
+    fenced `openapi: 3.0.1` block). All 352 operations carry a summary, an operationId and at
+    least one declared response.
+- id: openapi-security-scheme-validity
+  conforms: false
+  evidence: >-
+    The exported components.securitySchemes declare `type: bearer`, which is not a valid
+    OpenAPI 3.0 securityScheme type (valid values are apiKey, http, oauth2, openIdConnect,
+    mutualTLS). A strict validator rejects it. Left verbatim in openapi/ and corrected in
+    overlays/.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    No operation declares application/problem+json. Errors are returned as HTTP 200 with an
+    in-body {errorCode, errorInfo, result} envelope. See errors/tvu-networks-problem-types.yml.
+- id: rfc8594
+  conforms: false
+  evidence: 'No Deprecation or Sunset response header is declared on any operation, including the one operation marked deprecated: true.'
+- id: rfc9116
+  conforms: false
+  evidence: '/.well-known/security.txt returns 404 on every TVU host (SPA-shell 200 on mediahub.tvunetworks.com). See well-known/tvu-networks-well-known.yml.'
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 securityScheme in any spec and no /.well-known/oauth-authorization-server on any
+    host. TVU uses a Bearer AppSecret, a SID session header and an AccessKey+MD5 signature.
+- id: oidc
+  conforms: false
+  evidence: '/.well-known/openid-configuration returns 404 on every TVU host.'
+- id: idempotency
+  conforms: partial
+  evidence: >-
+    Documented only on the export surface, as a client-supplied `uuid` field (not a header).
+    openapi/tvu-networks-export-openapi.yml states "supply `uuid` to prevent duplicate jobs";
+    error 1100 is the idempotent-hit result. No other write surface offers deduplication.
+- id: pagination
+  conforms: partial
+  evidence: >-
+    Three different idioms coexist (pageNum/pageSize, Offset, offset) and no response declares a
+    total-count or next-cursor field. See conventions/tvu-networks-conventions.yml.
+- id: webhooks
+  conforms: true
+  evidence: >-
+    A real subscription operation exists — POST /api/metadataproto/MetadataUploader.RegisterWebhook
+    (openapi/tvu-networks-search-api-openapi.yml) takes a webhookURL and documents the delivered
+    request body — plus per-job callbackUrl fields on the export and object-hold surfaces. Not
+    described in an AsyncAPI document. See asyncapi/tvu-networks-webhooks.yml.
+- id: graphql
+  conforms: partial
+  evidence: >-
+    TVU runs GraphQL internally — the Producer surface is published entirely as
+    /graphql2rest/<operation> REST wrappers and the Object API documents a GraphQL folder with a
+    GraphqlResult response wrapper — but no public /graphql endpoint is documented and no SDL is
+    published, so the GraphQL schema cannot be introspected. Recorded as present-but-not-exposed.
+domain_standards:
+- id: scte-35
+  name: SCTE 35 — Digital Program Insertion Cueing Message
+  conforms: true
+  evidence: >-
+    The contract declares SCTE-35 ad-marker insertion as first-class operations, not as a prose
+    claim: POST /openApi/scte/enableSCTE (operationIds Enable_Scte_250778644 and
+    enableScteToSwitcher_250778645) in openapi/tvu-networks-scteservice-api-openapi.yml; POST
+    /openapi/playout/3.0/operateManualSCTE (Adding_ManualSCTE_via_API_250778585) in
+    openapi/tvu-networks-channel-api-openapi.yml; a SCTE-35 marker query by time range
+    (Query_SCTE_35_marker_events_by_time_range_468959105) in
+    openapi/tvu-networks-search-api-openapi.yml; and mpegtsSctePid transport-stream PID fields in
+    the encoding-profile schemas. A buyer who already speaks SCTE-35 wires TVU playout into an
+    existing ad-insertion chain with no bespoke connector.
+  spec_location: 'openapi/tvu-networks-scteservice-api-openapi.yml, openapi/tvu-networks-channel-api-openapi.yml, openapi/tvu-networks-search-api-openapi.yml'
+- id: mos-protocol
+  name: MOS — Media Object Server Communications Protocol
+  conforms: true
+  evidence: >-
+    A dedicated MOS Gateway API folder is published
+    (https://docs.tvunetworks.cn/folder-48352941, "Channel for MOS") carrying
+    PUT /api/mos/v1/route, POST /tvu-playout-thu/channelEventSync/enable and GET /env-check in
+    openapi/tvu-networks-mos-gateway-api-openapi.yml. MOS is the newsroom-computer-system
+    integration standard for broadcast playout; declaring a MOS gateway is what lets an ENPS or
+    iNEWS rundown drive TVU Channel directly. The gateway is declared but its message payloads
+    are not modelled in the contract — the route operation is the whole published surface.
+  spec_location: openapi/tvu-networks-mos-gateway-api-openapi.yml
+- id: srt
+  name: SRT — Secure Reliable Transport
+  conforms: true
+  evidence: >-
+    Declared as a first-class source and output type with its own URL grammar in TVU's own
+    contract documentation (https://docs.tvunetworks.cn/doc-5661551): caller mode
+    `srt://{host}?mode=caller&latency={microseconds}` and listener mode
+    `srt://{custom-section}.tvustream.com:{60000-65000}?mode=listener`.
+- id: ndi
+  name: NDI — Network Device Interface
+  conforms: true
+  evidence: 'Declared source and output type `ndi://{host_name}/{ndiName}` in https://docs.tvunetworks.cn/doc-5661551.'
+- id: smpte-2022-fec
+  name: SMPTE 2022-1 / Pro-MPEG FEC
+  conforms: true
+  evidence: >-
+    Declared output type PROMPEG with the FEC matrix expressed in the URL —
+    `rtp://{custom-section}.tvustream.com:60003?fec_l={length}&fec_d={depth}` — and an RTP-FEC
+    source type `rtp://{host}/{path}?fec=1`, in https://docs.tvunetworks.cn/doc-5661551.
+- id: rtmp-rtsp-hls
+  name: RTMP / RTSP / HLS / MPEG-TS over UDP
+  conforms: true
+  evidence: >-
+    All declared as source and output types with caller/listener modes and exact URL grammars in
+    https://docs.tvunetworks.cn/doc-5661551, including MPEG-TS PID controls
+    (mpegtsPmtStartPid, mpegtsStartPid, mpegtsSctePid) in the encoding-profile schemas.
+not_applicable:
+- {id: fhir, reason: 'not a healthcare provider'}
+- {id: fapi, reason: 'not a financial provider'}
+- {id: psd2, reason: 'not a financial provider'}
+- {id: scim, reason: 'no identity-provisioning surface published'}
+- {id: odata, reason: 'no OData $metadata surface'}
+- {id: 'json:api', reason: 'proprietary response envelope, not JSON:API'}

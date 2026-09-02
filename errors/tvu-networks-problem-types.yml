@@ -1,0 +1,63 @@
+generated: '2026-09-01'
+method: searched
+source: >-
+  https://docs.tvunetworks.cn/doc-5808220 (Search API > extract > ERROR CODE) enriched with the
+  4xx/5xx responses derived from openapi/*.yml
+format: proprietary
+rfc9457: false
+media_type: application/json
+envelope:
+  errorCode: 'string — "0x0" means success; a numeric code such as 1010 means failure'
+  errorInfo: 'string — human-readable message'
+  result: 'object|null — payload'
+  async: 'boolean — present on job-submitting operations'
+transport_note: >-
+  TVU signals most application failures inside a HTTP 200 body via errorCode, not via the HTTP
+  status. Of the 352 exported operations, all 352 declare a 200; only 63 declare a 400, 40 a 401,
+  39 a 405, 9 a 500 and 1 a 403. There is no 429 anywhere. An agent that branches on status alone
+  will treat a failed export, a missing source file or an exhausted quota as a success.
+http_status_coverage:
+- {status: '200', operations: 352}
+- {status: '400', operations: 63}
+- {status: '401', operations: 40}
+- {status: '405', operations: 39}
+- {status: '500', operations: 9}
+- {status: '403', operations: 1}
+- {status: '429', operations: 0, note: 'No rate-limit response is declared anywhere in the contract.'}
+non_standard_status_keys:
+- 'x-500:fail to sync epg file to s3'
+- 'x-500:Please turn off the clone sync first.'
+- 'x-500:Copying,Please wait'
+note_on_non_standard_keys: >-
+  Three operations declare response keys of the form `x-500:<message>` instead of a status code.
+  These are Apifox "custom response" entries carried through verbatim; a standards-conformant
+  OpenAPI reader will not recognise them as responses.
+problem_types:
+- {code: '1000', title: export task created successfully, surface: 'export, thumbnail', kind: success}
+- {code: '1001', title: export task in progress, surface: export, kind: status, remediation: 'Poll; there is no cancel operation.'}
+- {code: '1005', title: export task is done, surface: export, kind: success}
+- {code: '1010', title: Missing source file, surface: export, kind: client}
+- {code: '1012', title: the video file is output as size 0, surface: 'export, thumbnail', kind: server}
+- {code: '1017', title: Added export task failure, surface: export, kind: server}
+- {code: '1018', title: Key parameters are missing, surface: 'export, thumbnail', kind: client}
+- {code: '1019', title: Failed to initialize s3 sdk, surface: 'export, thumbnail', kind: server}
+- {code: '1021', title: File upload s3 failed, surface: export, kind: server}
+- {code: '1024', title: Failed to read local file, surface: thumbnail, kind: server}
+- {code: '1025', title: Failed to scan s3 directory, surface: export, kind: server}
+- {code: '1031', title: video export time exceeds os limit, surface: export, kind: quota}
+- {code: '1032', title: video export time exceeds single-user limit, surface: export, kind: quota}
+- {code: '1046', title: insufficient remaining free space, surface: export, kind: quota}
+- {code: '1050', title: Abnormalities in the ts source required for localization, surface: export, kind: server}
+- {code: '1052', title: export video duration operation maximum duration, surface: export, kind: quota}
+- {code: '1072', title: Failed to read or download s3 file, surface: thumbnail, kind: server}
+- {code: '1077', title: Failed to upload file, surface: thumbnail, kind: server}
+- {code: '1084', title: Failed to get user task cache, surface: export, kind: server}
+- {code: '1086', title: get source ts signature url fail, surface: 'export, thumbnail', kind: server}
+- {code: '1090', title: source ts file not exist, surface: export, kind: client}
+- {code: '1093', title: verify required ts fail, surface: export, kind: server}
+- {code: '1099', title: 'Media processing encountered an exception. Please retry. For persistent issues, contact TVU Support.', surface: 'export, thumbnail', kind: server, remediation: retry}
+- {code: '1100', title: export file already existed and can be downloaded directly, surface: export, kind: idempotent-hit, remediation: 'Download the existing artifact; this is the observable result of re-submitting the same idempotency uuid.'}
+gaps:
+- 'The published error table covers the export and thumbnail surface only. The other ~330 operations return errorCode values with no published reference.'
+- 'No RFC 9457 application/problem+json representation anywhere.'
+- 'Quota codes (1031, 1032, 1046, 1052) exist but the limits they enforce are not published — see rate-limits/tvu-networks-rate-limits.yml.'

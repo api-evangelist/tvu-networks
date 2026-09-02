@@ -1,0 +1,65 @@
+generated: '2026-09-01'
+method: searched
+source: https://docs.tvunetworks.cn/folder-45770135 (Authentication API) — enriched over the profile derived from openapi/*.yml
+summary:
+  types: [apikey, bearer, signature]
+  documented_methods: 3
+  transport: https
+  note: >-
+    Every one of the 21 assembled OpenAPI documents declares the same two Apifox-exported
+    securitySchemes — `bearer` and `apikey-header-Authorization`. TVU's own Authentication page
+    documents THREE distinct schemes; the third (AccessKey + timestamp + MD5 signature) is not
+    modelled in the exported securitySchemes at all, so a consumer reading only the spec would
+    miss it.
+schemes:
+- name: bearer
+  type: http
+  scheme: bearer
+  in: header
+  header: Authorization
+  credential: AppSecret
+  description: >-
+    The bearer token is the account's AppSecret, generated in Command Center -> Setting ->
+    Access App -> Create an Access App with both "API Function" and "BearerToken" enabled.
+    TVU documents it as a 32-character string of digits and lowercase letters. The AppSecret
+    owner determines which resources the call may read or manage.
+  supported_by: [MediaHub, TVUSearch, mma.tvunetworks.com]
+  docs: https://docs.tvunetworks.cn/folder-45770135
+  spec_note: >-
+    Exported by Apifox as `type: bearer`, which is not a valid OpenAPI 3.0 securityScheme type
+    (the correct form is `type: http, scheme: bearer`). Recorded here in its corrected form;
+    the deviation is left verbatim in openapi/ and captured in overlays/ and conformance/.
+- name: SID
+  type: apiKey
+  in: header
+  header: SID
+  description: >-
+    Session ID obtained by POSTing an email plus the SHA-512 hex digest of the password (and an
+    expireTime in minutes) to the token endpoint; the returned result.token is sent as the SID
+    request header on subsequent calls. The SID owner determines which resources the call may
+    access.
+  token_endpoint: https://userservice.tvunetworks.com/userAuth/token/getToken
+  operation: openapi/tvu-networks-authentication-openapi.yml
+  docs: https://docs.tvunetworks.cn/folder-45770135
+- name: AccessKey
+  type: signature
+  in: header
+  header: AccessKey
+  fields:
+  - {name: appkey, type: string, description: 'TVU issues a key pair to API users — AppKey and AppSecret'}
+  - {name: timestamp, type: string, description: 'milliseconds; required to generate the signature'}
+  - {name: signature, type: string, description: 'MD5(AppSecret + timestamp)'}
+  description: >-
+    An HMAC-style signed-request scheme documented on the Authentication page and NOT present in
+    any exported securityScheme. An agent that reads only the OpenAPI will not discover it.
+  docs: https://docs.tvunetworks.cn/folder-45770135
+  weakness: >-
+    The signature is an MD5 digest. MD5 is not collision-resistant and is deprecated for
+    authentication use; recorded as published, not endorsed.
+oauth2: false
+openid_connect: false
+mtls: false
+gaps:
+- 'No OAuth 2.0 or OpenID Connect: no /.well-known/openid-configuration or /.well-known/oauth-authorization-server is served on any TVU host (all 404 or SPA-shell 200).'
+- 'The exported specs carry no `security:` requirement on individual operations, so the spec does not say which of the three schemes each operation accepts — the Authentication page does, in prose.'
+- 'Several exported operations carry SID/Authorization/Cookie/sid as REQUIRED plain header parameters with live-looking example values rather than as security requirements.'

@@ -1,0 +1,24 @@
+generated: '2026-09-01'
+method: searched
+source: >-
+  https://docs.tvunetworks.cn/ (full site llms.txt index of 403 endpoints and every folder doc)
+  plus openapi/*.yml — searched for published limits, 429 responses and rate-limit headers
+limit_count: 0
+headers: []
+exhaustion_status: null
+note: >-
+  TVU publishes no rate limits. None of the 352 exported operations declares a 429 response, and
+  no RateLimit-*, X-RateLimit-* or Retry-After header appears in any response definition or in
+  any documentation page. The only quota signal TVU publishes at all is indirect: four
+  application error codes on the export surface report that a limit was hit
+  (1031 "video export time exceeds os limit", 1032 "video export time exceeds single-user
+  limit", 1046 "insufficient remaining free space", 1052 "export video duration operation
+  maximum duration") without ever stating what the limit is. An agent therefore cannot budget
+  against this API — it can only discover a ceiling by crossing it, and it will read the crossing
+  as an HTTP 200.
+rate_limits: []
+indirect_quota_signals:
+- {code: '1031', meaning: video export time exceeds os limit, limit_value: null, source: 'https://docs.tvunetworks.cn/doc-5808220'}
+- {code: '1032', meaning: video export time exceeds single-user limit, limit_value: null, source: 'https://docs.tvunetworks.cn/doc-5808220'}
+- {code: '1046', meaning: insufficient remaining free space, limit_value: null, source: 'https://docs.tvunetworks.cn/doc-5808220'}
+- {code: '1052', meaning: export video duration operation maximum duration, limit_value: null, source: 'https://docs.tvunetworks.cn/doc-5808220'}

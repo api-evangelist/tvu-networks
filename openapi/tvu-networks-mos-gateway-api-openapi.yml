@@ -1,0 +1,227 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — MOS Gateway API
+  description: MOS Gateway API operations of the TVU Networks public HTTP API, assembled verbatim from
+    the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /api/mos/v1/route:
+    put:
+      summary: route
+      deprecated: false
+      description: provided by MOS Gateway used by customers, specifies the mapping of sources to destinations.
+      tags:
+      - MOS Gateway API
+      parameters:
+      - name: tagvalue
+        in: header
+        description: ''
+        required: true
+        example: stage
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sourceType:
+                  type: string
+                  description: source type (Channel ...)
+                sourceId:
+                  type: string
+                  description: source id
+                destinations:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      destinationType:
+                        type: string
+                        description: destination type
+                      destinationId:
+                        type: string
+                        description: destination id
+                    x-apifox-orders:
+                    - destinationType
+                    - destinationId
+                    required:
+                    - destinationType
+                    - destinationId
+                  description: destination list
+              x-apifox-orders:
+              - sourceType
+              - sourceId
+              - destinations
+              required:
+              - sourceType
+              - sourceId
+              - destinations
+            example:
+              sourceType: Channel
+              sourceId: a8f2ba6ab6354ac0b1883a45e52d6372
+              destinations:
+              - destinationType: Channel
+                destinationId: aec4a2ad50cd456b9a6acf5e6c3bc830
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorMsg:
+                    type: string
+                x-apifox-orders:
+                - errorCode
+                - errorMsg
+                required:
+                - errorCode
+                - errorMsg
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+      x-apifox-folder: MOS Gateway API
+      x-apifox-status: testing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778650-run
+      operationId: route_250778650
+      x-source-doc: https://docs.tvunetworks.cn/api-250778650.md
+  /env-check:
+    get:
+      summary: env-check
+      deprecated: false
+      description: ''
+      tags:
+      - MOS Gateway API/Channel for MOS
+      parameters:
+      - name: playoutd4
+        in: cookie
+        description: fix to "playoutd4=po4"
+        required: true
+        example: po4
+        schema:
+          type: string
+      - name: SID
+        in: cookie
+        description: ''
+        required: true
+        example: 6A0040F1D44040408D16D9CC29305DC6
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: MOS Gateway API/Channel for MOS
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-251623170-run
+      operationId: env_check_251623170
+      x-source-doc: https://docs.tvunetworks.cn/api-251623170.md
+  /tvu-playout-thu/channelEventSync/enable:
+    post:
+      summary: channelEventSync
+      deprecated: false
+      description: provided by Channel used by customers, specifies which VM's schedule should be mapped,
+        i.e. sending event to MOS Gateway in real time.
+      tags:
+      - MOS Gateway API/Channel for MOS
+      parameters:
+      - name: playoutd4
+        in: cookie
+        description: fix to "playoutd4=po4"
+        required: true
+        example: po4
+        schema:
+          type: string
+      - name: programId
+        in: query
+        description: Channel ID
+        required: true
+        example: 904249b9e9ac491eb9b592184713db6d
+        schema:
+          type: string
+      - name: enable
+        in: query
+        description: true=enable， false=disable
+        required: true
+        example: 'true'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: MOS Gateway API/Channel for MOS
+      x-apifox-status: testing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778651-run
+      operationId: channelEventSync_250778651
+      x-source-doc: https://docs.tvunetworks.cn/api-250778651.md
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

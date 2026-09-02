@@ -1,0 +1,275 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — ScteService API
+  description: ScteService API operations of the TVU Networks public HTTP API, assembled verbatim from
+    the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /openApi/scte/enableSCTE:
+    post:
+      summary: Enable Scte
+      deprecated: false
+      description: ''
+      tags:
+      - ScteService API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commandType:
+                  type: integer
+                  description: Types of Scte
+                  enum:
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  x-apifox-enum:
+                  - value: 1
+                    name: SpliceInsertScte
+                    description: ''
+                  - value: 2
+                    name: TimeSignal Manual Model
+                    description: ''
+                  - value: 3
+                    name: TimeSignal Auto Model
+                    description: ''
+                  - value: 4
+                    name: TimeSignal Free Model
+                    description: ''
+                startFlag:
+                  type: boolean
+                  description: 'Scte Start or stop; Required when commandType=2; true: Scte Start,false:
+                    Scte Stop'
+                duration:
+                  type: integer
+                  description: 'SCTE duration, required when commandType=1 or commandType=3, unit: seconds'
+                signalType:
+                  type: integer
+                  enum:
+                  - 2
+                  - 3
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                  - 9
+                  - 10
+                  - 16
+                  - 17
+                  - 32
+                  - 33
+                  - 34
+                  - 35
+                  - 48
+                  - 49
+                  - 52
+                  - 53
+                  - 54
+                  - 55
+                  x-apifox-enum:
+                  - value: 2
+                    name: (0x30)_Manually stop
+                    description: ''
+                  - value: 3
+                    name: (0x30)_Auto stop
+                    description: ''
+                  - value: 5
+                    name: (0x22)_Auto stop
+                    description: ''
+                  - value: 6
+                    name: (0x34)_Auto stop
+                    description: ''
+                  - value: 7
+                    name: (0x22)_Manually stop
+                    description: ''
+                  - value: 8
+                    name: (0x34)_Manually stop
+                    description: ''
+                  - value: 9
+                    name: Time signal(0x22 0x30 0x34)multi manual stop
+                    description: ''
+                  - value: 10
+                    name: Time signal(0x22 0x30 0x34)multi auto stop
+                    description: ''
+                  - value: 16
+                    name: (0x10) Program Start
+                    description: ''
+                  - value: 17
+                    name: (0x11) Program End
+                    description: ''
+                  - value: 32
+                    name: (0x20) Chapter Start
+                    description: ''
+                  - value: 33
+                    name: (0x21) Chapter End
+                    description: ''
+                  - value: 34
+                    name: (0x22) Break Start
+                    description: ''
+                  - value: 35
+                    name: (0x23) Break End
+                    description: ''
+                  - value: 48
+                    name: (0x30) Provider Ad Start
+                    description: ''
+                  - value: 49
+                    name: (0x31) Provider Ad End
+                    description: ''
+                  - value: 52
+                    name: (0x34) Provider Placement Opportunity Start
+                    description: ''
+                  - value: 53
+                    name: (0x35) Provider Placement Opportunity End
+                    description: ''
+                  - value: 54
+                    name: (0x36) Distributor Placement Opportunity Start
+                    description: ''
+                  - value: 55
+                    name: (0x37) Distributor Placement Opportunity End
+                    description: ''
+                  description: The specific type of TimeSignalFree, which must be passed when commandType=4
+                sourceObjectId:
+                  type: string
+                  description: Source ObjectId
+                context:
+                  type: string
+                  description: Scte Payload. Temporarily used, Payload will be generated based on CommandType,
+                    startFlag, duration, and signalType in the future
+              x-apifox-orders:
+              - commandType
+              - startFlag
+              - duration
+              - signalType
+              - sourceObjectId
+              - context
+              required:
+              - commandType
+              - startFlag
+              - duration
+              - signalType
+              - sourceObjectId
+              - context
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: ScteService API
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778644-run
+      operationId: Enable_Scte_250778644
+      x-source-doc: https://docs.tvunetworks.cn/api-250778644.md
+  /scte-service-test/openApi/scte/enableSCTE:
+    post:
+      summary: enableScteToSwitcher
+      deprecated: false
+      description: ''
+      tags:
+      - ScteService API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: DFED0B538B6E4DED89B8A77D029E389D
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sourceObjectId:
+                  type: string
+                  description: Object Source Id
+                context:
+                  type: string
+                  description: Payload
+              x-apifox-orders:
+              - sourceObjectId
+              - context
+              required:
+              - sourceObjectId
+              - context
+            example:
+              sourceObjectId: '1318813319074811904'
+              context: FFFF001E00010300020000010101000E030100020300000FA0012C000001
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  result:
+                    type: string
+                    description: SwitcherNodeId
+                  repeated:
+                    type: 'null'
+                required:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: ScteService API
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778645-run
+      operationId: enableScteToSwitcher_250778645
+      x-source-doc: https://docs.tvunetworks.cn/api-250778645.md
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

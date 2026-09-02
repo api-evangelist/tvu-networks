@@ -1,0 +1,2872 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Commentator API
+  description: Commentator API operations of the TVU Networks public HTTP API, assembled verbatim from
+    the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /event/v2/7a7a0aa0439147238305bba308cbc818:
+    post:
+      summary: info
+      deprecated: false
+      description: ''
+      tags:
+      - Commentator API/event
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      startTime:
+                        type: integer
+                      endTime:
+                        type: integer
+                      region:
+                        type: 'null'
+                      title:
+                        type: string
+                      description:
+                        type: string
+                      partyCode:
+                        type: integer
+                      status:
+                        type: integer
+                      failedCase:
+                        type: 'null'
+                      failedReason:
+                        type: 'null'
+                      audioMixTaskId:
+                        type: 'null'
+                      productionId:
+                        type: 'null'
+                      programId:
+                        type: 'null'
+                      record:
+                        type: integer
+                      mainWindowType:
+                        type: integer
+                      inputList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            type:
+                              type: string
+                            purpose:
+                              type: integer
+                            value:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                name:
+                                  type: string
+                                changeName:
+                                  type: 'null'
+                                server:
+                                  type: 'null'
+                                key:
+                                  type: 'null'
+                                rid:
+                                  type: string
+                                receiverName:
+                                  type: string
+                              required:
+                              - id
+                              - name
+                              - changeName
+                              - server
+                              - key
+                              - rid
+                              - receiverName
+                              x-apifox-orders:
+                              - id
+                              - name
+                              - changeName
+                              - server
+                              - key
+                              - rid
+                              - receiverName
+                          x-apifox-orders:
+                          - id
+                          - type
+                          - purpose
+                          - value
+                      receiverIds:
+                        type: array
+                        items:
+                          type: string
+                      receivers:
+                        type: array
+                        items:
+                          type: string
+                      templates:
+                        type: array
+                        items:
+                          type: string
+                      eventParties:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            partyCode:
+                              type: integer
+                            title:
+                              type: string
+                          x-apifox-orders:
+                          - partyCode
+                          - title
+                      defaultGrid:
+                        type: 'null'
+                      producerSettingsDto:
+                        type: object
+                        properties:
+                          region:
+                            type: string
+                          format:
+                            type: string
+                          elasticIp:
+                            type: string
+                          delay:
+                            type: integer
+                          isVertical:
+                            type: integer
+                          rps:
+                            type: integer
+                          replayApp:
+                            type: integer
+                          outputDelay:
+                            type: integer
+                          outputDelayTime:
+                            type: integer
+                          cloudRecord:
+                            type: integer
+                          recordSources:
+                            type: string
+                          pgmRecording:
+                            type: integer
+                          audioChannelNum:
+                            type: integer
+                        required:
+                        - region
+                        - format
+                        - elasticIp
+                        - delay
+                        - isVertical
+                        - rps
+                        - replayApp
+                        - outputDelay
+                        - outputDelayTime
+                        - cloudRecord
+                        - recordSources
+                        - pgmRecording
+                        - audioChannelNum
+                        x-apifox-orders:
+                        - region
+                        - format
+                        - elasticIp
+                        - delay
+                        - isVertical
+                        - rps
+                        - replayApp
+                        - outputDelay
+                        - outputDelayTime
+                        - cloudRecord
+                        - recordSources
+                        - pgmRecording
+                        - audioChannelNum
+                      userId:
+                        type: string
+                      env:
+                        type: string
+                      platform:
+                        type: integer
+                      rid:
+                        type: string
+                      receiverName:
+                        type: string
+                      clientId:
+                        type: 'null'
+                      ppDomainUrl:
+                        type: 'null'
+                      inputPreviewSetting:
+                        type: object
+                        properties:
+                          resolution:
+                            type: string
+                          bitrate:
+                            type: string
+                          frameRate:
+                            type: integer
+                        required:
+                        - resolution
+                        - bitrate
+                        - frameRate
+                        x-apifox-orders:
+                        - resolution
+                        - bitrate
+                        - frameRate
+                      finalPgmPreviewSetting:
+                        type: object
+                        properties:
+                          resolution:
+                            type: string
+                          bitrate:
+                            type: string
+                          frameRate:
+                            type: integer
+                        required:
+                        - resolution
+                        - bitrate
+                        - frameRate
+                        x-apifox-orders:
+                        - resolution
+                        - bitrate
+                        - frameRate
+                      previewSetting:
+                        type: object
+                        properties:
+                          pgm:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              changeName:
+                                type: 'null'
+                              rtilCode:
+                                type: 'null'
+                              purpose:
+                                type: integer
+                              enable:
+                                type: boolean
+                              audioTrack:
+                                type: string
+                              encoderSetting:
+                                type: string
+                              allAudioTrackRtilCodes:
+                                type: array
+                                items:
+                                  type: string
+                            required:
+                            - name
+                            - changeName
+                            - rtilCode
+                            - purpose
+                            - enable
+                            - audioTrack
+                            - encoderSetting
+                            - allAudioTrackRtilCodes
+                            x-apifox-orders:
+                            - name
+                            - changeName
+                            - rtilCode
+                            - purpose
+                            - enable
+                            - audioTrack
+                            - encoderSetting
+                            - allAudioTrackRtilCodes
+                          main:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              changeName:
+                                type: 'null'
+                              rtilCode:
+                                type: 'null'
+                              purpose:
+                                type: integer
+                              enable:
+                                type: boolean
+                              audioTrack:
+                                type: string
+                              encoderSetting:
+                                type: string
+                              allAudioTrackRtilCodes:
+                                type: array
+                                items:
+                                  type: string
+                            required:
+                            - name
+                            - changeName
+                            - rtilCode
+                            - purpose
+                            - enable
+                            - audioTrack
+                            - encoderSetting
+                            - allAudioTrackRtilCodes
+                            x-apifox-orders:
+                            - name
+                            - changeName
+                            - rtilCode
+                            - purpose
+                            - enable
+                            - audioTrack
+                            - encoderSetting
+                            - allAudioTrackRtilCodes
+                          backup:
+                            type: 'null'
+                          backupPgm:
+                            type: 'null'
+                        required:
+                        - pgm
+                        - main
+                        - backup
+                        - backupPgm
+                        x-apifox-orders:
+                        - pgm
+                        - main
+                        - backup
+                        - backupPgm
+                      partyExtendInfoVO:
+                        type: 'null'
+                      advancedSetting:
+                        type: 'null'
+                      collaborateType:
+                        type: integer
+                      coHost:
+                        type: 'null'
+                    required:
+                    - id
+                    - startTime
+                    - endTime
+                    - region
+                    - title
+                    - description
+                    - partyCode
+                    - status
+                    - failedCase
+                    - failedReason
+                    - audioMixTaskId
+                    - productionId
+                    - programId
+                    - record
+                    - mainWindowType
+                    - inputList
+                    - receiverIds
+                    - receivers
+                    - templates
+                    - eventParties
+                    - defaultGrid
+                    - producerSettingsDto
+                    - userId
+                    - env
+                    - platform
+                    - rid
+                    - receiverName
+                    - clientId
+                    - ppDomainUrl
+                    - inputPreviewSetting
+                    - finalPgmPreviewSetting
+                    - previewSetting
+                    - partyExtendInfoVO
+                    - advancedSetting
+                    - collaborateType
+                    - coHost
+                    x-apifox-orders:
+                    - id
+                    - startTime
+                    - endTime
+                    - region
+                    - title
+                    - description
+                    - partyCode
+                    - status
+                    - failedCase
+                    - failedReason
+                    - audioMixTaskId
+                    - productionId
+                    - programId
+                    - record
+                    - mainWindowType
+                    - inputList
+                    - receiverIds
+                    - receivers
+                    - templates
+                    - eventParties
+                    - defaultGrid
+                    - producerSettingsDto
+                    - userId
+                    - env
+                    - platform
+                    - rid
+                    - receiverName
+                    - clientId
+                    - ppDomainUrl
+                    - inputPreviewSetting
+                    - finalPgmPreviewSetting
+                    - previewSetting
+                    - partyExtendInfoVO
+                    - advancedSetting
+                    - collaborateType
+                    - coHost
+                  repeated:
+                    type: 'null'
+                required:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+              examples:
+                '1':
+                  summary: Success
+                  value:
+                    errorInfo: OK
+                    errorCode: '0x0'
+                    result:
+                      id: f3a813dbe71c48fca1380090a804f762
+                      startTime: 1727157911743
+                      endTime: 1727159711743
+                      region: null
+                      title: test linuxR
+                      description: ''
+                      partyCode: 593987640388
+                      status: 7
+                      failedCase: null
+                      failedReason: null
+                      audioMixTaskId: null
+                      productionId: null
+                      programId: null
+                      record: 1
+                      mainWindowType: 1
+                      inputList:
+                      - id: 9e01d0e6043446779ac50e8aa8cf8e91
+                        type: sdi
+                        purpose: 1
+                        value:
+                          id: 3e3e1aed3a04c7220012fcc9832a3801
+                          name: 'SDI #2'
+                          changeName: null
+                          server: null
+                          key: null
+                          rid: 3e3e1aed3a04c722
+                          receiverName: webTeam_c722
+                      receiverIds: []
+                      receivers: []
+                      templates: []
+                      eventParties:
+                      - partyCode: 471092301971
+                        title: '123'
+                      defaultGrid: null
+                      producerSettingsDto:
+                        region: us-east-1
+                        format: 1080I5994
+                        elasticIp: ''
+                        delay: 2
+                        isVertical: 0
+                        rps: 0
+                        replayApp: 0
+                        outputDelay: 0
+                        outputDelayTime: 2
+                        cloudRecord: 0
+                        recordSources: ''
+                        pgmRecording: 1
+                        audioChannelNum: 8
+                      userId: 438435096d78450491ba4f6f788d63b0
+                      env: tvu-commentator
+                      platform: 1
+                      rid: 3e3e1aed3a04c722
+                      receiverName: webTeam_c722
+                      clientId: null
+                      ppDomainUrl: null
+                      inputPreviewSetting:
+                        resolution: 1280x720
+                        bitrate: 2000K
+                        frameRate: 30
+                      finalPgmPreviewSetting:
+                        resolution: 1280x720
+                        bitrate: 2000K
+                        frameRate: 30
+                      previewSetting:
+                        pgm:
+                          name: PGM Output
+                          changeName: null
+                          rtilCode: null
+                          purpose: 100
+                          enable: true
+                          audioTrack: '1'
+                          encoderSetting: '{"resolution":"1280x720","bitrate":"2000K","frameRate":30.0}'
+                          allAudioTrackRtilCodes: []
+                        main:
+                          name: 'SDI #2'
+                          changeName: null
+                          rtilCode: null
+                          purpose: 1
+                          enable: true
+                          audioTrack: '1'
+                          encoderSetting: '{"resolution":"1280x720","bitrate":"2000K","frameRate":30.0}'
+                          allAudioTrackRtilCodes: []
+                        backup: null
+                        backupPgm: null
+                      partyExtendInfoVO: null
+                      advancedSetting: null
+                      collaborateType: 0
+                      coHost: null
+                    repeated: null
+                '2':
+                  summary: Success
+                  value:
+                    errorInfo: OK
+                    errorCode: '0x0'
+                    result:
+                      id: f3a813dbe71c48fca1380090a804f762
+                      startTime: 1727157911743
+                      endTime: 1727159711743
+                      region: null
+                      title: test linuxR
+                      description: ''
+                      partyCode: 593987640388
+                      status: 7
+                      failedCase: null
+                      failedReason: null
+                      audioMixTaskId: null
+                      productionId: null
+                      programId: null
+                      record: 1
+                      mainWindowType: 1
+                      inputList:
+                      - id: 9e01d0e6043446779ac50e8aa8cf8e91
+                        type: sdi
+                        purpose: 1
+                        value:
+                          id: 3e3e1aed3a04c7220012fcc9832a3801
+                          name: 'SDI #2'
+                          changeName: null
+                          server: null
+                          key: null
+                          rid: 3e3e1aed3a04c722
+                          receiverName: webTeam_c722
+                      receiverIds: []
+                      receivers: []
+                      templates: []
+                      eventParties:
+                      - partyCode: 471092301971
+                        title: '123'
+                      defaultGrid: null
+                      producerSettingsDto:
+                        region: us-east-1
+                        format: 1080I5994
+                        elasticIp: ''
+                        delay: 2
+                        isVertical: 0
+                        rps: 0
+                        replayApp: 0
+                        outputDelay: 0
+                        outputDelayTime: 2
+                        cloudRecord: 0
+                        recordSources: ''
+                        pgmRecording: 1
+                        audioChannelNum: 8
+                      userId: 438435096d78450491ba4f6f788d63b0
+                      env: tvu-commentator
+                      platform: 1
+                      rid: 3e3e1aed3a04c722
+                      receiverName: webTeam_c722
+                      clientId: null
+                      ppDomainUrl: null
+                      inputPreviewSetting:
+                        resolution: 1280x720
+                        bitrate: 2000K
+                        frameRate: 30
+                      finalPgmPreviewSetting:
+                        resolution: 1280x720
+                        bitrate: 2000K
+                        frameRate: 30
+                      previewSetting:
+                        pgm:
+                          name: PGM Output
+                          changeName: null
+                          rtilCode: null
+                          purpose: 100
+                          enable: true
+                          audioTrack: '1'
+                          encoderSetting: '{"resolution":"1280x720","bitrate":"2000K","frameRate":30.0}'
+                          allAudioTrackRtilCodes: []
+                        main:
+                          name: 'SDI #2'
+                          changeName: null
+                          rtilCode: null
+                          purpose: 1
+                          enable: true
+                          audioTrack: '1'
+                          encoderSetting: '{"resolution":"1280x720","bitrate":"2000K","frameRate":30.0}'
+                          allAudioTrackRtilCodes: []
+                        backup: null
+                        backupPgm: null
+                      partyExtendInfoVO: null
+                      advancedSetting: null
+                      collaborateType: 0
+                      coHost: null
+                    repeated: null
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Commentator API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778630-run
+      operationId: info_250778630
+      x-source-doc: https://docs.tvunetworks.cn/api-250778630.md
+  /event/v2/create:
+    post:
+      summary: create event
+      deprecated: false
+      description: ''
+      tags:
+      - Commentator API/event
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startTime:
+                  type: integer
+                endTime:
+                  type: integer
+                producerSettingsDto:
+                  type: object
+                  properties:
+                    replayApp:
+                      type: integer
+                    pgmRecording:
+                      type: integer
+                    rps:
+                      type: integer
+                    outputDelayTime:
+                      type: integer
+                    outputDelay:
+                      type: integer
+                    delay:
+                      type: integer
+                    region:
+                      type: string
+                    format:
+                      type: string
+                    elasticIp:
+                      type: string
+                    inputSourcesRecord:
+                      type: string
+                    audioChannelNum:
+                      type: string
+                  required:
+                  - replayApp
+                  - pgmRecording
+                  - rps
+                  - outputDelayTime
+                  - outputDelay
+                  - delay
+                  - region
+                  - format
+                  - elasticIp
+                  - inputSourcesRecord
+                  - audioChannelNum
+                  x-apifox-orders:
+                  - replayApp
+                  - pgmRecording
+                  - rps
+                  - outputDelayTime
+                  - outputDelay
+                  - delay
+                  - region
+                  - format
+                  - elasticIp
+                  - inputSourcesRecord
+                  - audioChannelNum
+                inputPreviewSetting:
+                  type: object
+                  properties:
+                    bitrate:
+                      type: string
+                    resolution:
+                      type: string
+                    frameRate:
+                      type: string
+                  required:
+                  - bitrate
+                  - resolution
+                  - frameRate
+                  x-apifox-orders:
+                  - bitrate
+                  - resolution
+                  - frameRate
+                finalPgmPreviewSetting:
+                  type: object
+                  properties:
+                    bitrate:
+                      type: string
+                    resolution:
+                      type: string
+                    frameRate:
+                      type: string
+                  required:
+                  - bitrate
+                  - resolution
+                  - frameRate
+                  x-apifox-orders:
+                  - bitrate
+                  - resolution
+                  - frameRate
+                title:
+                  type: string
+                description:
+                  type: string
+                record:
+                  type: integer
+                eventInputDto:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      purpose:
+                        type: integer
+                      type:
+                        type: string
+                    x-apifox-orders:
+                    - purpose
+                    - type
+                eventOutputDto:
+                  type: array
+                  items:
+                    type: string
+                mainWindowType:
+                  type: integer
+                platform:
+                  type: integer
+                rid:
+                  type: string
+                coHost:
+                  type: object
+                  properties:
+                    collaborateUserEmailList:
+                      type: array
+                      items:
+                        type: string
+                  required:
+                  - collaborateUserEmailList
+                  x-apifox-orders:
+                  - collaborateUserEmailList
+                partyTitles:
+                  type: array
+                  items:
+                    type: string
+              required:
+              - startTime
+              - endTime
+              - producerSettingsDto
+              - inputPreviewSetting
+              - finalPgmPreviewSetting
+              - title
+              - description
+              - record
+              - eventInputDto
+              - eventOutputDto
+              - mainWindowType
+              - platform
+              - rid
+              - coHost
+              - partyTitles
+              x-apifox-orders:
+              - startTime
+              - endTime
+              - producerSettingsDto
+              - inputPreviewSetting
+              - finalPgmPreviewSetting
+              - title
+              - description
+              - record
+              - eventInputDto
+              - eventOutputDto
+              - mainWindowType
+              - platform
+              - rid
+              - coHost
+              - partyTitles
+            example:
+              startTime: 1727157129193
+              endTime: 1727158929193
+              producerSettingsDto:
+                replayApp: 0
+                pgmRecording: 1
+                rps: 0
+                outputDelayTime: 0
+                outputDelay: 0
+                delay: 2
+                region: us-east-1
+                format: 1080I5994
+                elasticIp: ''
+                inputSourcesRecord: ''
+                audioChannelNum: '8'
+              inputPreviewSetting:
+                bitrate: 2000K
+                resolution: 1280x720
+                frameRate: '30'
+              finalPgmPreviewSetting:
+                bitrate: 2000K
+                resolution: 1280x720
+                frameRate: '30'
+              title: pp-pgm
+              description: ''
+              record: 1
+              eventInputDto:
+              - purpose: 1
+                type: pgm
+              eventOutputDto: []
+              mainWindowType: 1
+              platform: 0
+              rid: ''
+              coHost:
+                collaborateUserEmailList: []
+              partyTitles:
+              - '123'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Commentator API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778627-run
+      operationId: create_event_250778627
+      x-source-doc: https://docs.tvunetworks.cn/api-250778627.md
+  /event/v2/delete/796ac54c6dbb4efd9116b29f3727337a:
+    post:
+      summary: delete
+      deprecated: false
+      description: ''
+      tags:
+      - Commentator API/event
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startTime:
+                  type: integer
+                endTime:
+                  type: integer
+                producerSettingsDto:
+                  type: object
+                  properties:
+                    region:
+                      type: string
+                    format:
+                      type: string
+                    elasticIp:
+                      type: string
+                    delay:
+                      type: integer
+                    isVertical:
+                      type: integer
+                  required:
+                  - region
+                  - format
+                  - elasticIp
+                  - delay
+                  - isVertical
+                  x-apifox-orders:
+                  - region
+                  - format
+                  - elasticIp
+                  - delay
+                  - isVertical
+                title:
+                  type: string
+                description:
+                  type: string
+                record:
+                  type: integer
+                eventInputDto:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      purpose:
+                        type: integer
+                      type:
+                        type: string
+                      value:
+                        type: 'null'
+                    x-apifox-orders:
+                    - purpose
+                    - type
+                    - value
+                eventOutputDto:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      value:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          type:
+                            type: string
+                          liveOutputId:
+                            type: string
+                          nickName:
+                            type: string
+                          createTime:
+                            type: integer
+                          updateTime:
+                            type: integer
+                          externalParameters:
+                            type: string
+                          bitrate:
+                            type: string
+                          resolution:
+                            type: string
+                            nullable: true
+                          targetId:
+                            type: string
+                          userId:
+                            type: string
+                          deleteFlag:
+                            type: integer
+                          importType:
+                            type: string
+                          authType:
+                            type: string
+                          isCrop:
+                            type: 'null'
+                          pushTime:
+                            type: string
+                          subType:
+                            type: 'null'
+                          isGoLive:
+                            type: boolean
+                          pushing:
+                            type: boolean
+                          selected:
+                            type: boolean
+                          otherSharing:
+                            type: boolean
+                        required:
+                        - id
+                        - nickName
+                        - createTime
+                        - updateTime
+                        - externalParameters
+                        - bitrate
+                        - resolution
+                        - targetId
+                        - type
+                        - userId
+                        - deleteFlag
+                        - importType
+                        - authType
+                        - isCrop
+                        - pushTime
+                        - subType
+                        - isGoLive
+                        - pushing
+                        - selected
+                        - otherSharing
+                        - name
+                        x-apifox-orders:
+                        - id
+                        - name
+                        - type
+                        - liveOutputId
+                        - nickName
+                        - createTime
+                        - updateTime
+                        - externalParameters
+                        - bitrate
+                        - resolution
+                        - targetId
+                        - userId
+                        - deleteFlag
+                        - importType
+                        - authType
+                        - isCrop
+                        - pushTime
+                        - subType
+                        - isGoLive
+                        - pushing
+                        - selected
+                        - otherSharing
+                    required:
+                    - type
+                    - value
+                    x-apifox-orders:
+                    - type
+                    - value
+                mainWindowType:
+                  type: integer
+                eventParties:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      partyCode:
+                        type: integer
+                      title:
+                        type: string
+                    x-apifox-orders:
+                    - partyCode
+                    - title
+              required:
+              - startTime
+              - endTime
+              - producerSettingsDto
+              - title
+              - description
+              - record
+              - eventInputDto
+              - eventOutputDto
+              - mainWindowType
+              - eventParties
+              x-apifox-orders:
+              - startTime
+              - endTime
+              - producerSettingsDto
+              - title
+              - description
+              - record
+              - eventInputDto
+              - eventOutputDto
+              - mainWindowType
+              - eventParties
+            example: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  result:
+                    type: 'null'
+                  repeated:
+                    type: 'null'
+                required:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+              example:
+                errorInfo: OK
+                errorCode: '0x0'
+                result: null
+                repeated: null
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Commentator API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778631-run
+      operationId: delete_250778631
+      x-source-doc: https://docs.tvunetworks.cn/api-250778631.md
+  /event/v2/input/switch/c23df28fe9e646b1a4c38557bb883af4/2:
+    post:
+      summary: switch
+      deprecated: false
+      description: ''
+      tags:
+      - Commentator API/event
+      parameters:
+      - name: clientId
+        in: query
+        description: ''
+        required: true
+        example: qfm00v38gqp
+        schema:
+          type: string
+      - name: platform
+        in: query
+        description: ''
+        required: true
+        example: '1'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Commentator API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778633-run
+      operationId: switch_250778633
+      x-source-doc: https://docs.tvunetworks.cn/api-250778633.md
+  /event/v2/page:
+    post:
+      summary: page
+      deprecated: false
+      description: ''
+      tags:
+      - Commentator API/event
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: false
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: false
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: 8a8c96d951320921015133dac5790003
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pageNum:
+                  type: integer
+                pageSize:
+                  type: integer
+                total:
+                  type: integer
+                sid:
+                  type: string
+                rid:
+                  type: string
+                startTime:
+                  type: string
+                endTime:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+                partyCode:
+                  type: string
+                status:
+                  type: array
+                  items:
+                    type: string
+                timer:
+                  type: 'null'
+                userId:
+                  type: string
+              required:
+              - pageNum
+              - pageSize
+              - total
+              - sid
+              - rid
+              - startTime
+              - endTime
+              - title
+              - description
+              - partyCode
+              - status
+              - timer
+              - userId
+              x-apifox-orders:
+              - pageNum
+              - pageSize
+              - total
+              - sid
+              - rid
+              - startTime
+              - endTime
+              - title
+              - description
+              - partyCode
+              - status
+              - timer
+              - userId
+            example:
+              pageNum: 1
+              pageSize: 10
+              total: 0
+              sid: ''
+              rid: ''
+              startTime: ''
+              endTime: ''
+              title: ''
+              description: ''
+              partyCode: ''
+              status: []
+              timer: null
+              userId: d25717f6a4624e15b81f175987c41678
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      list:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            title:
+                              type: string
+                            region:
+                              type: 'null'
+                            description:
+                              type: string
+                            startTime:
+                              type: integer
+                            endTime:
+                              type: integer
+                            status:
+                              type: integer
+                            failedCase:
+                              type: 'null'
+                            failedReason:
+                              type: 'null'
+                            productionId:
+                              type: integer
+                              nullable: true
+                            mainWindowType:
+                              type: integer
+                            eventInputList:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: 'null'
+                                  type:
+                                    type: string
+                                  purpose:
+                                    type: integer
+                                  value:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      name:
+                                        type: string
+                                      changeName:
+                                        type: 'null'
+                                      server:
+                                        type: 'null'
+                                      key:
+                                        type: 'null'
+                                      rid:
+                                        type: string
+                                        nullable: true
+                                      receiverName:
+                                        type: string
+                                        nullable: true
+                                    required:
+                                    - id
+                                    - name
+                                    - changeName
+                                    - server
+                                    - key
+                                    - rid
+                                    - receiverName
+                                    x-apifox-orders:
+                                    - id
+                                    - name
+                                    - changeName
+                                    - server
+                                    - key
+                                    - rid
+                                    - receiverName
+                                required:
+                                - id
+                                - type
+                                - purpose
+                                - value
+                                x-apifox-orders:
+                                - id
+                                - type
+                                - purpose
+                                - value
+                            audioMixTaskId:
+                              type: string
+                              nullable: true
+                            audioMixUrl:
+                              type: 'null'
+                            eventOutputList:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                  pushLiveUrl:
+                                    type: string
+                                  pushLiveName:
+                                    type: string
+                                  value:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      type:
+                                        type: string
+                                      name:
+                                        type: string
+                                      peerId:
+                                        type: 'null'
+                                      originId:
+                                        type: 'null'
+                                      liveOutputId:
+                                        type: 'null'
+                                    required:
+                                    - id
+                                    - type
+                                    - name
+                                    - peerId
+                                    - originId
+                                    - liveOutputId
+                                    x-apifox-orders:
+                                    - id
+                                    - type
+                                    - name
+                                    - peerId
+                                    - originId
+                                    - liveOutputId
+                                  defaultFlag:
+                                    type: 'null'
+                                  occupiedSent:
+                                    type: boolean
+                                required:
+                                - type
+                                - pushLiveUrl
+                                - pushLiveName
+                                - value
+                                - defaultFlag
+                                - occupiedSent
+                                x-apifox-orders:
+                                - type
+                                - pushLiveUrl
+                                - pushLiveName
+                                - value
+                                - defaultFlag
+                                - occupiedSent
+                              nullable: true
+                            eventParties:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  partyCode:
+                                    type: integer
+                                  title:
+                                    type: string
+                                required:
+                                - partyCode
+                                - title
+                                x-apifox-orders:
+                                - partyCode
+                                - title
+                            errorLogs:
+                              type: array
+                              items:
+                                type: string
+                              nullable: true
+                            parentPartyCode:
+                              type: integer
+                            manualStopTime:
+                              type: integer
+                              nullable: true
+                            userId:
+                              type: string
+                            email:
+                              type: string
+                            platform:
+                              type: integer
+                            collaborateType:
+                              type: integer
+                              nullable: true
+                          required:
+                          - id
+                          - title
+                          - region
+                          - description
+                          - startTime
+                          - endTime
+                          - status
+                          - failedCase
+                          - failedReason
+                          - productionId
+                          - mainWindowType
+                          - eventInputList
+                          - audioMixTaskId
+                          - audioMixUrl
+                          - eventOutputList
+                          - eventParties
+                          - errorLogs
+                          - parentPartyCode
+                          - manualStopTime
+                          - userId
+                          - email
+                          - platform
+                          - collaborateType
+                          x-apifox-orders:
+                          - id
+                          - title
+                          - region
+                          - description
+                          - startTime
+                          - endTime
+                          - status
+                          - failedCase
+                          - failedReason
+                          - productionId
+                          - mainWindowType
+                          - eventInputList
+                          - audioMixTaskId
+                          - audioMixUrl
+                          - eventOutputList
+                          - eventParties
+                          - errorLogs
+                          - parentPartyCode
+                          - manualStopTime
+                          - userId
+                          - email
+                          - platform
+                          - collaborateType
+                      pageNum:
+                        type: integer
+                      pageSize:
+                        type: integer
+                      size:
+                        type: integer
+                      startRow:
+                        type: integer
+                      endRow:
+                        type: integer
+                      pages:
+                        type: integer
+                      prePage:
+                        type: integer
+                      nextPage:
+                        type: integer
+                      isFirstPage:
+                        type: boolean
+                      isLastPage:
+                        type: boolean
+                      hasPreviousPage:
+                        type: boolean
+                      hasNextPage:
+                        type: boolean
+                      navigatePages:
+                        type: integer
+                      navigatepageNums:
+                        type: 'null'
+                      navigateFirstPage:
+                        type: integer
+                      navigateLastPage:
+                        type: integer
+                      firstPage:
+                        type: integer
+                      lastPage:
+                        type: integer
+                    required:
+                    - total
+                    - list
+                    - pageNum
+                    - pageSize
+                    - size
+                    - startRow
+                    - endRow
+                    - pages
+                    - prePage
+                    - nextPage
+                    - isFirstPage
+                    - isLastPage
+                    - hasPreviousPage
+                    - hasNextPage
+                    - navigatePages
+                    - navigatepageNums
+                    - navigateFirstPage
+                    - navigateLastPage
+                    - firstPage
+                    - lastPage
+                    x-apifox-orders:
+                    - total
+                    - list
+                    - pageNum
+                    - pageSize
+                    - size
+                    - startRow
+                    - endRow
+                    - pages
+                    - prePage
+                    - nextPage
+                    - isFirstPage
+                    - isLastPage
+                    - hasPreviousPage
+                    - hasNextPage
+                    - navigatePages
+                    - navigatepageNums
+                    - navigateFirstPage
+                    - navigateLastPage
+                    - firstPage
+                    - lastPage
+                  repeated:
+                    type: 'null'
+                required:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+              example:
+                errorInfo: OK
+                errorCode: '0x0'
+                result:
+                  total: 12
+                  list:
+                  - id: 1aae8b4d0bd0417c85b6db7aadf4bbc2
+                    title: Thomas_testCoHost
+                    region: null
+                    description: ''
+                    startTime: 1727056545160
+                    endTime: 1727142945000
+                    status: 7
+                    failedCase: null
+                    failedReason: null
+                    productionId: null
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: sdi
+                      purpose: 1
+                      value:
+                        id: 3e3e1aed3a04c7220012fcc9832a3801
+                        name: 'SDI #2'
+                        changeName: null
+                        server: null
+                        key: null
+                        rid: 3e3e1aed3a04c722
+                        receiverName: webTeam_c722
+                    audioMixTaskId: null
+                    audioMixUrl: null
+                    eventOutputList: null
+                    eventParties:
+                    - partyCode: 393198936709
+                      title: '123'
+                    errorLogs:
+                    - CREATE_AM_FAILEDCheck feature failed， Please check! The event has auto stopped.
+                    parentPartyCode: 926356330433
+                    manualStopTime: null
+                    userId: 78707ae15a6d489798a8a6f5a351c576
+                    email: thomasli@tvunetworks.com
+                    platform: 1
+                    collaborateType: 2
+                  - id: 5320408334ba456aa8f74794a3734edf
+                    title: TestOutput
+                    region: null
+                    description: ''
+                    startTime: 1726136139792
+                    endTime: 1726143339792
+                    status: 8
+                    failedCase: null
+                    failedReason: null
+                    productionId: 10032603
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: file
+                      purpose: 1
+                      value:
+                        id: af7fc9fb880640d1b8f33bb1311a4193
+                        name: 4pair-30min
+                        changeName: null
+                        server: null
+                        key: null
+                        rid: null
+                        receiverName: null
+                    audioMixTaskId: null
+                    audioMixUrl: null
+                    eventOutputList: null
+                    eventParties:
+                    - partyCode: 746699579158
+                      title: '123'
+                    errorLogs: null
+                    parentPartyCode: 845117196806
+                    manualStopTime: 1726130746585
+                    userId: 438435096d78450491ba4f6f788d63b0
+                    email: leotian@tvunetworks.com
+                    platform: 0
+                    collaborateType: null
+                  - id: 796ac54c6dbb4efd9116b29f3727337a
+                    title: 水电费332
+                    region: null
+                    description: ''
+                    startTime: 1726131779598
+                    endTime: 1726133579598
+                    status: 8
+                    failedCase: null
+                    failedReason: null
+                    productionId: 10032600
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: pgm
+                      purpose: 1
+                      value: null
+                    audioMixTaskId: EBDD822620A844B9849671837A9145CE
+                    audioMixUrl: null
+                    eventOutputList:
+                    - type: ip_out
+                      pushLiveUrl: issp://72.44.51.76:8010
+                      pushLiveName: Default Grid
+                      value:
+                        id: e9f2f0e0c48b4f269db466eaacf8532f
+                        type: G
+                        name: Default Grid
+                        peerId: null
+                        originId: null
+                        liveOutputId: null
+                      defaultFlag: null
+                      occupiedSent: true
+                    eventParties:
+                    - partyCode: 330761094411
+                      title: '123'
+                    errorLogs: null
+                    parentPartyCode: 793619337287
+                    manualStopTime: null
+                    userId: 438435096d78450491ba4f6f788d63b0
+                    email: leotian@tvunetworks.com
+                    platform: 0
+                    collaborateType: null
+                  - id: 1d769723bf524e7684ca292f402bbf41
+                    title: fgvf4
+                    region: null
+                    description: ''
+                    startTime: 1726024557190
+                    endTime: 1726026357190
+                    status: 10
+                    failedCase: null
+                    failedReason: null
+                    productionId: null
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: sdi
+                      purpose: 1
+                      value:
+                        id: 3e3e1aed3a04c7220012fcc9832a3801
+                        name: 'SDI #2'
+                        changeName: null
+                        server: null
+                        key: null
+                        rid: 3e3e1aed3a04c722
+                        receiverName: webTeam_c722
+                    audioMixTaskId: AF16FFE213C24D91B0646BB8953F5C59
+                    audioMixUrl: null
+                    eventOutputList: null
+                    eventParties:
+                    - partyCode: 968929584415
+                      title: '234'
+                    errorLogs: null
+                    parentPartyCode: 204998173511
+                    manualStopTime: 1726024610275
+                    userId: 438435096d78450491ba4f6f788d63b0
+                    email: leotian@tvunetworks.com
+                    platform: 1
+                    collaborateType: null
+                  - id: 88306a87b07144848e355960272b16c1
+                    title: gg666
+                    region: null
+                    description: ''
+                    startTime: 1726024511392
+                    endTime: 1726026311392
+                    status: 10
+                    failedCase: null
+                    failedReason: null
+                    productionId: null
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: sdi
+                      purpose: 1
+                      value:
+                        id: 3e3e1aed3a04c7220012fcc9832a3801
+                        name: 'SDI #2'
+                        changeName: null
+                        server: null
+                        key: null
+                        rid: 3e3e1aed3a04c722
+                        receiverName: webTeam_c722
+                    audioMixTaskId: ED0FF623278E4FE787B37D0234AFDEC7
+                    audioMixUrl: null
+                    eventOutputList: null
+                    eventParties:
+                    - partyCode: 235857384410
+                      title: '456'
+                    errorLogs: null
+                    parentPartyCode: 946523542995
+                    manualStopTime: 1726024535705
+                    userId: 438435096d78450491ba4f6f788d63b0
+                    email: leotian@tvunetworks.com
+                    platform: 1
+                    collaborateType: null
+                  - id: 4de4ff2995824c1b91ae7cea1c2c8b2c
+                    title: tttvg55
+                    region: null
+                    description: ''
+                    startTime: 1726024469308
+                    endTime: 1726026269308
+                    status: 10
+                    failedCase: null
+                    failedReason: null
+                    productionId: null
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: sdi
+                      purpose: 1
+                      value:
+                        id: 3e3e1aed3a04c7220012fcc9832a3801
+                        name: 'SDI #2'
+                        changeName: null
+                        server: null
+                        key: null
+                        rid: 3e3e1aed3a04c722
+                        receiverName: webTeam_c722
+                    audioMixTaskId: DDD5970FFA334DC08EB26E248A0CAB10
+                    audioMixUrl: null
+                    eventOutputList: null
+                    eventParties:
+                    - partyCode: 511539806489
+                      title: '56'
+                    errorLogs: null
+                    parentPartyCode: 406528261830
+                    manualStopTime: 1726024491896
+                    userId: 438435096d78450491ba4f6f788d63b0
+                    email: leotian@tvunetworks.com
+                    platform: 1
+                    collaborateType: null
+                  - id: 2bf78826ed6d486db7426d121ec0025d
+                    title: f444
+                    region: null
+                    description: ''
+                    startTime: 1726024427272
+                    endTime: 1726026227272
+                    status: 10
+                    failedCase: null
+                    failedReason: null
+                    productionId: null
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: sdi
+                      purpose: 1
+                      value:
+                        id: 3e3e1aed3a04c7220012fcc9832a3801
+                        name: 'SDI #2'
+                        changeName: null
+                        server: null
+                        key: null
+                        rid: 3e3e1aed3a04c722
+                        receiverName: webTeam_c722
+                    audioMixTaskId: 05DB93B261994AFBB151E810A02B032E
+                    audioMixUrl: null
+                    eventOutputList: null
+                    eventParties:
+                    - partyCode: 394090700752
+                      title: '123'
+                    errorLogs: null
+                    parentPartyCode: 698105174659
+                    manualStopTime: 1726024483032
+                    userId: 438435096d78450491ba4f6f788d63b0
+                    email: leotian@tvunetworks.com
+                    platform: 1
+                    collaborateType: 1
+                  - id: d3caca50ff214956a4e3b2850c06253e
+                    title: ddf
+                    region: null
+                    description: ''
+                    startTime: 1726023929634
+                    endTime: 1726025729634
+                    status: 10
+                    failedCase: null
+                    failedReason: null
+                    productionId: null
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: sdi
+                      purpose: 1
+                      value:
+                        id: 3e3e1aed3a04c7220012fcc9832a3801
+                        name: 'SDI #2'
+                        changeName: null
+                        server: null
+                        key: null
+                        rid: 3e3e1aed3a04c722
+                        receiverName: webTeam_c722
+                    audioMixTaskId: 4FF0701FAD2246E1B6F44DF6ED3FE86A
+                    audioMixUrl: null
+                    eventOutputList: null
+                    eventParties:
+                    - partyCode: 770510431538
+                      title: '334'
+                    errorLogs: null
+                    parentPartyCode: 356951281023
+                    manualStopTime: 1726023958234
+                    userId: 438435096d78450491ba4f6f788d63b0
+                    email: leotian@tvunetworks.com
+                    platform: 1
+                    collaborateType: 1
+                  - id: bbf9aee3c120473fb43cbdbfd37b5dac
+                    title: test
+                    region: null
+                    description: ''
+                    startTime: 1725612949992
+                    endTime: 1725616549992
+                    status: 10
+                    failedCase: null
+                    failedReason: null
+                    productionId: 10032537
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: ext
+                      purpose: 1
+                      value:
+                        id: c6f89797290e49c4a3d1c12643966444
+                        name: 浙江
+                        changeName: null
+                        server: null
+                        key: null
+                        rid: null
+                        receiverName: null
+                    audioMixTaskId: 335395E7FF7F4707A119D1E25291B35A
+                    audioMixUrl: null
+                    eventOutputList:
+                    - type: ip_out
+                      pushLiveUrl: issp://34.227.80.162:8010
+                      pushLiveName: Default Grid
+                      value:
+                        id: f88f689eceab470a862ab61d69834ee5
+                        type: G
+                        name: Default Grid
+                        peerId: null
+                        originId: null
+                        liveOutputId: null
+                      defaultFlag: null
+                      occupiedSent: true
+                    eventParties:
+                    - partyCode: 712681735715
+                      title: '123'
+                    errorLogs: null
+                    parentPartyCode: 715460396152
+                    manualStopTime: 1725615454420
+                    userId: 438435096d78450491ba4f6f788d63b0
+                    email: leotian@tvunetworks.com
+                    platform: 0
+                    collaborateType: null
+                  - id: ac752592393843c19cfcff6ae92087d4
+                    title: rrr
+                    region: null
+                    description: ''
+                    startTime: 1725604856536
+                    endTime: 1725606656536
+                    status: 10
+                    failedCase: null
+                    failedReason: null
+                    productionId: null
+                    mainWindowType: 1
+                    eventInputList:
+                    - id: null
+                      type: sdi
+                      purpose: 1
+                      value:
+                        id: 3e3e1aed3a04c7220012fcc9832a3801
+                        name: 'SDI #2'
+                        changeName: null
+                        server: null
+                        key: null
+                        rid: 3e3e1aed3a04c722
+                        receiverName: webTeam_c722
+                    audioMixTaskId: A429B789882243D8AC8C3DC824C50A77
+                    audioMixUrl: null
+                    eventOutputList: null
+                    eventParties:
+                    - partyCode: 589929187201
+                      title: ww
+                    errorLogs: null
+                    parentPartyCode: 539174747014
+                    manualStopTime: 1725606171863
+                    userId: 438435096d78450491ba4f6f788d63b0
+                    email: leotian@tvunetworks.com
+                    platform: 1
+                    collaborateType: null
+                  pageNum: 1
+                  pageSize: 10
+                  size: 10
+                  startRow: 0
+                  endRow: 0
+                  pages: 2
+                  prePage: 0
+                  nextPage: 0
+                  isFirstPage: true
+                  isLastPage: false
+                  hasPreviousPage: false
+                  hasNextPage: true
+                  navigatePages: 0
+                  navigatepageNums: null
+                  navigateFirstPage: 0
+                  navigateLastPage: 0
+                  firstPage: 0
+                  lastPage: 0
+                repeated: null
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Commentator API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778626-run
+      operationId: page_250778626
+      x-source-doc: https://docs.tvunetworks.cn/api-250778626.md
+  /event/v2/reuse/02e76bbb133b47e28f897fa7da61e74a:
+    post:
+      summary: reuse
+      deprecated: false
+      description: ''
+      tags:
+      - Commentator API/event
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: 8a8c96d951320921015133dac5790003
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startTime:
+                  type: integer
+                endTime:
+                  type: integer
+                producerSettingsDto:
+                  type: object
+                  properties:
+                    region:
+                      type: string
+                    format:
+                      type: string
+                    elasticIp:
+                      type: string
+                    delay:
+                      type: integer
+                    isVertical:
+                      type: integer
+                    rps:
+                      type: integer
+                    replayApp:
+                      type: integer
+                    outputDelay:
+                      type: integer
+                    outputDelayTime:
+                      type: integer
+                    cloudRecord:
+                      type: integer
+                    recordSources:
+                      type: string
+                    pgmRecording:
+                      type: integer
+                    audioChannelNum:
+                      type: integer
+                  required:
+                  - region
+                  - format
+                  - elasticIp
+                  - delay
+                  - isVertical
+                  - rps
+                  - replayApp
+                  - outputDelay
+                  - outputDelayTime
+                  - cloudRecord
+                  - recordSources
+                  - pgmRecording
+                  - audioChannelNum
+                  x-apifox-orders:
+                  - region
+                  - format
+                  - elasticIp
+                  - delay
+                  - isVertical
+                  - rps
+                  - replayApp
+                  - outputDelay
+                  - outputDelayTime
+                  - cloudRecord
+                  - recordSources
+                  - pgmRecording
+                  - audioChannelNum
+                inputPreviewSetting:
+                  type: object
+                  properties:
+                    resolution:
+                      type: string
+                    bitrate:
+                      type: string
+                    frameRate:
+                      type: integer
+                  required:
+                  - resolution
+                  - bitrate
+                  - frameRate
+                  x-apifox-orders:
+                  - resolution
+                  - bitrate
+                  - frameRate
+                finalPgmPreviewSetting:
+                  type: object
+                  properties:
+                    resolution:
+                      type: string
+                    bitrate:
+                      type: string
+                    frameRate:
+                      type: integer
+                  required:
+                  - resolution
+                  - bitrate
+                  - frameRate
+                  x-apifox-orders:
+                  - resolution
+                  - bitrate
+                  - frameRate
+                title:
+                  type: string
+                description:
+                  type: string
+                record:
+                  type: integer
+                eventInputDto:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      purpose:
+                        type: integer
+                      type:
+                        type: string
+                      value:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          region:
+                            type: string
+                        required:
+                        - id
+                        - name
+                        - region
+                        x-apifox-orders:
+                        - id
+                        - name
+                        - region
+                    x-apifox-orders:
+                    - purpose
+                    - type
+                    - value
+                eventOutputDto:
+                  type: array
+                  items:
+                    type: string
+                mainWindowType:
+                  type: integer
+                platform:
+                  type: integer
+                rid:
+                  type: 'null'
+                coHost:
+                  type: object
+                  properties:
+                    collaborateUserEmailList:
+                      type: array
+                      items:
+                        type: string
+                  required:
+                  - collaborateUserEmailList
+                  x-apifox-orders:
+                  - collaborateUserEmailList
+                eventParties:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      partyCode:
+                        type: integer
+                      title:
+                        type: string
+                    x-apifox-orders:
+                    - partyCode
+                    - title
+              required:
+              - startTime
+              - endTime
+              - producerSettingsDto
+              - inputPreviewSetting
+              - finalPgmPreviewSetting
+              - title
+              - description
+              - record
+              - eventInputDto
+              - eventOutputDto
+              - mainWindowType
+              - platform
+              - rid
+              - coHost
+              - eventParties
+              x-apifox-orders:
+              - startTime
+              - endTime
+              - producerSettingsDto
+              - title
+              - description
+              - record
+              - eventInputDto
+              - eventOutputDto
+              - mainWindowType
+              - eventParties
+              - inputPreviewSetting
+              - finalPgmPreviewSetting
+              - platform
+              - rid
+              - coHost
+            example:
+              startTime: 1727157715899
+              endTime: 1727159515899
+              producerSettingsDto:
+                region: us-east-1
+                format: 1080I5994
+                elasticIp: ''
+                delay: 2
+                isVertical: 0
+                rps: 0
+                replayApp: 0
+                outputDelay: 0
+                outputDelayTime: 0
+                cloudRecord: 0
+                recordSources: ''
+                pgmRecording: 1
+                audioChannelNum: 8
+              inputPreviewSetting:
+                resolution: 1280x720
+                bitrate: 2000K
+                frameRate: 30
+              finalPgmPreviewSetting:
+                resolution: 1280x720
+                bitrate: 2000K
+                frameRate: 30
+              title: test linuxR
+              description: ''
+              record: 1
+              eventInputDto:
+              - purpose: 1
+                type: file
+                value:
+                  id: af7fc9fb880640d1b8f33bb1311a4193
+                  name: 4pair-30min
+                  region: us-east-1
+              eventOutputDto: []
+              mainWindowType: 1
+              platform: 0
+              rid: null
+              coHost:
+                collaborateUserEmailList:
+                - 714514533@qq.com
+              eventParties:
+              - partyCode: 746699579158
+                title: '123'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Commentator API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778628-run
+      operationId: reuse_250778628
+      x-source-doc: https://docs.tvunetworks.cn/api-250778628.md
+  /event/v2/stop/bbc6f7a3264f4d92a38318a5b1b4d813:
+    post:
+      summary: stop
+      deprecated: false
+      description: ''
+      tags:
+      - Commentator API/event
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  result:
+                    type: 'null'
+                  repeated:
+                    type: 'null'
+                required:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - result
+                - repeated
+              example:
+                errorInfo: OK
+                errorCode: '0x0'
+                result: null
+                repeated: null
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Commentator API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778632-run
+      operationId: stop_250778632
+      x-source-doc: https://docs.tvunetworks.cn/api-250778632.md
+  /event/v2/update/bb7d1e573f0c4ae19c4fa583bbbd70a0:
+    post:
+      summary: update
+      deprecated: false
+      description: ''
+      tags:
+      - Commentator API/event
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: SID={{Authorization}}
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: sid
+        in: header
+        description: ''
+        required: true
+        example: '{{Authorization}}'
+        schema:
+          type: string
+      - name: userid
+        in: header
+        description: ''
+        required: true
+        example: '{{userid}}'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startTime:
+                  type: integer
+                endTime:
+                  type: integer
+                producerSettingsDto:
+                  type: object
+                  properties:
+                    region:
+                      type: string
+                    format:
+                      type: string
+                    elasticIp:
+                      type: string
+                    delay:
+                      type: integer
+                    isVertical:
+                      type: integer
+                    cloudRecord:
+                      type: integer
+                    recordSources:
+                      type: string
+                    audioChannelNum:
+                      type: integer
+                  required:
+                  - region
+                  - format
+                  - elasticIp
+                  - delay
+                  - isVertical
+                  - cloudRecord
+                  - recordSources
+                  - audioChannelNum
+                  x-apifox-orders:
+                  - delay
+                  - region
+                  - format
+                  - elasticIp
+                  - isVertical
+                  - cloudRecord
+                  - recordSources
+                  - audioChannelNum
+                inputPreviewSetting:
+                  type: object
+                  properties:
+                    resolution:
+                      type: string
+                    bitrate:
+                      type: string
+                    frameRate:
+                      type: integer
+                  required:
+                  - resolution
+                  - bitrate
+                  - frameRate
+                  x-apifox-orders:
+                  - resolution
+                  - bitrate
+                  - frameRate
+                finalPgmPreviewSetting:
+                  type: object
+                  properties:
+                    resolution:
+                      type: string
+                    bitrate:
+                      type: string
+                    frameRate:
+                      type: integer
+                  required:
+                  - resolution
+                  - bitrate
+                  - frameRate
+                  x-apifox-orders:
+                  - resolution
+                  - bitrate
+                  - frameRate
+                title:
+                  type: string
+                description:
+                  type: string
+                record:
+                  type: integer
+                eventInputDto:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      purpose:
+                        type: integer
+                      type:
+                        type: string
+                      value:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          changeName:
+                            type: 'null'
+                          server:
+                            type: 'null'
+                          key:
+                            type: 'null'
+                          rid:
+                            type: string
+                          receiverName:
+                            type: string
+                        required:
+                        - id
+                        - name
+                        - changeName
+                        - server
+                        - key
+                        - rid
+                        - receiverName
+                        x-apifox-orders:
+                        - id
+                        - name
+                        - changeName
+                        - server
+                        - key
+                        - rid
+                        - receiverName
+                    x-apifox-orders:
+                    - purpose
+                    - type
+                    - value
+                eventOutputDto:
+                  type: array
+                  items:
+                    type: string
+                mainWindowType:
+                  type: integer
+                platform:
+                  type: integer
+                rid:
+                  type: string
+                coHost:
+                  type: object
+                  properties:
+                    collaborateUserEmailList:
+                      type: array
+                      items:
+                        type: string
+                  required:
+                  - collaborateUserEmailList
+                  x-apifox-orders:
+                  - collaborateUserEmailList
+                eventParties:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      partyCode:
+                        type: integer
+                      title:
+                        type: string
+                    x-apifox-orders:
+                    - partyCode
+                    - title
+              required:
+              - startTime
+              - endTime
+              - producerSettingsDto
+              - inputPreviewSetting
+              - finalPgmPreviewSetting
+              - title
+              - description
+              - record
+              - eventInputDto
+              - eventOutputDto
+              - mainWindowType
+              - platform
+              - rid
+              - coHost
+              - eventParties
+              x-apifox-orders:
+              - startTime
+              - endTime
+              - producerSettingsDto
+              - title
+              - description
+              - record
+              - eventInputDto
+              - eventOutputDto
+              - mainWindowType
+              - platform
+              - rid
+              - eventParties
+              - inputPreviewSetting
+              - finalPgmPreviewSetting
+              - coHost
+            example:
+              startTime: 1727157911743
+              endTime: 1727159711743
+              producerSettingsDto:
+                region: us-east-1
+                format: 1080I5994
+                elasticIp: ''
+                delay: 2
+                isVertical: 0
+                cloudRecord: 0
+                recordSources: ''
+                audioChannelNum: 8
+              inputPreviewSetting:
+                resolution: 1280x720
+                bitrate: 2000K
+                frameRate: 30
+              finalPgmPreviewSetting:
+                resolution: 1280x720
+                bitrate: 2000K
+                frameRate: 30
+              title: test linuxR
+              description: ''
+              record: 1
+              eventInputDto:
+              - purpose: 1
+                type: sdi
+                value:
+                  id: 3e3e1aed3a04c7220012fcc9832a3801
+                  name: 'SDI #2'
+                  changeName: null
+                  server: null
+                  key: null
+                  rid: 3e3e1aed3a04c722
+                  receiverName: webTeam_c722
+              eventOutputDto: []
+              mainWindowType: 1
+              platform: 1
+              rid: 3e3e1aed3a04c722
+              coHost:
+                collaborateUserEmailList: []
+              eventParties:
+              - partyCode: 471092301971
+                title: '123'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Commentator API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778629-run
+      operationId: update_250778629
+      x-source-doc: https://docs.tvunetworks.cn/api-250778629.md
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

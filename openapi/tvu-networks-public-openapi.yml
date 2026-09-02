@@ -1,0 +1,455 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — public
+  description: public operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint
+    OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /data/delete:
+    post:
+      summary: data-delete
+      deprecated: false
+      description: delete data api, 请求参数示例： {"users":\["mikkoxu@tvunetworks.com"\],"group\_id":"","project":"rrs","operator":"caleb@tvunetworks.com","start\_time":0,"end\_time":1687920321000}
+      tags:
+      - public
+      - public
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - operator
+              - project
+              properties:
+                end_time:
+                  description: 不传默认为半年前(6个月前) (ms时间戳)
+                  type: integer
+                group_id:
+                  description: 针对用户组，和Users二传一
+                  type: string
+                operator:
+                  description: 请求发起用户邮箱
+                  type: string
+                project:
+                  description: 对应项目
+                  type: string
+                start_time:
+                  description: 不传默认为0  (ms时间戳)
+                  type: integer
+                users:
+                  description: 针对用户(数组，可穿多个)，和用Group二传一
+                  type: array
+                  items:
+                    type: string
+              $$ref: '#/definitions/params.DeleteDataReq'
+              x-apifox-orders:
+              - end_time
+              - group_id
+              - operator
+              - project
+              - start_time
+              - users
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error_code
+                - error_message
+                properties:
+                  error_code:
+                    description: 0表成功  -1表失败
+                    type: integer
+                  error_message:
+                    description: 错误信息，成功信息是 success
+                    type: string
+                $$ref: '#/definitions/params.DeleteDataResp'
+                x-apifox-orders:
+                - error_code
+                - error_message
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: public
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956080-run
+      operationId: data_delete_351956080
+      x-source-doc: https://docs.tvunetworks.cn/api-351956080.md
+  /data/delete-retry:
+    post:
+      summary: data-delete-retry
+      deprecated: false
+      description: retry delete data api
+      tags:
+      - public
+      - public
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                log_id:
+                  type: integer
+                operator:
+                  type: string
+              $$ref: '#/definitions/params.RetryDeleteDataReq'
+              x-apifox-orders:
+              - log_id
+              - operator
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error_code
+                - error_message
+                properties:
+                  error_code:
+                    description: 0表成功  -1表失败
+                    type: integer
+                  error_message:
+                    description: 错误信息，成功信息是 success
+                    type: string
+                $$ref: '#/definitions/params.RetryDeleteDataResp'
+                x-apifox-orders:
+                - error_code
+                - error_message
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: public
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956081-run
+      operationId: data_delete_retry_351956081
+      x-source-doc: https://docs.tvunetworks.cn/api-351956081.md
+  /data/query:
+    post:
+      summary: data-query
+      deprecated: false
+      description: query data api, 请求参数示例： {"users":\["mikkoxu@tvunetworks.com"\],"group\_id":"","project":"rrs","operator":"caleb@tvunetworks.com","start\_time":0,"end\_time":1687920321000}
+      tags:
+      - public
+      - public
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - operator
+              - project
+              properties:
+                end_time:
+                  description: 不传默认为半年前(6个月前) (ms时间戳)
+                  type: integer
+                group_id:
+                  description: 针对用户组，和Users二传一
+                  type: string
+                operator:
+                  description: 请求发起用户邮箱
+                  type: string
+                project:
+                  description: 对应项目
+                  type: string
+                start_time:
+                  description: 不传默认为0  (ms时间戳)
+                  type: integer
+                users:
+                  description: 针对用户(数组，可穿多个)，和用Group二传一
+                  type: array
+                  items:
+                    type: string
+              $$ref: '#/definitions/params.QueryDataReq'
+              x-apifox-orders:
+              - end_time
+              - group_id
+              - operator
+              - project
+              - start_time
+              - users
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error_code
+                - error_message
+                properties:
+                  error_code:
+                    description: 0表成功  -1表失败
+                    type: integer
+                  error_message:
+                    description: 错误信息，成功信息是 success
+                    type: string
+                $$ref: '#/definitions/params.QueryDataResp'
+                x-apifox-orders:
+                - error_code
+                - error_message
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: public
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956082-run
+      operationId: data_query_351956082
+      x-source-doc: https://docs.tvunetworks.cn/api-351956082.md
+  /log/query:
+    post:
+      summary: log-query
+      deprecated: false
+      description: 'log query api, 请求参数示例： {"rule\_id": 1,"page\_num":1, "page\_size": 5, "operator":"calebtest@tvunetworks.com"}'
+      tags:
+      - public
+      - public
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - operator
+              - rule_id
+              properties:
+                clear_path:
+                  description: 清理s3路径（模糊匹配）
+                  type: string
+                end_time:
+                  description: 结束时间
+                  type: integer
+                is_success:
+                  description: '是否成功： 0: 全部  1: 成功  2: 失败                           // 操作是否成功'
+                  type: integer
+                object_id:
+                  description: object_id（模糊匹配）
+                  type: string
+                operation_type:
+                  description: '操作类型： 1: 规则操作  2: 删除数据操作'
+                  type: integer
+                operator:
+                  description: 请求发起用户邮箱
+                  type: string
+                page_num:
+                  description: 页码，默认1
+                  type: integer
+                page_size:
+                  description: 页面大小，默认5
+                  type: integer
+                rule_id:
+                  description: 规则id
+                  type: integer
+                start_time:
+                  description: 开始时间
+                  type: integer
+              $$ref: '#/definitions/params.QueryLogReq'
+              x-apifox-orders:
+              - clear_path
+              - end_time
+              - is_success
+              - object_id
+              - operation_type
+              - operator
+              - page_num
+              - page_size
+              - rule_id
+              - start_time
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error_code
+                - error_message
+                properties:
+                  error_code:
+                    description: 0表成功  -1表失败
+                    type: integer
+                  error_message:
+                    description: 错误信息，成功信息是 success
+                    type: string
+                  log_list:
+                    description: 规则关联日志列表
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        bucket:
+                          description: 清理数据所在桶
+                          type: string
+                        clear_path:
+                          description: 清理数据所在路径
+                          type: string
+                        created_time:
+                          description: 创建时间
+                          type: integer
+                        data_create_time:
+                          description: 数据创建时间
+                          type: integer
+                        id:
+                          type: integer
+                        is_success:
+                          description: 是否成功操作
+                          type: integer
+                        message:
+                          description: 消息
+                          type: string
+                        object_id:
+                          description: 清理数据object_id
+                          type: string
+                        operation:
+                          description: 操作
+                          type: string
+                        operation_type:
+                          description: 操作类型： 1：添加/更新规则  2：删除数据
+                          type: integer
+                        operator:
+                          description: 操作者
+                          type: string
+                        region:
+                          description: 清理数据所在桶区域
+                          type: string
+                        retry_num:
+                          description: 重试次数
+                          type: integer
+                        rule_id:
+                          description: '外建: 关联规则id'
+                          type: integer
+                        task_id:
+                          description: 清理数据task_id
+                          type: string
+                        updated_time:
+                          description: 更新时间
+                          type: integer
+                      $$ref: '#/definitions/model.OperateLog'
+                      x-apifox-orders:
+                      - bucket
+                      - clear_path
+                      - created_time
+                      - data_create_time
+                      - id
+                      - is_success
+                      - message
+                      - object_id
+                      - operation
+                      - operation_type
+                      - operator
+                      - region
+                      - retry_num
+                      - rule_id
+                      - task_id
+                      - updated_time
+                  total:
+                    description: 满足条件总数
+                    type: integer
+                $$ref: '#/definitions/params.QueryLogResp'
+                x-apifox-orders:
+                - error_code
+                - error_message
+                - log_list
+                - total
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: public
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956083-run
+      operationId: log_query_351956083
+      x-source-doc: https://docs.tvunetworks.cn/api-351956083.md
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

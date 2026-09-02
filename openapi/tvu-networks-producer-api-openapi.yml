@@ -1,0 +1,4298 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Producer API
+  description: Producer API operations of the TVU Networks public HTTP API, assembled verbatim from the
+    per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /audio-mixer/audioTransaction:
+    post:
+      summary: Audio Transaction
+      deprecated: false
+      description: 'By this API you can do a audio transaction, transaction effect is: the current source''s
+        volume will vary from currentSourceStartSliderPosition to currentSourceEndSliderPosition in the
+        effect duration period, and at same time, the next source''s volume will vary from nextSourceStartSliderPosition
+        to nextSourceEndSliderPosition in the effect duration period'
+      operationId: 1d1ca55f50bf909f78061b48cf7339b2
+      tags:
+      - Producer API/Audio Mixer
+      - Audio Mixer
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudioTransactionReqVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Audio Mixer
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778564-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778564.md
+  /graphql2rest/addClipToClipPlayer:
+    post:
+      summary: add clip to clip player
+      deprecated: false
+      description: add a media file to a clip player after file uploaded to S3
+      operationId: f5dbbf718096349281e9ab58c78583b8
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadSourceResult'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778529-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778529.md
+  /graphql2rest/addLogoToProgram:
+    post:
+      summary: add logo to program
+      deprecated: false
+      description: Add logo file to program logos after file uploaded to S3
+      operationId: b43f4440c3aff45c433fcfe683257167
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadSourceResult'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778546-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778546.md
+  /graphql2rest/addOrUpdateGangs:
+    post:
+      summary: add or update gangs
+      deprecated: false
+      description: set follower programs of the program
+      operationId: 7750e6da99fa12c838c15393bf5f0fa5
+      tags:
+      - Producer API/Followers
+      - Followers
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GangOperateRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Followers
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778558-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778558.md
+  /graphql2rest/addOverlayToPGM:
+    post:
+      summary: add overlay to PGM
+      deprecated: false
+      description: Add overlay to PGM directly
+      operationId: 5e05e34bc833782c27a35d841e59215e
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778539-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778539.md
+  /graphql2rest/addOverlayToPVW:
+    post:
+      summary: add overlay to PVW
+      deprecated: false
+      description: Add overlay to PVW
+      operationId: 855645de80ef7be9b08521b58c5c11fd
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778538-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778538.md
+  /graphql2rest/addSourceToSlot:
+    post:
+      summary: add source to slot
+      deprecated: false
+      description: add a source(IP or Device) to slot to live
+      operationId: 23de0eac631f7eef0d853931c51edb60
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSourceParam'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778523-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778523.md
+  /graphql2rest/availableSlavePrograms:
+    post:
+      summary: available slave programs
+      deprecated: false
+      description: show which programs can be set as slaver
+      operationId: d381286d59319aa897f55d886e2fa697
+      tags:
+      - Producer API/Followers
+      - Followers
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                masterProgramId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 3984008213655251500
+              x-apifox-orders:
+              - masterProgramId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Followers
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778557-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778557.md
+  /graphql2rest/clearOverlayOnPGM:
+    post:
+      summary: clear overlay on PGM
+      deprecated: false
+      description: Clear all overlay ON PGM
+      operationId: ca34b8cff7ad01b522910ba7c368f62c
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778541-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778541.md
+  /graphql2rest/clearOverlayOnPVW:
+    post:
+      summary: clear overlay on PVW
+      deprecated: false
+      description: Clear all overlay ON PVW
+      operationId: bcf802236a7b9a20d8c492e0facf8903
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778540-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778540.md
+  /graphql2rest/createCollaborator:
+    post:
+      summary: create collaborator
+      deprecated: false
+      description: add a tvu user into program
+      operationId: 834e179e706f7976cab8e9884af1b94a
+      tags:
+      - Producer API/Collaborator
+      - Collaborator
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddOrRemoveMembersRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Collaborator
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778554-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778554.md
+  /graphql2rest/createEXTSource:
+    post:
+      summary: create EXT source
+      deprecated: false
+      description: create EXT source
+      operationId: 6ef816eddd0017249fa35959ed20e977
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramSource'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778517-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778517.md
+  /graphql2rest/createHTMLSource:
+    post:
+      summary: create HTML source
+      deprecated: false
+      description: create HTML source
+      operationId: fde359780f456e410c27e9f2d6563f51
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramSource'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778521-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778521.md
+  /graphql2rest/createProgram:
+    post:
+      summary: create program
+      deprecated: false
+      description: Create a program
+      operationId: 9d3faa9efb217a2a59a68611d3cb09be
+      tags:
+      - Producer API/Programs
+      - Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramInput'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778512-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778512.md
+  /graphql2rest/createRTMPPushSource:
+    post:
+      summary: create RTMP push source
+      deprecated: false
+      description: ''
+      operationId: 74fd757e0ac517c263da2950f98fe9e7
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramSource'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778518-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778518.md
+  /graphql2rest/createRTPFECSource:
+    post:
+      summary: create RTPFEC source
+      deprecated: false
+      description: ''
+      operationId: 44d6b23052466aae0abd7425c4580ac9
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRTPFECSourceParam'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778519-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778519.md
+  /graphql2rest/createSRTSource:
+    post:
+      summary: create SRT source
+      deprecated: false
+      description: ''
+      operationId: 521306dd99fea7aaef47b60f0c44c4e1
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSRTSourceParam'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778520-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778520.md
+  /graphql2rest/cutOverlay:
+    post:
+      summary: cut overlay
+      deprecated: false
+      description: copy all overlay on PVW to PGM, the overlays on PGM will replaced by these on PVW
+      operationId: d9bd2ae32eb364f4a7b9bf20e3bbc194
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778543-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778543.md
+  /graphql2rest/cutSlotToPGM:
+    post:
+      summary: cut slot to PGM
+      deprecated: false
+      description: Cut a slot to PGM, the source on slot will be cut to PGM as current output video, the
+        parameter, subTimestamp is the cut point, if you has the source previewing on your application,
+        you should extract its value, form video stream to obtain accurate cut
+      operationId: 7fcf254880da1a3349e05db9d48b9000
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceSwitchVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778526-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778526.md
+  /graphql2rest/cutSlotToPVW:
+    post:
+      summary: cut slot to PVW
+      deprecated: false
+      description: cut slot to PVW
+      operationId: b784842b08b19a5ce7e156fce5dcf0f6
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceSwitchVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778525-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778525.md
+  /graphql2rest/deleteAndRemoveGraphicUrl:
+    post:
+      summary: delete and remove graphic url
+      deprecated: false
+      description: remove graphic url from PGM and unbind it from program
+      operationId: adf9ef02301102754317eddfab4cc11d
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                graphicUrlId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 3283835085741736400
+              x-apifox-orders:
+              - graphicUrlId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778553-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778553.md
+  /graphql2rest/deleteIPSource:
+    post:
+      summary: delete IP source
+      deprecated: false
+      description: delete IP source (include EXT/RTMP/RTPFEC/SRT source)
+      operationId: 9297dd2dd9e552a6374a122adfada783
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - sourceId
+              type: object
+              properties:
+                sourceId:
+                  type: string
+                  examples:
+                  - '000000000000000'
+              x-apifox-orders:
+              - sourceId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778522-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778522.md
+  /graphql2rest/deleteProgram:
+    post:
+      summary: delete program
+      deprecated: false
+      description: delete program by its id
+      operationId: efaaa801104134d5fff77be311bc8002
+      tags:
+      - Producer API/Programs
+      - Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 0
+              x-apifox-orders:
+              - programId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778514-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778514.md
+  /graphql2rest/deleteSingular:
+    post:
+      summary: delete singular
+      deprecated: false
+      description: delete singular app url
+      operationId: 3dc12a7bf939136c95cf6297523ea8b9
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                singularId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 57790616721634480
+              x-apifox-orders:
+              - singularId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778551-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778551.md
+  /graphql2rest/editClip:
+    post:
+      summary: edit clip
+      deprecated: false
+      description: set markin/markout and name
+      operationId: 38270133b71953233410f5b221875a9d
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileSourceActionVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778531-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778531.md
+  /graphql2rest/logoFiles:
+    post:
+      summary: logo files
+      deprecated: false
+      description: list logo files on TVU Cloud Drive which are supported to add to Overlay
+      operationId: 7fdb899c1423d68815bcb212309165cb
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileInfoQueryRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778544-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778544.md
+  /graphql2rest/mediaFiles:
+    post:
+      summary: media files
+      deprecated: false
+      description: list clip files on TVU Cloud Drive which are supported to add to Clip Player
+      operationId: 36523f0ee447d9e79d2c672ecf57fd65
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileInfoQueryRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778528-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778528.md
+  /graphql2rest/moveClipPosition:
+    post:
+      summary: move clip position
+      deprecated: false
+      description: move clip file position
+      operationId: 7094428c254f41e65332c836f48ae17b
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileSourceActionVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778536-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778536.md
+  /graphql2rest/moveLogoPosition:
+    post:
+      summary: move logo position
+      deprecated: false
+      description: Move logo position
+      operationId: 504890883107860d79f3fe455d3efa98
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileSourceActionVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778548-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778548.md
+  /graphql2rest/pauseClipPlayer:
+    post:
+      summary: pause clip player
+      deprecated: false
+      description: pause clip file
+      operationId: fc280d0e69e6c74ddda3702379c9d1bb
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileSourceActionVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778533-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778533.md
+  /graphql2rest/playClipPlayer:
+    post:
+      summary: play clip player
+      deprecated: false
+      description: play clip file
+      operationId: 833267a507601b697b98babf33c0765b
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileSourceActionVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778532-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778532.md
+  /graphql2rest/program:
+    post:
+      summary: program data
+      deprecated: false
+      description: get program data by program id, program id should come from the programs API
+      operationId: 61ec32c2ae3e63c2035574c4ab30ddab
+      tags:
+      - Producer API/Programs
+      - Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - programId
+              type: object
+              properties:
+                programId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 0
+              x-apifox-orders:
+              - programId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778511-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778511.md
+  /graphql2rest/programs:
+    post:
+      summary: program query
+      deprecated: false
+      description: Program Paging Query, used to query the current user's programs, including programs
+        as collaborator
+      operationId: 2e9823793d06965fdcdd5fa0143003f3
+      tags:
+      - Producer API/Programs
+      - Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramQuery'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778510-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778510.md
+  /graphql2rest/removeClipFromClipPlayer:
+    post:
+      summary: remove clip from clip player
+      deprecated: false
+      description: remove a media file from a clip player
+      operationId: 0b464c7d282970d51c4b60e46a697123
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sourceId:
+                  type: string
+                  examples:
+                  - '000000000000000'
+              x-apifox-orders:
+              - sourceId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778530-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778530.md
+  /graphql2rest/removeCollaborator:
+    post:
+      summary: remove collaborator
+      deprecated: false
+      description: remove remember
+      operationId: fb7cc595e2e8a9adf52631b861e26c2e
+      tags:
+      - Producer API/Collaborator
+      - Collaborator
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddOrRemoveMembersRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Collaborator
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778555-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778555.md
+  /graphql2rest/removeGang:
+    post:
+      summary: remove gang
+      deprecated: false
+      description: remove follower programs from current program
+      operationId: 397d6c8c6cad9a69de5ec5ce14411eaa
+      tags:
+      - Producer API/Followers
+      - Followers
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - idList
+              type: object
+              properties:
+                idList:
+                  type: array
+                  items:
+                    type: string
+                    description: id list
+                    examples:
+                    - HG
+                operator:
+                  type: string
+                  description: operate user id
+                  examples:
+                  - unittest
+              x-apifox-orders:
+              - idList
+              - operator
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Followers
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778559-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778559.md
+  /graphql2rest/removeLogo:
+    post:
+      summary: remove logo
+      deprecated: false
+      description: Remove logo from program logo list
+      operationId: 67c11868abac7be69cacaa7ecf69436d
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sourceId:
+                  type: string
+                  examples:
+                  - '000000000000000'
+              x-apifox-orders:
+              - sourceId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778547-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778547.md
+  /graphql2rest/removeOverlayFromPGM:
+    post:
+      summary: remove overlay from PGM
+      deprecated: false
+      description: Remove overlay from PGM
+      operationId: 3a4c04b611ea05040385ba6797ae3d7d
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778542-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778542.md
+  /graphql2rest/removeSourceFromSlot:
+    post:
+      summary: remove source from slot
+      deprecated: false
+      description: remove source on slot
+      operationId: a80e5946d68b7776d4401fe735c0f6ab
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StopLiveRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778524-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778524.md
+  /graphql2rest/requestUploadParam:
+    post:
+      summary: request upload param
+      deprecated: false
+      description: '-------Request file upload parameters, client use returned parameters to upload file
+        to S3 directly'
+      operationId: 4a9f368aa7a95fd82e4fff7c62d3212f
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadSourceRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778545-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778545.md
+  /graphql2rest/resumeClipPlayer:
+    post:
+      summary: resume clip player
+      deprecated: false
+      description: resume clip file
+      operationId: fed551a5927e525bc11143bd6d4e9a2f
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileSourceActionVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778534-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778534.md
+  /graphql2rest/saveGraphicUrl:
+    post:
+      summary: save graphic url
+      deprecated: false
+      description: save graphic url
+      operationId: fd5822ba34a47e48262d433000f37b01
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramGraphicUrl'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778552-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778552.md
+  /graphql2rest/saveSingularAppToken:
+    post:
+      summary: save singular app token
+      deprecated: false
+      description: save singular app token
+      operationId: 23669703d3fcb106d7c91e001277f412
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSingularApp'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778549-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778549.md
+  /graphql2rest/setSourceDelay:
+    post:
+      summary: set source delay
+      deprecated: false
+      description: set source delay
+      operationId: 23d910d07a5e4766f0b90beaadf44dcf
+      tags:
+      - Producer API/Input Source
+      - Input Source
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceDelayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Input Source
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778527-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778527.md
+  /graphql2rest/start:
+    post:
+      summary: start
+      deprecated: false
+      description: start a new session/production for a program, if there is already one, then return
+        its
+      operationId: 93491991cb9103c6d1c965657ca96f15
+      tags:
+      - Producer API/Programs
+      - Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 0
+              x-apifox-orders:
+              - programId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778515-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778515.md
+  /graphql2rest/stop:
+    post:
+      summary: stop
+      deprecated: false
+      description: stop running session/production by program id
+      operationId: 1c3784161444f14e05e8614c52f02aa2
+      tags:
+      - Producer API/Programs
+      - Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 0
+              x-apifox-orders:
+              - programId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778516-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778516.md
+  /graphql2rest/stopClipPlayer:
+    post:
+      summary: stop clip player
+      deprecated: false
+      description: stop clip file
+      operationId: f7a9b3cf2b050b599afcb3f7389e9c2b
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StopLiveRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778535-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778535.md
+  /graphql2rest/switchSingular:
+    post:
+      summary: switch singular
+      deprecated: false
+      description: switch singular on or off
+      operationId: 60821eb5654133b34bf92859514659e0
+      tags:
+      - Producer API/Overlay
+      - Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSingularApp'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778550-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778550.md
+  /graphql2rest/updateCollaboratorRoles:
+    post:
+      summary: update collaborator roles
+      deprecated: false
+      description: update roles of collaborator in a program
+      operationId: b887642efe7c8dd99028c9fdf5f2e7ed
+      tags:
+      - Producer API/Collaborator
+      - Collaborator
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramTeamMember'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Collaborator
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778556-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778556.md
+  /graphql2rest/updateProgram:
+    post:
+      summary: update program
+      deprecated: false
+      description: update an exist program
+      operationId: 7f50f48c1166f21ff4c24466d157a7e2
+      tags:
+      - Producer API/Programs
+      - Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramInput'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778513-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778513.md
+  /producerAI/playAllClipPlayers:
+    post:
+      summary: play all clip players
+      deprecated: false
+      description: ''
+      operationId: eb5153c3d1bf11d93ed9206d692bdb3c
+      tags:
+      - Producer API/Producer AI
+      - Producer AI
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayAllClipPlayerRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Producer AI
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778561-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778561.md
+  /producerAI/playAllClipPlayersFromBeginning:
+    post:
+      summary: play all clip players from the beginning
+      deprecated: false
+      description: ''
+      operationId: 9475c076b1e2c0b080aa234adec126a2
+      tags:
+      - Producer API/Producer AI
+      - Producer AI
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayAllClipPlayerRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Producer AI
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778562-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778562.md
+  /producerAI/updateSetting:
+    post:
+      summary: update AI Setting
+      deprecated: false
+      description: ''
+      operationId: 6ea1bd9cfa20ee0e85631328b7296ad2
+      tags:
+      - Producer API/Producer AI
+      - Producer AI
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAISettingRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Producer AI
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778560-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778560.md
+  /producerAI/uploadThumbnail:
+    post:
+      summary: upload source thumbnail
+      deprecated: false
+      description: ''
+      operationId: b422bf340fddddc61874f2e1d08bab7e
+      tags:
+      - Producer API/Producer AI
+      - Producer AI
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadSourceThumbnailRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Producer AI
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778563-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778563.md
+  /program/playlist/create:
+    post:
+      summary: create a playlist
+      deprecated: false
+      description: ''
+      operationId: a183c2b8f6ecfaf77c8a229b58b21b89
+      tags:
+      - Producer API/Playlist for Clip Player
+      - Playlist for Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramPlaylist'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: integer
+                    format: int64
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778565-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778565.md
+  /program/playlist/delete:
+    post:
+      summary: delete a playlist
+      deprecated: false
+      description: ''
+      operationId: 6f95909f8c620120a6846bb24c4eb65e
+      tags:
+      - Producer API/Playlist for Clip Player
+      - Playlist for Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - id
+              type: object
+              properties:
+                remark:
+                  type: string
+                  description: operation reason
+                  examples:
+                  - XgDdlkwCDlmrDMlINcLRxmvnKuhyocXnPnoIMf
+                id:
+                  type: integer
+                  description: Delete entity's ID
+                  format: int64
+                  examples:
+                  - 0
+                operator:
+                  type: string
+                  description: will use current login user if absent
+                  examples:
+                  - unittest
+              x-apifox-orders:
+              - remark
+              - id
+              - operator
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778569-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778569.md
+  /program/playlist/get/{id}:
+    get:
+      summary: get a playlist by id
+      deprecated: false
+      description: ''
+      operationId: 8a541aaecc1ac74e9068debefdf67a74
+      tags:
+      - Producer API/Playlist for Clip Player
+      - Playlist for Clip Player
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    $ref: '#/components/schemas/ProgramPlaylist'
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x--orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778566-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778566.md
+  /program/playlist/list/{programId}/{fileShimNo}:
+    get:
+      summary: list program playlists by programId and fileShimNo
+      deprecated: false
+      description: ''
+      operationId: fa6dae7295d1969f11e26b80b170b92d
+      tags:
+      - Producer API/Playlist for Clip Player
+      - Playlist for Clip Player
+      parameters:
+      - name: programId
+        in: path
+        description: ''
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      - name: fileShimNo
+        in: path
+        description: ''
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - '0345354'
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProgramPlaylist'
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778570-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778570.md
+  /program/playlist/query:
+    post:
+      summary: page query program playlist
+      deprecated: false
+      description: ''
+      operationId: af87cc106bcae6c6ca03e29055fbe5ad
+      tags:
+      - Producer API/Playlist for Clip Player
+      - Playlist for Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramPlaylistQuery'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        format: int64
+                      pages:
+                        type: integer
+                        format: int32
+                      records:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ProgramPlaylist'
+                      page:
+                        type: integer
+                        format: int32
+                    x-apifox-orders:
+                    - total
+                    - pages
+                    - records
+                    - page
+                    x-apifox-ignore-properties: []
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778571-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778571.md
+  /program/playlist/switchTo/{id}:
+    get:
+      summary: switch to the playlist
+      deprecated: false
+      description: ''
+      operationId: 760efcac0e1a9ecc31e7b2624f070baf
+      tags:
+      - Producer API/Playlist for Clip Player
+      - Playlist for Clip Player
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778567-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778567.md
+  /program/playlist/updateName:
+    post:
+      summary: update a playlist name
+      deprecated: false
+      description: ''
+      operationId: 4474d5d9c0017ba512b57c6a36bb86e3
+      tags:
+      - Producer API/Playlist for Clip Player
+      - Playlist for Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramPlaylist'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778568-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778568.md
+  /source/file/playMultiple:
+    post:
+      summary: Play multiple clip players at same time
+      deprecated: false
+      description: ''
+      operationId: 02b7f646e3adedb3e2eb075e75f5a27e
+      tags:
+      - Producer API/Clip Player
+      - Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayReq'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778537-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778537.md
+components:
+  schemas:
+    ProgramQuery:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+          description: retur
+          format: int32
+          examples:
+          - 1
+        pageSize:
+          type: integer
+          description: return data
+          format: int32
+          examples:
+          - 10
+        sortFields:
+          type: array
+          items:
+            description: 'Support sort fields: createTime'
+            $ref: '#/components/schemas/SortField'
+      x-apifox-orders:
+      - pageIndex
+      - pageSize
+      - sortFields
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SortField:
+      type: object
+      properties:
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        name:
+          type: string
+          examples:
+          - IPjwhveYYdMMpDJZvjANlUFUTlJAxcQz
+      x-apifox-orders:
+      - sortDirection
+      - name
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramInput:
+      required:
+      - id
+      type: object
+      properties:
+        features:
+          description: Program Features
+          $ref: '#/components/schemas/ProgramFeaturesInput'
+        name:
+          type: string
+          description: Program Name
+          examples:
+          - nlgCdHMmylpklbufhdUbenKpslJxwZnm
+        id:
+          type: integer
+          description: Program ID
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - features
+      - name
+      - id
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramFeaturesInput:
+      required:
+      - format
+      - audioChannelNum
+      - PGMRecording
+      - outputDelayTime
+      - partyLine
+      - rps
+      - isVertical
+      - cloudRecord
+      - outputDelay
+      - recordSources
+      - region
+      - replayApp
+      type: object
+      properties:
+        format:
+          type: string
+          description: 'program format，options: 1080P50, 1080P5994, 1080P25, 1080P2997, 1080P30, 1080P60,
+            1080I50, 1080I5994, 1080I60, 720P50, 720P5994, 720P60'
+          examples:
+          - 1080P30
+        audioChannelNum:
+          type: integer
+          description: 'program audio channel number，options: 2, 4, 6, 8'
+          format: int32
+          examples:
+          - 2
+        PGMRecording:
+          type: boolean
+          description: pgm recording open or not
+          examples:
+          - false
+        outputDelayTime:
+          type: integer
+          description: program output delay time
+          format: int32
+          examples:
+          - 0
+        partyLine:
+          type: boolean
+          description: program partyline open or not
+          examples:
+          - false
+        rps:
+          type: boolean
+          description: program rps mode open or not
+          examples:
+          - false
+        isVertical:
+          type: boolean
+          description: program video is vertical or not
+          examples:
+          - false
+        followerMode:
+          type: boolean
+          description: program follower mode open or not
+          examples:
+          - false
+        cloudRecord:
+          type: boolean
+          description: program cloud record open or not
+          examples:
+          - false
+        outputDelay:
+          type: boolean
+          description: program output buffer open or not
+          examples:
+          - false
+        recordSources:
+          type: string
+          description: program record slot list
+          examples:
+          - s1
+        region:
+          type: string
+          description: 'program amazon s3 region, options: us-east-1'
+          examples:
+          - us-east-1
+        replayApp:
+          type: boolean
+          description: program replay app open or not
+          examples:
+          - false
+      x-apifox-orders:
+      - format
+      - audioChannelNum
+      - PGMRecording
+      - outputDelayTime
+      - partyLine
+      - rps
+      - isVertical
+      - followerMode
+      - cloudRecord
+      - outputDelay
+      - recordSources
+      - region
+      - replayApp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramSource:
+      required:
+      - sourceName
+      - programId
+      type: object
+      properties:
+        productionId:
+          type: integer
+          description: production id
+          format: int64
+          examples:
+          - 0
+        source:
+          maxLength: 1024
+          type: string
+          description: source
+          examples:
+          - XrcTXPmOllIygJiwnEiRNwqLADQdDLBwUOboGNDPVwzPklVhHcsEYrqFfmZDxIVf
+        sourceName:
+          maxLength: 256
+          type: string
+          description: source name
+          examples:
+          - Source Name
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - productionId
+      - source
+      - sourceName
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CreateRTPFECSourceParam:
+      required:
+      - port
+      - sourceName
+      - programId
+      type: object
+      properties:
+        port:
+          type: integer
+          description: please input 60000-65000 port num, eg:60000
+          format: int32
+          examples:
+          - 60000
+        productionId:
+          type: integer
+          description: production id
+          format: int64
+          examples:
+          - 0
+        sourceName:
+          type: string
+          description: source name, RTP-FEC Source
+          examples:
+          - Source Name
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - port
+      - productionId
+      - sourceName
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CreateSRTSourceParam:
+      required:
+      - mode
+      - port
+      - sourceName
+      - programId
+      type: object
+      properties:
+        mode:
+          type: integer
+          description: '0: caller mode,  1: listener mode, if you choose caller mode , you need to pass
+            host、port、passphrase(this param is not must);if you choose listener mode, you need to pass
+            port .'
+          format: int32
+          examples:
+          - 514128581
+        streamId:
+          type: string
+          description: stream id
+          examples:
+          - fseqVETQlOMfUdxbdzHwvoyVElkDrKOFPP
+        port:
+          type: integer
+          description: please input 60000-65000 port num
+          format: int32
+          examples:
+          - 2044177627
+        productionId:
+          type: integer
+          description: production id
+          format: int64
+          examples:
+          - 0
+        latency:
+          type: integer
+          description: latency,unit is ms(millisecond), default:2000
+          format: int64
+          default: 2000
+          examples:
+          - 2000
+        host:
+          type: string
+          description: SRT host, can be IP or a domain, required for caller mode
+          examples:
+          - DDaeggnuoTjXObJdyllxbOhafq
+        passphrase:
+          type: string
+          description: pass phrase
+          examples:
+          - Ivie
+        sourceName:
+          type: string
+          description: source name
+          examples:
+          - Source Name
+        packetSize:
+          type: integer
+          description: packet size
+          format: int64
+          examples:
+          - 3821586227798934500
+        advParams:
+          type: string
+          description: adv params
+          examples:
+          - HePYvBUhG
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - mode
+      - streamId
+      - port
+      - productionId
+      - latency
+      - host
+      - passphrase
+      - sourceName
+      - packetSize
+      - advParams
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AddSourceParam:
+      required:
+      - sourceId
+      - sourceType
+      - slotNo
+      - programId
+      type: object
+      properties:
+        sourceId:
+          type: string
+          description: source id
+          examples:
+          - '000000000000000'
+        sourceType:
+          type: string
+          description: 'sourceType include: IPSource/TVUA/TVUOne/Grid/CustomSource'
+          enum:
+          - IPSource
+          - TVUA
+          - TVUOne
+          - Grid
+          - CustomSource
+        slotNo:
+          type: string
+          description: slot no
+          examples:
+          - s1
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - sourceId
+      - sourceType
+      - slotNo
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    StopLiveRequest:
+      required:
+      - slotNo
+      - programId
+      type: object
+      properties:
+        rid:
+          type: string
+          description: rid
+          examples:
+          - xxxx
+        slotNo:
+          type: string
+          description: slot no
+          examples:
+          - s1
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - rid
+      - slotNo
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SourceSwitchVo:
+      required:
+      - slotNo
+      - programId
+      type: object
+      properties:
+        actionTime:
+          type: integer
+          description: action time on client,if unset,will use system current time
+          format: int64
+          examples:
+          - 0
+        effect:
+          type: integer
+          description: cut effect
+          format: int32
+          examples:
+          - 60
+        switchShm:
+          type: boolean
+          description: whether switch current PGM to PVW after cut this new source to the PGM
+          default: true
+          examples:
+          - true
+        effectDuration:
+          type: integer
+          description: cut effect duration
+          format: int32
+          examples:
+          - 3000
+        slotNo:
+          type: string
+          description: source slot no to be cut to PGM
+          examples:
+          - s1
+        subTimestamp:
+          type: string
+          description: timestamp when the cut execution,if unset,will use system current time,this should
+            be extracted from the source preview video stream
+          examples:
+          - '0'
+        programId:
+          type: integer
+          description: program ID
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - actionTime
+      - effect
+      - switchShm
+      - effectDuration
+      - slotNo
+      - subTimestamp
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SourceDelayRequest:
+      required:
+      - delay
+      - slotNo
+      - programId
+      type: object
+      properties:
+        delay:
+          maximum: 10000
+          minimum: 300
+          type: integer
+          description: delay
+          format: int64
+          examples:
+          - 6486
+        slotNo:
+          type: string
+          description: slot no
+          examples:
+          - s1
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - delay
+      - slotNo
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    FileInfoQueryRequest:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+          description: page index
+          format: int32
+          examples:
+          - 1
+        name:
+          type: string
+          description: file name
+          examples:
+          - BYlYWOIpCasrzKVHDlqGoevKKTYckMOW
+        pageSize:
+          type: integer
+          description: request records count per page
+          format: int32
+          examples:
+          - 10
+        pid:
+          type: string
+          description: parent directory id
+          examples:
+          - VyQLcbNCIfYUxfzeMUudxLygEaQfIbwTG
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - pageIndex
+      - name
+      - pageSize
+      - pid
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    UploadSourceResult:
+      required:
+      - objectKey
+      - programId
+      type: object
+      properties:
+        objectKey:
+          type: string
+          description: S3 object key
+          examples:
+          - rjThfblhWIHdNORBspbIoNfledin
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - objectKey
+      - programId
+      x--orders:
+      - objectKey
+      - programId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    FileSourceActionVo:
+      required:
+      - sourceId
+      - position
+      - programId
+      type: object
+      properties:
+        sourceId:
+          type: string
+          description: logo file source id
+          examples:
+          - '000000000000000'
+        position:
+          type: integer
+          description: logo position(begin from 0)
+          format: int32
+          examples:
+          - 1427076743
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - sourceId
+      - position
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayReq:
+      required:
+      - productionId
+      type: object
+      properties:
+        playFromBeginning:
+          type: boolean
+          examples:
+          - true
+        clientid:
+          type: string
+          description: caller identity
+          examples:
+          - 44F0D41685CA4986B2C6E47813C20B01
+        operateId:
+          maxLength: 32
+          type: string
+          description: If not pass,will use current Login userId
+          examples:
+          - 44F0D41685CA4986B2C6E47813C20B01
+        productionId:
+          type: integer
+          description: production id
+          format: int64
+          examples:
+          - 0
+        slotNos:
+          type: array
+          items:
+            type: string
+            description: the numbers of slots to play, if not set, play all clip players
+            examples:
+            - '["s1", "s2"]'
+        programId:
+          type: integer
+          description: program id, required when production id not provided
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - playFromBeginning
+      - clientid
+      - operateId
+      - productionId
+      - slotNos
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OverlayRequest:
+      type: object
+      properties:
+        programId:
+          type: integer
+          description: program id, required when production id not provided
+          format: int64
+          examples:
+          - 0
+        timestamp:
+          minimum: 0
+          type: integer
+          format: int64
+          examples:
+          - 139123123123
+      x-apifox-orders:
+      - programId
+      - timestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    UploadSourceRequest:
+      required:
+      - fileName
+      - sourceType
+      - programId
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: file name
+          examples:
+          - uLqRoQyzvfDdcoesjzPciyLueWOvhNTP
+        sourceType:
+          type: string
+          description: 'file type including: 1.Logo 2. File(Clip)'
+          enum:
+          - FILE
+          - EXT
+          - CUSTOM
+          - PACK
+          - GRID
+          - ANYWHERE
+          - YOUTUBE
+          - LOGO
+          - TRANSITIONLOGO
+          - IPSOURCE
+          - QUADVIEWLOGO
+          - RTP
+          - QUADVIEWTHUMBNAIL
+          - RTIL
+          - RPS
+          - R_SOURCE
+          - RTMP
+          - URL
+          - PARTYLINE_SOURCE
+          - OUTPUT_DELAY_FILE
+          - ZIXI
+          - SRT
+          - LBANDLOGO
+          - HLSJSON
+          - REPLAY_PLAYLIST
+          - PLAYLIST_BUMPER
+          - TRANSCEIVER
+          - NDI
+          - 'NULL'
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - fileName
+      - sourceType
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    UserSingularApp:
+      required:
+      - apply
+      - programId
+      type: object
+      properties:
+        apply:
+          type: boolean
+          description: singular switch on or off
+          examples:
+          - true
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - apply
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramGraphicUrl:
+      required:
+      - url
+      - programId
+      type: object
+      properties:
+        url:
+          maxLength: 500
+          type: string
+          description: program graphic url
+          examples:
+          - http://www.KETFzk.com/xrwpco
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - url
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AddOrRemoveMembersRequest:
+      required:
+      - programId
+      type: object
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+            description: user email list
+            examples:
+            - producer-test@tvunetworks.com
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - emails
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramTeamMember:
+      required:
+      - roles
+      - id
+      type: object
+      properties:
+        roles:
+          maxLength: 200
+          type: string
+          description: 'the roles that a collaborator has in current program, eg: ClipPlayer'
+          examples:
+          - ClipPlayer
+        id:
+          type: integer
+          description: this is from createCollaborator API result, or from program API result，program
+            API has all data relevant with current program, eg:123456789
+          format: int64
+          examples:
+          - 123456789
+      x-apifox-orders:
+      - roles
+      - id
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    GangOperateRequest:
+      required:
+      - slaveProgramAndFeatures
+      - masterProgramId
+      type: object
+      properties:
+        slaveProgramAndFeatures:
+          type: array
+          items:
+            description: slave program and features
+            $ref: '#/components/schemas/SlaveProgramAndFeature'
+        masterProgramId:
+          type: integer
+          description: master program id
+          format: int64
+          examples:
+          - 890876572971871200
+      x-apifox-orders:
+      - slaveProgramAndFeatures
+      - masterProgramId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SlaveProgramAndFeature:
+      required:
+      - slaveProgramId
+      - gangFeatures
+      type: object
+      properties:
+        slaveProgramId:
+          type: integer
+          description: slave program id
+          format: int64
+          examples:
+          - 1960549480044043000
+        gangFeatures:
+          type: string
+          description: gang features
+          examples:
+          - IAexnRrpkqadVFibZAocTpixYqPLTFcll
+      x-apifox-orders:
+      - slaveProgramId
+      - gangFeatures
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    UpdateAISettingRequest:
+      required:
+      - productionId
+      type: object
+      properties:
+        clipSlots:
+          type: string
+          description: the No of the slots used to recognize scoreboard
+          examples:
+          - s1,s2
+        clipSize:
+          minimum: 1000
+          type: integer
+          description: the duration of generated clips' duration,unit millisecond
+          format: int32
+          examples:
+          - 3000
+        scoreboardSlot:
+          maxLength: 4
+          type: string
+          description: the No of the slot used to recognize scoreboard
+          examples:
+          - s5
+        productionId:
+          minimum: 10000
+          type: integer
+          description: the id of production
+          format: int64
+          examples:
+          - 100000
+      x-apifox-orders:
+      - clipSlots
+      - clipSize
+      - scoreboardSlot
+      - productionId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayAllClipPlayerRequest:
+      required:
+      - productionId
+      type: object
+      properties:
+        productionId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - productionId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    UploadSourceThumbnailRequest:
+      required:
+      - imageBase64
+      - createTime
+      - productionId
+      - slotNo
+      - timestamp
+      type: object
+      properties:
+        imageBase64:
+          type: string
+          examples:
+          - caYVZNkqyntfeGaLvybhTlIT
+        createTime:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764887
+        productionId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+        imageUrl:
+          type: string
+          examples:
+          - http://www.zvurPW.com/NYuIKf
+        slotNo:
+          type: string
+          examples:
+          - s1
+        timestamp:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - imageBase64
+      - createTime
+      - productionId
+      - imageUrl
+      - slotNo
+      - timestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AudioTransactionReqVo:
+      required:
+      - nextSourceEndSliderPosition
+      - nextSourceStartSliderPosition
+      - currentSourceEndSliderPosition
+      - productionId
+      - currentSourceId
+      - currentSourceStartSliderPosition
+      - nextSourceId
+      - transitionDuration
+      type: object
+      properties:
+        nextSourceEndSliderPosition:
+          type: integer
+          format: int32
+          examples:
+          - 239
+        nextSourceStartSliderPosition:
+          type: integer
+          format: int32
+          examples:
+          - 0
+        currentSourceEndSliderPosition:
+          type: integer
+          format: int32
+          examples:
+          - 0
+        productionId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+        currentSourceId:
+          type: string
+          examples:
+          - Default
+        currentSourceStartSliderPosition:
+          type: integer
+          format: int32
+          examples:
+          - 239
+        nextSourceId:
+          type: string
+          examples:
+          - R2
+        transitionDuration:
+          minimum: 1000
+          type: integer
+          description: transaction duration,unit:millisecond
+          format: int32
+          examples:
+          - 5000
+        timestamp:
+          type: string
+          description: the command execution start time
+          examples:
+          - '0'
+      x-apifox-orders:
+      - nextSourceEndSliderPosition
+      - nextSourceStartSliderPosition
+      - currentSourceEndSliderPosition
+      - productionId
+      - currentSourceId
+      - currentSourceStartSliderPosition
+      - nextSourceId
+      - transitionDuration
+      - timestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramPlaylist:
+      required:
+      - fileShimNo
+      - name
+      - id
+      - programId
+      type: object
+      properties:
+        fileShimNo:
+          type: string
+        playlistStr:
+          type: string
+        data:
+          type: string
+        clipNum:
+          type: integer
+          format: int32
+        updateTime:
+          type: integer
+          format: int64
+        sort:
+          type: integer
+          format: int32
+        userId:
+          maxLength: 32
+          type: string
+        deleteFlag:
+          type: boolean
+        isCurrent:
+          type: boolean
+        playlist:
+          $ref: '#/components/schemas/PlayList'
+        createTime:
+          type: integer
+          format: int64
+        deleteTime:
+          type: integer
+          format: int64
+        name:
+          maxLength: 128
+          type: string
+        clipDuration:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        programId:
+          type: integer
+          format: int64
+        fileId:
+          maxLength: 32
+          type: string
+      x-apifox-orders:
+      - fileShimNo
+      - playlistStr
+      - data
+      - clipNum
+      - updateTime
+      - sort
+      - userId
+      - deleteFlag
+      - isCurrent
+      - playlist
+      - createTime
+      - deleteTime
+      - name
+      - clipDuration
+      - id
+      - programId
+      - fileId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayList:
+      required:
+      - data
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: total duration of playlist, no need pass
+          format: int32
+        aiProgress:
+          type: integer
+          format: int32
+        thumbnail:
+          type: string
+          description: the thumbnail of playlist, will use the first clip's thumbnail if not pass
+        data:
+          type: array
+          items:
+            description: clips
+            $ref: '#/components/schemas/PlayListItem'
+        name:
+          type: string
+          description: the name of playlist
+        fromPlaylistId:
+          type: string
+        id:
+          type: string
+        md5:
+          type: string
+      x-apifox-orders:
+      - duration
+      - aiProgress
+      - thumbnail
+      - data
+      - name
+      - fromPlaylistId
+      - id
+      - md5
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayListItem:
+      type: object
+      x-apifox-orders: []
+      properties: {}
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramPlaylistQuery:
+      type: object
+      properties:
+        fileShimNo:
+          type: string
+          examples:
+          - '4240963673720001'
+        playlistStr:
+          type: string
+          examples:
+          - scojShjtKlgtLce
+        updateTimeFrom:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        pageSize:
+          type: integer
+          format: int32
+          default: 10
+          examples:
+          - 10
+        idList:
+          type: array
+          items:
+            type: integer
+            format: int64
+            examples:
+            - 8665038499157017000
+        returnFields:
+          type: string
+          description: return fields,delimiter is comma
+          examples:
+          - ''
+        deleteFlag:
+          type: boolean
+          examples:
+          - true
+        programIdList:
+          type: array
+          items:
+            type: integer
+            format: int64
+            examples:
+            - 4138811145769713000
+        fileIdList:
+          type: array
+          items:
+            type: string
+            examples:
+            - ClyddzDGvQCBBwtKHqsNTdTGQbwoFrn
+        fileShimNoList:
+          type: array
+          items:
+            type: integer
+            format: int32
+            examples:
+            - 849979322
+        sortList:
+          type: array
+          items:
+            type: integer
+            format: int32
+            examples:
+            - -2108080975
+        createTimeFrom:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        sortFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortField'
+        id:
+          type: integer
+          format: int64
+          examples:
+          - 0
+        updateTimeTo:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        userIdLike:
+          type: string
+          examples:
+          - Test User
+        createTimeTo:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        userIdList:
+          type: array
+          items:
+            type: string
+            examples:
+            - Test User
+        paging:
+          type: boolean
+          default: true
+          examples:
+          - true
+        sort:
+          type: integer
+          format: int32
+          examples:
+          - -546402789
+        deleteTimeFrom:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        userId:
+          type: string
+          examples:
+          - deNhCSJUPRkvbXmWHNqscxyrSRUXlCLW
+        fileIdLike:
+          type: string
+          examples:
+          - qrYIdoOidLRUoLJiikfvUMjCwzeeqGAsquq
+        isCurrent:
+          type: boolean
+          examples:
+          - true
+        pageIndex:
+          type: integer
+          format: int32
+          default: 1
+          examples:
+          - 1
+        name:
+          type: string
+          examples:
+          - JJebJPMOmuOYXuRlzsFVqRjPgcJUjSqj
+        deleteTimeTo:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        programId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+        fileId:
+          type: string
+          examples:
+          - whzChmbWOaJewcgz
+      x-apifox-orders:
+      - fileShimNo
+      - playlistStr
+      - updateTimeFrom
+      - pageSize
+      - idList
+      - returnFields
+      - deleteFlag
+      - programIdList
+      - fileIdList
+      - fileShimNoList
+      - sortList
+      - createTimeFrom
+      - sortFields
+      - id
+      - updateTimeTo
+      - userIdLike
+      - createTimeTo
+      - userIdList
+      - paging
+      - sort
+      - deleteTimeFrom
+      - userId
+      - fileIdLike
+      - isCurrent
+      - pageIndex
+      - name
+      - deleteTimeTo
+      - programId
+      - fileId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

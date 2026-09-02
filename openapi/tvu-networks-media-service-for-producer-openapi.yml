@@ -1,0 +1,1012 @@
+openapi: 3.0.1
+info:
+  title: TVU Networks — Media Service For Producer
+  description: Media Service For Producer operations of the TVU Networks public HTTP API, assembled verbatim
+    from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/).
+    Each operation body is the provider's own export; only grouping, servers[] and operationId backfill
+    were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+paths:
+  /media/tvucc-media/account/accountInfo:
+    delete:
+      summary: deleteRtmpAccount
+      deprecated: false
+      description: delete rtmp output account
+      tags:
+      - Media Service For Producer/tvucc-media
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: F104519230124A5D8079CAA89449FF2C
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result: null
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-media
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778592-run
+      operationId: deleteRtmpAccount_250778592
+      x-source-doc: https://docs.tvunetworks.cn/api-250778592.md
+  /media/tvucc-media/media/program/stream/list:
+    post:
+      summary: ListOutputAccount
+      deprecated: false
+      description: "**request URL：** \n\n-  POST ` {{domain}}/media/tvucc-media/media/program/stream/list`\n\
+        \n**Request Headers**\n\n|key|value|\n|:----|:---|\n|Authorization|[F104519230124A5D8079CAA89449FF2C]|\n\
+        |Cookie|[SID=F104519230124A5D8079CAA89449FF2C]|\n|Content-Type|[application/json;charset=UTF-8]|\n\
+        \n**request param：** \n\n| param   | required | type    | explain                            \
+        \                   |\n| -------- | ---- | ------- | --------------------------------------------------\
+        \ |\n| targetId     | F   | String  |business id,can be set producer program id |\n| secondType\
+        \     | F   | String  | output type, can be set HLS,SRT,PROMPEG(RTP-FEC) |\n| importType     |F\
+        \    | String  | option valule:  output,socail |\n| nickName | F   | String  | query by nickName\
+        \                       |\n| pageNum  | F   | int     | default value: 1                     \
+        \          |\n| pageSize | F   | int     | default valule:10               |\n**request example**\n\
+        \n```\n{\n    \"secondType\":\"HLS,PROMPEG,SRT\",\n    \"targetId\":\"52846403399680\",\n    \"\
+        nickName\":\"\"\n}\n\n```\n**response body：** \n\n| param   | explain                        \
+        \                       |\n| -------- | -------------------------------------------------- |\n\
+        | id     | output account id|\n| nickName    | output account nickname |\n| createTime    |create\
+        \ time in millisecond |\n| updateTime | update time in millisecond                   |\n| externalParameters\
+        \  | external param  from add account|\n| bitrate | bitrate          |\n| resolution     |resolution\
+        \ |\n| targetId     |producer program id |\n| type    | output type :HLS.... |\n| userId| tvu\
+        \ user id                    |\n| deleteFlag  | default 0 |\n| living    | Is streaming in progress\
+        \ ：true or false |\n| rtmpUrl   | output address |\n\n\n\n\n **成功返回示例**\n\n```  json\n{\n  \"\
+        errorCode\": \"0x0\",\n  \"errorInfo\": \"Success\",\n  \"result\": {\n    \"total\": 3,\n   \
+        \ \"list\": [\n      {\n        \"id\": \"6ad83f504f594b1ca2288b2adb0efdcb\",\n        \"nickName\"\
+        : \"HLS531\",\n        \"createTime\": 1653990294613,\n        \"updateTime\": 1653990294613,\n\
+        \        \"externalParameters\": \"{\\\"duration\\\":3,\\\"sliceCount\\\":10,\\\"index\\\":\\\"\
+        q9AO\\\"}\",\n        \"bitrate\": \"8192\",\n        \"resolution\": \"1280x720\",\n        \"\
+        targetId\": \"\",\n        \"type\": \"HLS\",\n        \"userId\": \"8a08ca655f9ec2d901604f495fed01dd\"\
+        ,\n        \"deleteFlag\": 0,\n        \"importType\": \"output\",\n        \"authType\": \"0\"\
+        ,\n        \"isCrop\": null,\n        \"pushTime\": null,\n        \"subType\": null,\n      \
+        \  \"living\": false,\n        \"rid\": null,\n        \"autoResolution\": 0,\n        \"rtmpUrl\"\
+        : null,\n        \"audioTrackMap\": null,\n        \"rtmpType\": null\n      },\n      {\n   \
+        \     \"id\": \"3366c632013642ab82e1e8b87d6190d7\",\n        \"nickName\": \"SRT-share\",\n  \
+        \      \"createTime\": 1653989405919,\n        \"updateTime\": 1653989405919,\n        \"externalParameters\"\
+        : \"{\\\"ip\\\":\\\"\\\",\\\"port\\\":\\\"8288\\\",\\\"latency\\\":1000,\\\"packetSize\\\":1316,\\\
+        \"advParams\\\":\\\"\\\",\\\"audioLang\\\":\\\"eng\\\",\\\"streamType\\\":\\\"listener\\\"}\"\
+        ,\n        \"bitrate\": \"8192\",\n        \"resolution\": \"1280x720\",\n        \"targetId\"\
+        : \"\",\n        \"type\": \"SRT\",\n        \"userId\": \"8a08ca655f9ec2d901604f495fed01dd\"\
+        ,\n        \"deleteFlag\": 0,\n        \"importType\": \"output\",\n        \"authType\": \"0\"\
+        ,\n        \"isCrop\": null,\n        \"pushTime\": null,\n        \"subType\": null,\n      \
+        \  \"living\": false,\n        \"rid\": null,\n        \"autoResolution\": 0,\n        \"rtmpUrl\"\
+        : null,\n        \"audioTrackMap\": null,\n        \"rtmpType\": null\n      },\n      {\n   \
+        \     \"id\": \"a8337e91c68947fe9cdec191093e0072\",\n        \"nickName\": \"HLS-share\",\n  \
+        \      \"createTime\": 1653989208668,\n        \"updateTime\": 1653989208668,\n        \"externalParameters\"\
+        : \"{\\\"duration\\\":3,\\\"sliceCount\\\":10,\\\"index\\\":\\\"DYLg\\\"}\",\n        \"bitrate\"\
+        : \"8192\",\n        \"resolution\": \"1280x720\",\n        \"targetId\": \"\",\n        \"type\"\
+        : \"HLS\",\n        \"userId\": \"8a08ca655f9ec2d901604f495fed01dd\",\n        \"deleteFlag\"\
+        : 0,\n        \"importType\": \"output\",\n        \"authType\": \"0\",\n        \"isCrop\": null,\n\
+        \        \"pushTime\": null,\n        \"subType\": null,\n        \"living\": false,\n       \
+        \ \"rid\": null,\n        \"autoResolution\": 0,\n        \"rtmpUrl\": null,\n        \"audioTrackMap\"\
+        : null,\n        \"rtmpType\": null\n      }\n    ],\n    \"pageNum\": 1,\n    \"pageSize\": 10,\n\
+        \    \"size\": 3,\n    \"startRow\": 0,\n    \"endRow\": 2,\n    \"pages\": 1,\n    \"prePage\"\
+        : 0,\n    \"nextPage\": 0,\n    \"isFirstPage\": true,\n    \"isLastPage\": true,\n    \"hasPreviousPage\"\
+        : false,\n    \"hasNextPage\": false,\n    \"navigatePages\": 8,\n    \"navigatepageNums\": [\n\
+        \      1\n    ],\n    \"navigateFirstPage\": 1,\n    \"navigateLastPage\": 1,\n    \"firstPage\"\
+        : 1,\n    \"lastPage\": 1\n  }\n}\n```"
+      tags:
+      - Media Service For Producer/tvucc-media
+      parameters:
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              secondType: HLS,PROMPEG,SRT,O
+              targetId: '52846403399680'
+              nickName: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example: "{\n    \"errorCode\": \"0x0\",\n    \"errorInfo\": \"Success\",\n    \"result\"\
+                : {\n        \"total\": 3,\n        \"list\": [\n            {\n                \"id\"\
+                : \"6ad83f504f594b1ca2288b2adb0efdcb\",\n                \"nickName\": \"HLS531\",\n \
+                \               \"createTime\": 1653990294613,\n                \"updateTime\": 1653990294613,\n\
+                \                \"externalParameters\": \"{\\\"duration\\\":3,\\\"sliceCount\\\":10,\\\
+                \"index\\\":\\\"q9AO\\\"}\",\n                \"bitrate\": \"8192\",\n               \
+                \ \"resolution\": \"1280x720\",\n                \"targetId\": \"\",\n               \
+                \ \"type\": \"HLS\",\n                \"userId\": \"8a08ca655f9ec2d901604f495fed01dd\"\
+                ,\n                \"deleteFlag\": 0,\n                \"importType\": \"output\",\n \
+                \               \"authType\": \"0\",\n                \"isCrop\": null,\n            \
+                \    \"pushTime\": null,\n                \"subType\": null,\n                \"living\"\
+                : false,\n                \"rid\": null,\n                \"autoResolution\": 0,\n   \
+                \             \"rtmpUrl\": null,\n                \"audioTrackMap\": null,\n         \
+                \       \"rtmpType\": null\n            },\n            {\n                \"id\": \"\
+                3366c632013642ab82e1e8b87d6190d7\",\n                \"nickName\": \"SRT-share\",\n  \
+                \              \"createTime\": 1653989405919,\n                \"updateTime\": 1653989405919,\n\
+                \                \"externalParameters\": \"{\\\"ip\\\":\\\"\\\",\\\"port\\\":\\\"8288\\\
+                \",\\\"latency\\\":1000,\\\"packetSize\\\":1316,\\\"advParams\\\":\\\"\\\",\\\"audioLang\\\
+                \":\\\"eng\\\",\\\"streamType\\\":\\\"listener\\\"}\",\n                \"bitrate\": \"\
+                8192\",\n                \"resolution\": \"1280x720\",\n                \"targetId\":\
+                \ \"\",\n                \"type\": \"SRT\",\n                \"userId\": \"8a08ca655f9ec2d901604f495fed01dd\"\
+                ,\n                \"deleteFlag\": 0,\n                \"importType\": \"output\",\n \
+                \               \"authType\": \"0\",\n                \"isCrop\": null,\n            \
+                \    \"pushTime\": null,\n                \"subType\": null,\n                \"living\"\
+                : false,\n                \"rid\": null,\n                \"autoResolution\": 0,\n   \
+                \             \"rtmpUrl\": null,\n                \"audioTrackMap\": null,\n         \
+                \       \"rtmpType\": null\n            },\n            {\n                \"id\": \"\
+                a8337e91c68947fe9cdec191093e0072\",\n                \"nickName\": \"HLS-share\",\n  \
+                \              \"createTime\": 1653989208668,\n                \"updateTime\": 1653989208668,\n\
+                \                \"externalParameters\": \"{\\\"duration\\\":3,\\\"sliceCount\\\":10,\\\
+                \"index\\\":\\\"DYLg\\\"}\",\n                \"bitrate\": \"8192\",\n               \
+                \ \"resolution\": \"1280x720\",\n                \"targetId\": \"\",\n               \
+                \ \"type\": \"HLS\",\n                \"userId\": \"8a08ca655f9ec2d901604f495fed01dd\"\
+                ,\n                \"deleteFlag\": 0,\n                \"importType\": \"output\",\n \
+                \               \"authType\": \"0\",\n                \"isCrop\": null,\n            \
+                \    \"pushTime\": null,\n                \"subType\": null,\n                \"living\"\
+                : false,\n                \"rid\": null,\n                \"autoResolution\": 0,\n   \
+                \             \"rtmpUrl\": null,\n                \"audioTrackMap\": null,\n         \
+                \       \"rtmpType\": null\n            }\n        ],\n        \"pageNum\": 1,\n     \
+                \   \"pageSize\": 10,\n        \"size\": 3,\n        \"startRow\": 0,\n        \"endRow\"\
+                : 2,\n        \"pages\": 1,\n        \"prePage\": 0,\n        \"nextPage\": 0,\n     \
+                \   \"isFirstPage\": true,\n        \"isLastPage\": true,\n        \"hasPreviousPage\"\
+                : false,\n        \"hasNextPage\": false,\n        \"navigatePages\": 8,\n        \"navigatepageNums\"\
+                : [\n            1\n        ],\n        \"navigateFirstPage\": 1,\n        \"navigateLastPage\"\
+                : 1,\n        \"firstPage\": 1,\n        \"lastPage\": 1\n    }\n}"
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-media
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778591-run
+      operationId: ListOutputAccount_250778591
+      x-source-doc: https://docs.tvunetworks.cn/api-250778591.md
+  /media/tvucc-media/other/authInfo:
+    post:
+      summary: addRtmpOutputAccount
+      deprecated: false
+      description: "**Request Param：** \n\nrequestParam\n\n| param name     | required | type    | desc\
+        \               |\n| :--------- | :--- | :------ | ------------------- |\n| nickName    |  Y \
+        \ | String  | nickName       |\n| authType   | Y   | Integer |  default value:1   |\n| rtmpType\
+        \ | Y   | Integer  | 0:PUSH 1:PULL   |\n| subType | Y   | String  | default value: RTMP |\n| rtmpUrl\
+        \ | F   | String  | when rtmpType is 0 must be set value，The address of rtmp pull can be found\
+        \ in the ListOutputAccount API after successful streaming (it is necessary to modify the sendeType\
+        \ parameter in the ListOutputAccount API and add an O type)|\n| index   | F   | String | random\
+        \ four digit letter, when rtmpType is 1 must be set, for example: abcd  |\n| resolution   | F\
+        \   | String  | 1920x1080            |\n| bitrate    | F   | String  | default value: 5.0M   \
+        \    |\n| mode   | F   | String  | 0: overlay 1:clean           |\n| audioCode   | F   | String\
+        \  | audio code,for example: AAC          |\n| videoCode | F   | String  |video code,for example:\
+        \ H264      |\n\n\nrtmp pull request exmple:\n```\n{\n    \"nickName\": \"test-rtmp-pull\",\n\
+        \    \"rtmpUrl\": \"\",\n    \"authType\": 1,\n    \"subType\": \"RTMP\",\n    \"index\": \"abcd\"\
+        ,\n    \"rtmpType\": 1,\n    \"bitrate\": \"5.0M\",\n    \"resolution\": \"1920x1080\",\n    \"\
+        mode\": 0,\n    \"audioCode\": \"AAC\",\n    \"videoCode\": \"H264\"\n}\n```\nrtmp push request\
+        \ exmple:\n```\n{\n    \"nickName\": \"test-rtmp-push\",\n    \"rtmpUrl\": \"rtmp://10.12.22.23/live/test\"\
+        ,\n    \"authType\": 1,\n    \"subType\": \"RTMP\",\n    \"index\": \"RQ47\",\n    \"rtmpType\"\
+        : 0,\n    \"bitrate\": \"5.0M\",\n    \"resolution\": \"1920x1080\",\n    \"mode\": 0,\n    \"\
+        audioCode\": \"AAC\",\n    \"videoCode\": \"H264\"\n}\n```\n\n\n\n **Response**\n\n```  \n// Success\n\
+        {\n    \"errorCode\": \"0x0\",\n    \"errorInfo\": \"Success\",\n    \"result\": {\n\t  \"mediaId\"\
+        :\"431542354fgfdsgfds3454\"\n\t}\n}\n\n```\n\n**Update Rtmp account**\n\n**Request Param：**\n\n\
+        requestParam\n\n| param name     | required | type    | desc               |\n| :--------- | :---\
+        \ | :------ | ------------------- |\n| id    |  Y  | String  | account id       |\n| nickName\
+        \    |  Y  | String  | nickName       |\n| authType   | Y   | Integer |  default value:1   |\n\
+        | rtmpType | Y   | Integer  | 0:PUSH 1:PULL  |\n| subType | Y   | String  | default value: RTMP\
+        \ |\n| rtmpUrl | F   | String  | when rtmpType is 0 must be set value|\n| index   | F   | String\
+        \ | random four digit letter, when rtmpType is 1 must be set, for example: abcd  |\n| resolution\
+        \   | F   | String  | 1920x1080            |\n| bitrate    | F   | String  | default value: 5.0M\
+        \       |\n| mode   | F   | String  | 0: overlay 1:clean           |\n| audioCode   | F   | String\
+        \  | audio code,for example: AAC          |\n| videoCode | F   | String  |video code,for example:\
+        \ H264      |\n\n\nrtmp pull request exmple:\n```\n{\n    \"id\":\"431542354fgfdsgfds3454\",\n\
+        \    \"nickName\": \"test-rtmp-pull\",\n    \"rtmpUrl\": \"\",\n    \"authType\": 1,\n    \"subType\"\
+        : \"RTMP\",\n    \"index\": \"abcd\",\n    \"rtmpType\": 1,\n    \"bitrate\": \"5.0M\",\n    \"\
+        resolution\": \"1920x1080\",\n    \"mode\": 0,\n    \"audioCode\": \"AAC\",\n    \"videoCode\"\
+        : \"H264\"\n}\n```\nrtmp push request exmple:\n```\n{\n\t\"id\":\"431542354fgfdsgfds3454\",\n\
+        \    \"nickName\": \"test-rtmp-push\",\n    \"rtmpUrl\": \"rtmp://10.12.22.23/live/test\",\n \
+        \   \"authType\": 1,\n    \"subType\": \"RTMP\",\n    \"index\": \"RQ47\",\n    \"rtmpType\":\
+        \ 0,\n    \"bitrate\": \"5.0M\",\n    \"resolution\": \"1920x1080\",\n    \"mode\": 0,\n    \"\
+        audioCode\": \"AAC\",\n    \"videoCode\": \"H264\"\n}\n```\n\n\n\n **Response**\n\n```  \n// Success\n\
+        {\n    \"errorCode\": \"0x0\",\n    \"errorInfo\": \"Success\",\n    \"result\": null\n}\n\n```\n"
+      tags:
+      - Media Service For Producer/tvucc-media
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: F104519230124A5D8079CAA89449FF2C
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              nickName: test-rtmp-push
+              rtmpUrl: rtmp://10.12.22.23/live/test
+              authType: 1
+              subType: RTMP
+              index: RQ47
+              rtmpType: 0
+              bitrate: 5.0M
+              resolution: 1920x1080
+              mode: 0
+              audioCode: AAC
+              videoCode: H264
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                  mediaId: 431542354fgfdsgfds3454
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-media
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778593-run
+      operationId: addRtmpOutputAccount_250778593
+      x-source-doc: https://docs.tvunetworks.cn/api-250778593.md
+  /media/tvucc-media/outputSetting/add:
+    post:
+      summary: addOutPutAccount
+      deprecated: false
+      description: "**Request URL**\n\n- `{{domain}}`<strong>`/media/tvucc-media/outputSetting/add`</strong>\n\
+        \n**Request Mode**\n\n- POST\n\n**Request Headers**\n\n|key|value|\n|:----|:---|\n|Authorization|[F104519230124A5D8079CAA89449FF2C]|\n\
+        |Cookie|[SID=F104519230124A5D8079CAA89449FF2C]|\n|Content-Type|[application/json;charset=UTF-8]|\n\
+        **Parameter(body)**\n\n|name|required|type|explain|\n|:----|:---|:----|:---|\n|nickName|Y|String|output\
+        \ account|\n|type|Y|String|output account type: HLS,SRT,RTP-FEC(The interface passes parameters\
+        \ as PROMPEG)|\n|resolution|Y|String|output resolution|\n|bitrate|Y|String|output bitrate|\n|serverName|Y|String|The\
+        \ producer user passes the parameter value as pp|\n|targetId|Y|String|business id,Producer users\
+        \ suggest filling in the program ID|\n|externalParameters|Y|String|external param Different types\
+        \ have different extension parameters, which will be explained below|\n|shareFlag|F|Integer|Share\
+        \ Across TVU Services 1：true,0:false,When set to 1, queries can be performed without binding to\
+        \ targetId|\n|customTag|F|String|Custom label: first used for commentator hiding function (passing\
+        \ commentator default)|\n\n**HLS externalParameters param exmaple**\n\n json string:\n\n\"{\\\"\
+        duration\\\":6,\\\"sliceCount\\\":10,\\\"index\\\":\\\"1\\\",\\\"mode\\\":0}\"\n\n**duration**:\
+        \ Chunk Size\n**sliceCount**: Slice Count\n**index**: index name\n**mode**: 1:overlay,0:clean\n\
+        \n**SRT externalParameters param exmaple**\n json string\n{\"ip\":\"10.12.22.213\",\"port\":\"\
+        5211\",\"latency\":2000,\"packetSize\":1316,\"advParams\":\"passphrase=xxxx\",\"audioLang\":\"\
+        eng\",\"streamType\":\"caller\",\"mode\":0,\"advancedCbr\":true}\n\n**ip**: output address\n**port**:\
+        \ ouput port\n**proMPEGColumns**:FEC columns\n**proMPEGRows**:FEC rows\n**audioLang**: output\
+        \ language \n**mode**: 1:overlay,0:clean\n\n**RTP-FEC externalParameters param exmaple**\njson\
+        \ string\n\"{\"ip\":\"10.12.22.10\",\"port\":\"8080\",\"proMPEGColumns\":12,\"proMPEGRows\":8,\"\
+        audioLang\":\"eng\",\"mode\":0}\"\n\n\n\n**ip**: output address,listener mode Can be left blank\n\
+        **port**: ouput port\n**latency**:Latency, in milliseconds\n**packetSize**:Packet size，in bytes\n\
+        **audioLang**: output language \n**streamType**: option values [listener|caller|rendezvous]\n\
+        **mode**: 1:overlay,0:clean\n---\n\n\n\n# Request Example\n\n**Request Example(body)**\n```json\n\
+        {\n\t\"nickName\": \"HLS_20230410\",\n\t\"type\": \"HLS\",\n\t\"serverName\": \"pp\",\n\t\"targetId\"\
+        : 52846403399680,\n\t\"shareFlag\": 0,\n\t\"externalParameters\": \"{\\\"duration\\\":6,\\\"sliceCount\\\
+        \":10,\\\"index\\\":\\\"1\\\",\\\"mode\\\":0}\",\n\t\"resolution\": \"1920x1080\",\n\t\"bitrate\"\
+        : 8192,\n\t\"gopSizeMs\": 2000\n}\n```\n\n\n\n\n---\n\n\n\n# Response Example\n\n**Return Example**\n\
+        \n- \n```json\n{\n  \"errorCode\" : \"0x0\",\n  \"errorInfo\" : \"Success\",\n  \"result\" : \"\
+        65278fb84a104c28af8cf2816e29b652\"\n}\n```\n**Return Example Description**\n\n|name|type|explain|\n\
+        |:----|:---|:---|\n|result|String|Return data this is output account id|\n|errorCode|String|Return\
+        \ error code description，0x0:success|\n|errorInfo|String|Return error description|\n"
+      tags:
+      - Media Service For Producer/tvucc-media/output Setting
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: SID=9A7E0459687F472A82096FAAE5BAEC66
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              nickName: HLS_20230410
+              type: HLS
+              serverName: pp
+              targetId: 52846403399680
+              shareFlag: 0
+              externalParameters: '{"duration":6,"sliceCount":10,"index":"1","mode":0}'
+              resolution: 1920x1080
+              bitrate: 8192
+              gopSizeMs: 2000
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: string
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result: 5bb0575054744f71839bd36003bbfffd
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-media/output Setting
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778596-run
+      operationId: addOutPutAccount_250778596
+      x-source-doc: https://docs.tvunetworks.cn/api-250778596.md
+  /media/tvucc-media/outputSetting/delete:
+    post:
+      summary: deleteOutputAccount
+      deprecated: false
+      description: "# Description\n\n**Brief**\n\n- delete by ouptut account id\n\n**Request URL**\n\n\
+        - `{{domain}}`<strong>`/media/tvucc-media/outputSetting/delete`</strong>\n\n**Request Mode**\n\
+        \n- POST\n\n**Request Headers**\n\n|key|value|\n|:----|:---|\n|Authorization|[F104519230124A5D8079CAA89449FF2C]|\n\
+        |Cookie|[SID=F104519230124A5D8079CAA89449FF2C]|\n|Content-Type|[application/json;charset=UTF-8]|\n\
+        **Parameter(body)**\n\n|name|required|type|explain|\n|:----|:---|:----|:---|\n|id|Y|String|ouptut\
+        \ account id|\n\n\n\n---\n\n\n\n# Request Example\n\n**Request Example(body)**\n```json\n{\n \
+        \ \"id\" : \"511d42826ef04b708695872290185bd9\"\n}\n```\n\n\n\n\n---\n\n\n\n# Response Example\n\
+        \n**Return Example**\n\n```json\n{\n  \"errorCode\" : \"0x0\",\n  \"errorInfo\" : \"Success\"\
+        ,\n  \"result\" : null\n}\n```\n**Return Example Description**\n\n|name|type|explain|\n|:----|:---|:---|\n\
+        |result|Object|Return data|\n|errorCode|String|Return error code description，0x0:success|\n|errorInfo|String|Return\
+        \ error description|\n"
+      tags:
+      - Media Service For Producer/tvucc-media/output Setting
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: D9B77CDEEA384660AE00A523E057432C
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              id: 511d42826ef04b708695872290185bd9
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example: "{\n    \"errorCode\": \"0x0\",\n    \"errorInfo\": \"Success\",\n    \"result\"\
+                : null\n}"
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-media/output Setting
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778595-run
+      operationId: deleteOutputAccount_250778595
+      x-source-doc: https://docs.tvunetworks.cn/api-250778595.md
+  /media/tvucc-media/outputSetting/get:
+    post:
+      summary: getOutputAccount
+      deprecated: false
+      description: "# Description\n\n\n\n**Request URL**\n\n- `{{domain}}`<strong>`/media/tvucc-media/outputSetting/get`</strong>\n\
+        \n**Request Mode**\n\n- POST\n\n**Request Headers**\n\n|key|value|\n|:----|:---|\n|Authorization|[F104519230124A5D8079CAA89449FF2C]|\n\
+        |Cookie|[SID=F104519230124A5D8079CAA89449FF2C]|\n|Content-Type|[application/json;charset=UTF-8]|\n\
+        **Parameter(body)**\n\n|name|required|type|explain|\n|:----|:---|:----|:---|\n|id|Y|String|output\
+        \ account id|\n\n\n\n---\n\n\n\n# Request Example\n\n**Request Example(body)**\n```json\n{\n \
+        \ \"id\" : \"511d42826ef04b708695872290185bd9\"\n}\n```\n\n\n\n\n---\n\n\n\n# Response Example\n\
+        \n**Return Example**\n\n```json\n{\n    \"errorCode\": \"0x0\",\n    \"errorInfo\": \"Success\"\
+        ,\n    \"result\": {\n        \"id\": \"ca2cbe00820a4ba39206429d50a77f0f\",\n        \"deleteFlag\"\
+        : 0,\n        \"createTime\": 1681197061159,\n        \"updateTime\": 1681197333457,\n       \
+        \ \"nickName\": \"SRT-3\",\n        \"type\": \"SRT\",\n        \"userId\": \"1cd2b373925d4e3c9bf72f468fd2bba7\"\
+        ,\n        \"resolution\": \"1920x1080\",\n        \"bitrate\": \"8192\",\n        \"serverName\"\
+        : \"pp\",\n        \"targetType\": \"\",\n        \"targetId\": \"52846403399680\",\n        \"\
+        externalParameters\": \"{\\\"ip\\\":\\\"10.12.22.22\\\",\\\"port\\\":\\\"60000\\\",\\\"latency\\\
+        \":1000,\\\"packetSize\\\":1316,\\\"advParams\\\":\\\"\\\",\\\"audioLang\\\":\\\"eng\\\",\\\"\
+        streamType\\\":\\\"rendezvous\\\",\\\"mode\\\":0}\",\n        \"gopSizeMs\": 2000,\n        \"\
+        shareFlag\": 0,\n        \"autoResolution\": 0,\n        \"customTag\": \"\"\n    }\n}\n```\n\
+        **Return Example Description**\n\n|name|type|explain|\n|:----|:---|:---|\n|result|JSONObject|Return\
+        \ data|\n|errorCode|String|Return error code description，0x0:success|\n|errorInfo|String|Return\
+        \ error description|\n"
+      tags:
+      - Media Service For Producer/tvucc-media/output Setting
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: 9A7E0459687F472A82096FAAE5BAEC66
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              id: 511d42826ef04b708695872290185bd9
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                  id: ca2cbe00820a4ba39206429d50a77f0f
+                  deleteFlag: 0
+                  createTime: 1681197061159
+                  updateTime: 1681197333457
+                  nickName: SRT-3
+                  type: SRT
+                  userId: 1cd2b373925d4e3c9bf72f468fd2bba7
+                  resolution: 1920x1080
+                  bitrate: '8192'
+                  serverName: pp
+                  targetType: ''
+                  targetId: '52846403399680'
+                  externalParameters: '{"ip":"10.12.22.22","port":"60000","latency":1000,"packetSize":1316,"advParams":"","audioLang":"eng","streamType":"rendezvous","mode":0}'
+                  gopSizeMs: 2000
+                  shareFlag: 0
+                  autoResolution: 0
+                  customTag: ''
+          headers: {}
+          x-apifox-name: Untitled Response
+        '401':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example: token is empty
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-media/output Setting
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778597-run
+      operationId: getOutputAccount_250778597
+      x-source-doc: https://docs.tvunetworks.cn/api-250778597.md
+  /media/tvucc-media/outputSetting/update:
+    post:
+      summary: updateOutputAccount
+      deprecated: false
+      description: "# Description\n\n**Brief**\n\n- update account\n\n**Request URL**\n\n- `{{domain}}`<strong>`/media/tvucc-media/outputSetting/update`</strong>\n\
+        \n**Request Mode**\n\n- POST\n\n**Request Headers**\n\n|key|value|\n|:----|:---|\n|Authorization|[F104519230124A5D8079CAA89449FF2C]|\n\
+        |Cookie|[SID=F104519230124A5D8079CAA89449FF2C]|\n|Content-Type|[application/json;charset=UTF-8]|\n\
+        \n**Parameter(body)**\n|name|required|type|explain|\n|:----|:---|:----|:---|\n|id|Y|String|output\
+        \ account id|\n|nickName|Y|String|output account|\n|type|Y|String|output account type: HLS,SRT,RTP-FEC(The\
+        \ interface passes parameters as PROMPEG)|\n|resolution|Y|String|output resolution|\n|bitrate|Y|String|output\
+        \ bitrate|\n|serverName|Y|String|The producer user passes the parameter value as pp|\n|targetId|Y|String|business\
+        \ id,Producer users suggest filling in the program ID|\n|externalParameters|Y|String|external\
+        \ param Different types have different extension parameters, which will be explained below|\n\
+        |shareFlag|F|Integer|Share Across TVU Services 1：true,0:false,When set to 1, queries can be performed\
+        \ without binding to targetId|\n|customTag|F|String|Custom label: first used for commentator hiding\
+        \ function (passing commentator default)|\n\n**HLS externalParameters param exmaple**\n\n json\
+        \ string:\n\n\"{\\\"duration\\\":6,\\\"sliceCount\\\":10,\\\"index\\\":\\\"1\\\",\\\"mode\\\"\
+        :0}\"\n\n**duration**: Chunk Size\n**sliceCount**: Slice Count\n**index**: index name\n**mode**:\
+        \ 1:overlay,0:clean\n\n**SRT externalParameters param exmaple**\n json string\n{\"ip\":\"10.12.22.213\"\
+        ,\"port\":\"5211\",\"latency\":2000,\"packetSize\":1316,\"advParams\":\"passphrase=xxxx\",\"audioLang\"\
+        :\"eng\",\"streamType\":\"caller\",\"mode\":0,\"advancedCbr\":true}\n\n**ip**: output address\n\
+        **port**: ouput port\n**proMPEGColumns**:FEC columns\n**proMPEGRows**:FEC rows\n**audioLang**:\
+        \ output language \n**mode**: 1:overlay,0:clean\n\n**RTP-FEC externalParameters param exmaple**\n\
+        json string\n\"{\"ip\":\"10.12.22.10\",\"port\":\"8080\",\"proMPEGColumns\":12,\"proMPEGRows\"\
+        :8,\"audioLang\":\"eng\",\"mode\":0}\"\n\n**ip**: output address,listener mode Can be left blank\n\
+        **port**: ouput port\n**latency**:Latency, in milliseconds\n**packetSize**:Packet size，in bytes\n\
+        **audioLang**: output language \n**streamType**: option values [listener|caller|rendezvous]\n\
+        **mode**: 1:overlay,0:clean\n\n---\n\n\n\n# Request Example\n\n**Request Example(body)**\n```json\n\
+        {\n    \"id\" : \"511d42826ef04b708695872290185bd9\",\n\t\"nickName\": \"HLS_20230410\",\n\t\"\
+        type\": \"HLS\",\n\t\"serverName\": \"pp\",\n\t\"targetId\": 52846403399680,\n\t\"shareFlag\"\
+        : 0,\n\t\"externalParameters\": \"{\\\"duration\\\":6,\\\"sliceCount\\\":10,\\\"index\\\":\\\"\
+        1\\\",\\\"mode\\\":0}\",\n\t\"resolution\": \"1920x1080\",\n\t\"bitrate\": 8192,\n\t\"gopSizeMs\"\
+        : 2000\n}\n```\n\n\n\n\n---\n\n\n\n# Response Example\n\n**Return Example**\n\n```json\n{\n  \"\
+        errorCode\" : \"0x0\",\n  \"errorInfo\" : \"Success\",\n  \"result\" : \"511d42826ef04b708695872290185bd9\"\
+        \n}\n```\n**Return Example Description**\n\n|name|type|explain|\n|:----|:---|\n|result|String|Return\
+        \ data|\n|errorCode|String|Return error code description，0x0:success|\n|errorInfo|String|Return\
+        \ error description|\n"
+      tags:
+      - Media Service For Producer/tvucc-media/output Setting
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: D9B77CDEEA384660AE00A523E057432C
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              id: 511d42826ef04b708695872290185bd9
+              nickName: HLS_20230410
+              type: HLS
+              serverName: pp
+              targetId: 52846403399680
+              shareFlag: 0
+              externalParameters: '{"duration":6,"sliceCount":10,"index":"1","mode":0}'
+              resolution: 1920x1080
+              bitrate: 8192
+              gopSizeMs: 2000
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example: "{\n    \"errorCode\": \"0x0\",\n    \"errorInfo\": \"Success\",\n    \"result\"\
+                : \"511d42826ef04b708695872290185bd9\"\n}"
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-media/output Setting
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778594-run
+      operationId: updateOutputAccount_250778594
+      x-source-doc: https://docs.tvunetworks.cn/api-250778594.md
+  /media/tvucc-share/output/goLive:
+    post:
+      summary: liveOutput
+      deprecated: false
+      description: "# Description\n\n**Brief**\n\n- goLive3\n\n**Request URL**\n\n- `{domain}`<strong>`/media/tvucc-share/output/goLive`</strong>\n\
+        \n**Request Mode**\n\n- POST\n\n**Request Headers**\n\n|key|value|\n|:----|:---|\n|Authorization|[D8554504FA734CFB87BCD38D25158174]|\n\
+        |Cookie|[SID=D8554504FA734CFB87BCD38D25158174]|\n|Content-Type|[application/json;charset=UTF-8]|\n\
+        \n\n\n\n**Parameter(body)**\n\n|name|required|type|explain|\n|:----|:---|:----|:---|\n|id|Y|String|output\
+        \ account id|\n|rId|Y|String|producer mainRid  (Can be obtained from Producer GrappQL API) |\n\
+        |resolution|Y|String|resolution|\n|module|Y|If r is a producer, r needs to be set to Studio|\n\
+        |origin|N|String|If r is a producer, r needs to be set to pp|\n|bitrate|Y|String|bitrate|\n|targetId|Y|String|producer\
+        \ programId  (  Can be obtained from Producer GrappQL API)|\n|platform|Y|String|If r is a producer,\
+        \ r needs to be set to pp|\n|sessionId|F|String|producer productionId  (Can be obtained from Producer\
+        \ GrappQL API) |\n|audioTrackMap|F|Integer[]|remap values：[1,2,3,4]\n  | colorStandard| F   |\
+        \ Object|Value reference document：https://ffmpeg.org/ffmpeg-codecs.html |\n  | colorPrimaries|\
+        \ Y   | colorStandard Object| Chromaticity value,Value reference document：https://ffmpeg.org/ffmpeg-codecs.html|\n\
+        \  | colorTrc| Y   | colorStandard Object| High color characteristics,Value reference document：https://ffmpeg.org/ffmpeg-codecs.html\
+        \ |\n  | colorSpace| Y   | colorStandard Object| color space     Value reference document：https://ffmpeg.org/ffmpeg-codecs.html\
+        \                                       |\n  | colorRange| Y   | colorStandard Object|color range\
+        \ Value reference document：https://ffmpeg.org/ffmpeg-codecs.html|\n\n\n# Request Example\n\n**Request\
+        \ Example(body)**\n```json\n{\n    \"rId\":\"fffffffbb0006708\",\n    \"id\":\"5bb0575054744f71839bd36003bbfffd\"\
+        ,\n    \"targetId\":52846403399680,\n    \"platform\":\"pp\",\n    \"origin\":\"pp\",\n    \"\
+        module\":\"Studio\",\n    \"sessionId\":10027572\n    }\n```\n\n\n\n\n---\n\n\n\n# Response Example\n\
+        \n**Return Example**\n\n```json\n{\n  \"errorCode\": \"0x0\",\n  \"errorInfo\": \"Success\",\n\
+        \  \"result\": [\n    {\n      \"platformType\": null,\n      \"id\": \"5bb0575054744f71839bd36003bbfffd\"\
+        ,\n      \"nickname\": \"HLS_20230410\",\n      \"pushTime\": \"1681193477872\",\n      \"CopierNickName\"\
+        : \"HLS_20230410\",\n      \"RtmpUrl\": \"https://54.234.114.108:8298/1.m3u8?n=10&d=6\",\n   \
+        \   \"EncoderIndex\": \"1\",\n      \"Type\": 2,\n      \"CopierType\": \"M3U8\",\n      \"RetryTimes\"\
+        : 0,\n      \"Extra\": \"{\\\"duration\\\":6,\\\"sliceCount\\\":10,\\\"index\\\":\\\"1\\\"}\"\n\
+        \    }\n  ]\n}\n```\n**Return Example Description**\n\n|name|type|explain|\n|:----|:---|\n|result|JSONArray|Return\
+        \ data|\n|errorCode|String|Return error code description，0x0:success|\n|errorInfo|String|Return\
+        \ error description|\n"
+      tags:
+      - Media Service For Producer/tvucc-share/output
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: D9B77CDEEA384660AE00A523E057432C
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              rId: fffffffbb0006708
+              id: 5bb0575054744f71839bd36003bbfffd
+              targetId: 52846403399680
+              platform: pp
+              origin: pp
+              module: Studio
+              sessionId: 10027572
+              colorStandard:
+                colorPrimaries: bt709
+                colorTrc: bt709
+                colorSpace: rgb
+                colorRange: tv
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                - platformType: null
+                  id: 5bb0575054744f71839bd36003bbfffd
+                  nickname: HLS_20230410
+                  pushTime: '1681193477872'
+                  CopierNickName: HLS_20230410
+                  RtmpUrl: https://54.234.114.108:8298/1.m3u8?n=10&d=6
+                  EncoderIndex: '1'
+                  Type: 2
+                  CopierType: M3U8
+                  RetryTimes: 0
+                  Extra: '{"duration":6,"sliceCount":10,"index":"1"}'
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-share/output
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778588-run
+      operationId: liveOutput_250778588
+      x-source-doc: https://docs.tvunetworks.cn/api-250778588.md
+  /media/tvucc-share/output/stopLive:
+    post:
+      summary: stopOutput
+      deprecated: false
+      description: "# Description\n\n**Brief**\n\n- stopLive\n\n**Request URL**\n\n- `{{domain}}`<strong>`/media/tvucc-share/output/stopLive`</strong>\n\
+        \n**Request Mode**\n\n- POST\n\n**Request Headers**\n\n|key|value|\n|:----|:---|\n|Authorization|[D8554504FA734CFB87BCD38D25158174]|\n\
+        |Cookie|[SID=D8554504FA734CFB87BCD38D25158174]|\n|Content-Type|[application/json;charset=UTF-8]|\n\
+        **Parameter(body)**\n\n|name|required|type|explain|\n|:----|:---|:----|:---|\n|id|Y|String|output\
+        \ account id|\n|rId|Y|String|ReceiverId|\n|platform|Y|String|If r is a producer, r needs to be\
+        \ set to pp|\n|origin|Y|String|If r is a producer, r needs to be set to pp|\n|module|Y|String|If\
+        \ r is a producer, r needs to be set to Studio|\n---\n\n\n\n# Request Example\n\n**Request Example(body)**\n\
+        ```json\n{\n    \"rId\":\"fffffffbb0006708\",\n    \"id\":\"5bb0575054744f71839bd36003bbfffd\"\
+        ,\n    \"platform\":\"pp\",\n    \"origin\":\"pp\",\n    \"module\":\"Studio\"\n}\n```\n\n\n\n\
+        \n---\n\n\n\n# Response Example\n\n**Return Example**\n\n```json\n{\n  \"errorCode\": \"0x0\"\
+        ,\n  \"errorInfo\": \"Success\",\n  \"result\": [\n    {\n      \"copierNickName\": \"HLS_20230410\"\
+        ,\n      \"EncoderIndex\": \"1\",\n      \"module\": \"Studio\"\n    }\n  ]\n}\n```\n**Return\
+        \ Example Description**\n\n|name|type|explain|\n|:----|:---|\n|result|JSONArray|Return data|\n\
+        |errorCode|String|Return error code description，0x0:success|\n|errorInfo|String|Return error description|\n"
+      tags:
+      - Media Service For Producer/tvucc-share/output
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: D9B77CDEEA384660AE00A523E057432C
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              rId: fffffffbb0006708
+              id: 5bb0575054744f71839bd36003bbfffd
+              platform: pp
+              origin: pp
+              module: Studio
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example: "{\n    \"errorCode\": \"0x0\",\n    \"errorInfo\": \"Success\",\n    \"result\"\
+                : [\n        {\n            \"copierNickName\": \"HLS_20230410\",\n            \"EncoderIndex\"\
+                : \"1\",\n            \"module\": \"Studio\"\n        }\n    ]\n}"
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-share/output
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778587-run
+      operationId: stopOutput_250778587
+      x-source-doc: https://docs.tvunetworks.cn/api-250778587.md
+  /media/tvucc-share/shareVideo/startShareVideo:
+    post:
+      summary: liveRtmpOutputAccount
+      deprecated: false
+      description: " **Request Param**\n\n\n  | param name     | required | type   | desc            \
+        \                                             |\n  | :--------- | :--- | :----- | ------------------------------------------------------------\
+        \ |\n  | rId        | Y   | String | R PID                                                   \
+        \    |\n  | id   | Y   | String | output account id |\n  | origin | Y   | String | please set\
+        \ value pp                                                   |\n  | module     | Y   | String\
+        \ |please set value Studio|\n  | targetId     | Y   | String |producer program id |\n  | platform\
+        \     | F   | String |please set value pp |\n  | sessionId     | F   | String |producer productionId\
+        \ from Producer GrapQL API |\n  | colorStandard| F   | Object|Value reference document：https://ffmpeg.org/ffmpeg-codecs.html\
+        \ |\n  | colorPrimaries| Y   | colorStandard Object| Chromaticity value,Value reference document：https://ffmpeg.org/ffmpeg-codecs.html|\n\
+        \  | colorTrc| Y   | colorStandard Object| High color characteristics,Value reference document：https://ffmpeg.org/ffmpeg-codecs.html\
+        \ |\n  | colorSpace| Y   | colorStandard Object| color space     Value reference document：https://ffmpeg.org/ffmpeg-codecs.html\
+        \                                       |\n  | colorRange| Y   | colorStandard Object|color range\
+        \ Value reference document：https://ffmpeg.org/ffmpeg-codecs.html|\n\n\n\n\n  **Request exmple**\n\
+        \  \n  ``` \n {\n    \"rId\": \"fffffffbb00ba003\",\n    \"id\": \"82411903055e45c49e719a6a62a3325a\"\
+        ,\n    \"bitrate\": \"5.0M\",\n    \"resolution\": \"1920x1080\",\n    \"targetId\": 41563952205824,\n\
+        \    \"platform\": \"pp\",\n    \"origin\": \"pp\",\n    \"module\": \"Studio\",\n    \"sessionId\"\
+        : 10300665,\n     \"colorStandard\":{\n        \"colorPrimaries\":\"bt709\",\n        \"colorTrc\"\
+        :\"bt709\",\n        \"colorSpace\":\"rgb\",\n        \"colorRange\":\"tv\"\n    }\n\n\n}\n  ```\n\
+        \  \n\n **Response**\n\n```  \n{\n    \"errorCode\": \"0x0\",\n    \"errorInfo\": \"Success\"\
+        ,\n    \"result\": {\n        \"success\": [\n            {\n                \"errorCode\": \"\
+        0x0\",\n                \"errorInfo\": \"Success\",\n                \"result\": {\n         \
+        \           \"id\": \"82411903055e45c49e719a6a62a3325a\",\n                    \"rtmp\": \"rtmp://10.12.22.23/test\"\
+        ,\n                    \"platformType\": \"O\",\n                    \"account\": \"test-rtmp-push\"\
+        ,\n                    \"authType\": \"1\",\n                    \"custom\": null,\n         \
+        \           \"errorMsg\": null,\n                    \"errorObj\": null,\n                   \
+        \ \"subType\": \"RTMP\"\n                }\n            }\n        ]\n    }\n}\n  \n```"
+      tags:
+      - Media Service For Producer/tvucc-share/share Video
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: DBC549501C574694AB920614ABFC468E
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              rId: fffffffbb00ba003
+              id: 82411903055e45c49e719a6a62a3325a
+              bitrate: 5.0M
+              resolution: 1920x1080
+              targetId: 41563952205824
+              platform: pp
+              origin: pp
+              module: Studio
+              sessionId: 10300665
+              colorStandard:
+                colorPrimaries: bt709
+                colorTrc: bt709
+                colorSpace: rgb
+                colorRange: tv
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                  success:
+                  - errorCode: '0x0'
+                    errorInfo: Success
+                    result:
+                      id: 82411903055e45c49e719a6a62a3325a
+                      rtmp: rtmp://10.12.22.23/test
+                      platformType: O
+                      account: test-rtmp-push
+                      authType: '1'
+                      custom: null
+                      errorMsg: null
+                      errorObj: null
+                      subType: RTMP
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-share/share Video
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778590-run
+      operationId: liveRtmpOutputAccount_250778590
+      x-source-doc: https://docs.tvunetworks.cn/api-250778590.md
+  /media/tvucc-share/shareVideo/stopShare:
+    post:
+      summary: stopRtmpOutput
+      deprecated: false
+      description: "\n**Request Param：** \n\n\n| Param name      | required | type   | desc          \
+        \                                               |\n| :---------- | :--- | :----- | ------------------------------------------------------------\
+        \ |\n| rId         | Y   | String | R PID                                                   |\n\
+        | id         | Y   | String | output account id from add RTMP account API                    \
+        \                       |\n| origin    | Y   | String | please set value Studio  pp |\n| module\
+        \       | Y   | String | please set value Studio                          |\n\n\n\n**reqeust param**\n\
+        \n```\n{\n\"rId\":\"fffffffbb00ba003\",\n\"id\":\"cf2d469fb38348f9b54d976ba9420a3a\",\n\"origin\"\
+        :\"pp\",\n\"module\":\"Studio\"\n}\n```\n\n\n **Response**\n\n```  \n{\n    \"errorCode\": \"\
+        0x0\",\n    \"errorInfo\": \"Success\",\n    \"result\": null\n}\n\n\n```"
+      tags:
+      - Media Service For Producer/tvucc-share/share Video
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: XXX
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              rId: fffffffbb00ba003
+              id: cf2d469fb38348f9b54d976ba9420a3a
+              origin: pp
+              module: Studio
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result: null
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-share/share Video
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778589-run
+      operationId: stopRtmpOutput_250778589
+      x-source-doc: https://docs.tvunetworks.cn/api-250778589.md
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu鉴权:
+      type: bearer
+      scheme: bearer

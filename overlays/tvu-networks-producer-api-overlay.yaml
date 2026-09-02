@@ -1,0 +1,60 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — TVU Networks Producer API
+  version: 1.0.0
+extends: tvu-networks-producer-api-openapi.yml
+x-generated: '2026-09-01'
+x-method: generated
+x-source: openapi/tvu-networks-producer-api-openapi.yml + https://docs.tvunetworks.cn/folder-45770135 (Authentication
+  API)
+x-note: 'Enhancements API Evangelist applies on top of TVU''s own published contract. The base document in openapi/
+  is left exactly as TVU exports it, including the invalid `type: bearer` securityScheme; this overlay is where
+  the corrections and the two undeclared auth schemes live.'
+actions:
+- target: $.info
+  description: Name the provider and point at the documentation surface this contract was published on.
+  update:
+    contact:
+      name: TVU Networks
+      url: https://www.tvunetworks.com/tvu-developer/
+    x-provider: TVU Networks
+    x-documentation: https://docs.tvunetworks.cn/
+    x-status-page: https://status.tvunetworks.com/
+    x-error-catalog: errors/tvu-networks-problem-types.yml
+    x-conventions: conventions/tvu-networks-conventions.yml
+- target: $.components.securitySchemes.bearer
+  description: 'Correct the Apifox-exported `type: bearer`, which is not a valid OpenAPI 3.0 securityScheme type,
+    to the standard http/bearer form. TVU documents the bearer credential as the account AppSecret.'
+  update:
+    type: http
+    scheme: bearer
+    description: 'Authorization: Bearer <AppSecret>. The AppSecret is generated in Command Center -> Setting ->
+      Access App and is a 32-character string of digits and lowercase letters.'
+- target: $.components.securitySchemes
+  description: Add the SID session header and the AccessKey signature header that TVU documents on its Authentication
+    page but never declares as security schemes.
+  update:
+    SID:
+      type: apiKey
+      in: header
+      name: SID
+      description: Session ID obtained from https://userservice.tvunetworks.com/userAuth/token/getToken (email +
+        SHA-512 hex of password + expireTime).
+    AccessKey:
+      type: apiKey
+      in: header
+      name: AccessKey
+      description: 'Signed-request scheme: appkey + timestamp (ms) + signature = MD5(AppSecret + timestamp). Documented
+        at https://docs.tvunetworks.cn/folder-45770135 and absent from every exported spec.'
+- target: $.paths.*.*
+  description: TVU signals application failures as HTTP 200 with an in-body errorCode envelope; flag it on every
+    operation so a generated client does not branch on status alone.
+  update:
+    x-error-envelope:
+      style: in-body
+      success_value: errorCode == "0x0"
+      fields:
+      - errorCode
+      - errorInfo
+      - result
+      catalog: errors/tvu-networks-problem-types.yml

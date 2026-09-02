@@ -1,0 +1,81 @@
+generated: '2026-09-01'
+method: probed
+source: live GET of /.well-known/* on every apis.yml + OpenAPI servers[] host, 2026-09-01
+note: >-
+  No host serves a real /.well-known document. Every path 404s except
+  mediahub.tvunetworks.com, which answers 200 with the same 4,839-byte single-page-app
+  HTML shell for every /.well-known/* path (a soft-200 catch-all, not a document), and
+  mx-service.tvunetworks.com, which answers 401 "token is empty" for every path because
+  the whole host sits behind a bearer gate. No WellKnown or SecurityTxt pointer is emitted
+  in apis.yml, because none of these responses is a document TVU actually publishes.
+hosts:
+- host: www.tvunetworks.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: api.tvunetworks.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: mediahub.tvunetworks.com
+  documents:
+  - {path: /.well-known/security.txt, status: 200, note: 'HTML SPA shell, not a document — treated as a miss'}
+  - {path: /.well-known/openid-configuration, status: 200, note: 'HTML SPA shell, not a document — treated as a miss'}
+  - {path: /.well-known/oauth-authorization-server, status: 200, note: 'HTML SPA shell, not a document — treated as a miss'}
+  - {path: /.well-known/oauth-protected-resource, status: 200, note: 'HTML SPA shell, not a document — treated as a miss'}
+  - {path: /.well-known/api-catalog, status: 200, note: 'HTML SPA shell, not a document — treated as a miss'}
+  - {path: /.well-known/ai-plugin.json, status: 200, note: 'HTML SPA shell, not a document — treated as a miss'}
+  - {path: /.well-known/agent-card.json, status: 200, note: 'HTML SPA shell, not an AgentCard — treated as a miss'}
+  - {path: /.well-known/agent.json, status: 200, note: 'HTML SPA shell, not an AgentCard — treated as a miss'}
+- host: mma.tvunetworks.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: search.tvunetworks.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: mx-service.tvunetworks.com
+  documents:
+  - {path: /.well-known/security.txt, status: 401, note: 'body "token is empty" — host-wide bearer gate'}
+  - {path: /.well-known/openid-configuration, status: 401, note: 'body "token is empty" — host-wide bearer gate'}
+  - {path: /.well-known/oauth-authorization-server, status: 401, note: 'body "token is empty" — host-wide bearer gate'}
+  - {path: /.well-known/oauth-protected-resource, status: 401, note: 'body "token is empty" — host-wide bearer gate'}
+  - {path: /.well-known/api-catalog, status: 401, note: 'body "token is empty" — host-wide bearer gate'}
+  - {path: /.well-known/ai-plugin.json, status: 401, note: 'body "token is empty" — host-wide bearer gate'}
+  - {path: /.well-known/agent-card.json, status: 401, note: 'body "token is empty" — host-wide bearer gate'}
+  - {path: /.well-known/agent.json, status: 401, note: 'body "token is empty" — host-wide bearer gate'}
+- host: docs.tvunetworks.cn
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}

@@ -1,0 +1,73 @@
+generated: '2026-09-01'
+method: searched
+source: >-
+  https://status.tvunetworks.com/ (probed 2026-09-01, HTTP 200) plus versioning derived from the
+  paths of openapi/*.yml and a documentation-site search for a deprecation or sunset policy
+versioning:
+  style: path
+  policy_published: false
+  current_versions:
+  - {surface: Grid / device / token / thumbnail / bookingEvent, prefix: /openapi/3.0/}
+  - {surface: MediaHub, prefix: /mediahub/api/v2/}
+  - {surface: URCaller (encoding profiles, outputs, destinations, workflow), prefix: '/urcaller/api/v1/ and /urcaller/api/v2/ — both live simultaneously'}
+  - {surface: Search / MediaMind, prefix: /search/v2/}
+  - {surface: Object, prefix: /api/objectd/v1/}
+  - {surface: Resource, prefix: /api/resource/v2/}
+  - {surface: Input & Output modules, prefix: '/input-docker/api/v1/, /output-docker/api/v1/'}
+  - {surface: Object service, prefix: /route-object/object-service/api/v1/}
+  note: >-
+    Nine independent version lines across one "public API", with v1 and v2 of the URCaller
+    encoding-profile surface both documented and both live. Nothing in the documentation says
+    which is current or when v1 goes away.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations:
+  - path: /api/objectd/v1/t/{resourceType}/{tangibleId}/{subType}/{id}
+    method: get
+    summary: tangible 2
+    spec: openapi/tvu-networks-object-api-openapi.yml
+  note: >-
+    Exactly one of the 352 exported operations carries `deprecated: true`, and it carries no
+    replacement pointer, no sunset date and no Deprecation/Sunset response header. TVU publishes
+    no deprecation policy page.
+status_page:
+  url: https://status.tvunetworks.com/
+  platform: Atlassian Statuspage
+  http_status: 200
+  checked: '2026-09-01'
+  feeds:
+  - {type: atom, url: 'https://status.tvunetworks.com/history.atom'}
+  - {type: rss, url: 'https://status.tvunetworks.com/history.rss'}
+  history: https://status.tvunetworks.com/uptime
+  components:
+  - Channel
+  - Command Center
+  - Grid
+  - Grid Link
+  - Login Service
+  - Media Hub
+  - Partyline
+  - Producer
+  - Remote Commentator
+  - Replay
+  - Search
+  - User Auth
+  - User Group
+  note: >-
+    The status page is the strongest operational artifact TVU publishes: 13 named components
+    that map cleanly onto the API surfaces, with machine-readable Atom and RSS incident feeds.
+sla:
+  published: false
+  note: 'No SLA, uptime commitment or support-response target is published on tvunetworks.com.'
+changelog:
+  published: false
+  note: >-
+    No changelog, release-notes or what's-new page exists on tvunetworks.com or on the API
+    documentation site. The only dated change record TVU publishes is the Statuspage incident
+    history, which records outages rather than API changes.
+support:
+  url: https://www.tvunetworks.com/faqs-support/
+  warranty: https://www.tvunetworks.com/company-support-warranty/

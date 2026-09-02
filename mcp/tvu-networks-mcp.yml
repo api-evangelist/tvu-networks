@@ -1,0 +1,60 @@
+generated: '2026-09-01'
+method: derived
+source: openapi/*.yml (352 operations) + web search for a TVU-published MCP server
+status: candidate
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+note: >-
+  TVU Networks ships no MCP server. Web search returns no TVU-published remote endpoint and no
+  npm/PyPI package; the github.com/tvunetworks organisation holds only 2013-2018 firmware repos;
+  no /.well-known/agent-card.json or ai-plugin.json is served on any TVU host (see
+  well-known/tvu-networks-well-known.yml). The tools[] below are CANDIDATES derived by API
+  Evangelist from TVU's own OpenAPI operations to show what an MCP server over this API would
+  expose — they are not implemented and no endpoint exists. Input schemas are the parameters and
+  request bodies of the named operationIds in openapi/.
+tools:
+- name: mediahub_connect_route
+  description: Connect a MediaHub source object to a project so live signal starts flowing.
+  rest: [openapi/tvu-networks-mediahub-api-openapi.yml]
+  category: routing
+- name: mediahub_disconnect_route
+  description: Disconnect a live MediaHub route and stop the signal.
+  rest: [openapi/tvu-networks-mediahub-api-openapi.yml]
+  category: routing
+- name: mediahub_create_source_object
+  description: Create a MediaHub sourceObject representing an input source.
+  rest: [openapi/tvu-networks-mediahub-api-openapi.yml]
+  category: routing
+- name: mediahub_list_outputs
+  description: List the user's MediaHub output accounts.
+  rest: [openapi/tvu-networks-mediahub-api-openapi.yml]
+  category: routing
+- name: search_media
+  description: Cross-type media content search across the TVU media catalogue.
+  rest: [openapi/tvu-networks-search-api-openapi.yml]
+  category: search
+- name: search_create_slug_record
+  description: Create a recording slug and trigger recording with optional STT and face detection.
+  rest: [openapi/tvu-networks-uncategorized-openapi.yml]
+  category: ingest
+- name: grid_list_devices
+  description: List TVU transmission devices visible to the account and their live status.
+  rest: [openapi/tvu-networks-grid-api-openapi.yml]
+  category: devices
+- name: grid_start_live
+  description: Start a live transmission from a paired TVU transmitter.
+  rest: [openapi/tvu-networks-grid-api-openapi.yml]
+  category: devices
+- name: grid_stop_live
+  description: Stop an in-progress live transmission.
+  rest: [openapi/tvu-networks-grid-api-openapi.yml]
+  category: devices
+- name: export_media
+  description: Submit a media export job with an idempotency uuid and a callbackUrl webhook.
+  rest: [openapi/tvu-networks-export-openapi.yml]
+  category: media

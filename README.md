@@ -64,5 +64,39 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-TVU Networks is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/tvu-networks_stock/
+TVU Networks is a live video transmission and cloud production company (Mountain View, CA, founded 2005)
+whose IP-based ecosystem spans acquisition (TVU One, TVU Anywhere), cloud routing (TVU MediaHub), cloud
+production (TVU Producer, TVU Partyline, TVU Remote Commentator), FAST/linear playout (TVU Channel) and
+AI-assisted media search (TVU MediaMind, TVU Search).
+
+## What this profile found
+
+TVU publishes a substantial public HTTP API — **352 operations across 21 surfaces** — on its own
+Apifox-hosted documentation site at <https://docs.tvunetworks.cn/>. The contracts in `openapi/` were
+assembled from the **per-endpoint OpenAPI 3.0.1 exports TVU itself serves** at
+`https://docs.tvunetworks.cn/api-<id>.md`; every operation body is the provider's own export. API
+Evangelist added only the grouping, the `servers[]` block (from TVU's own published "Prod Env"
+environment) and an `operationId` where TVU's export omitted one.
+
+- **Contract**: `openapi/` — 21 OpenAPI 3.0.1 documents, 352 operations, every one with a summary,
+  an operationId and a declared response.
+- **llms.txt**: `llms/tvu-networks-llms.txt` — served verbatim by TVU at
+  <https://docs.tvunetworks.cn/llms.txt>.
+- **Status page**: Atlassian Statuspage with 13 named components and Atom/RSS incident feeds.
+- **Domain standards declared in the contract**: SCTE-35 ad insertion, a MOS newsroom gateway, and
+  SRT / NDI / Pro-MPEG-FEC / RTMP / RTSP / HLS transport grammars.
+
+## Known gaps in the provider's surface
+
+- The developer portal and the production documentation host (`document.tvunetworks.com`) sit behind
+  a login/request form; the *staging* documentation project is the publicly reachable one.
+- `https://docs.tvunetworks.cn/` currently serves an **expired TLS certificate** — a browser shows an
+  interstitial before the docs load.
+- No published rate limits, no 429, no rate-limit headers, and no pricing page.
+- Errors are returned as HTTP 200 with an in-body `errorCode` envelope, so status-code branching
+  silently reads failures as successes.
+- No SDK in any public package registry; no MCP server; no A2A agent card; no `/.well-known/` document
+  on any host.
+
+Company site: <https://www.tvunetworks.com/> · Secondary-market listing that surfaced it:
+<https://forgeglobal.com/tvu-networks_stock/>
