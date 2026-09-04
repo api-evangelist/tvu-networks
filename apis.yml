@@ -8,6 +8,20 @@ description: TVU Networks is a live video transmission and cloud production comp
   Search and metadata, Producer control, Grid device transmission, Partyline, Channel playout, SCTE-35 ad insertion
   and a MOS newsroom gateway — documented on its own Apifox-hosted API documentation site, with Bearer AppSecret,
   SID session and AccessKey-signature authentication.
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  - rate-limits
+  - security
+  generated: '2026-09-03'
+  method: derived
 image: https://www.tvunetworks.com/wp-content/themes/tvunetworks/images/emblem-green.png
 url: https://raw.githubusercontent.com/api-evangelist/tvu-networks/refs/heads/main/apis.yml
 x-type: company
