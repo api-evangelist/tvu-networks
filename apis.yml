@@ -554,6 +554,8 @@ apis:
   humanURL: https://docs.tvunetworks.cn/folder-45770135
   baseURL: https://api.tvunetworks.com
   tags:
+  - Public
+  tags_raw:
   - public
   properties:
   - type: OpenAPI
