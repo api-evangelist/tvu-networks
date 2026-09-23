@@ -1,0 +1,102 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Search Search API/search/session API
+  description: Search API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://search.tvunetworks.com
+  description: Apifox server "TVUSearch"
+tags:
+- name: Search API/search/session
+paths:
+  /api/search/v1/i/activity:
+    post:
+      summary: Send session heartbeat to track user activity
+      deprecated: false
+      description: Sends a heartbeat to update the user's last-active timestamp, keeping the session alive and enabling real-time active-user tracking. Call this periodically (recommended every 30–60 seconds) while the user is viewing the application. The optional 'page' parameter records which page the user is currently on for per-page analytics.
+      tags:
+      - Search API/search/session
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/controllers.UpdateActivityReq'
+            example:
+              userid: jornalismo@recordtvrio.com.br
+              sessionid: 752AB32D93A24127877CEA7BD8A5DCA0
+              page: /indexSearch
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.UpdateActivityResp'
+              example:
+                code: 0
+                message: succ
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/session
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959085-run
+      operationId: Send_session_heartbeat_to_track_user_activity_468959085
+      x-source-doc: https://docs.tvunetworks.cn/api-468959085.md
+components:
+  schemas:
+    controllers.UpdateActivityReq:
+      type: object
+      properties:
+        page:
+          type: string
+        sessionid:
+          type: string
+        userid:
+          type: string
+      x-apifox-orders:
+      - page
+      - sessionid
+      - userid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.UpdateActivityResp:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+      x-apifox-orders:
+      - code
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

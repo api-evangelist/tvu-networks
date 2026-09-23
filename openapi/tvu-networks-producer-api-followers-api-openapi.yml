@@ -1,0 +1,223 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Producer Producer API/Followers API
+  description: Producer API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Producer API/Followers
+paths:
+  /graphql2rest/addOrUpdateGangs:
+    post:
+      summary: add or update gangs
+      deprecated: false
+      description: set follower programs of the program
+      operationId: 7750e6da99fa12c838c15393bf5f0fa5
+      tags:
+      - Producer API/Followers
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GangOperateRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Followers
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778558-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778558.md
+  /graphql2rest/availableSlavePrograms:
+    post:
+      summary: available slave programs
+      deprecated: false
+      description: show which programs can be set as slaver
+      operationId: d381286d59319aa897f55d886e2fa697
+      tags:
+      - Producer API/Followers
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                masterProgramId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 3984008213655251500
+              x-apifox-orders:
+              - masterProgramId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Followers
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778557-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778557.md
+  /graphql2rest/removeGang:
+    post:
+      summary: remove gang
+      deprecated: false
+      description: remove follower programs from current program
+      operationId: 397d6c8c6cad9a69de5ec5ce14411eaa
+      tags:
+      - Producer API/Followers
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - idList
+              type: object
+              properties:
+                idList:
+                  type: array
+                  items:
+                    type: string
+                    description: id list
+                    examples:
+                    - HG
+                operator:
+                  type: string
+                  description: operate user id
+                  examples:
+                  - unittest
+              x-apifox-orders:
+              - idList
+              - operator
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Followers
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778559-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778559.md
+components:
+  schemas:
+    SlaveProgramAndFeature:
+      required:
+      - slaveProgramId
+      - gangFeatures
+      type: object
+      properties:
+        slaveProgramId:
+          type: integer
+          description: slave program id
+          format: int64
+          examples:
+          - 1960549480044043000
+        gangFeatures:
+          type: string
+          description: gang features
+          examples:
+          - IAexnRrpkqadVFibZAocTpixYqPLTFcll
+      x-apifox-orders:
+      - slaveProgramId
+      - gangFeatures
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    GangOperateRequest:
+      required:
+      - slaveProgramAndFeatures
+      - masterProgramId
+      type: object
+      properties:
+        slaveProgramAndFeatures:
+          type: array
+          items:
+            description: slave program and features
+            $ref: '#/components/schemas/SlaveProgramAndFeature'
+        masterProgramId:
+          type: integer
+          description: master program id
+          format: int64
+          examples:
+          - 890876572971871200
+      x-apifox-orders:
+      - slaveProgramAndFeatures
+      - masterProgramId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

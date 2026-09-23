@@ -1,0 +1,204 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Producer Producer API/Collaborator API
+  description: Producer API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Producer API/Collaborator
+paths:
+  /graphql2rest/createCollaborator:
+    post:
+      summary: create collaborator
+      deprecated: false
+      description: add a tvu user into program
+      operationId: 834e179e706f7976cab8e9884af1b94a
+      tags:
+      - Producer API/Collaborator
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddOrRemoveMembersRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Collaborator
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778554-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778554.md
+  /graphql2rest/removeCollaborator:
+    post:
+      summary: remove collaborator
+      deprecated: false
+      description: remove remember
+      operationId: fb7cc595e2e8a9adf52631b861e26c2e
+      tags:
+      - Producer API/Collaborator
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddOrRemoveMembersRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Collaborator
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778555-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778555.md
+  /graphql2rest/updateCollaboratorRoles:
+    post:
+      summary: update collaborator roles
+      deprecated: false
+      description: update roles of collaborator in a program
+      operationId: b887642efe7c8dd99028c9fdf5f2e7ed
+      tags:
+      - Producer API/Collaborator
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramTeamMember'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Collaborator
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778556-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778556.md
+components:
+  schemas:
+    ProgramTeamMember:
+      required:
+      - roles
+      - id
+      type: object
+      properties:
+        roles:
+          maxLength: 200
+          type: string
+          description: 'the roles that a collaborator has in current program, eg: ClipPlayer'
+          examples:
+          - ClipPlayer
+        id:
+          type: integer
+          description: this is from createCollaborator API result, or from program API result，program API has all data relevant with current program, eg:123456789
+          format: int64
+          examples:
+          - 123456789
+      x-apifox-orders:
+      - roles
+      - id
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AddOrRemoveMembersRequest:
+      required:
+      - programId
+      type: object
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+            description: user email list
+            examples:
+            - producer-test@tvunetworks.com
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - emails
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

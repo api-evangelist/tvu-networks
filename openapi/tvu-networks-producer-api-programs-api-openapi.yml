@@ -1,0 +1,519 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Producer Producer API/Programs API
+  description: Producer API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Producer API/Programs
+paths:
+  /graphql2rest/createProgram:
+    post:
+      summary: create program
+      deprecated: false
+      description: Create a program
+      operationId: 9d3faa9efb217a2a59a68611d3cb09be
+      tags:
+      - Producer API/Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramInput'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778512-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778512.md
+  /graphql2rest/deleteProgram:
+    post:
+      summary: delete program
+      deprecated: false
+      description: delete program by its id
+      operationId: efaaa801104134d5fff77be311bc8002
+      tags:
+      - Producer API/Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 0
+              x-apifox-orders:
+              - programId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778514-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778514.md
+  /graphql2rest/program:
+    post:
+      summary: program data
+      deprecated: false
+      description: get program data by program id, program id should come from the programs API
+      operationId: 61ec32c2ae3e63c2035574c4ab30ddab
+      tags:
+      - Producer API/Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - programId
+              type: object
+              properties:
+                programId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 0
+              x-apifox-orders:
+              - programId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778511-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778511.md
+  /graphql2rest/programs:
+    post:
+      summary: program query
+      deprecated: false
+      description: Program Paging Query, used to query the current user's programs, including programs as collaborator
+      operationId: 2e9823793d06965fdcdd5fa0143003f3
+      tags:
+      - Producer API/Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramQuery'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778510-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778510.md
+  /graphql2rest/start:
+    post:
+      summary: start
+      deprecated: false
+      description: start a new session/production for a program, if there is already one, then return its
+      operationId: 93491991cb9103c6d1c965657ca96f15
+      tags:
+      - Producer API/Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 0
+              x-apifox-orders:
+              - programId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778515-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778515.md
+  /graphql2rest/stop:
+    post:
+      summary: stop
+      deprecated: false
+      description: stop running session/production by program id
+      operationId: 1c3784161444f14e05e8614c52f02aa2
+      tags:
+      - Producer API/Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 0
+              x-apifox-orders:
+              - programId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778516-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778516.md
+  /graphql2rest/updateProgram:
+    post:
+      summary: update program
+      deprecated: false
+      description: update an exist program
+      operationId: 7f50f48c1166f21ff4c24466d157a7e2
+      tags:
+      - Producer API/Programs
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramInput'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Programs
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778513-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778513.md
+components:
+  schemas:
+    ProgramInput:
+      required:
+      - id
+      type: object
+      properties:
+        features:
+          description: Program Features
+          $ref: '#/components/schemas/ProgramFeaturesInput'
+        name:
+          type: string
+          description: Program Name
+          examples:
+          - nlgCdHMmylpklbufhdUbenKpslJxwZnm
+        id:
+          type: integer
+          description: Program ID
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - features
+      - name
+      - id
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramQuery:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+          description: retur
+          format: int32
+          examples:
+          - 1
+        pageSize:
+          type: integer
+          description: return data
+          format: int32
+          examples:
+          - 10
+        sortFields:
+          type: array
+          items:
+            description: 'Support sort fields: createTime'
+            $ref: '#/components/schemas/SortField'
+      x-apifox-orders:
+      - pageIndex
+      - pageSize
+      - sortFields
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SortField:
+      type: object
+      properties:
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        name:
+          type: string
+          examples:
+          - IPjwhveYYdMMpDJZvjANlUFUTlJAxcQz
+      x-apifox-orders:
+      - sortDirection
+      - name
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramFeaturesInput:
+      required:
+      - format
+      - audioChannelNum
+      - PGMRecording
+      - outputDelayTime
+      - partyLine
+      - rps
+      - isVertical
+      - cloudRecord
+      - outputDelay
+      - recordSources
+      - region
+      - replayApp
+      type: object
+      properties:
+        format:
+          type: string
+          description: 'program format，options: 1080P50, 1080P5994, 1080P25, 1080P2997, 1080P30, 1080P60, 1080I50, 1080I5994, 1080I60, 720P50, 720P5994, 720P60'
+          examples:
+          - 1080P30
+        audioChannelNum:
+          type: integer
+          description: 'program audio channel number，options: 2, 4, 6, 8'
+          format: int32
+          examples:
+          - 2
+        PGMRecording:
+          type: boolean
+          description: pgm recording open or not
+          examples:
+          - false
+        outputDelayTime:
+          type: integer
+          description: program output delay time
+          format: int32
+          examples:
+          - 0
+        partyLine:
+          type: boolean
+          description: program partyline open or not
+          examples:
+          - false
+        rps:
+          type: boolean
+          description: program rps mode open or not
+          examples:
+          - false
+        isVertical:
+          type: boolean
+          description: program video is vertical or not
+          examples:
+          - false
+        followerMode:
+          type: boolean
+          description: program follower mode open or not
+          examples:
+          - false
+        cloudRecord:
+          type: boolean
+          description: program cloud record open or not
+          examples:
+          - false
+        outputDelay:
+          type: boolean
+          description: program output buffer open or not
+          examples:
+          - false
+        recordSources:
+          type: string
+          description: program record slot list
+          examples:
+          - s1
+        region:
+          type: string
+          description: 'program amazon s3 region, options: us-east-1'
+          examples:
+          - us-east-1
+        replayApp:
+          type: boolean
+          description: program replay app open or not
+          examples:
+          - false
+      x-apifox-orders:
+      - format
+      - audioChannelNum
+      - PGMRecording
+      - outputDelayTime
+      - partyLine
+      - rps
+      - isVertical
+      - followerMode
+      - cloudRecord
+      - outputDelay
+      - recordSources
+      - region
+      - replayApp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

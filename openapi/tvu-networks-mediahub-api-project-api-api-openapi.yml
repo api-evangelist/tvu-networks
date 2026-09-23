@@ -1,0 +1,1180 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — MediaHub MediaHub API/project-api API
+  description: MediaHub API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://mediahub.tvunetworks.com
+  description: Apifox server "MediaHub"
+tags:
+- name: MediaHub API/project-api
+paths:
+  /mediahub/api/v2/project:
+    post:
+      summary: createProject
+      deprecated: false
+      description: create project
+      operationId: createProject
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultOutputProjectApiVo'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498600-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498600.md
+    get:
+      summary: getProject
+      deprecated: false
+      description: ''
+      operationId: getProject
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: objectId
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultOutputProjectApiVo'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498601-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498601.md
+    delete:
+      summary: deleteProject
+      deprecated: false
+      description: ''
+      operationId: deleteProject
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: objectId
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498602-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498602.md
+    put:
+      summary: updateProject
+      deprecated: false
+      description: ''
+      operationId: updateProject
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultOutputProjectApiVo'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498603-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498603.md
+  /mediahub/api/v2/project/status:
+    get:
+      summary: queryStatus
+      deprecated: false
+      description: ''
+      operationId: queryStatus
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: objectId
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultProjectRecord'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498599-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498599.md
+  /mediahub/api/v2/projects:
+    delete:
+      summary: deleteProjects
+      deprecated: false
+      description: ''
+      operationId: deleteProjects
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: objectIds
+        in: query
+        description: ''
+        required: true
+        example: objectId1,objectId2
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498595-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498595.md
+    post:
+      summary: listProjects
+      deprecated: false
+      description: query project list
+      operationId: listProjects
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: active
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutputProjectQueryDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultPageInfoOutputProjectApiVo'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-304598681-run
+      x-source-doc: https://docs.tvunetworks.cn/api-304598681.md
+  /mediahub/api/v2/resetWhiteBalance:
+    post:
+      summary: resetWhiteBalance
+      deprecated: false
+      description: ''
+      operationId: resetWhiteBalance
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhiteBalanceParentDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498598-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498598.md
+  /mediahub/api/v2/setAudioOffset:
+    post:
+      summary: setAudioOffset
+      deprecated: false
+      description: ''
+      operationId: setAudioOffset
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudioOffsetDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-329846474-run
+      x-source-doc: https://docs.tvunetworks.cn/api-329846474.md
+  /mediahub/api/v2/whiteBalance:
+    post:
+      summary: setWhiteBalance
+      deprecated: false
+      description: ''
+      operationId: setWhiteBalance
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhiteBalanceAdjustDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498596-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498596.md
+    get:
+      summary: whiteBalanceDetail
+      deprecated: false
+      description: ''
+      operationId: whiteBalanceDetail
+      tags:
+      - MediaHub API/project-api
+      parameters:
+      - name: objectId
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: outputId
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultWhiteBalanceDetailVO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/project-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498597-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498597.md
+components:
+  schemas:
+    ActiveOutput:
+      type: object
+      properties:
+        destinationId:
+          type: string
+        outputId:
+          type: string
+        outputName:
+          type: string
+        url:
+          type: string
+      description: when the project is live, the activeOutput will be available, otherwise it will be null
+      x-apifox-orders:
+      - destinationId
+      - outputId
+      - outputName
+      - url
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AudioOffsetDTO:
+      required:
+      - offset
+      - destinationId
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: 'audio delay ,Unit: Milliseconds'
+          format: int32
+          examples:
+          - 1000
+        destinationId:
+          type: string
+          description: destinationId can from getProject API
+          examples:
+          - 7aae4a307e1d4d4ab887b5ebfbf3d269
+      x-apifox-orders:
+      - offset
+      - destinationId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    WhiteBalanceDetailVO:
+      type: object
+      properties:
+        originPreviewId:
+          type: string
+        afterPreviewId:
+          type: string
+        whiteBalanceMode:
+          type: integer
+          description: '0: yuv,1:rgb'
+          format: int32
+        yuv:
+          $ref: '#/components/schemas/WhiteBalanceDTO'
+        rgb:
+          $ref: '#/components/schemas/RgbDTO'
+        scopes:
+          $ref: '#/components/schemas/Scopes'
+      x-apifox-orders:
+      - originPreviewId
+      - afterPreviewId
+      - whiteBalanceMode
+      - yuv
+      - rgb
+      - scopes
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultPageInfoOutputProjectApiVo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/PageInfoOutputProjectApiVo'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SourceObj:
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+        sourceObjectName:
+          type: string
+        sourceUrl:
+          type: string
+      description: when the project is live, the sourceObj will be available, otherwise it will be null
+      x-apifox-orders:
+      - sourceObjectId
+      - sourceObjectName
+      - sourceUrl
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OutputProjectQueryDTO:
+      type: object
+      properties:
+        pageNum:
+          type: integer
+          format: int32
+          examples:
+          - 1
+        pageSize:
+          type: integer
+          format: int32
+          examples:
+          - 10
+        orderItem:
+          $ref: '#/components/schemas/OrderItem'
+        includeTags:
+          type: array
+          items:
+            type: string
+            examples:
+            - '[]'
+          examples:
+          - []
+        excludeTags:
+          type: array
+          items:
+            type: string
+            examples:
+            - '[]'
+          examples:
+          - []
+        permission:
+          $ref: '#/components/schemas/PermissionDTO'
+        condition:
+          type: string
+          description: Search keywords,Can be used to filter project name and description
+          examples:
+          - projectName or description
+      x-apifox-orders:
+      - pageNum
+      - pageSize
+      - orderItem
+      - includeTags
+      - excludeTags
+      - permission
+      - condition
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultWhiteBalanceDetailVO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/WhiteBalanceDetailVO'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    UpdateProjectDTO:
+      required:
+      - projectName
+      - outputEncodingProfilePairIds
+      - id
+      - objectId
+      type: object
+      properties:
+        projectName:
+          type: string
+          examples:
+          - project1
+        region:
+          type: string
+          examples:
+          - us-east-1
+        tags:
+          type: string
+          examples:
+          - tag1,tag2
+        description:
+          type: string
+          examples:
+          - test
+        boxId:
+          type: string
+          description: Physical machine required
+        outputEncodingProfilePairIds:
+          type: array
+          items:
+            type: string
+            examples:
+            - '[]'
+          examples:
+          - []
+        colorCorrection:
+          type: integer
+          description: white balance 0:off 1:on
+          format: int32
+          enum:
+          - null
+          examples:
+          - 0
+        backupSourceObjectId:
+          type: string
+        enableInSync:
+          type: integer
+          description: 0:off 1:on
+          format: int32
+          enum:
+          - null
+          examples:
+          - 0
+        id:
+          type: string
+          description: projectId
+        objectId:
+          type: string
+          description: project objectId
+      x-apifox-orders:
+      - projectName
+      - region
+      - tags
+      - description
+      - boxId
+      - outputEncodingProfilePairIds
+      - colorCorrection
+      - backupSourceObjectId
+      - enableInSync
+      - id
+      - objectId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ScopeInfo:
+      type: object
+      properties:
+        taskId:
+          type: string
+        previewId:
+          type: string
+        mode:
+          type: string
+      x-apifox-orders:
+      - taskId
+      - previewId
+      - mode
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OrderItem:
+      type: object
+      properties:
+        key:
+          type: string
+          enum:
+          - liveFirst
+          - createTime
+          - updateTime
+        desc:
+          type: boolean
+        secondKey:
+          type: string
+      x-apifox-orders:
+      - key
+      - desc
+      - secondKey
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CreateProjectDTO:
+      required:
+      - projectName
+      - outputEncodingProfilePairIds
+      type: object
+      properties:
+        projectName:
+          type: string
+          examples:
+          - project1
+        region:
+          type: string
+          examples:
+          - us-east-1
+        tags:
+          type: string
+          examples:
+          - tag1,tag2
+        description:
+          type: string
+          examples:
+          - test
+        boxId:
+          type: string
+          description: Physical machine required
+        outputEncodingProfilePairIds:
+          type: array
+          items:
+            type: string
+            examples:
+            - '[]'
+          examples:
+          - []
+        colorCorrection:
+          type: integer
+          description: white balance 0:off 1:on
+          format: int32
+          enum:
+          - null
+          examples:
+          - 0
+        backupSourceObjectId:
+          type: string
+        enableInSync:
+          type: integer
+          description: 0:off 1:on
+          format: int32
+          enum:
+          - null
+          examples:
+          - 0
+      x-apifox-orders:
+      - projectName
+      - region
+      - tags
+      - description
+      - boxId
+      - outputEncodingProfilePairIds
+      - colorCorrection
+      - backupSourceObjectId
+      - enableInSync
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OutputEncodingPairs:
+      type: object
+      properties:
+        outputName:
+          type: string
+        profileName:
+          type: string
+        outputEncodingProfilePairId:
+          type: string
+        outputId:
+          type: string
+        outputType:
+          type: string
+        profileId:
+          type: string
+        destinationId:
+          type: string
+        status:
+          maximum: 2
+          type: integer
+          description: pair status 1:enable 2:disable,disable means the output is not available for streaming
+          format: int32
+      x-apifox-orders:
+      - outputName
+      - profileName
+      - outputEncodingProfilePairId
+      - outputId
+      - outputType
+      - profileId
+      - destinationId
+      - status
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PermissionDTO:
+      type: object
+      properties:
+        createByMe:
+          type: integer
+          format: int32
+      x-apifox-orders:
+      - createByMe
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultOutputProjectApiVo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/OutputProjectApiVo'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    WhiteBalanceDTO:
+      type: object
+      properties:
+        chroma:
+          type: number
+          format: double
+        hue:
+          type: number
+          format: double
+        gamma:
+          type: number
+          format: double
+        yGain:
+          type: number
+          format: double
+        yOffset:
+          type: number
+          format: double
+      x-apifox-orders:
+      - chroma
+      - hue
+      - gamma
+      - yGain
+      - yOffset
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProjectRecord:
+      type: object
+      properties:
+        id:
+          type: string
+        projectId:
+          type: string
+        sourceObjectId:
+          type: string
+        sourceObjectName:
+          type: string
+        status:
+          type: integer
+          description: -1:inactive 0:loading,1:active
+          format: int32
+        sourceId:
+          type: string
+      x-apifox-orders:
+      - id
+      - projectId
+      - sourceObjectId
+      - sourceObjectName
+      - status
+      - sourceId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Scopes:
+      type: object
+      properties:
+        vector:
+          $ref: '#/components/schemas/Vector'
+        waveform:
+          $ref: '#/components/schemas/Vector'
+        linetrace:
+          $ref: '#/components/schemas/Vector'
+      x-apifox-orders:
+      - vector
+      - waveform
+      - linetrace
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RgbDTO:
+      type: object
+      properties:
+        rOffset:
+          type: number
+          format: double
+        gOffset:
+          type: number
+          format: double
+        bOffset:
+          type: number
+          format: double
+        rGain:
+          type: number
+          format: double
+        gGain:
+          type: number
+          format: double
+        bGain:
+          type: number
+          format: double
+      x-apifox-orders:
+      - rOffset
+      - gOffset
+      - bOffset
+      - rGain
+      - gGain
+      - bGain
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Vector:
+      type: object
+      properties:
+        inputScope:
+          $ref: '#/components/schemas/ScopeInfo'
+        outputScope:
+          $ref: '#/components/schemas/ScopeInfo'
+      x-apifox-orders:
+      - inputScope
+      - outputScope
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultProjectRecord:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ProjectRecord'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PageInfoOutputProjectApiVo:
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutputProjectApiVo'
+        pageNum:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        startRow:
+          type: integer
+          format: int32
+        endRow:
+          type: integer
+          format: int32
+        pages:
+          type: integer
+          format: int32
+        prePage:
+          type: integer
+          format: int32
+        nextPage:
+          type: integer
+          format: int32
+        isFirstPage:
+          type: boolean
+        isLastPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        hasNextPage:
+          type: boolean
+        navigatePages:
+          type: integer
+          format: int32
+        navigatepageNums:
+          type: array
+          items:
+            type: integer
+            format: int32
+        navigateFirstPage:
+          type: integer
+          format: int32
+        navigateLastPage:
+          type: integer
+          format: int32
+        firstPage:
+          type: integer
+          format: int32
+          deprecated: true
+        lastPage:
+          type: integer
+          format: int32
+          deprecated: true
+      x-apifox-orders:
+      - total
+      - list
+      - pageNum
+      - pageSize
+      - size
+      - startRow
+      - endRow
+      - pages
+      - prePage
+      - nextPage
+      - isFirstPage
+      - isLastPage
+      - hasPreviousPage
+      - hasNextPage
+      - navigatePages
+      - navigatepageNums
+      - navigateFirstPage
+      - navigateLastPage
+      - firstPage
+      - lastPage
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    WhiteBalanceParentDTO:
+      type: object
+      properties:
+        outputId:
+          type: string
+      x-apifox-orders:
+      - outputId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    WhiteBalanceAdjustDTO:
+      type: object
+      properties:
+        outputId:
+          type: string
+        whiteBalanceMode:
+          type: integer
+          description: '0: yuv,1:rgb'
+          format: int32
+        yuv:
+          $ref: '#/components/schemas/WhiteBalanceDTO'
+        rgb:
+          $ref: '#/components/schemas/RgbDTO'
+      x-apifox-orders:
+      - outputId
+      - whiteBalanceMode
+      - yuv
+      - rgb
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OutputProjectApiVo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Same as projectId attribute
+        userId:
+          type: string
+        projectName:
+          type: string
+        description:
+          type: string
+        objectId:
+          type: string
+          description: project objectId , projectObjectId
+        projectId:
+          type: string
+        backupSourceObjectId:
+          type: string
+        region:
+          type: string
+        tags:
+          type: string
+        outputEncodingPairs:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutputEncodingPairs'
+        previewId:
+          type: string
+        activeOutput:
+          type: array
+          description: when the project is live, the activeOutput will be available, otherwise it will be null
+          items:
+            $ref: '#/components/schemas/ActiveOutput'
+        activeSourceObj:
+          $ref: '#/components/schemas/SourceObj'
+        enableInSync:
+          type: integer
+          format: int32
+        colorCorrection:
+          type: integer
+          format: int32
+      x-apifox-orders:
+      - id
+      - userId
+      - projectName
+      - description
+      - objectId
+      - projectId
+      - backupSourceObjectId
+      - region
+      - tags
+      - outputEncodingPairs
+      - previewId
+      - activeOutput
+      - activeSourceObj
+      - enableInSync
+      - colorCorrection
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

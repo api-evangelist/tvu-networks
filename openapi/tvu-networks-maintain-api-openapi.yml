@@ -1,0 +1,62 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Uncategorized Maintain API
+  description: Uncategorized operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Maintain
+paths:
+  /api/maintain/v1/version:
+    get:
+      summary: version
+      deprecated: false
+      description: ''
+      tags:
+      - Maintain
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-365413469-run
+      operationId: version_365413469
+      x-source-doc: https://docs.tvunetworks.cn/api-365413469.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

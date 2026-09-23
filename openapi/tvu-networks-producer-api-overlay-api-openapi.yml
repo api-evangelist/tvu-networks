@@ -1,0 +1,936 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Producer Producer API/Overlay API
+  description: Producer API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Producer API/Overlay
+paths:
+  /graphql2rest/addLogoToProgram:
+    post:
+      summary: add logo to program
+      deprecated: false
+      description: Add logo file to program logos after file uploaded to S3
+      operationId: b43f4440c3aff45c433fcfe683257167
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadSourceResult'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778546-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778546.md
+  /graphql2rest/addOverlayToPGM:
+    post:
+      summary: add overlay to PGM
+      deprecated: false
+      description: Add overlay to PGM directly
+      operationId: 5e05e34bc833782c27a35d841e59215e
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778539-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778539.md
+  /graphql2rest/addOverlayToPVW:
+    post:
+      summary: add overlay to PVW
+      deprecated: false
+      description: Add overlay to PVW
+      operationId: 855645de80ef7be9b08521b58c5c11fd
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778538-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778538.md
+  /graphql2rest/clearOverlayOnPGM:
+    post:
+      summary: clear overlay on PGM
+      deprecated: false
+      description: Clear all overlay ON PGM
+      operationId: ca34b8cff7ad01b522910ba7c368f62c
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778541-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778541.md
+  /graphql2rest/clearOverlayOnPVW:
+    post:
+      summary: clear overlay on PVW
+      deprecated: false
+      description: Clear all overlay ON PVW
+      operationId: bcf802236a7b9a20d8c492e0facf8903
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778540-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778540.md
+  /graphql2rest/cutOverlay:
+    post:
+      summary: cut overlay
+      deprecated: false
+      description: copy all overlay on PVW to PGM, the overlays on PGM will replaced by these on PVW
+      operationId: d9bd2ae32eb364f4a7b9bf20e3bbc194
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778543-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778543.md
+  /graphql2rest/deleteAndRemoveGraphicUrl:
+    post:
+      summary: delete and remove graphic url
+      deprecated: false
+      description: remove graphic url from PGM and unbind it from program
+      operationId: adf9ef02301102754317eddfab4cc11d
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                graphicUrlId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 3283835085741736400
+              x-apifox-orders:
+              - graphicUrlId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778553-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778553.md
+  /graphql2rest/deleteSingular:
+    post:
+      summary: delete singular
+      deprecated: false
+      description: delete singular app url
+      operationId: 3dc12a7bf939136c95cf6297523ea8b9
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                singularId:
+                  type: integer
+                  format: int64
+                  examples:
+                  - 57790616721634480
+              x-apifox-orders:
+              - singularId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778551-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778551.md
+  /graphql2rest/logoFiles:
+    post:
+      summary: logo files
+      deprecated: false
+      description: list logo files on TVU Cloud Drive which are supported to add to Overlay
+      operationId: 7fdb899c1423d68815bcb212309165cb
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileInfoQueryRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778544-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778544.md
+  /graphql2rest/moveLogoPosition:
+    post:
+      summary: move logo position
+      deprecated: false
+      description: Move logo position
+      operationId: 504890883107860d79f3fe455d3efa98
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileSourceActionVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778548-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778548.md
+  /graphql2rest/removeLogo:
+    post:
+      summary: remove logo
+      deprecated: false
+      description: Remove logo from program logo list
+      operationId: 67c11868abac7be69cacaa7ecf69436d
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sourceId:
+                  type: string
+                  examples:
+                  - '000000000000000'
+              x-apifox-orders:
+              - sourceId
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778547-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778547.md
+  /graphql2rest/removeOverlayFromPGM:
+    post:
+      summary: remove overlay from PGM
+      deprecated: false
+      description: Remove overlay from PGM
+      operationId: 3a4c04b611ea05040385ba6797ae3d7d
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverlayRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                x--orders: []
+                properties: {}
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778542-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778542.md
+  /graphql2rest/requestUploadParam:
+    post:
+      summary: request upload param
+      deprecated: false
+      description: '-------Request file upload parameters, client use returned parameters to upload file to S3 directly'
+      operationId: 4a9f368aa7a95fd82e4fff7c62d3212f
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadSourceRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778545-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778545.md
+  /graphql2rest/saveGraphicUrl:
+    post:
+      summary: save graphic url
+      deprecated: false
+      operationId: fd5822ba34a47e48262d433000f37b01
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramGraphicUrl'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778552-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778552.md
+  /graphql2rest/saveSingularAppToken:
+    post:
+      summary: save singular app token
+      deprecated: false
+      operationId: 23669703d3fcb106d7c91e001277f412
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSingularApp'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778549-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778549.md
+  /graphql2rest/switchSingular:
+    post:
+      summary: switch singular
+      deprecated: false
+      description: switch singular on or off
+      operationId: 60821eb5654133b34bf92859514659e0
+      tags:
+      - Producer API/Overlay
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSingularApp'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Overlay
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778550-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778550.md
+components:
+  schemas:
+    UploadSourceResult:
+      required:
+      - objectKey
+      - programId
+      type: object
+      properties:
+        objectKey:
+          type: string
+          description: S3 object key
+          examples:
+          - rjThfblhWIHdNORBspbIoNfledin
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - objectKey
+      - programId
+      x--orders:
+      - objectKey
+      - programId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    UserSingularApp:
+      required:
+      - apply
+      - programId
+      type: object
+      properties:
+        apply:
+          type: boolean
+          description: singular switch on or off
+          examples:
+          - true
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - apply
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    FileSourceActionVo:
+      required:
+      - sourceId
+      - position
+      - programId
+      type: object
+      properties:
+        sourceId:
+          type: string
+          description: logo file source id
+          examples:
+          - '000000000000000'
+        position:
+          type: integer
+          description: logo position(begin from 0)
+          format: int32
+          examples:
+          - 1427076743
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - sourceId
+      - position
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    UploadSourceRequest:
+      required:
+      - fileName
+      - sourceType
+      - programId
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: file name
+          examples:
+          - uLqRoQyzvfDdcoesjzPciyLueWOvhNTP
+        sourceType:
+          type: string
+          description: 'file type including: 1.Logo 2. File(Clip)'
+          enum:
+          - FILE
+          - EXT
+          - CUSTOM
+          - PACK
+          - GRID
+          - ANYWHERE
+          - YOUTUBE
+          - LOGO
+          - TRANSITIONLOGO
+          - IPSOURCE
+          - QUADVIEWLOGO
+          - RTP
+          - QUADVIEWTHUMBNAIL
+          - RTIL
+          - RPS
+          - R_SOURCE
+          - RTMP
+          - URL
+          - PARTYLINE_SOURCE
+          - OUTPUT_DELAY_FILE
+          - ZIXI
+          - SRT
+          - LBANDLOGO
+          - HLSJSON
+          - REPLAY_PLAYLIST
+          - PLAYLIST_BUMPER
+          - TRANSCEIVER
+          - NDI
+          - 'NULL'
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - fileName
+      - sourceType
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    FileInfoQueryRequest:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+          description: page index
+          format: int32
+          examples:
+          - 1
+        name:
+          type: string
+          description: file name
+          examples:
+          - BYlYWOIpCasrzKVHDlqGoevKKTYckMOW
+        pageSize:
+          type: integer
+          description: request records count per page
+          format: int32
+          examples:
+          - 10
+        pid:
+          type: string
+          description: parent directory id
+          examples:
+          - VyQLcbNCIfYUxfzeMUudxLygEaQfIbwTG
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - pageIndex
+      - name
+      - pageSize
+      - pid
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramGraphicUrl:
+      required:
+      - url
+      - programId
+      type: object
+      properties:
+        url:
+          maxLength: 500
+          type: string
+          description: program graphic url
+          examples:
+          - http://www.KETFzk.com/xrwpco
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - url
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OverlayRequest:
+      type: object
+      properties:
+        programId:
+          type: integer
+          description: program id, required when production id not provided
+          format: int64
+          examples:
+          - 0
+        timestamp:
+          minimum: 0
+          type: integer
+          format: int64
+          examples:
+          - 139123123123
+      x-apifox-orders:
+      - programId
+      - timestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

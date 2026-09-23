@@ -1,0 +1,406 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Input&Output Module Input&Output Module…
+  description: Input&Output Module API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Input&Output Module API/input-module-api
+paths:
+  /input-docker/api/v1/input:
+    put:
+      summary: update input
+      deprecated: false
+      description: update input by identification source
+      operationId: update input
+      tags:
+      - Input&Output Module API/input-module-api
+      parameters:
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunInputDTO'
+            example: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultRunInputVO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/input-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728336-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728336.md
+    post:
+      summary: run input
+      deprecated: false
+      description: run input module by identification source
+      operationId: run input
+      tags:
+      - Input&Output Module API/input-module-api
+      parameters:
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunInputDTO'
+            example: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultRunInputVO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/input-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728337-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728337.md
+  /input-docker/api/v1/input/{inputId}:
+    get:
+      summary: query input
+      deprecated: false
+      description: get input record by identification source
+      operationId: query input
+      tags:
+      - Input&Output Module API/input-module-api
+      parameters:
+      - name: inputId
+        in: path
+        description: inputId, Retrieve from run input api
+        required: true
+        example: '1227255915959431200'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: session value
+        required: false
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultRunInputVO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/input-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728338-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728338.md
+    delete:
+      summary: delete input
+      deprecated: false
+      description: delete input record by identification source
+      operationId: delete input
+      tags:
+      - Input&Output Module API/input-module-api
+      parameters:
+      - name: inputId
+        in: path
+        description: inputId, Retrieve from run input api
+        required: true
+        example: '1227255915959431200'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/input-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728339-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728339.md
+  /input-docker/api/v1/inputs:
+    get:
+      summary: query input list
+      deprecated: false
+      description: get input module by identification source
+      operationId: query input list
+      tags:
+      - Input&Output Module API/input-module-api
+      parameters:
+      - name: pageNum
+        in: query
+        description: ''
+        required: false
+        schema:
+          default: '1'
+          type: string
+      - name: pageSize
+        in: query
+        description: ''
+        required: false
+        schema:
+          default: '10'
+          type: string
+      - name: sort
+        in: query
+        description: 'Optional values: [1, 2]. 1: Sort by creation time, 2: Sort by update time'
+        required: false
+        example: 1
+        schema:
+          default: 1
+          format: int32
+          type: integer
+      - name: asc
+        in: query
+        description: 'Optional values: [1, 2]. 1: Ascending order, 2: Descending order'
+        required: false
+        example: '1'
+        schema:
+          default: false
+          type: boolean
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPageInfoRunInputVO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/input-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728335-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728335.md
+components:
+  schemas:
+    ResultVoid:
+      type: object
+      properties:
+        result:
+          description: result
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
+      x-apifox-orders:
+      - result
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResultPageInfoRunInputVO:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/PageInfoRunInputVO'
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
+      x-apifox-orders:
+      - result
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RunInputDTO:
+      type: object
+      properties:
+        region:
+          description: aws cloud region,At least one of the region and boxId attributes should be filled in. Region is preferred.
+          type: string
+          examples:
+          - us-east-1
+        objectId:
+          description: tvu source object id , Fill in at least one of this attribute and the url attribute
+          type: string
+          examples:
+          - '1227255915959431168'
+        url:
+          description: source url
+          type: string
+          examples:
+          - https://www.youtube.com/watch?v=Kzbrq_kf7Rw
+        boxId:
+          description: tvu box id,please contact us
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+      x-apifox-orders:
+      - region
+      - objectId
+      - url
+      - boxId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RunInputVO:
+      description: result
+      type: object
+      properties:
+        inputId:
+          description: Input Record Unique id, identifies the user operation data record, and can be used to delete the record later
+          type: string
+        objectId:
+          description: 'tvu source object id '
+          type: string
+        url:
+          description: source url
+          type: string
+          examples:
+          - https://www.youtube.com/watch?v=Kzbrq_kf7Rw
+        status:
+          format: int32
+          description: 'OptionValue 0:stop,1: loading, 2:active'
+          type: integer
+          examples:
+          - 1
+      x-apifox-orders:
+      - inputId
+      - objectId
+      - url
+      - status
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResultRunInputVO:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/RunInputVO'
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
+      x-apifox-orders:
+      - result
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PageInfoRunInputVO:
+      description: result
+      type: object
+      properties:
+        total:
+          format: int32
+          type: integer
+        pages:
+          format: int32
+          type: integer
+        size:
+          format: int32
+          type: integer
+        hasNextPage:
+          type: boolean
+        pageSize:
+          format: int32
+          type: integer
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/RunInputVO'
+        pageNum:
+          format: int32
+          type: integer
+      x-apifox-orders:
+      - total
+      - pages
+      - size
+      - hasNextPage
+      - pageSize
+      - list
+      - pageNum
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

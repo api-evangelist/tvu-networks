@@ -1,0 +1,880 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Search Search API/extract API
+  description: Search API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://search.tvunetworks.com
+  description: Apifox server "TVUSearch"
+tags:
+- name: Search API/extract
+paths:
+  /api/resource/v2/cut-json:
+    post:
+      summary: cut-json
+      deprecated: false
+      description: 'Cut JSON: Only modify the offset field values in the root JSON, including chunk_begin_timestamp, chunk_end_timestamp, begin_offset, and end_offset; the HLS source remains unchanged.'
+      tags:
+      - Search API/extract
+      parameters:
+      - name: tagvalue
+        in: header
+        description: ''
+        required: false
+        example: '{{tagvalue}}'
+        schema:
+          type: string
+          default: '{{tagvalue}}'
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jsonUrl:
+                  type: string
+                  description: json url
+                markIn:
+                  type: integer
+                  description: The offset of the cut start point relative to the origin.
+                markOut:
+                  type: integer
+                  description: The offset of the cut endpoint relative to the starting point
+                fileName:
+                  type: string
+                  description: file name
+                uploadPath:
+                  type: string
+                  description: The upload location for the trimmed JSON file; if not specified, it defaults to the same directory as the original JSON.
+                pathId:
+                  type: string
+                  description: 'Translation: The driveId required for synchronizing the driver.'
+                bucket:
+                  type: string
+                  description: s3 bucket
+                region:
+                  type: string
+                  description: s3 region
+                serviceCaller:
+                  type: string
+                  description: 'Caller identifier, for example: searchd'
+              required:
+              - jsonUrl
+              - region
+              - bucket
+              - markOut
+              - markIn
+              - fileName
+              x-apifox-orders:
+              - jsonUrl
+              - markIn
+              - markOut
+              - fileName
+              - uploadPath
+              - pathId
+              - bucket
+              - region
+              - serviceCaller
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonUrl:
+                    type: string
+                    description: The json url after trimming
+                  errorCode:
+                    type: integer
+                    description: error code
+                  errorMessage:
+                    type: string
+                    description: error message
+                required:
+                - jsonUrl
+                - errorMessage
+                - errorCode
+                x-apifox-orders:
+                - jsonUrl
+                - errorCode
+                - errorMessage
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: pCKNfYFw3FWFznJsmvIqj
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: pCKNfYFw3FWFznJsmvIqj
+          scopes:
+            pCKNfYFw3FWFznJsmvIqj:
+              bearer: []
+      x-apifox-folder: Search API/extract
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-236527411-run
+      operationId: cut_json_236527411
+      x-source-doc: https://docs.tvunetworks.cn/api-236527411.md
+  /api/resource/v2/export:
+    post:
+      summary: export
+      deprecated: false
+      description: ''
+      tags:
+      - Search API/extract
+      parameters:
+      - name: tagvalue
+        in: header
+        description: ''
+        required: false
+        example: '{{tagvalue}}'
+        schema:
+          type: string
+          default: '{{tagvalue}}'
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                highResolutionMediaFilePath:
+                  type: string
+                  description: the corresponding hls http link
+                  examples:
+                  - https://mma-s3-qa.s3.ap-east-1.amazonaws.com/ts/3CB5559B28436AFA/F417ED28275DAE820000000000000001/240521-08-50-39-224/1/play.m3u8
+                startTime:
+                  type: integer
+                  description: start time of the clipping interval
+                  format: int64
+                  examples:
+                  - 1716281448865
+                duration:
+                  type: integer
+                  description: duration of the clipping interval
+                  format: int64
+                  examples:
+                  - 716000
+                userAccount:
+                  type: string
+                  description: user account(email or userid)
+                  examples:
+                  - calebpan@tvunetworks.com
+                withMetadataJson:
+                  type: boolean
+                  description: whether or not to generate metadata json
+                  default: false
+                sourceObjectId:
+                  type: string
+                  description: sourceObjectId used to generate metadata json
+                fileName:
+                  type: string
+                  description: cut video file naming
+                  examples:
+                  - public_export_test
+                fileType:
+                  type: string
+                  description: video file type, e.g. ts/mov/mp4/json
+                  default: ts
+                  examples:
+                  - mov
+                audioVolume:
+                  type: string
+                  description: 'set audio volume, eg: 2.0, 0.5'
+                isFrameLevel:
+                  type: boolean
+                  description: whether or not the export is frame-accurate
+                  default: false
+                isCover:
+                  type: boolean
+                  description: Whether to overwrite existing files with the same name in history
+                isDryrun:
+                  type: boolean
+                  description: 'all logic runs except for extracting files '
+                  default: true
+                isMRSS:
+                  type: boolean
+                  description: 'set to true to return video and thumbnail information. '
+                audioAdjustment:
+                  type: string
+                audioPadding:
+                  type: object
+                  properties:
+                    headLen:
+                      type: number
+                      description: max 5000 (ms)
+                    tailLen:
+                      type: number
+                      description: max 5000 (ms)
+                    unit:
+                      type: string
+                      description: ms/frame
+                  description: The Audio Padding feature allows users to configure a muted audio duration before and/or after a clip. Users can specify the padding in seconds or video frames, and the system automatically converts between the two based on the clip's frame rate.
+                  x-apifox-orders:
+                  - headLen
+                  - tailLen
+                  - unit
+                  x-apifox-ignore-properties: []
+                videoPadding:
+                  type: object
+                  properties:
+                    mode:
+                      type: integer
+                      description: 0(默认) -> hard black  1-> fade black
+                    headLen:
+                      type: integer
+                    tailLen:
+                      type: integer
+                    unit:
+                      type: string
+                      description: ms/frame
+                  x-apifox-orders:
+                  - mode
+                  - headLen
+                  - tailLen
+                  - unit
+                  x-apifox-ignore-properties: []
+                destination:
+                  $ref: '#/components/schemas/PublicDestination'
+                  description: upload location information
+              required:
+              - highResolutionMediaFilePath
+              - startTime
+              - duration
+              - userAccount
+              x-apifox-orders:
+              - highResolutionMediaFilePath
+              - startTime
+              - duration
+              - userAccount
+              - withMetadataJson
+              - sourceObjectId
+              - fileName
+              - fileType
+              - audioVolume
+              - isFrameLevel
+              - isCover
+              - isDryrun
+              - isMRSS
+              - audioAdjustment
+              - audioPadding
+              - videoPadding
+              - destination
+              x-apifox-ignore-properties: []
+            example:
+              highResolutionMediaFilePath: https://tvu-tbs-project.s3.ap-northeast-1.amazonaws.com/ts/FFFFFFF0000E5612/143FEF1EF65B38970000000000000002/240527-05-11-16-159/181/play.m3u8
+              startTime: 1732035540427
+              duration: 180000
+              userAccount: calebpan@tvunetworks.com
+              fileName: soffee-20241120
+              fileType: ts
+              isFrameLevel: false
+              isDryrun: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                    description: error code
+                  errorMsg:
+                    type: string
+                    description: error message
+                  isDryrun:
+                    type: boolean
+                    description: 'All logic runs except for extracting files '
+                  timeWait:
+                    type: integer
+                    description: (ms) This non-blocking API returns this value that helps decide when to retry the operation.  if it’s 0 ,  videoPath is the real file path.
+                  videoPath:
+                    type: string
+                    description: Full path and pre-signed for 1 hours (if the video file not be public-read)
+                  baseVideoPath:
+                    type: string
+                    description: No signature export video link
+                  metadataJsonPath:
+                    type: string
+                    description: Full path or pre-signed for 1 hours (if ihe metadata json file not be public-read)
+                  baseMetadataJsonPath:
+                    type: string
+                    description: No signature export metadata json link
+                  thumbnailInfo:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                      width:
+                        type: string
+                      height:
+                        type: string
+                    x-apifox-orders:
+                    - url
+                    - width
+                    - height
+                    x-apifox-ignore-properties: []
+                  videoInfo:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                      type:
+                        type: string
+                      bitrate:
+                        type: string
+                      width:
+                        type: string
+                      height:
+                        type: string
+                      framerate:
+                        type: string
+                      duration:
+                        type: string
+                    x-apifox-orders:
+                    - url
+                    - type
+                    - bitrate
+                    - width
+                    - height
+                    - framerate
+                    - duration
+                    x-apifox-ignore-properties: []
+                  videoDuration:
+                    type: integer
+                    description: video file length
+                    format: int64
+                  fileSize:
+                    type: integer
+                    description: video file size
+                    format: int64
+                required:
+                - errorCode
+                - errorMsg
+                - isDryrun
+                - timeWait
+                - videoPath
+                - baseVideoPath
+                - metadataJsonPath
+                - baseMetadataJsonPath
+                - videoDuration
+                - fileSize
+                x-apifox-orders:
+                - errorCode
+                - errorMsg
+                - isDryrun
+                - timeWait
+                - videoPath
+                - baseVideoPath
+                - metadataJsonPath
+                - baseMetadataJsonPath
+                - thumbnailInfo
+                - videoInfo
+                - videoDuration
+                - fileSize
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: KXaVv6qS2vTxEg6zy9eVx
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: KXaVv6qS2vTxEg6zy9eVx
+          scopes:
+            KXaVv6qS2vTxEg6zy9eVx:
+              bearer: []
+      x-apifox-folder: Search API/extract
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-236527410-run
+      operationId: export_236527410
+      x-source-doc: https://docs.tvunetworks.cn/api-236527410.md
+  /api/resource/v2/exportaudio:
+    post:
+      summary: exportaudio
+      deprecated: false
+      description: export audio
+      tags:
+      - Search API/extract
+      parameters:
+      - name: tagvalue
+        in: header
+        description: ''
+        required: false
+        example: '{{tagvalue}}'
+        schema:
+          type: string
+          default: '{{tagvalue}}'
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startTime:
+                  type: integer
+                  description: audio start time(timestamp, ms)
+                duration:
+                  type: integer
+                  description: audio duration(ms)
+                sourceObjectId:
+                  type: string
+                  description: sourceObjectId
+                fileName:
+                  type: string
+                  description: 'file name with suffix (eg: a.flac)'
+                sampleRate:
+                  type: integer
+                  description: sample rate
+                fileStartTimecode:
+                  type: integer
+                  description: audio file start time code
+                fileEndTimecode:
+                  type: integer
+                  description: audio file end time code
+                reTranscribe:
+                  $ref: '#/components/schemas/ReTranscribe'
+                  description: parameter information required for re-transcribe
+              required:
+              - startTime
+              - duration
+              - sourceObjectId
+              - fileName
+              x-apifox-orders:
+              - startTime
+              - duration
+              - sourceObjectId
+              - fileName
+              - sampleRate
+              - fileStartTimecode
+              - fileEndTimecode
+              - reTranscribe
+              x-apifox-ignore-properties: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                    description: error code
+                  errorMessage:
+                    type: string
+                    description: error message
+                  status:
+                    type: integer
+                    description: status code
+                  timeWait:
+                    type: integer
+                    description: next request waiting time
+                  audioPath:
+                    type: string
+                    description: audio http link
+                required:
+                - errorCode
+                - errorMessage
+                - status
+                - timeWait
+                - audioPath
+                x-apifox-orders:
+                - errorCode
+                - errorMessage
+                - status
+                - timeWait
+                - audioPath
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: tYQoaYSNmaHnpb0GTwy14
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: tYQoaYSNmaHnpb0GTwy14
+          scopes:
+            tYQoaYSNmaHnpb0GTwy14:
+              bearer: []
+      x-apifox-folder: Search API/extract
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-236527414-run
+      operationId: exportaudio_236527414
+      x-source-doc: https://docs.tvunetworks.cn/api-236527414.md
+  /api/resource/v2/longexport:
+    post:
+      summary: longexport
+      deprecated: false
+      description: ''
+      tags:
+      - Search API/extract
+      parameters:
+      - name: tagvalue
+        in: header
+        description: ''
+        required: false
+        example: '{{tagvalue}}'
+        schema:
+          type: string
+          default: '{{tagvalue}}'
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userAccount:
+                  type: string
+                  description: user account(email or userid)
+                  examples:
+                  - calebpan@tvunetworks.com
+                filePath:
+                  type: string
+                  description: the corresponding hls http link
+                  examples:
+                  - https://mma-s3-qa.s3.ap-east-1.amazonaws.com/ts/3CB5559B28436AFA/F417ED28275DAE820000000000000001/240521-08-50-39-224/1/play.m3u8
+                startTime:
+                  type: integer
+                  description: in millisecond. start time of the filePath
+                  format: int64
+                  examples:
+                  - 1716281448865
+                duration:
+                  type: integer
+                  description: in millisecond. duration of the filePath
+                  format: int64
+                  examples:
+                  - 716000
+                maxChunkDuration:
+                  type: integer
+                  description: in millisecond.  The maxinum value is 14400000 (4 hours)
+                fileName:
+                  type: string
+                  description: cut video file namie prefix
+                  examples:
+                  - public_export_test
+                fileType:
+                  type: string
+                  description: video file type, TS by default
+                  examples:
+                  - mov
+                destination:
+                  $ref: '#/components/schemas/PublicDestination'
+                  description: upload location information
+              required:
+              - userAccount
+              - filePath
+              - startTime
+              - duration
+              - maxChunkDuration
+              - fileName
+              x-apifox-orders:
+              - userAccount
+              - filePath
+              - startTime
+              - duration
+              - maxChunkDuration
+              - fileName
+              - fileType
+              - destination
+              x-apifox-ignore-properties: []
+            example:
+              userAccount: calebpan@tvunetworks.com
+              filePath: https://mma-video-new.S3.us-east-1.amazonaws.com/ts/FFFFFFF0000EE351/74863CBB4E14B04E/240821-02-36-42-576/1/play.m3u8
+              startTime: 1721764355777
+              duration: 2708371
+              maxChunkDuration: 7200000
+              fileName: 072424-Netanyahu-Congress-AP2_3F74874773235994
+              fileType: ts
+              destination:
+                cloudVendor: s3
+                bucket: mimir-video
+                region: us-east-1
+                folder: TVU_Search
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                    description: error code
+                  errorMsg:
+                    type: string
+                    description: error message
+                  timeWait:
+                    type: integer
+                    description: (ms) This non-blocking API returns this value that helps decide when to retry the operation.  if it’s 0 ,  videoPath is the real file path.
+                  videoList:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      $ref: '#/components/schemas/VideoInfo'
+                    description: clip list
+                required:
+                - errorCode
+                - errorMsg
+                - timeWait
+                - videoList
+                x-apifox-orders:
+                - errorCode
+                - errorMsg
+                - timeWait
+                - videoList
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: iK0YzFupKl5MDzstiA6CZ
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: iK0YzFupKl5MDzstiA6CZ
+          scopes:
+            iK0YzFupKl5MDzstiA6CZ:
+              bearer: []
+      x-apifox-folder: Search API/extract
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-236527412-run
+      operationId: longexport_236527412
+      x-source-doc: https://docs.tvunetworks.cn/api-236527412.md
+  /api/resource/v2/thumbnail:
+    get:
+      summary: thumbnail
+      deprecated: false
+      description: get thumbnail api
+      tags:
+      - Search API/extract
+      parameters:
+      - name: LivePath
+        in: query
+        description: hls http link
+        required: false
+        example: https://pp-va-001.s3.amazonaws.com/MH/RECORDINGS/1253344220354326528/e733264437ce4575954abc7841fd0e85/1/play.m3u8
+        schema:
+          type: string
+      - name: VodUrl
+        in: query
+        description: vod url (mutually exclusive with the above LivePath)
+        required: false
+        schema:
+          type: string
+      - name: Offset
+        in: query
+        description: ms
+        required: true
+        schema:
+          type: integer
+      - name: tagvalue
+        in: header
+        description: ''
+        required: false
+        example: '{{tagvalue}}'
+        schema:
+          type: string
+          default: '{{tagvalue}}'
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ErrorCode:
+                    type: number
+                    description: error code
+                    default: 1000
+                  ErrorMessage:
+                    type: string
+                    description: error message
+                    default: success
+                  ImagePath:
+                    type: string
+                    description: Path for thumbnail upload to imgbed
+                required:
+                - ErrorCode
+                - ErrorMessage
+                - ImagePath
+                x-apifox-orders:
+                - ErrorCode
+                - ErrorMessage
+                - ImagePath
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: -5abKnyHTjWvhoZ9_ql7G
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: -5abKnyHTjWvhoZ9_ql7G
+          scopes:
+            -5abKnyHTjWvhoZ9_ql7G:
+              bearer: []
+      x-apifox-folder: Search API/extract
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-236527413-run
+      operationId: thumbnail_236527413
+      x-source-doc: https://docs.tvunetworks.cn/api-236527413.md
+components:
+  schemas:
+    PublicDestination:
+      type: object
+      description: Target storage location for the output file.
+      properties:
+        cloudVendor:
+          type: string
+          description: Cloud storage vendor. Values are matched case-insensitively by the storage layer (`s3`, `azure`, `oss`, `cos`).
+          examples:
+          - s3
+        bucket:
+          type: string
+          description: Target s3/azure/oss/cos storage bucket name.
+          examples:
+          - media-export-bucket
+        region:
+          type: string
+          description: Bucket region.
+          examples:
+          - us-east-1
+        folder:
+          type: string
+          description: Key prefix / folder path within the bucket (trailing slash recommended).
+          examples:
+          - export/
+      x-apifox-orders:
+      - cloudVendor
+      - bucket
+      - region
+      - folder
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    VideoInfo:
+      type: object
+      properties:
+        startTime:
+          type: integer
+          format: int64
+          description: Chunk start timestamp in milliseconds (Unix epoch ms).
+        duration:
+          type: integer
+          format: int64
+          description: Chunk duration in milliseconds.
+        videoPath:
+          type: string
+          description: S3 path or URL to this chunk's video file.
+        isCompleted:
+          type: boolean
+          description: Whether this chunk has finished processing.
+      x-apifox-orders:
+      - startTime
+      - duration
+      - videoPath
+      - isCompleted
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ReTranscribe:
+      type: object
+      properties:
+        switch:
+          type: boolean
+          description: 'whether to recollect (default: false)'
+        groupId:
+          type: string
+          description: groupId
+        language:
+          type: string
+          description: language
+      x-apifox-orders:
+      - switch
+      - groupId
+      - language
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

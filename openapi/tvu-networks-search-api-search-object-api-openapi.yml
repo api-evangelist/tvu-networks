@@ -1,0 +1,1023 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Search Search API/search/object API
+  description: Search API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://search.tvunetworks.com
+  description: Apifox server "TVUSearch"
+tags:
+- name: Search API/search/object
+paths:
+  /api/search/v1/i/fetchallobjecttag:
+    post:
+      summary: Fetch all tags across objects
+      deprecated: false
+      description: Returns all object tag records matching the request criteria, including total count and paginated results.
+      tags:
+      - Search API/search/object
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.FetchAllObjectTagReq'
+            example:
+              classifications: []
+              groupId: []
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.FetchAllObjectTagResp'
+              example:
+                result: []
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/object
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959092-run
+      operationId: Fetch_all_tags_across_objects_468959092
+      x-source-doc: https://docs.tvunetworks.cn/api-468959092.md
+  /api/search/v1/i/fetchobjecttag:
+    post:
+      summary: Fetch tags for an object
+      deprecated: false
+      description: Returns the tag records associated with the specified object, with total count and result list.
+      tags:
+      - Search API/search/object
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.FetchObjectTagReq'
+            example:
+              classifications: []
+              objectIds: []
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/object
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959093-run
+      operationId: Fetch_tags_for_an_object_468959093
+      x-source-doc: https://docs.tvunetworks.cn/api-468959093.md
+  /api/search/v1/i/getobjectdetail:
+    post:
+      summary: Retrieve detailed object info
+      deprecated: false
+      description: Returns full detail of an object including its attributes, type, and tangible associations.
+      tags:
+      - Search API/search/object
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.GetObjectReq'
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.GetObjectDetailResp'
+              example:
+                data:
+                  tangibleAttributes: []
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/object
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959094-run
+      operationId: Retrieve_detailed_object_info_468959094
+      x-source-doc: https://docs.tvunetworks.cn/api-468959094.md
+  /api/search/v1/i/object:
+    post:
+      summary: Search objects with tag filters
+      deprecated: false
+      description: Returns a list of objects matching the query along with aggregated tag and type maps, respecting user permission groups.
+      tags:
+      - Search API/search/object
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.ObjectQReq'
+            example:
+              filters:
+                deleteFlags: []
+                events: []
+                features: []
+                geo: []
+                objectIds: []
+                objectIntTypes: []
+                objectTypes: []
+                sources: []
+                status: []
+                tags: []
+                tangibleTypes: []
+              needFields: []
+              permission:
+                groupIds: []
+                userIds: []
+              tsRange:
+                endtime: 1778304241635
+                starttime: 1778304121635
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.SearchObjectTagsResp'
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/object
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959095-run
+      operationId: Search_objects_with_tag_filters_468959095
+      x-source-doc: https://docs.tvunetworks.cn/api-468959095.md
+  /api/search/v1/i/objecttagsuggestion:
+    post:
+      summary: Get tag autocomplete suggestions for an object
+      deprecated: false
+      description: Returns suggested tag values based on a partial input string for the specified object.
+      tags:
+      - Search API/search/object
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.ObjectTagSuggestionReq'
+            example:
+              classifications: []
+              groupId: []
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.GetObjectTagSuggestionResp'
+              example:
+                result: []
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/object
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959096-run
+      operationId: Get_tag_autocomplete_suggestions_for_an_object_468959096
+      x-source-doc: https://docs.tvunetworks.cn/api-468959096.md
+  /api/search/v1/i/searchfileformatbypath:
+    post:
+      summary: Search file format info by path
+      deprecated: false
+      description: Returns the file format details (codec, container, resolution) for a media file identified by its path.
+      tags:
+      - Search API/search/object
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.SearchFileFormatByPathReq'
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/object
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959097-run
+      operationId: Search_file_format_info_by_path_468959097
+      x-source-doc: https://docs.tvunetworks.cn/api-468959097.md
+  /api/search/v1/i/searchmediabyids:
+    post:
+      summary: Search media objects by ID list
+      deprecated: false
+      description: Returns media object records for the provided list of object IDs.
+      tags:
+      - Search API/search/object
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.SearchMediaByIdsReq'
+            example:
+              objectIds: []
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.SearchMediaByIdsResp'
+              example:
+                result: []
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/object
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959098-run
+      operationId: Search_media_objects_by_ID_list_468959098
+      x-source-doc: https://docs.tvunetworks.cn/api-468959098.md
+  /api/search/v1/i/searchobjectidbymedia:
+    post:
+      summary: Find object IDs by media paths
+      deprecated: false
+      description: Returns object records whose media paths match any of the provided path strings.
+      tags:
+      - Search API/search/object
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.SearchObjectIdByMediaReq'
+            example:
+              mediaPathes: []
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.SearchObjectByMediaResp'
+              example:
+                result: []
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/object
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959099-run
+      operationId: Find_object_IDs_by_media_paths_468959099
+      x-source-doc: https://docs.tvunetworks.cn/api-468959099.md
+components:
+  schemas:
+    models.FetchObjectTagReq:
+      type: object
+      properties:
+        classifications:
+          type: array
+          items:
+            type: integer
+        objectIds:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - classifications
+      - objectIds
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.ObjectDetail:
+      type: object
+      properties:
+        tangibleAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.TangibleAttributeData'
+      x-apifox-orders:
+      - tangibleAttributes
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.ObjectReturnData:
+      type: object
+      properties:
+        objectGrid:
+          type: string
+        objectId:
+          type: string
+        path:
+          type: string
+      x-apifox-orders:
+      - objectGrid
+      - objectId
+      - path
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchFileFormatByPathReq:
+      type: object
+      properties:
+        filePath:
+          type: string
+        fullFilePath:
+          type: string
+      x-apifox-orders:
+      - filePath
+      - fullFilePath
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.GetObjectDetailResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          description: return data
+          allOf:
+          - $ref: '#/components/schemas/models.ObjectDetail'
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.TangibleAttributeData:
+      type: object
+      properties:
+        description:
+          type: string
+        fieldName:
+          type: string
+        level:
+          type: integer
+        readableName:
+          type: string
+        value:
+          type: string
+      x-apifox-orders:
+      - description
+      - fieldName
+      - level
+      - readableName
+      - value
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.MediaFileRetrunData:
+      type: object
+      properties:
+        duration:
+          type: integer
+        fileSize:
+          type: integer
+        groupId:
+          type: string
+        liveId:
+          type: string
+        objectGrid:
+          type: string
+        objectMedia:
+          type: string
+        path:
+          type: string
+        pathMd5:
+          type: string
+        peerId:
+          type: string
+        storageInfoBase64:
+          type: string
+        tPeerId:
+          type: string
+        thumbnailPath:
+          type: string
+        timecodeEnd:
+          type: integer
+        timecodeLive:
+          type: integer
+        timecodeStart:
+          type: integer
+        timestamp:
+          type: integer
+        timestampEnd:
+          type: integer
+        timestampLive:
+          type: integer
+        timestampStart:
+          type: integer
+        type:
+          type: integer
+        uid:
+          type: string
+      x-apifox-orders:
+      - duration
+      - fileSize
+      - groupId
+      - liveId
+      - objectGrid
+      - objectMedia
+      - path
+      - pathMd5
+      - peerId
+      - storageInfoBase64
+      - tPeerId
+      - thumbnailPath
+      - timecodeEnd
+      - timecodeLive
+      - timecodeStart
+      - timestamp
+      - timestampEnd
+      - timestampLive
+      - timestampStart
+      - type
+      - uid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchObjectByMediaResp:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.ObjectReturnData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchTsRange:
+      type: object
+      properties:
+        endtime:
+          type: integer
+          examples:
+          - 1778304241635
+        field:
+          type: string
+        starttime:
+          type: integer
+          examples:
+          - 1778304121635
+      x-apifox-orders:
+      - endtime
+      - field
+      - starttime
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchMediaByIdsReturnData:
+      type: object
+      properties:
+        dash:
+          $ref: '#/components/schemas/models.MediaFileRetrunData'
+        hls:
+          $ref: '#/components/schemas/models.MediaFileRetrunData'
+        objectGrid:
+          type: string
+        objectId:
+          type: string
+      x-apifox-orders:
+      - dash
+      - hls
+      - objectGrid
+      - objectId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchMediaByIdsResp:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SearchMediaByIdsReturnData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.FetchAllObjectTagReq:
+      type: object
+      properties:
+        classifications:
+          type: array
+          items:
+            type: integer
+        groupId:
+          type: array
+          items:
+            type: string
+        pageNum:
+          type: integer
+        pageSize:
+          type: integer
+        sort:
+          type: integer
+        userId:
+          type: string
+      x-apifox-orders:
+      - classifications
+      - groupId
+      - pageNum
+      - pageSize
+      - sort
+      - userId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.FetchAllObjectTagResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        message:
+          description: Human-readable result message
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.EsObjectTagData'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - code
+      - message
+      - result
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchMediaByIdsReq:
+      type: object
+      properties:
+        objectIds:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - objectIds
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.ObjectTagSuggestionReq:
+      type: object
+      properties:
+        classifications:
+          type: array
+          items:
+            type: integer
+        groupId:
+          type: array
+          items:
+            type: string
+        lang:
+          type: string
+        query:
+          type: string
+        size:
+          type: integer
+        sort:
+          type: integer
+        userId:
+          type: string
+      x-apifox-orders:
+      - classifications
+      - groupId
+      - lang
+      - query
+      - size
+      - sort
+      - userId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchFilters:
+      type: object
+      properties:
+        createByme:
+          type: boolean
+        deleteFlags:
+          type: array
+          items:
+            type: integer
+        events:
+          type: array
+          items:
+            type: string
+        features:
+          type: array
+          items:
+            type: string
+        geo:
+          type: array
+          items:
+            type: string
+        noDmaShow:
+          type: boolean
+        objectIds:
+          type: array
+          items:
+            type: string
+        objectIntTypes:
+          type: array
+          items:
+            type: integer
+        objectTypes:
+          type: array
+          items:
+            type: string
+        sources:
+          type: array
+          items:
+            type: string
+        status:
+          type: array
+          items:
+            type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        tangibleTypes:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - createByme
+      - deleteFlags
+      - events
+      - features
+      - geo
+      - noDmaShow
+      - objectIds
+      - objectIntTypes
+      - objectTypes
+      - sources
+      - status
+      - tags
+      - tangibleTypes
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.GetObjectTagSuggestionResp:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.EsObjectTagData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.EsObjectTagData:
+      type: object
+      properties:
+        classification:
+          type: integer
+        groupId:
+          type: string
+        tagId:
+          type: string
+        tagName:
+          type: string
+        userId:
+          type: string
+      x-apifox-orders:
+      - classification
+      - groupId
+      - tagId
+      - tagName
+      - userId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.ObjectQReq:
+      type: object
+      properties:
+        filters:
+          $ref: '#/components/schemas/models.SearchFilters'
+        needFields:
+          type: array
+          items:
+            type: string
+        noAggs:
+          type: boolean
+        noTagDetail:
+          type: boolean
+        pageNum:
+          type: integer
+        pageSize:
+          type: integer
+        permission:
+          $ref: '#/components/schemas/models.AccessPermissionV2'
+        query:
+          type: string
+        queryFields:
+          type: string
+        sessionId:
+          type: string
+        sort:
+          type: integer
+        sortByCustom:
+          type: string
+        sortByTag:
+          type: string
+        tsRange:
+          $ref: '#/components/schemas/models.SearchTsRange'
+        userAccount:
+          type: string
+        userId:
+          type: string
+      x-apifox-orders:
+      - filters
+      - needFields
+      - noAggs
+      - noTagDetail
+      - pageNum
+      - pageSize
+      - permission
+      - query
+      - queryFields
+      - sessionId
+      - sort
+      - sortByCustom
+      - sortByTag
+      - tsRange
+      - userAccount
+      - userId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AccessPermissionV2:
+      type: object
+      properties:
+        groupIds:
+          type: array
+          items:
+            type: string
+        userIds:
+          type: array
+          items:
+            type: string
+        wildcardDisabled:
+          type: boolean
+      x-apifox-orders:
+      - groupIds
+      - userIds
+      - wildcardDisabled
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.GetObjectReq:
+      type: object
+      properties:
+        attributeType:
+          description: '0: for ES, including all searchable attributes, no need "readableName"; 1: for UI'
+          type: integer
+        objectId:
+          description: optional
+          type: string
+        objectType:
+          type: integer
+        tangibleId:
+          type: string
+      x-apifox-orders:
+      - attributeType
+      - objectId
+      - objectType
+      - tangibleId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchObjectTagsResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          description: return data
+          type: object
+          additionalProperties: true
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchObjectIdByMediaReq:
+      type: object
+      properties:
+        mediaPathes:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - mediaPathes
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

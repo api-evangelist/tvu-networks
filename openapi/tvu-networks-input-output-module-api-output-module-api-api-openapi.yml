@@ -1,0 +1,370 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Input&Output Module Input&Output Module…
+  description: Input&Output Module API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Input&Output Module API/output-module-api
+paths:
+  /output-docker/api/v1/output:
+    post:
+      summary: run output
+      deprecated: false
+      description: run output module connect with input
+      operationId: run output
+      tags:
+      - Input&Output Module API/output-module-api
+      parameters:
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunOutPutDTO'
+            example: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultRunOutputVO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/output-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728352-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728352.md
+    put:
+      summary: update output
+      deprecated: false
+      description: update output module connect with input
+      operationId: update output
+      tags:
+      - Input&Output Module API/output-module-api
+      parameters:
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunOutPutDTO'
+            example: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultRunOutputVO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/output-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728353-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728353.md
+  /output-docker/api/v1/output/{outputId}:
+    get:
+      summary: query output
+      deprecated: false
+      description: ''
+      operationId: query output
+      tags:
+      - Input&Output Module API/output-module-api
+      parameters:
+      - name: outputId
+        in: path
+        description: outputId, Retrieve from run output api
+        required: true
+        example: '1227255915959431200'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultRunOutputVO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/output-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728355-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728355.md
+    delete:
+      summary: delete output
+      deprecated: false
+      description: ''
+      operationId: delete output
+      tags:
+      - Input&Output Module API/output-module-api
+      parameters:
+      - name: outputId
+        in: path
+        description: outputId, Retrieve from run output api
+        required: true
+        example: '1227255915959431200'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/output-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728356-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728356.md
+  /output-docker/api/v1/outputs:
+    get:
+      summary: query output list
+      deprecated: false
+      description: ''
+      operationId: query output list
+      tags:
+      - Input&Output Module API/output-module-api
+      parameters:
+      - name: pageNum
+        in: query
+        description: ''
+        required: false
+        schema:
+          default: '1'
+          type: string
+      - name: pageSize
+        in: query
+        description: ''
+        required: false
+        schema:
+          default: '10'
+          type: string
+      - name: sort
+        in: query
+        description: 'Optional values: [1, 2]. 1: Sort by creation time, 2: Sort by update time'
+        required: false
+        example: 1
+        schema:
+          default: 1
+          format: int32
+          type: integer
+      - name: asc
+        in: query
+        description: 'Optional values: [1, 2]. 1: Ascending order, 2: Descending order'
+        required: false
+        example: '1'
+        schema:
+          default: false
+          type: boolean
+      - name: SID
+        in: header
+        description: session value
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - A31BEAA85D364ECB91C4DB6A22517584
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultRunOutputVO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/output-module-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728354-run
+      x-source-doc: https://docs.tvunetworks.cn/api-256728354.md
+components:
+  schemas:
+    ResultVoid:
+      type: object
+      properties:
+        result:
+          description: result
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
+      x-apifox-orders:
+      - result
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RunOutPutDTO:
+      type: object
+      properties:
+        inputId:
+          description: inputId from run input api
+          type: string
+          examples:
+          - '1227255915959431168'
+        encodingProfileId:
+          description: encoding profile id, please us encoding api build encoding profile and then get the encodingProfileId
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+        streamingUrl:
+          description: Streaming address
+          type: string
+          examples:
+          - rtmp://a.rtmp.youtube.com/live2/demo
+        region:
+          description: aws cloud region
+          type: string
+          examples:
+          - us-east-1
+        boxId:
+          description: tvu box id,please contact us
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+      x-apifox-orders:
+      - inputId
+      - encodingProfileId
+      - streamingUrl
+      - region
+      - boxId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResultRunOutputVO:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/RunOutputVO'
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
+      x-apifox-orders:
+      - result
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RunOutputVO:
+      description: result
+      type: object
+      properties:
+        outputId:
+          description: Output Unique id, identifies the user operation data record, and can be used to delete the record later
+          type: string
+        encodingProfileId:
+          description: encoding profile id, please us encoding api build encoding profile and then get the encodingProfileId
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+        streamingUrl:
+          description: Streaming address
+          type: string
+          examples:
+          - rtmp://a.rtmp.youtube.com/live2/demo
+        region:
+          description: aws cloud region
+          type: string
+          examples:
+          - us-east-1
+        boxId:
+          description: tvu box id
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+        status:
+          format: int32
+          description: 'OptionValue 0:stop,1: loading, 2:active'
+          type: integer
+          examples:
+          - 1
+      x-apifox-orders:
+      - outputId
+      - encodingProfileId
+      - streamingUrl
+      - region
+      - boxId
+      - status
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

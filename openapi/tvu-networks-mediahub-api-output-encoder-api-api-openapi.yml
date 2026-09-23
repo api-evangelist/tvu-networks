@@ -1,0 +1,813 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — MediaHub MediaHub API/output-encoder-api API
+  description: MediaHub API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://mediahub.tvunetworks.com
+  description: Apifox server "MediaHub"
+tags:
+- name: MediaHub API/output-encoder-api
+paths:
+  /urcaller/api/v2/output:
+    post:
+      summary: createOutput
+      deprecated: false
+      description: create output account
+      operationId: createOutput
+      tags:
+      - MediaHub API/output-encoder-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOutputDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultOutputDTO'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/output-encoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498614-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498614.md
+    delete:
+      summary: deleteOutput
+      deprecated: false
+      description: delete output by outputId
+      operationId: deleteOutput
+      tags:
+      - MediaHub API/output-encoder-api
+      parameters:
+      - name: id
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/output-encoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498615-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498615.md
+    put:
+      summary: updateOutput
+      deprecated: false
+      description: update output account
+      operationId: updateOutput
+      tags:
+      - MediaHub API/output-encoder-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutputDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/output-encoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498616-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498616.md
+  /urcaller/api/v2/output/encodingProfile/pair:
+    post:
+      summary: outputPairedWithEncodingProfile
+      deprecated: false
+      description: output paired with encodingProfile
+      operationId: outputPairedWithEncodingProfile_1
+      tags:
+      - MediaHub API/output-encoder-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/OutputEncodingProfilePairDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultListPairVo'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/output-encoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498611-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498611.md
+    delete:
+      summary: deletePairedOfOutputEncodingProfile
+      deprecated: false
+      description: Delete the paired relationship between output and encodingprofile
+      operationId: deletePairedOfOutputEncodingProfile
+      tags:
+      - MediaHub API/output-encoder-api
+      parameters:
+      - name: id
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/output-encoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498612-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498612.md
+    put:
+      summary: outputPairedWithEncodingProfile
+      deprecated: false
+      description: update pair by outputEncodingProfilePairId
+      operationId: outputPairedWithEncodingProfile
+      tags:
+      - MediaHub API/output-encoder-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PairVo'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/output-encoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498613-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498613.md
+  /urcaller/api/v2/output/encodingProfile/pairs:
+    get:
+      summary: queryOutputEncodingProfilePairs
+      deprecated: false
+      description: Query the paired list of output and encoding profiles
+      operationId: queryOutputEncodingProfilePairs
+      tags:
+      - MediaHub API/output-encoder-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultListPairDetailVO'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/output-encoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498610-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498610.md
+  /urcaller/api/v2/outputs:
+    post:
+      summary: listOutputs
+      deprecated: false
+      description: Query user output account list
+      operationId: listOutputs
+      tags:
+      - MediaHub API/output-encoder-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutputQueryDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPageResultOutputVo'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/output-encoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498617-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498617.md
+components:
+  schemas:
+    OutputDTO:
+      required:
+      - type
+      - outputName
+      - id
+      type: object
+      properties:
+        type:
+          type: string
+          description: support HLS/SRT/NDI/SDI/RTMP
+          default: SRT
+        outputName:
+          type: string
+        url:
+          type: string
+          description: NDI No URL required
+          default: srt://demo-zzhforrum.tvustream.com:47087?mode=caller&latency=120000
+        id:
+          type: string
+          description: outputId
+        objectId:
+          type: string
+      x-apifox-orders:
+      - type
+      - outputName
+      - url
+      - id
+      - objectId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OutputVo:
+      type: object
+      properties:
+        outputName:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+      x-apifox-orders:
+      - outputName
+      - id
+      - type
+      - url
+      x--orders:
+      - outputName
+      - id
+      - type
+      - url
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResultOutputDTO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          $ref: '#/components/schemas/OutputDTO'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResultPageResultOutputVo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageResultOutputVo'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    OutputQueryDTO:
+      required:
+      - pageSize
+      - pageNum
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          format: int32
+          examples:
+          - 10
+        pageNum:
+          type: integer
+          format: int32
+          examples:
+          - 1
+        outputName:
+          type: string
+        liveOnly:
+          type: boolean
+          description: Filter the output being streamed
+      x-apifox-orders:
+      - pageSize
+      - pageNum
+      - outputName
+      - liveOnly
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultListPairVo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/PairVo'
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          x--orders: []
+          properties: {}
+          x--ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    PairDetailVO:
+      type: object
+      properties:
+        outputEncodingProfilePairId:
+          type: string
+        outputId:
+          type: string
+        profileId:
+          type: string
+        multiProfileId:
+          type: string
+          description: Only applicable for multi-encoding hls
+        staticIp:
+          type: string
+        outputName:
+          type: string
+        profileName:
+          type: string
+      x-apifox-orders:
+      - outputEncodingProfilePairId
+      - outputId
+      - profileId
+      - multiProfileId
+      - staticIp
+      - outputName
+      - profileName
+      x--orders:
+      - outputEncodingProfilePairId
+      - outputId
+      - profileId
+      - multiProfileId
+      - staticIp
+      - outputName
+      - profileName
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    Result:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultListPairDetailVO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/PairDetailVO'
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          x--orders: []
+          properties: {}
+          x--ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    OutputEncodingProfilePairDTO:
+      type: object
+      properties:
+        outputId:
+          type: string
+        profileId:
+          type: string
+          description: 'profileId,This property can be obtained by creating an encodingProfile. If you want to use PassThrough mode, you can pass in a fixed value: 1cd2b373925d4e3c9bf72f468fd2bba7'
+        staticIp:
+          type: string
+      x-apifox-orders:
+      - outputId
+      - profileId
+      - staticIp
+      x--orders:
+      - outputId
+      - profileId
+      - staticIp
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    PairVo:
+      type: object
+      properties:
+        outputEncodingProfilePairId:
+          type: string
+        outputId:
+          type: string
+        profileId:
+          type: string
+        multiProfileId:
+          type: string
+          description: Only applicable for multi-encoding hls
+        staticIp:
+          type: string
+      x-apifox-orders:
+      - outputEncodingProfilePairId
+      - outputId
+      - profileId
+      - multiProfileId
+      - staticIp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CreateOutputDTO:
+      required:
+      - type
+      - outputName
+      type: object
+      properties:
+        type:
+          type: string
+          description: support HLS/SRT/NDI/SDI/RTMP
+          default: SRT
+        outputName:
+          type: string
+        url:
+          type: string
+          description: NDI No URL required
+          default: srt://demo-zzhforrum.tvustream.com:47087?mode=caller&latency=120000
+      x-apifox-orders:
+      - type
+      - outputName
+      - url
+      x--orders:
+      - type
+      - outputName
+      - url
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    PageResultOutputVo:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutputVo'
+        pageNum:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+        pages:
+          type: integer
+          format: int64
+      x-apifox-orders:
+      - list
+      - pageNum
+      - pageSize
+      - total
+      - pages
+      x--orders:
+      - list
+      - pageNum
+      - pageSize
+      - total
+      - pages
+      x--ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

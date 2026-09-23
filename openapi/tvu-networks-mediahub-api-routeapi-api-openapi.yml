@@ -1,0 +1,628 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — MediaHub MediaHub API/RouteApi API
+  description: MediaHub API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://mediahub.tvunetworks.com
+  description: Apifox server "MediaHub"
+tags:
+- name: MediaHub API/RouteApi
+paths:
+  /mediahub/api/v2/route/destination/connect:
+    post:
+      summary: destinationStartLive(destination mode)
+      deprecated: false
+      description: 'Start live streaming in destination mode (one-to-one: sourceObject → destinationObject). The caller must supply sourceObjectId, destinationObjectId and appName. userId and email are resolved automatically from the Authorization token.'
+      operationId: destinationStartLive
+      tags:
+      - MediaHub API/RouteApi
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestinationLiveDTO'
+            example:
+              sourceObjectId: src_a1b2c3d4e5f6
+              destinationObjectId: dst_a1b2c3d4e5f6
+              appName: live
+              enablePreview: false
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: MediaHub API/RouteApi
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-430970839-run
+      x-source-doc: https://docs.tvunetworks.cn/api-430970839.md
+  /mediahub/api/v2/route/destination/disconnect:
+    post:
+      summary: destinationStopLive(destination mode)
+      deprecated: false
+      description: Stop live streaming for the specified destination object. Only destinationObjectId is required in the request body.
+      operationId: destinationStopLive
+      tags:
+      - MediaHub API/RouteApi
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestinationLiveDTO'
+            example:
+              sourceObjectId: src_a1b2c3d4e5f6
+              destinationObjectId: dst_a1b2c3d4e5f6
+              appName: live
+              enablePreview: false
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: MediaHub API/RouteApi
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-430970838-run
+      x-source-doc: https://docs.tvunetworks.cn/api-430970838.md
+  /mediahub/api/v2/route/destination/switch:
+    post:
+      summary: destinationSwitch(destination mode)
+      deprecated: false
+      description: Switch the source of an active destination stream to a new source object. sourceObjectId, destinationObjectId and appName are required.
+      operationId: destinationSwitch
+      tags:
+      - MediaHub API/RouteApi
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestinationLiveDTO'
+            example:
+              sourceObjectId: src_a1b2c3d4e5f6
+              destinationObjectId: dst_a1b2c3d4e5f6
+              appName: live
+              enablePreview: false
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: MediaHub API/RouteApi
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-430970837-run
+      x-source-doc: https://docs.tvunetworks.cn/api-430970837.md
+  /mediahub/api/v2/route/connect:
+    post:
+      summary: connect(project mode)
+      deprecated: false
+      description: ''
+      operationId: connect
+      tags:
+      - MediaHub API/RouteApi
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectDTO'
+            example:
+              projectObjectId: prj_a1b2c3d4e5f6
+              sourceObjectId: src_a1b2c3d4e5f6
+              force: false
+              pairIds:
+              - pair_a1b2c3
+              - pair_d4e5f6
+              openPreview: false
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultString'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/route-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498625-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498625.md
+  /mediahub/api/v2/route/disconnect:
+    post:
+      summary: disconnect(project mode)
+      deprecated: false
+      description: ''
+      operationId: disconnect
+      tags:
+      - MediaHub API/RouteApi
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectDTO'
+            example:
+              projectObjectId: prj_a1b2c3d4e5f6
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/route-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498627-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498627.md
+  /mediahub/api/v2/route/output/disable:
+    post:
+      summary: singleOutputDisableStreaming(project mode)
+      deprecated: false
+      description: ''
+      operationId: singleOutputDisableStreaming
+      tags:
+      - MediaHub API/RouteApi
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableOutputDTO'
+            example:
+              projectObjectId: prj_a1b2c3d4e5f6
+              outputEncodingProfilePairId: pair_a1b2c3d4e5f6
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/route-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498624-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498624.md
+  /mediahub/api/v2/route/output/enable:
+    post:
+      summary: singleOutputEnableStreaming(project mode)
+      deprecated: false
+      description: ''
+      operationId: singleOutputEnableStreaming
+      tags:
+      - MediaHub API/RouteApi
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableOutputDTO'
+            example:
+              projectObjectId: prj_a1b2c3d4e5f6
+              outputEncodingProfilePairId: pair_a1b2c3d4e5f6
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/route-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498626-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498626.md
+  /mediahub/api/v2/route/switchConnect:
+    post:
+      summary: switchConnect(project mode)
+      deprecated: false
+      description: ''
+      operationId: switchConnect
+      tags:
+      - MediaHub API/RouteApi
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwitchConnectDTO'
+            example:
+              projectObjectId: prj_a1b2c3d4e5f6
+              sourceObjectId: src_x9y8z7w6v5u4
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultString'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/route-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-355991162-run
+      x-source-doc: https://docs.tvunetworks.cn/api-355991162.md
+components:
+  schemas:
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    DestinationLiveDTO:
+      required:
+      - sourceObjectId
+      - destinationObjectId
+      - appName
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+          description: Source object ID (the input source to stream from)
+          examples:
+          - src_a1b2c3d4e5f6
+        destinationObjectId:
+          type: string
+          description: Destination object ID (the output target to stream to)
+          examples:
+          - dst_a1b2c3d4e5f6
+        appName:
+          type: string
+          description: App name / stream key used by the encoder
+          examples:
+          - live
+        businessId:
+          type: string
+          description: Business ID, defaults to destinationObjectId when not provided
+          examples:
+          - dst_a1b2c3d4e5f6
+        enablePreview:
+          type: boolean
+          description: Whether to enable preview output
+          examples:
+          - false
+        previewType:
+          type: integer
+          description: 'Preview type: 0 = SRT, 1 = HLS'
+          format: int32
+          examples:
+          - 0
+        graphMetadata:
+          type: object
+          additionalProperties:
+            type: string
+            description: Extra metadata passed to the encoder graph (key-value pairs)
+            examples:
+            - '{"key1":"value1"}'
+          description: Extra metadata passed to the encoder graph (key-value pairs)
+          x-apifox-orders: []
+          examples:
+          - key1: value1
+          properties: {}
+          x-apifox-ignore-properties: []
+      description: Destination live start/stop request
+      x-apifox-orders:
+      - sourceObjectId
+      - destinationObjectId
+      - appName
+      - businessId
+      - enablePreview
+      - previewType
+      - graphMetadata
+      examples:
+      - sourceObjectId: src_a1b2c3d4e5f6
+        destinationObjectId: dst_a1b2c3d4e5f6
+        appName: live
+        enablePreview: false
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    EnableOutputDTO:
+      required:
+      - outputEncodingProfilePairId
+      type: object
+      properties:
+        projectObjectId:
+          type: string
+          description: Project object ID
+          examples:
+          - prj_a1b2c3d4e5f6
+        outputEncodingProfilePairId:
+          type: string
+          description: OutputEncodingProfileAirId can be obtained from the paired API
+          examples:
+          - pair_a1b2c3d4e5f6
+      x-apifox-orders:
+      - projectObjectId
+      - outputEncodingProfilePairId
+      examples:
+      - projectObjectId: prj_a1b2c3d4e5f6
+        outputEncodingProfilePairId: pair_a1b2c3d4e5f6
+      x--orders:
+      - projectObjectId
+      - outputEncodingProfilePairId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ProjectDTO:
+      type: object
+      properties:
+        projectObjectId:
+          type: string
+          description: Project object ID
+          examples:
+          - prj_a1b2c3d4e5f6
+      x-apifox-orders:
+      - projectObjectId
+      examples:
+      - projectObjectId: prj_a1b2c3d4e5f6
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ConnectDTO:
+      required:
+      - sourceObjectId
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+          description: Source object ID (input device/stream)
+          examples:
+          - src_a1b2c3d4e5f6
+        force:
+          type: boolean
+          description: Force connect even if already streaming
+          examples:
+          - false
+        projectObjectId:
+          type: string
+          description: Project object ID
+          examples:
+          - prj_a1b2c3d4e5f6
+        pairIds:
+          type: array
+          items:
+            type: string
+            description: Pair ID
+            examples:
+            - pair_a1b2c3
+          description: Output encoding profile pair IDs to enable; leave empty to use all
+          examples:
+          - - pair_a1b2c3
+            - pair_d4e5f6
+        openPreview:
+          type: boolean
+          description: Enable preview stream
+          examples:
+          - false
+        graphMetadata:
+          type: object
+          additionalProperties:
+            type: string
+            description: metadata value
+            examples:
+            - 4000k
+          description: Extra key-value metadata passed to the encoder graph
+          x-apifox-orders: []
+          examples:
+          - resolution: 1920x1080
+            bitrate: 4000k
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - sourceObjectId
+      - force
+      - projectObjectId
+      - pairIds
+      - openPreview
+      - graphMetadata
+      examples:
+      - projectObjectId: prj_a1b2c3d4e5f6
+        sourceObjectId: src_a1b2c3d4e5f6
+        force: false
+        pairIds:
+        - pair_a1b2c3
+        - pair_d4e5f6
+        openPreview: false
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SwitchConnectDTO:
+      required:
+      - projectObjectId
+      type: object
+      properties:
+        projectObjectId:
+          type: string
+          description: Project object ID
+          examples:
+          - prj_a1b2c3d4e5f6
+        sourceObjectId:
+          type: string
+          description: New source object ID to switch to
+          examples:
+          - src_x9y8z7w6v5u4
+      x-apifox-orders:
+      - projectObjectId
+      - sourceObjectId
+      examples:
+      - projectObjectId: prj_a1b2c3d4e5f6
+        sourceObjectId: src_x9y8z7w6v5u4
+      x--orders:
+      - projectObjectId
+      - sourceObjectId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    DisableOutputDTO:
+      required:
+      - outputEncodingProfilePairId
+      type: object
+      properties:
+        projectObjectId:
+          type: string
+          description: Project object ID
+          examples:
+          - prj_a1b2c3d4e5f6
+        outputEncodingProfilePairId:
+          type: string
+          description: OutputEncodingProfileAirId can be obtained from the paired API
+          examples:
+          - pair_a1b2c3d4e5f6
+      x-apifox-orders:
+      - projectObjectId
+      - outputEncodingProfilePairId
+      examples:
+      - projectObjectId: prj_a1b2c3d4e5f6
+        outputEncodingProfilePairId: pair_a1b2c3d4e5f6
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultString:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          type: string
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

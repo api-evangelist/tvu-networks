@@ -1,0 +1,72 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Search Search API/search/health API
+  description: Search API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://search.tvunetworks.com
+  description: Apifox server "TVUSearch"
+tags:
+- name: Search API/search/health
+paths:
+  /api/search/v1/i/version:
+    get:
+      summary: Get deployed service version
+      deprecated: false
+      description: Returns the version string of the currently deployed search service instance. Useful for build verification, compatibility checks, and troubleshooting. The version is read from 'VERSION.txt' bundled with the deployment; returns 'unknown_test' if the file is absent or unreadable.
+      tags:
+      - Search API/search/health
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/controllers.GetVersionResponse'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/health
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959107-run
+      operationId: Get_deployed_service_version_468959107
+      x-source-doc: https://docs.tvunetworks.cn/api-468959107.md
+components:
+  schemas:
+    controllers.GetVersionResponse:
+      type: object
+      properties:
+        version:
+          type: string
+      x-apifox-orders:
+      - version
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

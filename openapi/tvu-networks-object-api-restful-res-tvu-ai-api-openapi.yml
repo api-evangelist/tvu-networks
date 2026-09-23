@@ -1,0 +1,820 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Object Object API/RESTful/res.tvu.ai API
+  description: Object API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://mma.tvunetworks.com
+  description: Apifox server "MMA"
+tags:
+- name: Object API/RESTful/res.tvu.ai
+paths:
+  /api/objectd/v1/o/{objectId}:
+    get:
+      summary: object
+      deprecated: false
+      description: Retrieve all attributes of an object using its objectID.
+      operationId: /api/objectd/v1/o/{objectId}
+      tags:
+      - Object API/RESTful/res.tvu.ai
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: objectId
+        in: path
+        description: Search for object ID.
+        required: true
+        example: '1031567587869343744'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: Error Code
+                  errorInfo:
+                    type: string
+                    description: Error Info
+                  data:
+                    type: object
+                    properties:
+                      admin:
+                        type: object
+                        properties: {}
+                        description: Admin information.
+                        x-apifox-orders: []
+                      createTimestamp:
+                        type: integer
+                        description: Create Time Stamp.
+                      deleteFlag:
+                        type: integer
+                        description: Delete Flag.
+                      description:
+                        type: string
+                        description: Description
+                      dmaEmbargo:
+                        type: boolean
+                      features:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            feature:
+                              type: string
+                            groups:
+                              type: array
+                              items:
+                                type: string
+                            users:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                          - feature
+                          - groups
+                          - users
+                          x-apifox-orders:
+                          - feature
+                          - groups
+                          - users
+                        description: Feature information.
+                      objectId:
+                        type: string
+                        description: Object Id.
+                      objectName:
+                        type: string
+                        description: Object Name.
+                      objectType:
+                        type: integer
+                        description: Object Type.
+                      origin:
+                        type: string
+                      owner:
+                        type: object
+                        properties:
+                          groups:
+                            type: array
+                            items:
+                              type: string
+                          users:
+                            type: array
+                            items:
+                              type: string
+                        required:
+                        - groups
+                        - users
+                        description: Owner information.
+                        x-apifox-orders:
+                        - groups
+                        - users
+                      updateTimestamp:
+                        type: integer
+                        description: Update Timestamp.
+                    required:
+                    - admin
+                    - createTimestamp
+                    - deleteFlag
+                    - description
+                    - dmaEmbargo
+                    - features
+                    - objectId
+                    - objectName
+                    - objectType
+                    - origin
+                    - owner
+                    - updateTimestamp
+                    x-apifox-orders:
+                    - admin
+                    - createTimestamp
+                    - deleteFlag
+                    - description
+                    - dmaEmbargo
+                    - features
+                    - objectId
+                    - objectName
+                    - objectType
+                    - origin
+                    - owner
+                    - updateTimestamp
+                required:
+                - errorCode
+                - errorInfo
+                - data
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - data
+              example:
+                errorCode: '0x0'
+                errorInfo: ''
+                data:
+                  admin: {}
+                  createTimestamp: 1716788770513
+                  deleteFlag: 0
+                  description: ''
+                  dmaEmbargo: false
+                  features:
+                  - feature: owner
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  - feature: livepreview
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  - feature: rec
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  - feature: takelive
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  objectId: '1031567587869343744'
+                  objectName: 60-1_MRO輪島
+                  objectType: 1
+                  origin: ''
+                  owner:
+                    groups:
+                    - f16e0c01d4744120b90f66a0830c6e89
+                    users:
+                    - 657b96d5bd74468e8872c2fc75fa3ec6
+                  updateTimestamp: 1716788770513
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: XS2drDxN5BGY1qGm_ZV-Z
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: XS2drDxN5BGY1qGm_ZV-Z
+          scopes:
+            XS2drDxN5BGY1qGm_ZV-Z:
+              bearer: []
+      x-apifox-folder: Object API/RESTful/res.tvu.ai
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782322-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782322.md
+  /api/objectd/v1/t/{resourceType}/{tangibleId}:
+    get:
+      summary: tangible
+      deprecated: false
+      description: Retrieve tangible data using the tangible ID and parameters. Currently, we only use tangibleId to obtain the data.
+      operationId: /api/objectd/v1/t/{resourceType}/{tangibleId}
+      tags:
+      - Object API/RESTful/res.tvu.ai
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: resourceType
+        in: path
+        description: Tangible IDs include project, slug, audio, NDI, R, Facebook, etc.
+        required: true
+        example: audio
+        schema:
+          type: string
+      - name: tangibleId
+        in: path
+        description: Special tangible IDs.
+        required: true
+        example: 7a9c95085b044a5aa4a960fc96c316ad
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: Error Code.
+                  errorInfo:
+                    type: string
+                    description: Error Infomation.
+                  data:
+                    type: object
+                    properties:
+                      tangibleId:
+                        type: string
+                        description: Tangible Id.
+                      tangibleType:
+                        type: string
+                        description: Tangible Type.
+                      tangibleName:
+                        type: string
+                        description: Tangible Name.
+                      extraInfo:
+                        type: object
+                        properties:
+                          abitrate:
+                            type: integer
+                            description: Audio bitrate.
+                          acls:
+                            type: string
+                            description: AWS file privilege.
+                          bucket:
+                            type: string
+                            description: Aws Bucket.
+                          bucketId:
+                            type: integer
+                            description: Aws Bucket Id.
+                          createTime:
+                            type: integer
+                            description: Create time in millionseconds.
+                          deleteFlag:
+                            type: boolean
+                            description: Delete Flag.
+                          driveId:
+                            type: string
+                            description: Drive Id.
+                          duration:
+                            type: integer
+                            description: The file duration.
+                          etag:
+                            type: string
+                            description: etag Info.
+                          file:
+                            type: boolean
+                          fileLength:
+                            type: integer
+                            description: The length of the file.
+                          id:
+                            type: string
+                          isDirectory:
+                            type: boolean
+                          isUserBucket:
+                            type: boolean
+                          isVirtual:
+                            type: boolean
+                          lastModified:
+                            type: integer
+                            description: Last modified time in milliseconds.
+                          name:
+                            type: string
+                            description: Object Name.
+                          objectId:
+                            type: string
+                            description: Object Id.
+                          objectKey:
+                            type: string
+                            description: Object Key.
+                          ownerId:
+                            type: string
+                            description: Owner Id.
+                          ownerType:
+                            type: string
+                            description: 'Owner Type. '
+                          pid:
+                            type: string
+                            description: P's Id.
+                          region:
+                            type: string
+                            description: AWS Region.
+                          suffix:
+                            type: string
+                          updateTime:
+                            type: integer
+                            description: Update time in milliseconds.
+                          uploadUser:
+                            type: string
+                            description: Upload User Info.
+                          url:
+                            type: string
+                            description: File path in AWS bucket.
+                          vbitrate:
+                            type: integer
+                            description: Video bitrate.
+                          visible:
+                            type: boolean
+                        required:
+                        - abitrate
+                        - acls
+                        - bucket
+                        - bucketId
+                        - createTime
+                        - deleteFlag
+                        - driveId
+                        - duration
+                        - etag
+                        - file
+                        - fileLength
+                        - id
+                        - isDirectory
+                        - isUserBucket
+                        - isVirtual
+                        - lastModified
+                        - name
+                        - objectId
+                        - objectKey
+                        - ownerId
+                        - ownerType
+                        - pid
+                        - region
+                        - suffix
+                        - updateTime
+                        - uploadUser
+                        - url
+                        - vbitrate
+                        - visible
+                        x-apifox-orders:
+                        - abitrate
+                        - acls
+                        - bucket
+                        - bucketId
+                        - createTime
+                        - deleteFlag
+                        - driveId
+                        - duration
+                        - etag
+                        - file
+                        - fileLength
+                        - id
+                        - isDirectory
+                        - isUserBucket
+                        - isVirtual
+                        - lastModified
+                        - name
+                        - objectId
+                        - objectKey
+                        - ownerId
+                        - ownerType
+                        - pid
+                        - region
+                        - suffix
+                        - updateTime
+                        - uploadUser
+                        - url
+                        - vbitrate
+                        - visible
+                    required:
+                    - tangibleId
+                    - tangibleType
+                    - tangibleName
+                    - extraInfo
+                    x-apifox-orders:
+                    - tangibleId
+                    - tangibleType
+                    - tangibleName
+                    - extraInfo
+                required:
+                - errorCode
+                - errorInfo
+                - data
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - data
+              example:
+                errorCode: '0x0'
+                errorInfo: ''
+                data:
+                  tangibleId: 7a9c95085b044a5aa4a960fc96c316ad
+                  tangibleType: audio
+                  tangibleName: 01 SHERO(2010臺北國際花卉博覽會指定主題曲).mp3
+                  extraInfo:
+                    abitrate: 320000
+                    acls: PublicRead
+                    bucket: pp-va-001
+                    bucketId: 35858706206720
+                    createTime: 1698220991
+                    deleteFlag: false
+                    driveId: 7bd71dd6987f48e9bef1354e03434afc
+                    duration: 191
+                    etag: 427ceda274c2cc272a8f541cd417a730
+                    file: true
+                    fileLength: 7675016
+                    id: 7a9c95085b044a5aa4a960fc96c316ad
+                    isDirectory: false
+                    isUserBucket: false
+                    isVirtual: false
+                    lastModified: 1698220991000
+                    name: 01 SHERO(2010臺北國際花卉博覽會指定主題曲).mp3
+                    objectId: '1166768933819265024'
+                    objectKey: '***LITERAL_REMOVED*** SHERO(2010臺北國際花卉博覽會指定主題曲).mp3'
+                    ownerId: d996a900fd6d402b92dea05f7c6f4ceb
+                    ownerType: '1'
+                    pid: '35858706206720'
+                    region: us-east-1
+                    suffix: mp3
+                    updateTime: 1698221016
+                    uploadUser: d996a900fd6d402b92dea05f7c6f4ceb
+                    url: https://pp-va-001.s3.amazonaws.com/***LITERAL_REMOVED***%20SHERO%282010%E8%87%BA%E5%8C%97%E5%9C%8B%E9%9A%9B%E8%8A%B1%E5%8D%89%E5%8D%9A%E8%A6%BD%E6%9C%83%E6%8C%87%E5%AE%9A%E4%B8%BB%E9%A1%8C%E6%9B%B2%29.mp3
+                    vbitrate: 320140
+                    visible: true
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: JwJHgnneCOLkzv2DTrmi5
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: JwJHgnneCOLkzv2DTrmi5
+          scopes:
+            JwJHgnneCOLkzv2DTrmi5:
+              bearer: []
+      x-apifox-folder: Object API/RESTful/res.tvu.ai
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782323-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782323.md
+  /api/objectd/v1/t/{resourceType}/{tangibleId}/{subType}/{id}:
+    get:
+      summary: tangible 2
+      deprecated: true
+      description: Retrieve tangible data using the tangible ID and parameters. Currently, we only use tangibleId to obtain the data.
+      operationId: /api/objectd/v1/t/{resourceType}/{tangibleId}/{subType}/{id}
+      tags:
+      - Object API/RESTful/res.tvu.ai
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: resourceType
+        in: path
+        description: Tangible IDs include project, slug, audio, NDI, R, Facebook, etc.
+        required: true
+        example: audio
+        schema:
+          type: string
+      - name: tangibleId
+        in: path
+        description: Special tangible IDs.
+        required: true
+        example: 7a9c95085b044a5aa4a960fc96c316ad
+        schema:
+          type: string
+      - name: subType
+        in: path
+        description: subType, not use currently.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: id, not use currently.
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: error code
+                  errorInfo:
+                    type: string
+                    description: error information
+                  data:
+                    type: object
+                    properties:
+                      tangibleId:
+                        type: string
+                      tangibleType:
+                        type: string
+                      tangibleName:
+                        type: string
+                      extraInfo:
+                        type: object
+                        properties:
+                          abitrate:
+                            type: integer
+                          acls:
+                            type: string
+                          bucket:
+                            type: string
+                          bucketId:
+                            type: integer
+                          createTime:
+                            type: integer
+                          deleteFlag:
+                            type: boolean
+                          driveId:
+                            type: string
+                          duration:
+                            type: integer
+                          etag:
+                            type: string
+                          file:
+                            type: boolean
+                          fileLength:
+                            type: integer
+                          id:
+                            type: string
+                          isDirectory:
+                            type: boolean
+                          isUserBucket:
+                            type: boolean
+                          isVirtual:
+                            type: boolean
+                          lastModified:
+                            type: integer
+                          name:
+                            type: string
+                          objectId:
+                            type: string
+                          objectKey:
+                            type: string
+                          ownerId:
+                            type: string
+                          ownerType:
+                            type: string
+                          pid:
+                            type: string
+                          region:
+                            type: string
+                          suffix:
+                            type: string
+                          updateTime:
+                            type: integer
+                          uploadUser:
+                            type: string
+                          url:
+                            type: string
+                          vbitrate:
+                            type: integer
+                          visible:
+                            type: boolean
+                        required:
+                        - abitrate
+                        - acls
+                        - bucket
+                        - bucketId
+                        - createTime
+                        - deleteFlag
+                        - driveId
+                        - duration
+                        - etag
+                        - file
+                        - fileLength
+                        - id
+                        - isDirectory
+                        - isUserBucket
+                        - isVirtual
+                        - lastModified
+                        - name
+                        - objectId
+                        - objectKey
+                        - ownerId
+                        - ownerType
+                        - pid
+                        - region
+                        - suffix
+                        - updateTime
+                        - uploadUser
+                        - url
+                        - vbitrate
+                        - visible
+                        x-apifox-orders:
+                        - abitrate
+                        - acls
+                        - bucket
+                        - bucketId
+                        - createTime
+                        - deleteFlag
+                        - driveId
+                        - duration
+                        - etag
+                        - file
+                        - fileLength
+                        - id
+                        - isDirectory
+                        - isUserBucket
+                        - isVirtual
+                        - lastModified
+                        - name
+                        - objectId
+                        - objectKey
+                        - ownerId
+                        - ownerType
+                        - pid
+                        - region
+                        - suffix
+                        - updateTime
+                        - uploadUser
+                        - url
+                        - vbitrate
+                        - visible
+                    required:
+                    - tangibleId
+                    - tangibleType
+                    - tangibleName
+                    - extraInfo
+                    x-apifox-orders:
+                    - tangibleId
+                    - tangibleType
+                    - tangibleName
+                    - extraInfo
+                required:
+                - errorCode
+                - errorInfo
+                - data
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - data
+              example:
+                errorCode: '0x0'
+                errorInfo: ''
+                data:
+                  tangibleId: 7a9c95085b044a5aa4a960fc96c316ad
+                  tangibleType: audio
+                  tangibleName: 01 SHERO(2010臺北國際花卉博覽會指定主題曲).mp3
+                  extraInfo:
+                    abitrate: 320000
+                    acls: PublicRead
+                    bucket: pp-va-001
+                    bucketId: 35858706206720
+                    createTime: 1698220991
+                    deleteFlag: false
+                    driveId: 7bd71dd6987f48e9bef1354e03434afc
+                    duration: 191
+                    etag: 427ceda274c2cc272a8f541cd417a730
+                    file: true
+                    fileLength: 7675016
+                    id: 7a9c95085b044a5aa4a960fc96c316ad
+                    isDirectory: false
+                    isUserBucket: false
+                    isVirtual: false
+                    lastModified: 1698220991000
+                    name: 01 SHERO(2010臺北國際花卉博覽會指定主題曲).mp3
+                    objectId: '1166768933819265024'
+                    objectKey: '***LITERAL_REMOVED*** SHERO(2010臺北國際花卉博覽會指定主題曲).mp3'
+                    ownerId: d996a900fd6d402b92dea05f7c6f4ceb
+                    ownerType: '1'
+                    pid: '35858706206720'
+                    region: us-east-1
+                    suffix: mp3
+                    updateTime: 1698221016
+                    uploadUser: d996a900fd6d402b92dea05f7c6f4ceb
+                    url: https://pp-va-001.s3.amazonaws.com/***LITERAL_REMOVED***%20SHERO%282010%E8%87%BA%E5%8C%97%E5%9C%8B%E9%9A%9B%E8%8A%B1%E5%8D%89%E5%8D%9A%E8%A6%BD%E6%9C%83%E6%8C%87%E5%AE%9A%E4%B8%BB%E9%A1%8C%E6%9B%B2%29.mp3
+                    vbitrate: 320140
+                    visible: true
+          headers: {}
+          x-apifox-name: Success
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: oHcUbK-PvPZKATxj_h6tP
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: oHcUbK-PvPZKATxj_h6tP
+          scopes:
+            oHcUbK-PvPZKATxj_h6tP:
+              bearer: []
+      x-apifox-folder: Object API/RESTful/res.tvu.ai
+      x-apifox-status: deprecated
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782324-run
+      x-source-doc: https://docs.tvunetworks.cn/api-321782324.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

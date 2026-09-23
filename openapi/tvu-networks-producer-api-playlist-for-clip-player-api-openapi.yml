@@ -1,0 +1,788 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Producer Producer API/Playlist for Clip…
+  description: Producer API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Producer API/Playlist for Clip Player
+paths:
+  /program/playlist/create:
+    post:
+      summary: create a playlist
+      deprecated: false
+      description: ''
+      operationId: a183c2b8f6ecfaf77c8a229b58b21b89
+      tags:
+      - Producer API/Playlist for Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramPlaylist'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: integer
+                    format: int64
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778565-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778565.md
+  /program/playlist/delete:
+    post:
+      summary: delete a playlist
+      deprecated: false
+      description: ''
+      operationId: 6f95909f8c620120a6846bb24c4eb65e
+      tags:
+      - Producer API/Playlist for Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - id
+              type: object
+              properties:
+                remark:
+                  type: string
+                  description: operation reason
+                  examples:
+                  - XgDdlkwCDlmrDMlINcLRxmvnKuhyocXnPnoIMf
+                id:
+                  type: integer
+                  description: Delete entity's ID
+                  format: int64
+                  examples:
+                  - 0
+                operator:
+                  type: string
+                  description: will use current login user if absent
+                  examples:
+                  - unittest
+              x-apifox-orders:
+              - remark
+              - id
+              - operator
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778569-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778569.md
+  /program/playlist/get/{id}:
+    get:
+      summary: get a playlist by id
+      deprecated: false
+      description: ''
+      operationId: 8a541aaecc1ac74e9068debefdf67a74
+      tags:
+      - Producer API/Playlist for Clip Player
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    $ref: '#/components/schemas/ProgramPlaylist'
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x--orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x--ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778566-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778566.md
+  /program/playlist/list/{programId}/{fileShimNo}:
+    get:
+      summary: list program playlists by programId and fileShimNo
+      deprecated: false
+      description: ''
+      operationId: fa6dae7295d1969f11e26b80b170b92d
+      tags:
+      - Producer API/Playlist for Clip Player
+      parameters:
+      - name: programId
+        in: path
+        description: ''
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      - name: fileShimNo
+        in: path
+        description: ''
+        required: true
+        example: ''
+        schema:
+          type: string
+          examples:
+          - '0345354'
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProgramPlaylist'
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778570-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778570.md
+  /program/playlist/query:
+    post:
+      summary: page query program playlist
+      deprecated: false
+      description: ''
+      operationId: af87cc106bcae6c6ca03e29055fbe5ad
+      tags:
+      - Producer API/Playlist for Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramPlaylistQuery'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        format: int64
+                      pages:
+                        type: integer
+                        format: int32
+                      records:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ProgramPlaylist'
+                      page:
+                        type: integer
+                        format: int32
+                    x-apifox-orders:
+                    - total
+                    - pages
+                    - records
+                    - page
+                    x-apifox-ignore-properties: []
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - result
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778571-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778571.md
+  /program/playlist/switchTo/{id}:
+    get:
+      summary: switch to the playlist
+      deprecated: false
+      description: ''
+      operationId: 760efcac0e1a9ecc31e7b2624f070baf
+      tags:
+      - Producer API/Playlist for Clip Player
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        example: 0
+        schema:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778567-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778567.md
+  /program/playlist/updateName:
+    post:
+      summary: update a playlist name
+      deprecated: false
+      description: ''
+      operationId: 4474d5d9c0017ba512b57c6a36bb86e3
+      tags:
+      - Producer API/Playlist for Clip Player
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramPlaylist'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Playlist for Clip Player
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778568-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778568.md
+components:
+  schemas:
+    ProgramPlaylistQuery:
+      type: object
+      properties:
+        fileShimNo:
+          type: string
+          examples:
+          - '4240963673720001'
+        playlistStr:
+          type: string
+          examples:
+          - scojShjtKlgtLce
+        updateTimeFrom:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        pageSize:
+          type: integer
+          format: int32
+          default: 10
+          examples:
+          - 10
+        idList:
+          type: array
+          items:
+            type: integer
+            format: int64
+            examples:
+            - 8665038499157017000
+        returnFields:
+          type: string
+          description: return fields,delimiter is comma
+          examples:
+          - ''
+        deleteFlag:
+          type: boolean
+          examples:
+          - true
+        programIdList:
+          type: array
+          items:
+            type: integer
+            format: int64
+            examples:
+            - 4138811145769713000
+        fileIdList:
+          type: array
+          items:
+            type: string
+            examples:
+            - ClyddzDGvQCBBwtKHqsNTdTGQbwoFrn
+        fileShimNoList:
+          type: array
+          items:
+            type: integer
+            format: int32
+            examples:
+            - 849979322
+        sortList:
+          type: array
+          items:
+            type: integer
+            format: int32
+            examples:
+            - -2108080975
+        createTimeFrom:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        sortFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/SortField'
+        id:
+          type: integer
+          format: int64
+          examples:
+          - 0
+        updateTimeTo:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        userIdLike:
+          type: string
+          examples:
+          - Test User
+        createTimeTo:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        userIdList:
+          type: array
+          items:
+            type: string
+            examples:
+            - Test User
+        paging:
+          type: boolean
+          default: true
+          examples:
+          - true
+        sort:
+          type: integer
+          format: int32
+          examples:
+          - -546402789
+        deleteTimeFrom:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        userId:
+          type: string
+          examples:
+          - deNhCSJUPRkvbXmWHNqscxyrSRUXlCLW
+        fileIdLike:
+          type: string
+          examples:
+          - qrYIdoOidLRUoLJiikfvUMjCwzeeqGAsquq
+        isCurrent:
+          type: boolean
+          examples:
+          - true
+        pageIndex:
+          type: integer
+          format: int32
+          default: 1
+          examples:
+          - 1
+        name:
+          type: string
+          examples:
+          - JJebJPMOmuOYXuRlzsFVqRjPgcJUjSqj
+        deleteTimeTo:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764889
+        programId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+        fileId:
+          type: string
+          examples:
+          - whzChmbWOaJewcgz
+      x-apifox-orders:
+      - fileShimNo
+      - playlistStr
+      - updateTimeFrom
+      - pageSize
+      - idList
+      - returnFields
+      - deleteFlag
+      - programIdList
+      - fileIdList
+      - fileShimNoList
+      - sortList
+      - createTimeFrom
+      - sortFields
+      - id
+      - updateTimeTo
+      - userIdLike
+      - createTimeTo
+      - userIdList
+      - paging
+      - sort
+      - deleteTimeFrom
+      - userId
+      - fileIdLike
+      - isCurrent
+      - pageIndex
+      - name
+      - deleteTimeTo
+      - programId
+      - fileId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayListItem:
+      type: object
+      x-apifox-orders: []
+      properties: {}
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramPlaylist:
+      required:
+      - fileShimNo
+      - name
+      - id
+      - programId
+      type: object
+      properties:
+        fileShimNo:
+          type: string
+        playlistStr:
+          type: string
+        data:
+          type: string
+        clipNum:
+          type: integer
+          format: int32
+        updateTime:
+          type: integer
+          format: int64
+        sort:
+          type: integer
+          format: int32
+        userId:
+          maxLength: 32
+          type: string
+        deleteFlag:
+          type: boolean
+        isCurrent:
+          type: boolean
+        playlist:
+          $ref: '#/components/schemas/PlayList'
+        createTime:
+          type: integer
+          format: int64
+        deleteTime:
+          type: integer
+          format: int64
+        name:
+          maxLength: 128
+          type: string
+        clipDuration:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        programId:
+          type: integer
+          format: int64
+        fileId:
+          maxLength: 32
+          type: string
+      x-apifox-orders:
+      - fileShimNo
+      - playlistStr
+      - data
+      - clipNum
+      - updateTime
+      - sort
+      - userId
+      - deleteFlag
+      - isCurrent
+      - playlist
+      - createTime
+      - deleteTime
+      - name
+      - clipDuration
+      - id
+      - programId
+      - fileId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SortField:
+      type: object
+      properties:
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        name:
+          type: string
+          examples:
+          - IPjwhveYYdMMpDJZvjANlUFUTlJAxcQz
+      x-apifox-orders:
+      - sortDirection
+      - name
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayList:
+      required:
+      - data
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: total duration of playlist, no need pass
+          format: int32
+        aiProgress:
+          type: integer
+          format: int32
+        thumbnail:
+          type: string
+          description: the thumbnail of playlist, will use the first clip's thumbnail if not pass
+        data:
+          type: array
+          items:
+            description: clips
+            $ref: '#/components/schemas/PlayListItem'
+        name:
+          type: string
+          description: the name of playlist
+        fromPlaylistId:
+          type: string
+        id:
+          type: string
+        md5:
+          type: string
+      x-apifox-orders:
+      - duration
+      - aiProgress
+      - thumbnail
+      - data
+      - name
+      - fromPlaylistId
+      - id
+      - md5
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

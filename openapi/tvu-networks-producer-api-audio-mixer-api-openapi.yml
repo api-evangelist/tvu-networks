@@ -1,0 +1,151 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Producer Producer API/Audio Mixer API
+  description: Producer API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Producer API/Audio Mixer
+paths:
+  /audio-mixer/audioTransaction:
+    post:
+      summary: Audio Transaction
+      deprecated: false
+      description: 'By this API you can do a audio transaction, transaction effect is: the current source''s volume will vary from currentSourceStartSliderPosition to currentSourceEndSliderPosition in the effect duration period, and at same time, the next source''s volume will vary from nextSourceStartSliderPosition to nextSourceEndSliderPosition in the effect duration period'
+      operationId: 1d1ca55f50bf909f78061b48cf7339b2
+      tags:
+      - Producer API/Audio Mixer
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudioTransactionReqVo'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Audio Mixer
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778564-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778564.md
+components:
+  schemas:
+    AudioTransactionReqVo:
+      required:
+      - nextSourceEndSliderPosition
+      - nextSourceStartSliderPosition
+      - currentSourceEndSliderPosition
+      - productionId
+      - currentSourceId
+      - currentSourceStartSliderPosition
+      - nextSourceId
+      - transitionDuration
+      type: object
+      properties:
+        nextSourceEndSliderPosition:
+          type: integer
+          format: int32
+          examples:
+          - 239
+        nextSourceStartSliderPosition:
+          type: integer
+          format: int32
+          examples:
+          - 0
+        currentSourceEndSliderPosition:
+          type: integer
+          format: int32
+          examples:
+          - 0
+        productionId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+        currentSourceId:
+          type: string
+          examples:
+          - Default
+        currentSourceStartSliderPosition:
+          type: integer
+          format: int32
+          examples:
+          - 239
+        nextSourceId:
+          type: string
+          examples:
+          - R2
+        transitionDuration:
+          minimum: 1000
+          type: integer
+          description: transaction duration,unit:millisecond
+          format: int32
+          examples:
+          - 5000
+        timestamp:
+          type: string
+          description: the command execution start time
+          examples:
+          - '0'
+      x-apifox-orders:
+      - nextSourceEndSliderPosition
+      - nextSourceStartSliderPosition
+      - currentSourceEndSliderPosition
+      - productionId
+      - currentSourceId
+      - currentSourceStartSliderPosition
+      - nextSourceId
+      - transitionDuration
+      - timestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

@@ -1,0 +1,612 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Channel Channel API/scheduleMapping API
+  description: Channel API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Channel API/scheduleMapping
+paths:
+  /template/addScheduleTemplate:
+    post:
+      summary: addScheduleMappingTemplate
+      deprecated: false
+      description: ''
+      tags:
+      - Channel API/scheduleMapping
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Template Name. Can not be empty.  The maximum character count is 255. The name cannot be repeated
+                  maxLength: 250
+                  minLength: 1
+                  pattern: ^(?!.*\/)[^\n]{0,250}$
+                  examples:
+                  - TemplateTVU-underplay
+                programId:
+                  type: string
+                  description: Can not be empty. The primary key ID of the program, which is the last 32-bit string on the URL after entering the Program
+                  maxLength: 32
+                  pattern: ^[A-Za-z0-9]{32}$
+                  examples:
+                  - bf126e495c0d47308fda297cf96b59b1
+                userId:
+                  type: string
+                  description: Owner userId of Channel. Can not be empty.
+                  pattern: ^[A-Za-z0-9]{32}$
+                  examples:
+                  - ff8080816e9272c2016f226a5095011b
+                  maxLength: 32
+                scheduleFileEventParamList:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      startTime:
+                        type: integer
+                        description: StartTime of Event. Can not be empty. The unit is ms
+                        format: int32
+                        examples:
+                        - 0
+                        default: 0
+                        maximum: 2629248000
+                        exclusiveMinimum: 0
+                      endTime:
+                        type: integer
+                        description: EndTime of Event.  Can not be empty. The unit is ms
+                        examples:
+                        - 600000
+                        format: int32
+                        maximum: 2629248000
+                        exclusiveMinimum: 1000
+                      bitrate:
+                        type:
+                        - integer
+                        - 'null'
+                        description: Video Bitrate. Can be empty. Default is 5120
+                        default: 5120
+                        minimum: 0
+                        format: int32
+                        examples:
+                        - 2048
+                      delay:
+                        type:
+                        - integer
+                        - 'null'
+                        description: 'Video Delay. Can be empty. Default is 0. '
+                        default: 0
+                        examples:
+                        - 2000
+                        format: int32
+                        exclusiveMinimum: 60
+                        exclusiveMaximum: 10000
+                      title:
+                        type: string
+                        description: Event title. Can not be empty. The maximum character count is 255.
+                        minLength: 1
+                        maxLength: 255
+                        pattern: ^(?!.*\/)[^\n]{0,255}$
+                        examples:
+                        - Primary Event 1
+                      duration:
+                        type: integer
+                        description: Event duration. Can not be empty.
+                        maximum: 86400000
+                        examples:
+                        - 60000
+                        format: int32
+                        exclusiveMinimum: 1000
+                      fixedStartMode:
+                        type: boolean
+                        description: 'Is it a Fixed Event; ture: it is a fixed event, false: it is not a fixed Event.  Can be empty. If both the ''fixedStartMode'' and ''followOnStartMode'' fields are empty, it defaults to ''fixedEvent''.'
+                        default: true
+                      followOnStartMode:
+                        type:
+                        - boolean
+                        - 'null'
+                        description: 'Is it a FollowOn Event; ture: it is a FollowOn event, false: it is not a FollowOn Event. Can be empty.  If both the ''fixedStartMode'' and ''followOnStartMode'' fields are empty, it defaults to ''fixedEvent'''
+                        default: false
+                      fixedEndMode:
+                        type:
+                        - boolean
+                        - 'null'
+                        description: 'Is it a Fixed Event; ture: it is a fixed event, false: it is not a fixed Event. Can be empty.  If both the ''fixedEndMode'' and ''holdEndMode'' fields are empty, it defaults to ''fixedEvent'''
+                        default: false
+                      holdEndMode:
+                        type: boolean
+                        description: 'Is it a Hold/Manual Event; ture: it is a Hold/Manual event, false: it is not a Hold/Manual Event. Can be empty.  If both the ''fixedEndMode'' and ''holdEndMode'' fields are empty, it defaults to ''fixedEvent''.'
+                        default: false
+                      liveSource:
+                        type: boolean
+                        description: 'Source is live; ture: source is live, false: source not live. Can not be empty.'
+                        default: false
+                      clipSource:
+                        type: boolean
+                        description: 'Source is Media; ture: source is Media, false: source not Media. Can not be empty.'
+                        default: false
+                      mediaFileName:
+                        type: string
+                        description: SourceName. If clipSource=true, this field cannot be empty
+                        maxLength: 255
+                        minLength: 1
+                        pattern: ^[^\/.]{0,255}$
+                        examples:
+                        - testBar
+                      liveFileName:
+                        type: string
+                        description: SourceName. If liveSource=true, this field cannot be empty
+                        minLength: 1
+                        maxLength: 255
+                        pattern: ^.{255}$
+                        examples:
+                        - liveNow
+                      scheduleFileEventSegmentList:
+                        type:
+                        - array
+                        - 'null'
+                        items:
+                          type: object
+                          properties:
+                            segmentId:
+                              type: integer
+                              description: Type of Segment; 1:Reference Media, 2:SpliceSCTE, 4:UnderPlay, 5:Promo, 6:SCTE Program Start, 7:Scte Program End, 9:Black, 10:Media, 11:timeSignal Auto, 13:Secondary, 14:timeMultil Auto, 15:Live. Can not be empty. .
+                              examples:
+                              - 1
+                              enum:
+                              - 1
+                              - 2
+                              - 4
+                              - 5
+                              - 6
+                              - 7
+                              - 9
+                              - 10
+                              - 11
+                              - 13
+                              - 14
+                              - 15
+                              x-apifox-enum:
+                              - name: ''
+                                value: 1
+                                description: Reference Media
+                              - name: ''
+                                value: 2
+                                description: SpliceSCTE
+                              - name: ''
+                                value: 4
+                                description: UnderPlay
+                              - name: ''
+                                value: 5
+                                description: Promo
+                              - name: ''
+                                value: 6
+                                description: SCTE Program Start
+                              - name: ''
+                                value: 7
+                                description: Scte Program End
+                              - name: ''
+                                value: 9
+                                description: Black
+                              - name: ''
+                                value: 10
+                                description: Media
+                              - name: ''
+                                value: 11
+                                description: timeSignal Auto
+                              - name: ''
+                                value: 13
+                                description: Secondary
+                              - name: ''
+                                value: 14
+                                description: timeMultil Auto
+                              - name: ''
+                                value: 15
+                                description: Live
+                              exclusiveMinimum: 1
+                              exclusiveMaximum: 15
+                            title:
+                              type: string
+                              description: Secondary Event Title. Can not be empty. The maximum character count is 255
+                              minLength: 1
+                              maxLength: 255
+                              pattern: ^(?!.*\/)[^\n]{0,255}$
+                              examples:
+                              - Primary Event 2
+                            timingIn:
+                              type: integer
+                              description: 'Relative start time. Can not be empty. '
+                              examples:
+                              - 1000
+                              format: int32
+                              exclusiveMinimum: 0
+                            timingOut:
+                              type: integer
+                              description: 'Relative end time. Can not be empty. '
+                              format: int32
+                              examples:
+                              - 6000
+                              exclusiveMinimum: 1000
+                            sourceType:
+                              type: integer
+                              description: 'Source Type,0: media, 1: live. Can be empty. Default is Media'
+                              enum:
+                              - 0
+                              - 1
+                              default: 0
+                              examples:
+                              - 0
+                              x-apifox-enum:
+                              - name: ''
+                                value: 0
+                                description: media
+                              - name: ''
+                                value: 1
+                                description: Live
+                              exclusiveMinimum: 0
+                              exclusiveMaximum: 1
+                            fileName:
+                              type: string
+                              description: 'SourceName. '
+                              minLength: 1
+                              maxLength: 255
+                              pattern: ^[^\/.]{0,255}$
+                              examples:
+                              - underplayTest
+                            segmentOrder:
+                              type:
+                              - integer
+                              - 'null'
+                              description: The sorting value of segmentOrder, the first segment=0, and each subsequent segment is incremented by one. Can be empty.
+                              examples:
+                              - 1
+                              maximum: 65535
+                              default: 0
+                              format: int32
+                              exclusiveMinimum: 0
+                            type:
+                              type:
+                              - string
+                              - 'null'
+                              description: when segmentId = 13,Logo\Crawl\Scte\Flowics\Singular. Transmitting a Logo represents the Logo. Passing Crawl means Crawl, passing Flowics means Flowics, passing Singular means Singular
+                              enum:
+                              - Crawl
+                              - Logo
+                              - Flowics
+                              - Singular
+                              - Scte
+                              examples:
+                              - Crawl
+                              x-apifox-enum:
+                              - name: ''
+                                value: Crawl
+                                description: Secondary Crawl
+                              - name: ''
+                                value: Logo
+                                description: Secondary Logo
+                              - name: ''
+                                value: Flowics
+                                description: Secondary Flowics
+                              - name: ''
+                                value: Singular
+                                description: Secondary Singular
+                              - name: ''
+                                value: Scte
+                                description: (0x31) Provider Ad End/(0x30) Provider Ad Start/(0x30) Provider Ad Start/(0x22) Break Start/(0x21) Chapter End/(0x20) Chapter Start/(0x11) Program End/(0x10) Program Start/(0x34) Provider Placement Opportunity Start/(0x35) Provider Placement Opportunity End/(0x36) Distributor Placement Opportunity Start/(0x37) Distributor Placement Opportunity End
+                            value:
+                              type:
+                              - string
+                              - 'null'
+                              description: when type = Flowics\Singular and segmentId = 13(SECONDARY). You can input the text of the specified single/flowers.
+                              maxLength: 2048
+                              minLength: 0
+                              pattern: ^.{2048}$
+                              examples:
+                              - Crawl Test>>>>>>>Channel
+                          required:
+                          - segmentId
+                          - title
+                          - timingIn
+                          - timingOut
+                          - sourceType
+                          - fileName
+                          - type
+                          x-apifox-orders:
+                          - segmentId
+                          - title
+                          - timingIn
+                          - timingOut
+                          - sourceType
+                          - fileName
+                          - segmentOrder
+                          - type
+                          - value
+                        description: SegmentList. Can be empty.
+                    required:
+                    - startTime
+                    - endTime
+                    - title
+                    - duration
+                    - holdEndMode
+                    - liveSource
+                    - clipSource
+                    - mediaFileName
+                    - liveFileName
+                    - fixedStartMode
+                    x-apifox-orders:
+                    - startTime
+                    - endTime
+                    - bitrate
+                    - delay
+                    - title
+                    - duration
+                    - fixedStartMode
+                    - followOnStartMode
+                    - fixedEndMode
+                    - holdEndMode
+                    - liveSource
+                    - clipSource
+                    - mediaFileName
+                    - liveFileName
+                    - scheduleFileEventSegmentList
+                  description: Event List. Can not be empty.
+                  minItems: 1
+                api:
+                  type: boolean
+                  default: true
+                  description: api call
+              required:
+              - name
+              - programId
+              - userId
+              - scheduleFileEventParamList
+              - api
+              x-apifox-orders:
+              - name
+              - programId
+              - userId
+              - api
+              - scheduleFileEventParamList
+            example:
+              name: TemplateTVU-underplay.xml
+              programId: bf126e495c0d47308fda297cf96b59b1
+              userId: ff8080816e9272c2016f226a5095011b
+              scheduleFileEventParamList:
+              - startTime: 0
+                endTime: 600000
+                bitrate: 0
+                delay: 0
+                title: Primary Event 1
+                sourceType: 0
+                duration: 600000
+                fixedStartMode: true
+                followOnStartMode: false
+                fixedEndMode: true
+                holdEndMode: false
+                liveSource: false
+                clipSource: true
+                mediaFileName: TestBars
+                liveFileName: TestBars
+                scheduleFileEventSegmentList:
+                - segmentId: 1
+                  title: Primary Event 1
+                  timingIn: 0
+                  timingOut: 600
+                  sourceType: 0
+                  fileName: TestBars
+                  segmentOrder: 2
+                  type: ''
+                - segmentId: 13
+                  title: Weather bug
+                  timingIn: 10
+                  timingOut: 20
+                  sourceType: 0
+                  fileName: WeatherBug
+                  segmentOrder: 3
+                  type: Crawl
+              - startTime: 600000
+                endTime: 3600000
+                bitrate: 0
+                delay: 0
+                title: Primary Event 2
+                sourceType: 0
+                duration: 3000000
+                fixedStartMode: false
+                followOnStartMode: false
+                fixedEndMode: false
+                holdEndMode: true
+                liveSource: false
+                clipSource: true
+                mediaFileName: ExternalSource2
+                liveFileName: ExternalSource2
+                scheduleFileEventSegmentList:
+                - segmentId: 1
+                  title: Primary Event 2
+                  timingIn: 0
+                  timingOut: 1200
+                  sourceType: 0
+                  fileName: ExternalSource2
+                  segmentOrder: 2
+                  type: ''
+                - segmentId: 13
+                  title: Secondary 2
+                  timingIn: 5
+                  timingOut: 35
+                  sourceType: 0
+                  fileName: ChannelBug.png
+                  segmentOrder: 3
+                  type: Logo
+                - segmentId: 11
+                  title: Primary Event 2
+                  timingIn: 1200
+                  timingOut: 1320
+                  sourceType: 0
+                  fileName: ''
+                  segmentOrder: 4
+                  type: ''
+                - segmentId: 10
+                  title: Primary Event 2
+                  timingIn: 1320
+                  timingOut: 1620
+                  sourceType: 0
+                  fileName: MediaTemp
+                  segmentOrder: 5
+                  type: ''
+                - segmentId: 1
+                  title: Primary Event 2
+                  timingIn: 1620
+                  timingOut: 2100
+                  sourceType: 0
+                  fileName: ExternalSource2
+                  segmentOrder: 6
+                  type: ''
+                - segmentId: 14
+                  title: Primary Event 2
+                  timingIn: 2100
+                  timingOut: 2220
+                  sourceType: 0
+                  fileName: TimeSignalMultiAutoStopTemp
+                  segmentOrder: 7
+                  type: ''
+                - segmentId: 5
+                  title: Primary Event 2
+                  timingIn: 2220
+                  timingOut: 2400
+                  sourceType: 0
+                  fileName: PromoTemp
+                  segmentOrder: 8
+                  type: ''
+                - segmentId: 1
+                  title: Primary Event 2
+                  timingIn: 2400
+                  timingOut: 3600
+                  sourceType: 0
+                  fileName: ExternalSource4
+                  segmentOrder: 9
+                  type: ''
+              - startTime: 3600000
+                endTime: 7200000
+                bitrate: 0
+                delay: 0
+                title: Primary Event 3
+                sourceType: 0
+                duration: 3600000
+                fixedStartMode: false
+                followOnStartMode: false
+                fixedEndMode: true
+                holdEndMode: false
+                liveSource: false
+                clipSource: true
+                mediaFileName: ExternalSource3
+                liveFileName: ExternalSource3
+                scheduleFileEventSegmentList:
+                - segmentId: 6
+                  title: SCTE PGM Start Show 1
+                  timingIn: 0
+                  timingOut: 0
+                  sourceType: 0
+                  fileName: SCTE PGM Start
+                  segmentOrder: 2
+                  type: ''
+                - segmentId: 1
+                  title: Primary Event 3
+                  timingIn: 0
+                  timingOut: 300
+                  sourceType: 0
+                  fileName: ExternalSource3
+                  segmentOrder: 3
+                  type: ''
+                - segmentId: 4
+                  title: UnderplayTemp1
+                  timingIn: 300
+                  timingOut: 900
+                  sourceType: 0
+                  fileName: UnderplayTemp3
+                  segmentOrder: 4
+                  type: ''
+                - segmentId: 1
+                  title: Primary Event 3
+                  timingIn: 900
+                  timingOut: 2700
+                  sourceType: 0
+                  fileName: ExternalSource3
+                  segmentOrder: 5
+                  type: ''
+                - segmentId: 2
+                  title: SpliceInsertScte
+                  timingIn: 2700
+                  timingOut: 2820
+                  sourceType: 0
+                  fileName: SpliceInsertScteTemp
+                  segmentOrder: 6
+                  type: ''
+                - segmentId: 1
+                  title: Primary Event 3
+                  timingIn: 2820
+                  timingOut: 3600
+                  sourceType: 0
+                  fileName: ExternalSource3
+                  segmentOrder: 7
+                  type: ''
+                - segmentId: 7
+                  title: SCTE PGM End Show 1
+                  timingIn: 3600
+                  timingOut: 3600
+                  sourceType: 0
+                  fileName: SCTE PGM End
+                  segmentOrder: 8
+                  type: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result: null
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Channel API/scheduleMapping
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778582-run
+      operationId: addScheduleMappingTemplate_250778582
+      x-source-doc: https://docs.tvunetworks.cn/api-250778582.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

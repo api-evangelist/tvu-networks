@@ -1,0 +1,234 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Search Search API/search/caption API
+  description: Search API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://search.tvunetworks.com
+  description: Apifox server "TVUSearch"
+tags:
+- name: Search API/search/caption
+paths:
+  /api/search/v1/i/getwordssupportlang:
+    get:
+      summary: List caption supported languages
+      deprecated: false
+      description: Returns the supported caption languages available for a given media path and time range.
+      tags:
+      - Search API/search/caption
+      parameters:
+      - name: uid
+        in: query
+        description: Unique media file identifier
+        required: true
+        schema:
+          type: string
+      - name: ph_path
+        in: query
+        description: Physical path of the media file
+        required: true
+        schema:
+          type: string
+      - name: peerid
+        in: query
+        description: Peer node ID of the source device
+        required: true
+        schema:
+          type: string
+      - name: pathtype
+        in: query
+        description: Path type identifier (e.g. live, vod)
+        required: true
+        schema:
+          type: string
+      - name: starttime
+        in: query
+        description: Search start time in milliseconds since epoch
+        required: true
+        schema:
+          type: integer
+      - name: endtime
+        in: query
+        description: Search end time in milliseconds since epoch
+        required: true
+        schema:
+          type: integer
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.SearchWordsResp'
+              example:
+                data:
+                  list: []
+                  size: 1
+                  total: 3
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/caption
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959102-run
+      operationId: List_caption_supported_languages_468959102
+      x-source-doc: https://docs.tvunetworks.cn/api-468959102.md
+  /api/search/v1/i/words:
+    get:
+      summary: Retrieve caption transcript within a media time range
+      deprecated: false
+      description: Returns speech-to-text caption segments (each containing transcript text and start/end timestamps) from a broadcast recording within the specified time window. Identify the recording using 'peerid' (TVU device peer ID) and 'ph_path' (placeholder file path). 'pathtype' must be provided to route the request correctly, and 'language_type' must match the language used during transcription. Use this to extract the spoken transcript for any segment of a live or recorded broadcast. Session ID required.
+      tags:
+      - Search API/search/caption
+      parameters:
+      - name: uid
+        in: query
+        description: Unique identifier of the media file (MPD path). Can be omitted when peerid is provided.
+        required: false
+        schema:
+          type: string
+      - name: ph_path
+        in: query
+        description: Placeholder file path identifying the media recording.
+        required: true
+        schema:
+          type: string
+      - name: peerid
+        in: query
+        description: TVU device peer ID (e.g. 'A1B2C3D4'). Identifies the source recording device.
+        required: true
+        schema:
+          type: string
+      - name: pathtype
+        in: query
+        description: Type/category of the media path. Required to route the query correctly.
+        required: true
+        schema:
+          type: string
+      - name: starttime
+        in: query
+        description: Start of the search time range, in Unix milliseconds.
+        required: true
+        schema:
+          type: integer
+      - name: endtime
+        in: query
+        description: End of the search time range, in Unix milliseconds. Must be >= starttime.
+        required: true
+        schema:
+          type: integer
+      - name: language_type
+        in: query
+        description: Language/locale code of the caption to search (e.g. 'en-US', 'zh'). Must match the language used during transcription.
+        required: true
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/controllers.SearchWordsResp'
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/caption
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959103-run
+      operationId: Retrieve_caption_transcript_within_a_media_time_range_468959103
+      x-source-doc: https://docs.tvunetworks.cn/api-468959103.md
+components:
+  schemas:
+    controllers.CapReturnData:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+          examples:
+          - 1
+        total:
+          type: integer
+          examples:
+          - 3
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x--orders:
+      - list
+      - size
+      - total
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchWordsResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          $ref: '#/components/schemas/controllers.CapReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x--orders:
+      - code
+      - data
+      - message
+      x--ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

@@ -1,0 +1,433 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Uncategorized Resource API
+  description: Uncategorized operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Resource
+paths:
+  /api/resource/v2/estimate-video-size:
+    get:
+      summary: estimate-video-size
+      deprecated: false
+      description: ''
+      tags:
+      - Resource
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                highResolutionMediaFilePath:
+                  type: string
+                  description: the corresponding hls http link
+                startTime:
+                  type: integer
+                  description: start time of the clipping interval
+                duration:
+                  type: integer
+                  description: duration of the clipping interval
+                fileName:
+                  type: string
+                  description: cut video file naming
+                userAccount:
+                  type: string
+                  description: user account(email or userid)
+              required:
+              - highResolutionMediaFilePath
+              - startTime
+              - duration
+              - fileName
+              - userAccount
+              x-apifox-orders:
+              - highResolutionMediaFilePath
+              - startTime
+              - duration
+              - fileName
+              - userAccount
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                    description: error code
+                  errorMsg:
+                    type: string
+                    description: error message
+                  videoSize:
+                    type: integer
+                    description: estimated video size
+                required:
+                - errorCode
+                - errorMsg
+                - videoSize
+                x-apifox-orders:
+                - errorCode
+                - errorMsg
+                - videoSize
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: ctFFLtgDgD8qZxxQtyvRo
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: ctFFLtgDgD8qZxxQtyvRo
+          scopes:
+            ctFFLtgDgD8qZxxQtyvRo:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956071-run
+      operationId: estimate_video_size_351956071
+      x-source-doc: https://docs.tvunetworks.cn/api-351956071.md
+    post:
+      summary: estimate-video-size
+      deprecated: false
+      description: ''
+      tags:
+      - Resource
+      parameters:
+      - name: tagvalue
+        in: header
+        description: ''
+        required: false
+        example: '{{tagvalue}}'
+        schema:
+          type: string
+          default: '{{tagvalue}}'
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filePath:
+                  type: string
+                  description: the corresponding hls http link or live path
+                startTime:
+                  type: integer
+                  description: start time of the clipping interval
+                duration:
+                  type: integer
+                  description: duration of the clipping interval
+                recMode:
+                  type: integer
+                  description: '0: mma (default) 1: rrs'
+                storageInfo:
+                  type: string
+                fileName:
+                  type: string
+                  description: cut video file naming
+                userAccount:
+                  type: string
+                  description: user account(email or userid)
+              required:
+              - filePath
+              - startTime
+              - duration
+              - fileName
+              - userAccount
+              - recMode
+              - storageInfo
+              x-apifox-orders:
+              - filePath
+              - startTime
+              - duration
+              - recMode
+              - storageInfo
+              - fileName
+              - userAccount
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                    description: error code
+                  errorMsg:
+                    type: string
+                    description: error message
+                  videoSize:
+                    type: integer
+                    description: estimated video size
+                required:
+                - errorCode
+                - errorMsg
+                - videoSize
+                x-apifox-orders:
+                - errorCode
+                - errorMsg
+                - videoSize
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: 4E8mPXcbyynZF1Co80TLK
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: 4E8mPXcbyynZF1Co80TLK
+          scopes:
+            4E8mPXcbyynZF1Co80TLK:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-352513764-run
+      operationId: estimate_video_size_352513764
+      x-source-doc: https://docs.tvunetworks.cn/api-352513764.md
+  /api/resource/v2/metadata:
+    get:
+      summary: metadata
+      deprecated: false
+      description: Retrieve video media information
+      tags:
+      - Resource
+      parameters:
+      - name: videoUrl
+        in: query
+        description: Readable video file HTTP/HTTPS link
+        required: true
+        schema:
+          type: string
+      - name: tagvalue
+        in: header
+        description: ''
+        required: false
+        example: '{{tagvalue}}'
+        schema:
+          type: string
+          default: '{{tagvalue}}'
+      - name: SID
+        in: header
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: integer
+                    description: '0：success   -1: failed'
+                  errorMessage:
+                    type: string
+                    description: error message
+                  data:
+                    type:
+                    - object
+                    - 'null'
+                    properties: {}
+                    description: video foramt info data
+                    x-apifox-orders: []
+                required:
+                - errorCode
+                - errorMessage
+                x-apifox-orders:
+                - errorCode
+                - errorMessage
+                - data
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: kFhI7Pv1eCqIoYD5PyUPb
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: kFhI7Pv1eCqIoYD5PyUPb
+          scopes:
+            kFhI7Pv1eCqIoYD5PyUPb:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956069-run
+      operationId: metadata_351956069
+      x-source-doc: https://docs.tvunetworks.cn/api-351956069.md
+  /api/resource/v2/upload-to-zype:
+    post:
+      summary: upload-to-zype
+      deprecated: false
+      description: ''
+      tags:
+      - Resource
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                videoUrl:
+                  type: string
+                objectId:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                zypeAuth:
+                  type: object
+                  properties:
+                    type:
+                      type: integer
+                      description: 0 -> api key   1-> app key  2-> access token
+                    apiKey:
+                      type: string
+                    appKey:
+                      type: string
+                    oauth:
+                      type: object
+                      properties:
+                        clientId:
+                          type: string
+                        clientSecret:
+                          type: string
+                        endpointUrl:
+                          type: string
+                        scopes:
+                          type: string
+                      x-apifox-orders:
+                      - clientId
+                      - clientSecret
+                      - endpointUrl
+                      - scopes
+                  required:
+                  - type
+                  x-apifox-orders:
+                  - type
+                  - apiKey
+                  - appKey
+                  - oauth
+              required:
+              - title
+              - videoUrl
+              - objectId
+              - zypeAuth
+              - tags
+              x-apifox-orders:
+              - title
+              - videoUrl
+              - objectId
+              - tags
+              - zypeAuth
+            example:
+              title: ewsNation The Hill 4
+              videoUrl: https://mma-video-new.S3.us-east-1.amazonaws.com/export/bb36103b64f6cdd4661cea190761e37d/NewsNation The Hill _sSK6.mp4
+              objectId: '1397586210230243328'
+              zypeAuth:
+                type: 0
+                apiKey: iAwBhi95jqaWEYbg4VTua78fxiI5psPo3EqCJT8xCod2Jz0OLDmON892jMZICYue
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: 0 -> success  -1 -> failed
+                  errorMessage:
+                    type: string
+                required:
+                - errorCode
+                - errorMessage
+                x-apifox-orders:
+                - errorCode
+                - errorMessage
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: oFdYgU7Q_-wiZ0-Fo4-fI
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: oFdYgU7Q_-wiZ0-Fo4-fI
+          scopes:
+            oFdYgU7Q_-wiZ0-Fo4-fI:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351956070-run
+      operationId: upload_to_zype_351956070
+      x-source-doc: https://docs.tvunetworks.cn/api-351956070.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

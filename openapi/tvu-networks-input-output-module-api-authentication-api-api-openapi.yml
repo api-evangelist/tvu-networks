@@ -1,0 +1,95 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Input&Output Module Input&Output Module…
+  description: Input&Output Module API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Input&Output Module API/Authentication API
+paths:
+  /userAuth/token/getToken:
+    post:
+      summary: get "session id" for authentication
+      deprecated: false
+      description: 'This API is to generate `session ID` that is required by the authentication approach.
+
+
+        Please include it in the HTTP request header as either SID (most commonly) or Authorization (less often), depending on the specific endpoint you''re interacting with.
+
+
+        You can use the online tool to calculate the SHA512 hash using your password.'
+      tags:
+      - Input&Output Module API/Authentication API
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: YourAccount
+                password:
+                  type: string
+                  description: CryptoJS.SHA512(YourPassword).toString(CryptoJS.enc.Hex);
+                expireTime:
+                  type: integer
+                  description: in second, maximum is 7200
+              required:
+              - email
+              - password
+              - expireTime
+              x-apifox-orders:
+              - email
+              - password
+              - expireTime
+            example:
+              email: '{{email}}'
+              password: '{{password}}'
+              expireTime: 360
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: Input&Output Module API/Authentication API
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728334-run
+      operationId: get_session_id_for_authentication_256728334
+      x-source-doc: https://docs.tvunetworks.cn/api-256728334.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

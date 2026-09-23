@@ -1,0 +1,331 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Producer Producer API/Producer AI API
+  description: Producer API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Producer API/Producer AI
+paths:
+  /producerAI/playAllClipPlayers:
+    post:
+      summary: play all clip players
+      deprecated: false
+      description: ''
+      operationId: eb5153c3d1bf11d93ed9206d692bdb3c
+      tags:
+      - Producer API/Producer AI
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayAllClipPlayerRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Producer AI
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778561-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778561.md
+  /producerAI/playAllClipPlayersFromBeginning:
+    post:
+      summary: play all clip players from the beginning
+      deprecated: false
+      description: ''
+      operationId: 9475c076b1e2c0b080aa234adec126a2
+      tags:
+      - Producer API/Producer AI
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayAllClipPlayerRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Producer AI
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778562-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778562.md
+  /producerAI/updateSetting:
+    post:
+      summary: update AI Setting
+      deprecated: false
+      description: ''
+      operationId: 6ea1bd9cfa20ee0e85631328b7296ad2
+      tags:
+      - Producer API/Producer AI
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAISettingRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Producer AI
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778560-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778560.md
+  /producerAI/uploadThumbnail:
+    post:
+      summary: upload source thumbnail
+      deprecated: false
+      description: ''
+      operationId: b422bf340fddddc61874f2e1d08bab7e
+      tags:
+      - Producer API/Producer AI
+      parameters:
+      - name: SID
+        in: header
+        description: User Login Token
+        required: true
+        example: 2B13F99475684D5AA89C9EAE8A343B24
+        schema:
+          type: string
+          description: User Login Token
+          examples:
+          - 2B13F99475684D5AA89C9EAE8A343B24
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadSourceThumbnailRequest'
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorInfo:
+                    type: string
+                  errorCode:
+                    type: string
+                  repeated:
+                    type: boolean
+                x-apifox-orders:
+                - errorInfo
+                - errorCode
+                - repeated
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: Response
+      security: []
+      x-apifox-folder: Producer API/Producer AI
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778563-run
+      x-source-doc: https://docs.tvunetworks.cn/api-250778563.md
+components:
+  schemas:
+    UploadSourceThumbnailRequest:
+      required:
+      - imageBase64
+      - createTime
+      - productionId
+      - slotNo
+      - timestamp
+      type: object
+      properties:
+        imageBase64:
+          type: string
+          examples:
+          - caYVZNkqyntfeGaLvybhTlIT
+        createTime:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764887
+        productionId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+        imageUrl:
+          type: string
+          examples:
+          - http://www.zvurPW.com/NYuIKf
+        slotNo:
+          type: string
+          examples:
+          - s1
+        timestamp:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - imageBase64
+      - createTime
+      - productionId
+      - imageUrl
+      - slotNo
+      - timestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayAllClipPlayerRequest:
+      required:
+      - productionId
+      type: object
+      properties:
+        productionId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - productionId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    UpdateAISettingRequest:
+      required:
+      - productionId
+      type: object
+      properties:
+        clipSlots:
+          type: string
+          description: the No of the slots used to recognize scoreboard
+          examples:
+          - s1,s2
+        clipSize:
+          minimum: 1000
+          type: integer
+          description: the duration of generated clips' duration,unit millisecond
+          format: int32
+          examples:
+          - 3000
+        scoreboardSlot:
+          maxLength: 4
+          type: string
+          description: the No of the slot used to recognize scoreboard
+          examples:
+          - s5
+        productionId:
+          minimum: 10000
+          type: integer
+          description: the id of production
+          format: int64
+          examples:
+          - 100000
+      x-apifox-orders:
+      - clipSlots
+      - clipSize
+      - scoreboardSlot
+      - productionId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

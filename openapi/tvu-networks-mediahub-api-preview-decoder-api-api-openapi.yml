@@ -1,0 +1,248 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — MediaHub MediaHub API/preview-decoder-api API
+  description: MediaHub API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://mediahub.tvunetworks.com
+  description: Apifox server "MediaHub"
+tags:
+- name: MediaHub API/preview-decoder-api
+paths:
+  /urcaller/api/v2/preview/start:
+    post:
+      summary: startPreview
+      deprecated: false
+      description: start preview by objectId
+      operationId: startPreview
+      tags:
+      - MediaHub API/preview-decoder-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BasePreviewDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultBasePreviewVO'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/preview-decoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-329846475-run
+      x-source-doc: https://docs.tvunetworks.cn/api-329846475.md
+  /urcaller/api/v2/preview/stop:
+    post:
+      summary: stopPreview
+      deprecated: false
+      description: stop preview by objectId
+      operationId: stopPreview
+      tags:
+      - MediaHub API/preview-decoder-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StopPreviewParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Result'
+          headers: {}
+          x-apifox-name: Bad Request
+        '405':
+          description: Method Not Allowed
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: Unauthorized
+      security: []
+      x-apifox-folder: MediaHub API/preview-decoder-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-329846476-run
+      x-source-doc: https://docs.tvunetworks.cn/api-329846476.md
+components:
+  schemas:
+    ResponseResultBasePreviewVO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          $ref: '#/components/schemas/BasePreviewVO'
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    BasePreviewDTO:
+      required:
+      - sourceObjectId
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+          description: source objectId
+        previewType:
+          type: integer
+          description: 'preview type,allowed values: 1 webrtc 2 RTIL'
+          format: int32
+          examples:
+          - 2
+      x-apifox-orders:
+      - sourceObjectId
+      - previewType
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Result:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    BasePreviewVO:
+      type: object
+      x-apifox-orders: []
+      properties: {}
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    StopPreviewParam:
+      required:
+      - sourceObjectId
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+      x-apifox-orders:
+      - sourceObjectId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

@@ -1,0 +1,393 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Search Search API/search/appearance API
+  description: Search API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://search.tvunetworks.com
+  description: Apifox server "TVUSearch"
+tags:
+- name: Search API/search/appearance
+paths:
+  /api/search/v2/appearance/relationsv2:
+    post:
+      summary: Get appearance relations v2
+      deprecated: false
+      description: Get relations between appearances (v2, JSON body).
+      tags:
+      - Search API/search/appearance
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer token or session token
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.AppearanceRelationsRequestV2'
+            example:
+              detectionTypes: []
+              sourceObjects: []
+      responses:
+        '200':
+          description: 'Successful response; check errorCode for logical results: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.AppearanceRelationsResponse'
+              example:
+                result:
+                  relations:
+                  - relations:
+                    - content: []
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/appearance
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959109-run
+      operationId: Get_appearance_relations_v2_468959109
+      x-source-doc: https://docs.tvunetworks.cn/api-468959109.md
+  /api/search/v2/appearance/suggestionv2:
+    post:
+      summary: Get appearance name suggestions v2
+      deprecated: false
+      description: Get appearance entity name suggestions for autocomplete (v2 JSON body variant).
+      tags:
+      - Search API/search/appearance
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer token or session token
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.AppearanceSuggestionRequestV2'
+            example:
+              sourceObjectIds: []
+      responses:
+        '200':
+          description: 'Successful response; check errorCode for logical results: 0=success, 2002=no results, 2008=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.AppearanceSuggestionResponse'
+              example:
+                result: []
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/appearance
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959110-run
+      operationId: Get_appearance_name_suggestions_v2_468959110
+      x-source-doc: https://docs.tvunetworks.cn/api-468959110.md
+components:
+  schemas:
+    models.AppearanceRelationsRequestV2:
+      type: object
+      properties:
+        appearanceId:
+          description: Filter by specific appearance ID
+          type: string
+        detectionTypes:
+          description: 'Filter by detection type: 0=known person, 1=unknown person, 2=logo/brand, 3=text/number'
+          type: array
+          items:
+            type: integer
+        endTimestamp:
+          description: Search end time in milliseconds; defaults to current time
+          type: integer
+        language:
+          description: Language code for search (e.g., en, cn)
+          type: string
+        pageNum:
+          description: Page number, starting from 1
+          type: integer
+        pageSize:
+          description: Number of results per page
+          type: integer
+        query:
+          description: Text query to filter appearances by name
+          type: string
+        sourceObjects:
+          description: List of source object IDs to query appearance relations for; required
+          type: array
+          items:
+            type: string
+        startTimestamp:
+          description: Search start time in milliseconds; defaults to 7 days ago
+          type: integer
+      x-apifox-orders:
+      - appearanceId
+      - detectionTypes
+      - endTimestamp
+      - language
+      - pageNum
+      - pageSize
+      - query
+      - sourceObjects
+      - startTimestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceData:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: Content identifier (e.g., person ID for faces, text for logos)
+          type: string
+        highlight:
+          description: Highlighted snippet for search result display
+          type: string
+        name:
+          description: Display name of the appearance entity
+          type: string
+        path:
+          description: Path to the appearance image or resource
+          type: string
+        personId:
+          description: Person ID (applicable when classType=2)
+          type: string
+        position:
+          type: string
+      x-apifox-orders:
+      - classType
+      - content
+      - highlight
+      - name
+      - path
+      - personId
+      - position
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceContent:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        path:
+          type: string
+        position:
+          type: string
+      x-apifox-orders:
+      - id
+      - name
+      - path
+      - position
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceSuggestionResponse:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: List of appearance entity suggestions; present only on success
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelationItem:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: List of appearance content items in this class
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceContent'
+      x-apifox-orders:
+      - classType
+      - content
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelations:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: Content identifier of the appearance
+          type: string
+        groupId:
+          description: Group ID this appearance belongs to
+          type: string
+        name:
+          description: Display name of the appearance entity
+          type: string
+        personId:
+          description: Person ID (applicable when classType=2)
+          type: string
+        position:
+          type: string
+        relations:
+          description: Related appearances grouped by class type
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceRelationItem'
+        thumbnailPath:
+          description: Path to the thumbnail image
+          type: string
+      x-apifox-orders:
+      - classType
+      - content
+      - groupId
+      - name
+      - personId
+      - position
+      - relations
+      - thumbnailPath
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelationsResult:
+      type: object
+      properties:
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceRelations'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - relations
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelationsResponse:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Appearance relations result; present only on success
+          allOf:
+          - $ref: '#/components/schemas/models.AppearanceRelationsResult'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceSuggestionRequestV2:
+      type: object
+      properties:
+        appearanceType:
+          description: 'Filter by appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        language:
+          description: Language code for search (e.g., en, cn, es)
+          type: string
+        pageNum:
+          description: Page number, starting from 1
+          type: integer
+        pageSize:
+          description: Number of suggestions per page
+          type: integer
+        query:
+          description: Search prefix for autocomplete
+          type: string
+        sourceObjectIds:
+          description: List of source object IDs to search within; required
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - appearanceType
+      - language
+      - pageNum
+      - pageSize
+      - query
+      - sourceObjectIds
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

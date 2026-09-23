@@ -1,0 +1,1337 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Search Search API/event API
+  description: Search API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://search.tvunetworks.com
+  description: Apifox server "TVUSearch"
+tags:
+- name: Search API/event
+paths:
+  /search/v2/media/addClipToPP:
+    post:
+      summary: add the mark file to PP
+      deprecated: false
+      description: Place the clip object into the playback list of Produce.
+      tags:
+      - Search API/event
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programId:
+                  type: string
+                  description: program id
+                slotNo:
+                  type: string
+                objectId:
+                  type: string
+                  description: clip object id
+              required:
+              - programId
+              - slotNo
+              - objectId
+              x-apifox-orders:
+              - programId
+              - slotNo
+              - objectId
+            example:
+              programId: '104360961019904'
+              slotNo: s12
+              objectId: '1412669866040758272'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: 'null'
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: OK
+                result: null
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: h2jeawDuHj_2ZodQrUxah
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: h2jeawDuHj_2ZodQrUxah
+          scopes:
+            h2jeawDuHj_2ZodQrUxah:
+              bearer: []
+      x-apifox-folder: Search API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351711925-run
+      operationId: add_the_mark_file_to_PP_351711925
+      x-source-doc: https://docs.tvunetworks.cn/api-351711925.md
+  /search/v2/media/currentSlugInfo:
+    get:
+      summary: current slug
+      deprecated: false
+      description: Get the slug corresponding to the current time of the sourceObject.
+      tags:
+      - Search API/event
+      parameters:
+      - name: objectId
+        in: query
+        description: source object id
+        required: true
+        example: '1031567688444559360'
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      peerId:
+                        type: string
+                      objectId:
+                        type: string
+                      slug:
+                        type: string
+                      createTime:
+                        type: integer
+                      endTime:
+                        type: integer
+                      repeatId:
+                        type: string
+                      eventSlug:
+                        type: string
+                      title:
+                        type: 'null'
+                      report:
+                        type: 'null'
+                      deleteFlag:
+                        type: 'null'
+                      color:
+                        type: integer
+                    required:
+                    - id
+                    - peerId
+                    - objectId
+                    - slug
+                    - createTime
+                    - endTime
+                    - repeatId
+                    - eventSlug
+                    - title
+                    - report
+                    - deleteFlag
+                    - color
+                    x-apifox-orders:
+                    - id
+                    - peerId
+                    - objectId
+                    - slug
+                    - createTime
+                    - endTime
+                    - repeatId
+                    - eventSlug
+                    - title
+                    - report
+                    - deleteFlag
+                    - color
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: success
+                result:
+                  id: af95f2b9205f43458a074afc63a84846
+                  peerId: 4b999dc458fbc4c80000000000000002
+                  objectId: '1031567688444559360'
+                  slug: 'Atlanta, Georgia bump shot Source: CNN Market Embargo: NONE '
+                  createTime: 1673315661594
+                  endTime: 9999999999999
+                  repeatId: ''
+                  eventSlug: 'Atlanta, Georgia bump shot Source: CNN Market Embargo: NONE '
+                  title: null
+                  report: null
+                  deleteFlag: null
+                  color: 0
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: lccHCd-LC0duoSD-DLFOP
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: lccHCd-LC0duoSD-DLFOP
+          scopes:
+            lccHCd-LC0duoSD-DLFOP:
+              bearer: []
+      x-apifox-folder: Search API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351711931-run
+      operationId: current_slug_351711931
+      x-source-doc: https://docs.tvunetworks.cn/api-351711931.md
+  /search/v2/media/deleteSlug:
+    post:
+      summary: delete slug
+      deprecated: false
+      description: Delete slug by slugId.
+      tags:
+      - Search API/event
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: slug id
+              required:
+              - id
+              x-apifox-orders:
+              - id
+            example:
+              id: 61ceaed87ea44ff1bd009281e5afcd31
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: 'null'
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: success
+                result: null
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: ynu_iKAPbqPMkIjfrsLwQ
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: ynu_iKAPbqPMkIjfrsLwQ
+          scopes:
+            ynu_iKAPbqPMkIjfrsLwQ:
+              bearer: []
+      x-apifox-folder: Search API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351711929-run
+      operationId: delete_slug_351711929
+      x-source-doc: https://docs.tvunetworks.cn/api-351711929.md
+  /search/v2/media/mark:
+    post:
+      summary: create clip object
+      deprecated: false
+      description: Create a clip object.
+      tags:
+      - Search API/event
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startTime:
+                  type: integer
+                  description: mark in
+                endTime:
+                  type: integer
+                  description: mark out
+                sourceObjectId:
+                  type: string
+                  description: source object
+                mediaObjectIds:
+                  type: array
+                  items:
+                    type: string
+                  description: media object id
+                exportFileName:
+                  type: string
+                  description: mark name
+                mediaFileType:
+                  type: integer
+                  description: '0: MMA 1:RRS'
+                thumbnail:
+                  type: string
+                  description: thumbnail path
+                slugInfo:
+                  type: string
+                frameRate:
+                  type: integer
+                audioInfo:
+                  type: string
+                audioPadding:
+                  type: string
+                mediaParam:
+                  type: string
+              required:
+              - startTime
+              - endTime
+              - sourceObjectId
+              - mediaObjectIds
+              - exportFileName
+              - mediaFileType
+              x-apifox-orders:
+              - startTime
+              - endTime
+              - sourceObjectId
+              - mediaObjectIds
+              - exportFileName
+              - mediaFileType
+              - thumbnail
+              - slugInfo
+              - frameRate
+              - audioInfo
+              - audioPadding
+              - mediaParam
+            example:
+              startTime: 1757661158507
+              endTime: 1757661190508
+              sourceObjectId: '1408450928465547264'
+              mediaObjectIds:
+              - '1416077916047020032'
+              exportFileName: Jersey Shore Enforces Strict Beach Access Restrictions Due to Hurricane Erin
+              mediaFileType: 1
+              thumbnail: 85b7971e5e427a167995659c2a165d65/1757661351_280645.jpg
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      deleteFlag:
+                        type: integer
+                      createTime:
+                        type: integer
+                      updateTime:
+                        type: integer
+                      userId:
+                        type: string
+                      phId:
+                        type: string
+                      startTime:
+                        type: integer
+                      endTime:
+                        type: integer
+                      exportFilename:
+                        type: string
+                      srtUrl:
+                        type: 'null'
+                      imageUrl:
+                        type: string
+                      slugInfo:
+                        type: string
+                      path:
+                        type: 'null'
+                      timestamp:
+                        type: 'null'
+                      objectId:
+                        type: string
+                      type:
+                        type: 'null'
+                      fileType:
+                        type: integer
+                      sourceObjectId:
+                        type: string
+                    required:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - userId
+                    - phId
+                    - startTime
+                    - endTime
+                    - exportFilename
+                    - srtUrl
+                    - imageUrl
+                    - slugInfo
+                    - path
+                    - timestamp
+                    - objectId
+                    - type
+                    - fileType
+                    - sourceObjectId
+                    x-apifox-orders:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - userId
+                    - phId
+                    - startTime
+                    - endTime
+                    - exportFilename
+                    - srtUrl
+                    - imageUrl
+                    - slugInfo
+                    - path
+                    - timestamp
+                    - objectId
+                    - type
+                    - fileType
+                    - sourceObjectId
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: success
+                result:
+                  id: D147F1926C467CE1
+                  deleteFlag: 0
+                  createTime: 1756932636240
+                  updateTime: 1756932636240
+                  userId: 699fc1d2d85c4eb892ce464f2e94ba4f
+                  phId: '1412836022928150528'
+                  startTime: 1756931175505
+                  endTime: 1756932576211
+                  exportFilename: Rec-Riga-Aux-3_20250903-22-26-15-505_1400705
+                  srtUrl: null
+                  imageUrl: ''
+                  slugInfo: ''
+                  path: null
+                  timestamp: null
+                  objectId: '1413023420286898176'
+                  type: null
+                  fileType: 1
+                  sourceObjectId: '1409578580706463744'
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: 0831AVhHD74WK2QDEb9Mv
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: 0831AVhHD74WK2QDEb9Mv
+          scopes:
+            0831AVhHD74WK2QDEb9Mv:
+              bearer: []
+      x-apifox-folder: Search API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351711924-run
+      operationId: create_clip_object_351711924
+      x-source-doc: https://docs.tvunetworks.cn/api-351711924.md
+  /search/v2/media/slug-info:
+    post:
+      summary: query slug
+      deprecated: false
+      description: Gets all slug of the sourceobject for a period of time.
+      tags:
+      - Search API/event
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                objectId:
+                  type: string
+                  description: source objectId
+                startTime:
+                  type: integer
+                  description: The default value is the past week.
+                endTime:
+                  type: integer
+                  description: The default value is the current time.
+                sort:
+                  type: string
+                  description: The default value is 'ASC'
+              required:
+              - objectId
+              x-apifox-orders:
+              - objectId
+              - startTime
+              - endTime
+              - sort
+            example:
+              objectId: '1031568061741809664'
+              startTime: 1405699200000
+              endTime: 9999999999999
+              sort: desc
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        peerId:
+                          type: string
+                        objectId:
+                          type: string
+                        slug:
+                          type: string
+                        createTime:
+                          type: integer
+                        endTime:
+                          type: integer
+                        repeatId:
+                          type: string
+                        eventSlug:
+                          type: string
+                        title:
+                          type: 'null'
+                        report:
+                          type: 'null'
+                        deleteFlag:
+                          type: integer
+                        color:
+                          type: integer
+                        slugObjectId:
+                          type: string
+                        tagInfos:
+                          type: 'null'
+                        userId:
+                          type: 'null'
+                      required:
+                      - id
+                      - peerId
+                      - objectId
+                      - slug
+                      - createTime
+                      - endTime
+                      - repeatId
+                      - eventSlug
+                      - title
+                      - report
+                      - deleteFlag
+                      - color
+                      - slugObjectId
+                      - tagInfos
+                      - userId
+                      x-apifox-orders:
+                      - id
+                      - peerId
+                      - objectId
+                      - slug
+                      - createTime
+                      - endTime
+                      - repeatId
+                      - eventSlug
+                      - title
+                      - report
+                      - deleteFlag
+                      - color
+                      - slugObjectId
+                      - tagInfos
+                      - userId
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: success
+                result:
+                - id: XXXXXX
+                  peerId: 99ecc5d8bddd65880000000000000002
+                  objectId: '1031568061741809664'
+                  slug: 'Slug: NY: New York City Bump (CH4 & CNN Grid 4)  Source: CNN Market Embargo: NONE Web Usage: All Affiliates'
+                  createTime: 1716154348008
+                  endTime: 1716163199999
+                  repeatId: ''
+                  eventSlug: 'Slug: NY: New York City Bump (CH4 & CNN Grid 4)  Source: CNN Market Embargo: NONE Web Usage: All Affiliates'
+                  title: null
+                  report: null
+                  deleteFlag: 0
+                  color: 0
+                  slugObjectId: '1241986884532580352'
+                  tagInfos: null
+                  userId: null
+                - id: XXXXXX
+                  peerId: 99ecc5d8bddd65880000000000000002
+                  objectId: '1031568061741809664'
+                  slug: 'Slug: TX/ Presser on Storm Cleanup Update (CH4 & CNN Grid4) Description: Harris Co Judge Lina Hilalgo on Storm Cleanup Update Source: Pool Market Embargo: none Web Usage: Network Pool Only'
+                  createTime: 1716149558339
+                  endTime: 1716154348008
+                  repeatId: ''
+                  eventSlug: 'Slug: TX/ Presser on Storm Cleanup Update (CH4 & CNN Grid4) Description: Harris Co Judge Lina Hilalgo on Storm Cleanup Update Source: Pool Market Embargo: none Web Usage: Network Pool Only'
+                  title: null
+                  report: null
+                  deleteFlag: 0
+                  color: 0
+                  slugObjectId: '1241966795448008704'
+                  tagInfos: null
+                  userId: null
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: YRQRU8eMfAqzbNpkMh6o-
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: YRQRU8eMfAqzbNpkMh6o-
+          scopes:
+            YRQRU8eMfAqzbNpkMh6o-:
+              bearer: []
+      x-apifox-folder: Search API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351711927-run
+      operationId: query_slug_351711927
+      x-source-doc: https://docs.tvunetworks.cn/api-351711927.md
+  /search/v2/media/slugInfoById:
+    get:
+      summary: retrieve slug
+      deprecated: false
+      description: The slugId gets slug information.
+      tags:
+      - Search API/event
+      parameters:
+      - name: slugId
+        in: query
+        description: slug id
+        required: true
+        example: 844207a2a1324e259935c22c07d0591d
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      deleteFlag:
+                        type: integer
+                      createTime:
+                        type: integer
+                      updateTime:
+                        type: integer
+                      peerId:
+                        type: string
+                      gridLinkMetadata:
+                        type: string
+                      globalGridMetadata:
+                        type: 'null'
+                      sourceName:
+                        type: 'null'
+                      sourceType:
+                        type: 'null'
+                      endTime:
+                        type: integer
+                      externalId:
+                        type: 'null'
+                      repeatId:
+                        type: string
+                      executeRepeatId:
+                        type: 'null'
+                      slug:
+                        type: 'null'
+                      title:
+                        type: 'null'
+                      report:
+                        type: 'null'
+                      color:
+                        type: integer
+                      operationRepeatParam:
+                        type: 'null'
+                      objectId:
+                        type: string
+                      slugObjectId:
+                        type: string
+                      insertTime:
+                        type: integer
+                    required:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - peerId
+                    - gridLinkMetadata
+                    - globalGridMetadata
+                    - sourceName
+                    - sourceType
+                    - endTime
+                    - externalId
+                    - repeatId
+                    - executeRepeatId
+                    - slug
+                    - title
+                    - report
+                    - color
+                    - operationRepeatParam
+                    - objectId
+                    - slugObjectId
+                    - insertTime
+                    x-apifox-orders:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - peerId
+                    - gridLinkMetadata
+                    - globalGridMetadata
+                    - sourceName
+                    - sourceType
+                    - endTime
+                    - externalId
+                    - repeatId
+                    - executeRepeatId
+                    - slug
+                    - title
+                    - report
+                    - color
+                    - operationRepeatParam
+                    - objectId
+                    - slugObjectId
+                    - insertTime
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: success
+                result:
+                  id: 3d2a7837e2db4370be3c7bc414de4838
+                  deleteFlag: 0
+                  createTime: 1673310561803
+                  updateTime: 1673311176901
+                  peerId: b86670577e79f3130000000000000002
+                  gridLinkMetadata: 'Slug: TX: TCU National Championship Watch Party (CH4/CNN Grid 4) Description: TCU National Championship Watch Party at Schollmaier Arena. Source: KTVT Market Embargo: Dallas-Ft. Worth, TX Web Usage: TV and Radio Affiliates Only'
+                  globalGridMetadata: null
+                  sourceName: null
+                  sourceType: null
+                  endTime: 1673311176901
+                  externalId: null
+                  repeatId: ''
+                  executeRepeatId: null
+                  slug: null
+                  title: null
+                  report: null
+                  color: 0
+                  operationRepeatParam: null
+                  objectId: '1031568061741809664'
+                  slugObjectId: '1062287011265785856'
+                  insertTime: 1673310559803
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: 21wcpdxYKsFFzTAayr3-c
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: 21wcpdxYKsFFzTAayr3-c
+          scopes:
+            21wcpdxYKsFFzTAayr3-c:
+              bearer: []
+      x-apifox-folder: Search API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351711930-run
+      operationId: retrieve_slug_351711930
+      x-source-doc: https://docs.tvunetworks.cn/api-351711930.md
+  /search/v2/media/updateslug:
+    post:
+      summary: slug with ingest setting
+      deprecated: false
+      description: Create a slug for the source object. If you need to trigger MMA recording, you will need the slugRecord information. If you need to trigger RRS recording, you will need the slugAdvanced information. You can choose either one. If no recording is required, then there is no need for the slugRecord and slugAdvanced information.
+      tags:
+      - Search API/event
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sourceId:
+                  type: string
+                  description: One objectId or sourceId is mandatory
+                startTime:
+                  type: integer
+                  description: Slug Start time. Current time by default
+                title:
+                  type: string
+                  description: 'Slug content: title-report-slug'
+                report:
+                  type: string
+                  description: 'Slug content: title-report-slug'
+                slug:
+                  type: string
+                  description: 'Slug content: title-report-slug'
+                endTime:
+                  type: integer
+                  description: End time of slug. The default value is 9999999999999
+                objectId:
+                  type: string
+                  description: One objectId or sourceId is mandatory
+                slugAdvanced:
+                  type: object
+                  properties:
+                    livePreview:
+                      type: integer
+                      description: 0:Close 1.Enable
+                    gridDistribution:
+                      type: integer
+                      description: 0:Close 1.Enable
+                    recording:
+                      type: integer
+                      description: 0:Close 1.Enable
+                    speechTranscription:
+                      type: integer
+                      description: 0:Close 1.Enable
+                    faceDetection:
+                      type: integer
+                      description: 0:Close 1.Enable
+                    transcriberInfo:
+                      type: string
+                      description: Json string，eg:{"LanguageCode":"en-US"}
+                    sourceResolution:
+                      type: integer
+                      description: //0:1080p60  1:lower  2:4kp30
+                  description: Used to start MMA recording
+                  x-apifox-orders:
+                  - livePreview
+                  - gridDistribution
+                  - recording
+                  - speechTranscription
+                  - faceDetection
+                  - transcriberInfo
+                  - sourceResolution
+                slugRecord:
+                  type: object
+                  properties:
+                    templateId:
+                      type: string
+                      description: The template used to start the corresponding module
+                    recording:
+                      type: string
+                      description: 0:Enable  1:Close. The default setting is enabled.
+                    vision:
+                      type: string
+                      description: 0:Enable  1:Close
+                    transcriber:
+                      type: string
+                      description: 0:Enable  1:Close
+                    transcriberParameter:
+                      type: string
+                      description: 'Custom parameters, such as language: {\"aiproxy\": {\"strLanguage\": \"en-US\"}}'
+                    rrsCustomParameter:
+                      type: string
+                      description: 'Custom parameters, such as stored information: {\"storage_info.bucket_name\": \"mma-video-new\"}}'
+                  description: Used to start RRS recording
+                  x-apifox-orders:
+                  - templateId
+                  - recording
+                  - vision
+                  - transcriber
+                  - transcriberParameter
+                  - rrsCustomParameter
+                useAuthUserInfo:
+                  type: boolean
+                  description: Obtain the user information in the authentication information. If creating slugAdvanced or slugRecord information, true must be passed
+                id:
+                  type: string
+                  description: It is required when updating slug.
+              required:
+              - objectId
+              x-apifox-orders:
+              - sourceId
+              - startTime
+              - title
+              - report
+              - slug
+              - endTime
+              - objectId
+              - slugAdvanced
+              - slugRecord
+              - useAuthUserInfo
+              - id
+            example: "{\n  \"objectId\": \"1416207015281299456\",\n  \"slug\": \"TEST 1\",\n  \"title\": \"\",\n  \"report\": \"\",\n  \"startTime\": 1758031200000,\n  \"endTime\": 1758038400000,\n  \"useAuthUserInfo\": true,\n  //slugRecord: Used to start RRS recording \n  \"slugRecord\": {\n    \"rrsCustomParameter\": \"{\\\"storage_info.bucket_name\\\":\\\"pp-va-001\\\",\\\"storage_info.bucket_region\\\":\\\"us-east-1\\\"}\",\n    \"vision\": 1,\n    \"templateId\": \"default\",\n    \"transcriber\": 1,\n    \"transcriberParameter\": null,\n    \"recording\": 0\n  },\n  //slugAdvanced:Used to start MMA recording\n  // \"slugAdvanced\": {.\n  //   \"livePreview\": 0,\n  //   \"gridDistribution\": 0,\n  //   \"recording\": 0,\n  //   \"speechTranscription\": 0,\n  //   \"faceDetection\": 0,\n  //   \"transcriberInfo\": \"\"\n  // }\n}"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      deleteFlag:
+                        type: integer
+                      createTime:
+                        type: integer
+                      updateTime:
+                        type: integer
+                      peerId:
+                        type: string
+                      gridLinkMetadata:
+                        type: 'null'
+                      globalGridMetadata:
+                        type: 'null'
+                      sourceName:
+                        type: 'null'
+                      sourceType:
+                        type: 'null'
+                      endTime:
+                        type: integer
+                      externalId:
+                        type: 'null'
+                      repeatId:
+                        type: string
+                      executeRepeatId:
+                        type: 'null'
+                      slug:
+                        type: string
+                      title:
+                        type: string
+                      report:
+                        type: 'null'
+                      color:
+                        type: integer
+                      operationRepeatParam:
+                        type: 'null'
+                      objectId:
+                        type: string
+                      slugObjectId:
+                        type: string
+                      insertTime:
+                        type: integer
+                      startTimeCode:
+                        type: 'null'
+                      endTimeCode:
+                        type: 'null'
+                      slugAdvanced:
+                        type: 'null'
+                      slugRecord:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          deleteFlag:
+                            type: integer
+                          createTime:
+                            type: integer
+                          updateTime:
+                            type: integer
+                          slugId:
+                            type: string
+                          rrsTaskId:
+                            type: 'null'
+                          userId:
+                            type: string
+                          sourceObjectId:
+                            type: string
+                          status:
+                            type: integer
+                          sourceId:
+                            type: string
+                          inputTaskId:
+                            type: 'null'
+                          templateId:
+                            type: string
+                          mmaId:
+                            type: 'null'
+                          recording:
+                            type: integer
+                          transcriber:
+                            type: integer
+                          vision:
+                            type: integer
+                          transcriberParameter:
+                            type: 'null'
+                          rrsCustomParameter:
+                            type: string
+                          groupId:
+                            type: string
+                        required:
+                        - id
+                        - deleteFlag
+                        - createTime
+                        - updateTime
+                        - slugId
+                        - rrsTaskId
+                        - userId
+                        - sourceObjectId
+                        - status
+                        - sourceId
+                        - inputTaskId
+                        - templateId
+                        - mmaId
+                        - recording
+                        - transcriber
+                        - vision
+                        - transcriberParameter
+                        - rrsCustomParameter
+                        - groupId
+                        x-apifox-orders:
+                        - id
+                        - deleteFlag
+                        - createTime
+                        - updateTime
+                        - slugId
+                        - rrsTaskId
+                        - userId
+                        - sourceObjectId
+                        - status
+                        - sourceId
+                        - inputTaskId
+                        - templateId
+                        - mmaId
+                        - recording
+                        - transcriber
+                        - vision
+                        - transcriberParameter
+                        - rrsCustomParameter
+                        - groupId
+                      thumbnailPath:
+                        type: 'null'
+                      userId:
+                        type: string
+                      groupId:
+                        type: string
+                      ingestFile:
+                        type: integer
+                      type:
+                        type: integer
+                      tags:
+                        type: 'null'
+                    required:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - peerId
+                    - gridLinkMetadata
+                    - globalGridMetadata
+                    - sourceName
+                    - sourceType
+                    - endTime
+                    - externalId
+                    - repeatId
+                    - executeRepeatId
+                    - slug
+                    - title
+                    - report
+                    - color
+                    - operationRepeatParam
+                    - objectId
+                    - slugObjectId
+                    - insertTime
+                    - startTimeCode
+                    - endTimeCode
+                    - slugAdvanced
+                    - slugRecord
+                    - thumbnailPath
+                    - userId
+                    - groupId
+                    - ingestFile
+                    - type
+                    - tags
+                    x-apifox-orders:
+                    - id
+                    - deleteFlag
+                    - createTime
+                    - updateTime
+                    - peerId
+                    - gridLinkMetadata
+                    - globalGridMetadata
+                    - sourceName
+                    - sourceType
+                    - endTime
+                    - externalId
+                    - repeatId
+                    - executeRepeatId
+                    - slug
+                    - title
+                    - report
+                    - color
+                    - operationRepeatParam
+                    - objectId
+                    - slugObjectId
+                    - insertTime
+                    - startTimeCode
+                    - endTimeCode
+                    - slugAdvanced
+                    - slugRecord
+                    - thumbnailPath
+                    - userId
+                    - groupId
+                    - ingestFile
+                    - type
+                    - tags
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: success
+                result:
+                  id: 20de82708f054b9c9a760579286d641b
+                  deleteFlag: 0
+                  createTime: 1758031200000
+                  updateTime: 1758031200000
+                  peerId: 55524c204558544c000001993e96564c
+                  gridLinkMetadata: null
+                  globalGridMetadata: null
+                  sourceName: null
+                  sourceType: null
+                  endTime: 1758038400000
+                  externalId: null
+                  repeatId: ''
+                  executeRepeatId: null
+                  slug: TEST 1
+                  title: TEST 1
+                  report: null
+                  color: 0
+                  operationRepeatParam: null
+                  objectId: '1416207015281299456'
+                  slugObjectId: '1417350622465888256'
+                  insertTime: 1757964321179
+                  startTimeCode: null
+                  endTimeCode: null
+                  slugAdvanced: null
+                  slugRecord:
+                    id: b25b2e26f5ee4109a239644080310661
+                    deleteFlag: 0
+                    createTime: 1757964321515
+                    updateTime: 1757964321515
+                    slugId: 20de82708f054b9c9a760579286d641b
+                    rrsTaskId: null
+                    userId: d0fd92de9b8b492ebc534a08488a7719
+                    sourceObjectId: '1416207015281299456'
+                    status: 0
+                    sourceId: 55524c204558544c000001993e96564c
+                    inputTaskId: null
+                    templateId: b170d0dc09d03353
+                    mmaId: null
+                    recording: 0
+                    transcriber: 1
+                    vision: 1
+                    transcriberParameter: null
+                    rrsCustomParameter: '{"storage_info.bucket_name":"pp-va-001","storage_info.bucket_region":"us-east-1"}'
+                    groupId: 472c23a709b7461d9143de5d516f5c00
+                  thumbnailPath: null
+                  userId: d0fd92de9b8b492ebc534a08488a7719
+                  groupId: 472c23a709b7461d9143de5d516f5c00
+                  ingestFile: 0
+                  type: 0
+                  tags: null
+          headers: {}
+          x-apifox-name: OK
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: 9hbXQ-4WLn3Bbnqz6Y4-v
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: 9hbXQ-4WLn3Bbnqz6Y4-v
+          scopes:
+            9hbXQ-4WLn3Bbnqz6Y4-v:
+              bearer: []
+      x-apifox-folder: Search API/event
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-351711926-run
+      operationId: slug_with_ingest_setting_351711926
+      x-source-doc: https://docs.tvunetworks.cn/api-351711926.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

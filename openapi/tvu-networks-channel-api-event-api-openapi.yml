@@ -1,0 +1,690 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Channel Channel API/Event API
+  description: Channel API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Channel API/Event
+paths:
+  /device/getSourceIdByTypeAndName:
+    post:
+      summary: Get sourceId based on sourceType and sourceName
+      deprecated: false
+      description: ''
+      tags:
+      - Channel API/Event
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                  - Media
+                  - File
+                  - Ext
+                  x-apifox-enum:
+                  - value: Media
+                    name: Media
+                    description: Media In Drive
+                  - value: File
+                    name: File
+                    description: Json File In Drive
+                  - value: Ext
+                    name: Ext
+                    description: LiveSource In CC
+                  examples:
+                  - Media
+                  description: Source Type; Media/File/Ext
+                name:
+                  type: string
+                  description: SourceName
+                  minLength: 1
+                  maxLength: 255
+                  examples:
+                  - 01.mp4
+              required:
+              - type
+              - name
+              x-apifox-orders:
+              - type
+              - name
+            example:
+              type: Media
+              name: 01.mp4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  errorInfo:
+                    type: string
+                  result:
+                    type: string
+                    description: SourceId
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result: 55524c204558544c000011917efddbdf
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Channel API/Event
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778584-run
+      operationId: Get_sourceId_based_on_sourceType_and_sourceName_250778584
+      x-source-doc: https://docs.tvunetworks.cn/api-250778584.md
+  /event/batchAdd:
+    post:
+      summary: batch add event
+      deprecated: false
+      description: ''
+      tags:
+      - Channel API/Event
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programId:
+                  type: string
+                  description: Can not be empty. The primary key ID of the program, which is the last 32-bit string on the URL after entering the Program
+                  examples:
+                  - bf126e495c0d47308fda297cf96b59b1
+                  maxLength: 32
+                eventParams:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      color:
+                        type: string
+                        description: This is the color displayed on the default UI
+                        default: rgb(255, 192, 0)
+                      duration:
+                        type: number
+                      endTime:
+                        type: number
+                      name:
+                        type: string
+                        default: fileName
+                      offset:
+                        type: integer
+                        default: 0
+                        description: default is 0
+                      scheduleType:
+                        type: string
+                        default: live
+                        description: default is 'live'
+                      sourceType:
+                        type: integer
+                        description: 0=media 1=live
+                      startTime:
+                        type: number
+                      title:
+                        type: string
+                        maxLength: 220
+                      tpeerid:
+                        type: string
+                        description: the selected playback file sourceId
+                      ttype:
+                        type: string
+                        description: ' default is ‘File’'
+                      turl:
+                        type: string
+                      eventSegments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            segmentId:
+                              type: integer
+                            segmentOrder:
+                              type: integer
+                            timingIn:
+                              type: number
+                            timingOut:
+                              type: number
+                            sourceId:
+                              type: string
+                              description: if segmentId=2 can not empty
+                            fileType:
+                              type: string
+                              description: if segmentId=2 default=Video
+                            fileName:
+                              type: string
+                              description: file name
+                            eventOperationType:
+                              type: string
+                              description: if segmentId=2 use 'Underplay clip'
+                          x-apifox-orders:
+                          - segmentId
+                          - segmentOrder
+                          - timingIn
+                          - timingOut
+                          - sourceId
+                          - fileType
+                          - fileName
+                          - eventOperationType
+                          required:
+                          - segmentId
+                          - segmentOrder
+                          - timingIn
+                          - timingOut
+                    x-apifox-orders:
+                    - color
+                    - duration
+                    - endTime
+                    - name
+                    - offset
+                    - scheduleType
+                    - sourceType
+                    - startTime
+                    - title
+                    - tpeerid
+                    - ttype
+                    - turl
+                    - eventSegments
+                    required:
+                    - endTime
+                    - startTime
+                    - title
+                    - tpeerid
+                    - ttype
+                    - turl
+                    - eventSegments
+                    - duration
+                    - name
+                    - sourceType
+              x-apifox-orders:
+              - programId
+              - eventParams
+              required:
+              - eventParams
+              - programId
+            example:
+              eventParams:
+              - color: rgb(255, 192, 0)
+                scheduleType: live
+                sourceType: 0
+                title: youtube-3_Replay_20240924_154023_1104217.json
+                name: youtube-3_Replay_20240924_154023_1104217.json
+                tpeerid: 55524c204558544c00001192279c96f7
+                ttype: File
+                turl: https://pp-va-001.s3.amazonaws.com/92583622feae44888081823aa6004a70/RECORDINGS/youtube-3_Replay_20240924_154023_1104217.json
+                duration: 1798000
+                offset: 0
+                startTime: 1728685800000
+                endTime: 1728687598000
+                eventSegments:
+                - segmentId: 1
+                  segmentOrder: 0
+                  timingIn: 1728685800000
+                  timingOut: 1728687598000
+              - color: rgb(255, 192, 0)
+                scheduleType: live
+                sourceType: 0
+                title: youtube-3_Replay_20240924_145416_1104213.json
+                name: youtube-3_Replay_20240924_145416_1104213.json
+                tpeerid: 55524c204558544c00001192279c96f9
+                ttype: File
+                turl: https://pp-va-001.s3.amazonaws.com/92583622feae44888081823aa6004a70/RECORDINGS/youtube-3_Replay_20240924_145416_1104213.json
+                duration: 1799000
+                offset: 0
+                startTime: 1728687598000
+                endTime: 1728689397000
+                eventSegments:
+                - segmentId: 1
+                  segmentOrder: 0
+                  timingIn: 1728687598000
+                  timingOut: 1728689397000
+              - color: rgb(255, 192, 0)
+                scheduleType: live
+                sourceType: 0
+                title: youtube-3_Replay_20240923_141644_1104168.json
+                name: youtube-3_Replay_20240923_141644_1104168.json
+                tpeerid: 55524c204558544c000011921d8eaf90
+                ttype: File
+                turl: https://pp-va-001.s3.amazonaws.com/92583622feae44888081823aa6004a70/RECORDINGS/youtube-3_Replay_20240923_141644_1104168.json
+                duration: 1770000
+                offset: 0
+                startTime: 1728689397000
+                endTime: 1728691167000
+                eventSegments:
+                - segmentId: 1
+                  segmentOrder: 0
+                  timingIn: 1728689397000
+                  timingOut: 1728691167000
+              programId: e4a1880168584e6f96b1b7ef2eed062f
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                - id: null
+                  eventId: 1104593
+                  eventUUID: 25a192a0515e45098db9c45d1006e1c5
+                  userId: c87aaed7bace46dfaa802d830f9351e7
+                  title: youtube-3_Replay_20240924_154023_1104217.json
+                  affiliate: null
+                  description: null
+                  source: '{"peerFullId":"55524c204558544c00001192279c96f7","peerName":"youtube-3_Replay_20240924_154023_1104217.json","type":"file","url":"http://pp-va-001.s3.us-east-1.amazonaws.com/CHANNEL/RECORDING/c87aaed7bace46dfaa802d830f9351e7-e4a1880168584e6f96b1b7ef2eed062f-1104217/59cd4ed8417c4874bed705f09af3704e/1/play.m3u8","secondaryPeerFullId":null,"secondaryPeerName":null,"secondaryType":null,"secondaryUrl":null}'
+                  destination: '{"fullId":"fffffff11000a503","outputFilterId":null,"outputAddress":null,"title":null,"additionalTitle":null,"collectionTitle":null,"seasonNumber":null,"episodeNumber":null,"category":null,"description":null,"csaRating":null,"rating":null,"publicStr":null,"collectionId":null,"sherlockId":null,"oscarId":null,"metadataDate":null,"tags":null,"link":null}'
+                  startTime: 1728685800000
+                  endTime: 1728687598000
+                  status: 0
+                  failedReason: null
+                  parameters: '{"delay":"0","bitrate":"5000","reporter":null,"switchType":null,"peerFullId":"55524c204558544c00001192279c96f7","peerName":"youtube-3_Replay_20240924_154023_1104217.json","type":"file","url":null,"secondaryPeerFullId":null,"secondaryPeerName":null,"secondaryType":null,"secondaryUrl":null,"subtitleUrl":null,"audioShufflingList":null}'
+                  tpeerid: 55524c204558544c00001192279c96f7
+                  tname: youtube-3_Replay_20240924_154023_1104217.json
+                  cycleId: null
+                  secondaryTpeerid: null
+                  secondaryTname: null
+                  rpeerid: fffffff11000a503
+                  programId: e4a1880168584e6f96b1b7ef2eed062f
+                  outputFilterId: null
+                  execstatus: 0
+                  liveStatus: 0
+                  color: rgb(255, 192, 0)
+                  failedCase: null
+                  scheduleType: LIVE2
+                  executeStartTime: null
+                  executeEndTime: null
+                  scteId: null
+                  eventType: 2
+                  operationUserId: c87aaed7bace46dfaa802d830f9351e7
+                  sourceType: 0
+                  secondarySourceType: 0
+                  scte: null
+                  gridlinkCall: 0
+                  createTime: 1728629752692
+                  updateTime: 1728629752692
+                  offset: 0
+                  checkStatus: 1
+                  multipleModelType: 0
+                  eventModelType: 0
+                  loop: false
+                  rname: null
+                  takeNextId: null
+                  name: null
+                  clipId: null
+                  houseId: you10122024063000damon_test1
+                  takeNext: false
+                  setType: null
+                  record: 0
+                  replay: 0
+                  email: null
+                  eventRecordStatus: null
+                  playAdSlate: 2
+                  enableMergeCommandOfScte: 0
+                  preRoll: 2000
+                  copy: 'false'
+                  templateId: null
+                  pgmEndScte: 0
+                  pgmEndScteStatus: null
+                  pgmStartScte: 0
+                  pgmStartSourceId: null
+                  underplayClipId: null
+                  highlightEvent: null
+                  timeLock: 0
+                  thumbnail: null
+                  category: null
+                  daylightSavingTime: 0
+                  holdEventRundownTemplate: 0
+                  slateSourceId: null
+                  slateDuration: 0
+                  stopAdBreak: null
+                  trafficUUID: null
+                  eventSegmentList:
+                  - id: null
+                    segmentId: 1
+                    eventOperationType: null
+                    fileId: null
+                    timingIn: 1728685800000
+                    timingOut: 1728687598000
+                    accumulatedProgramTiming: 0
+                    suspend: 0
+                    sourceId: null
+                    sourceName: null
+                    fileName: null
+                    fileType: null
+                    sourceType: null
+                    segmentOrder: 0
+                    sonEventId: null
+                    blockId: null
+                    offset: 0
+                    offsetFrom: 0
+                    offsetTo: 0
+                    holdEventRundown: 0
+                    subtitleUrl: null
+                    iframeInfoParams: null
+                    scteUnderplayTemplates: null
+                    iframeToken: null
+                    logoRule: 0
+                    location: 0
+                    locationX: 0
+                    locationY: 0
+                    singularInfoParams: null
+                    iframeParams: null
+                    singularParams: null
+                    segmentSourceType: 0
+                    clockType: 0
+                    urlSigned: 0
+                    audioId: null
+                    audioSonEventInfo: null
+                  audioSonEventInfo: null
+                  metadataSidecarParam: null
+                  autoRecurEvent: false
+                  additionalMetadata: null
+                  prerollSourceReceiverVoList: null
+                  additionalSourceAudio: null
+                  ttype: file
+                  secondaryTtype: 'null'
+                - id: null
+                  eventId: 1104594
+                  eventUUID: 4c51bf2afade4a27b9e77e01754c8b1d
+                  userId: c87aaed7bace46dfaa802d830f9351e7
+                  title: youtube-3_Replay_20240924_145416_1104213.json
+                  affiliate: null
+                  description: null
+                  source: '{"peerFullId":"55524c204558544c00001192279c96f9","peerName":"youtube-3_Replay_20240924_145416_1104213.json","type":"file","url":"http://pp-va-001.s3.us-east-1.amazonaws.com/CHANNEL/RECORDING/c87aaed7bace46dfaa802d830f9351e7-e4a1880168584e6f96b1b7ef2eed062f-1104213/204adb543e434794bdd0904d8a7a745d/1/play.m3u8","secondaryPeerFullId":null,"secondaryPeerName":null,"secondaryType":null,"secondaryUrl":null}'
+                  destination: '{"fullId":"fffffff11000a503","outputFilterId":null,"outputAddress":null,"title":null,"additionalTitle":null,"collectionTitle":null,"seasonNumber":null,"episodeNumber":null,"category":null,"description":null,"csaRating":null,"rating":null,"publicStr":null,"collectionId":null,"sherlockId":null,"oscarId":null,"metadataDate":null,"tags":null,"link":null}'
+                  startTime: 1728687598000
+                  endTime: 1728689397000
+                  status: 0
+                  failedReason: null
+                  parameters: '{"delay":"0","bitrate":"5000","reporter":null,"switchType":null,"peerFullId":"55524c204558544c00001192279c96f9","peerName":"youtube-3_Replay_20240924_145416_1104213.json","type":"file","url":null,"secondaryPeerFullId":null,"secondaryPeerName":null,"secondaryType":null,"secondaryUrl":null,"subtitleUrl":null,"audioShufflingList":null}'
+                  tpeerid: 55524c204558544c00001192279c96f9
+                  tname: youtube-3_Replay_20240924_145416_1104213.json
+                  cycleId: null
+                  secondaryTpeerid: null
+                  secondaryTname: null
+                  rpeerid: fffffff11000a503
+                  programId: e4a1880168584e6f96b1b7ef2eed062f
+                  outputFilterId: null
+                  execstatus: 0
+                  liveStatus: 0
+                  color: rgb(255, 192, 0)
+                  failedCase: null
+                  scheduleType: LIVE2
+                  executeStartTime: null
+                  executeEndTime: null
+                  scteId: null
+                  eventType: 2
+                  operationUserId: c87aaed7bace46dfaa802d830f9351e7
+                  sourceType: 0
+                  secondarySourceType: 0
+                  scte: null
+                  gridlinkCall: 0
+                  createTime: 1728629754324
+                  updateTime: 1728629754324
+                  offset: 0
+                  checkStatus: 1
+                  multipleModelType: 0
+                  eventModelType: 0
+                  loop: false
+                  rname: null
+                  takeNextId: null
+                  name: null
+                  clipId: null
+                  houseId: you10122024065958damon_test1
+                  takeNext: false
+                  setType: null
+                  record: 0
+                  replay: 0
+                  email: null
+                  eventRecordStatus: null
+                  playAdSlate: 2
+                  enableMergeCommandOfScte: 0
+                  preRoll: 2000
+                  copy: 'false'
+                  templateId: null
+                  pgmEndScte: 0
+                  pgmEndScteStatus: null
+                  pgmStartScte: 0
+                  pgmStartSourceId: null
+                  underplayClipId: null
+                  highlightEvent: null
+                  timeLock: 0
+                  thumbnail: null
+                  category: null
+                  daylightSavingTime: 0
+                  holdEventRundownTemplate: 0
+                  slateSourceId: null
+                  slateDuration: 0
+                  stopAdBreak: null
+                  trafficUUID: null
+                  eventSegmentList:
+                  - id: null
+                    segmentId: 1
+                    eventOperationType: null
+                    fileId: null
+                    timingIn: 1728687598000
+                    timingOut: 1728689397000
+                    accumulatedProgramTiming: 0
+                    suspend: 0
+                    sourceId: null
+                    sourceName: null
+                    fileName: null
+                    fileType: null
+                    sourceType: null
+                    segmentOrder: 0
+                    sonEventId: null
+                    blockId: null
+                    offset: 0
+                    offsetFrom: 0
+                    offsetTo: 0
+                    holdEventRundown: 0
+                    subtitleUrl: null
+                    iframeInfoParams: null
+                    scteUnderplayTemplates: null
+                    iframeToken: null
+                    logoRule: 0
+                    location: 0
+                    locationX: 0
+                    locationY: 0
+                    singularInfoParams: null
+                    iframeParams: null
+                    singularParams: null
+                    segmentSourceType: 0
+                    clockType: 0
+                    urlSigned: 0
+                    audioId: null
+                    audioSonEventInfo: null
+                  audioSonEventInfo: null
+                  metadataSidecarParam: null
+                  autoRecurEvent: false
+                  additionalMetadata: null
+                  prerollSourceReceiverVoList: null
+                  additionalSourceAudio: null
+                  ttype: file
+                  secondaryTtype: 'null'
+                - id: null
+                  eventId: 1104595
+                  eventUUID: 4a8c7014693c433c9b7cddd5a04bc2ce
+                  userId: c87aaed7bace46dfaa802d830f9351e7
+                  title: youtube-3_Replay_20240923_141644_1104168.json
+                  affiliate: null
+                  description: null
+                  source: '{"peerFullId":"55524c204558544c000011921d8eaf90","peerName":"youtube-3_Replay_20240923_141644_1104168.json","type":"file","url":"http://pp-va-001.s3.us-east-1.amazonaws.com/CHANNEL/RECORDING/c87aaed7bace46dfaa802d830f9351e7-e4a1880168584e6f96b1b7ef2eed062f-1104168/30993420868c4f51bd4fe5a85fc83404/1/play.m3u8","secondaryPeerFullId":null,"secondaryPeerName":null,"secondaryType":null,"secondaryUrl":null}'
+                  destination: '{"fullId":"fffffff11000a503","outputFilterId":null,"outputAddress":null,"title":null,"additionalTitle":null,"collectionTitle":null,"seasonNumber":null,"episodeNumber":null,"category":null,"description":null,"csaRating":null,"rating":null,"publicStr":null,"collectionId":null,"sherlockId":null,"oscarId":null,"metadataDate":null,"tags":null,"link":null}'
+                  startTime: 1728689397000
+                  endTime: 1728691167000
+                  status: 0
+                  failedReason: null
+                  parameters: '{"delay":"0","bitrate":"5000","reporter":null,"switchType":null,"peerFullId":"55524c204558544c000011921d8eaf90","peerName":"youtube-3_Replay_20240923_141644_1104168.json","type":"file","url":null,"secondaryPeerFullId":null,"secondaryPeerName":null,"secondaryType":null,"secondaryUrl":null,"subtitleUrl":null,"audioShufflingList":null}'
+                  tpeerid: 55524c204558544c000011921d8eaf90
+                  tname: youtube-3_Replay_20240923_141644_1104168.json
+                  cycleId: null
+                  secondaryTpeerid: null
+                  secondaryTname: null
+                  rpeerid: fffffff11000a503
+                  programId: e4a1880168584e6f96b1b7ef2eed062f
+                  outputFilterId: null
+                  execstatus: 0
+                  liveStatus: 0
+                  color: rgb(255, 192, 0)
+                  failedCase: null
+                  scheduleType: LIVE2
+                  executeStartTime: null
+                  executeEndTime: null
+                  scteId: null
+                  eventType: 2
+                  operationUserId: c87aaed7bace46dfaa802d830f9351e7
+                  sourceType: 0
+                  secondarySourceType: 0
+                  scte: null
+                  gridlinkCall: 0
+                  createTime: 1728629770160
+                  updateTime: 1728629770160
+                  offset: 0
+                  checkStatus: 1
+                  multipleModelType: 0
+                  eventModelType: 0
+                  loop: false
+                  rname: null
+                  takeNextId: null
+                  name: null
+                  clipId: null
+                  houseId: you10122024072957damon_test1
+                  takeNext: false
+                  setType: null
+                  record: 0
+                  replay: 0
+                  email: null
+                  eventRecordStatus: null
+                  playAdSlate: 2
+                  enableMergeCommandOfScte: 0
+                  preRoll: 2000
+                  copy: 'false'
+                  templateId: null
+                  pgmEndScte: 0
+                  pgmEndScteStatus: null
+                  pgmStartScte: 0
+                  pgmStartSourceId: null
+                  underplayClipId: null
+                  highlightEvent: null
+                  timeLock: 0
+                  thumbnail: null
+                  category: null
+                  daylightSavingTime: 0
+                  holdEventRundownTemplate: 0
+                  slateSourceId: null
+                  slateDuration: 0
+                  stopAdBreak: null
+                  trafficUUID: null
+                  eventSegmentList:
+                  - id: null
+                    segmentId: 1
+                    eventOperationType: null
+                    fileId: null
+                    timingIn: 1728689397000
+                    timingOut: 1728691167000
+                    accumulatedProgramTiming: 0
+                    suspend: 0
+                    sourceId: null
+                    sourceName: null
+                    fileName: null
+                    fileType: null
+                    sourceType: null
+                    segmentOrder: 0
+                    sonEventId: null
+                    blockId: null
+                    offset: 0
+                    offsetFrom: 0
+                    offsetTo: 0
+                    holdEventRundown: 0
+                    subtitleUrl: null
+                    iframeInfoParams: null
+                    scteUnderplayTemplates: null
+                    iframeToken: null
+                    logoRule: 0
+                    location: 0
+                    locationX: 0
+                    locationY: 0
+                    singularInfoParams: null
+                    iframeParams: null
+                    singularParams: null
+                    segmentSourceType: 0
+                    clockType: 0
+                    urlSigned: 0
+                    audioId: null
+                    audioSonEventInfo: null
+                  audioSonEventInfo: null
+                  metadataSidecarParam: null
+                  autoRecurEvent: false
+                  additionalMetadata: null
+                  prerollSourceReceiverVoList: null
+                  additionalSourceAudio: null
+                  ttype: file
+                  secondaryTtype: 'null'
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Channel API/Event
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778583-run
+      operationId: batch_add_event_250778583
+      x-source-doc: https://docs.tvunetworks.cn/api-250778583.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

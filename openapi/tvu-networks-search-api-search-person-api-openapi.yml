@@ -1,0 +1,709 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Search Search API/search/person API
+  description: Search API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://search.tvunetworks.com
+  description: Apifox server "TVUSearch"
+tags:
+- name: Search API/search/person
+paths:
+  /api/search/v1/i/click:
+    get:
+      summary: List persons detected in a media file by face recognition
+      deprecated: false
+      description: 'Returns a paginated list of persons identified via face recognition within the specified media recording and time window. Identify the recording by ''ph_path'' (required); optionally narrow to a specific TVU device using ''peerid''. Each result includes the person''s ID, name, thumbnail, and detected timestamps. Sort options: sort=1 ranks persons by how frequently they appear (useful for recurrence scoring); sort=2 lists persons in the order they first appear as on-screen guests. Session ID required.'
+      tags:
+      - Search API/search/person
+      parameters:
+      - name: userid
+        in: query
+        description: Authenticated user ID
+        required: true
+        example: soffeeshu4@tvu.com
+        schema:
+          type: string
+      - name: sessionid
+        in: query
+        description: Valid session ID for authentication
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: query
+        description: Unique media file identifier
+        required: false
+        example: 05-FFFFFFF11015C601-0C206C452A419A78
+        schema:
+          type: string
+      - name: ph_path
+        in: query
+        description: Physical path of the media file
+        required: true
+        example: mp4/FFFFFFF00015C633/55524C204558544C0000018F6581E6E4/240530-05-37-41-157/2/rt.mpd
+        schema:
+          type: string
+      - name: pathtype
+        in: query
+        description: Path type of the media file
+        required: true
+        example: mpd
+        schema:
+          type: string
+      - name: peerid
+        in: query
+        description: Peer node ID of the source device
+        required: false
+        example: FFFFFFF00015C633
+        schema:
+          type: string
+      - name: starttime
+        in: query
+        description: Search start time in milliseconds since epoch
+        required: false
+        example: 1717055940297
+        schema:
+          type: integer
+      - name: endtime
+        in: query
+        description: Search end time in milliseconds since epoch
+        required: false
+        example: 1717059381397
+        schema:
+          type: integer
+      - name: pageNum
+        in: query
+        description: Page number (1-based)
+        required: false
+        example: 1
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        description: Number of results per page
+        required: false
+        example: 999
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        description: 'Sort method: 1=by recurrence, 2=by in-guest order'
+        required: false
+        example: 1
+        schema:
+          type: integer
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.PersonListClickResp'
+              example:
+                code: 0
+                message: succ
+                data:
+                  size: 1
+                  total: 1
+                  list:
+                  - name: ''
+                    person_id: 1710142217249mbzk5zx0
+                    path: FFFFFFF00015C633_1717048728819.jpg
+                    position:
+                      height: 271
+                      left: 1076
+                      top: 118
+                      width: 186
+                    peer_id: FFFFFFF00015C633
+                    timestamp: 1717055943701
+                    face_num: 1
+                    last_update_ts: 1717055943701
+                    tslist:
+                    - 1717055943701
+                    tracklist:
+                    - - 1717055943701
+                      - 1717055944101
+                    group_id: 00fe20a2d2d84093b304f0d54d4bedda
+                    total_track_duration: 1000
+                  host_person:
+                    name: ''
+                    total_track_duration: 0
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/person
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959089-run
+      operationId: List_persons_detected_in_a_media_file_by_face_recognition_468959089
+      x-source-doc: https://docs.tvunetworks.cn/api-468959089.md
+  /api/search/v1/i/globalnametag:
+    post:
+      summary: Search persons globally by name or ID tags
+      deprecated: false
+      description: Searches for named persons across all accessible groups and data sources. Accepts a free-text name query (e.g. 'John Smith') and/or a list of known person IDs as tag filters to narrow results. Unlike the group-scoped name search, this endpoint queries the global person index and returns matches from any group library accessible to the caller. Each result includes person profile metadata. Pagination via pageNum/pageSize. Session ID required.
+      tags:
+      - Search API/search/person
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/models.SearchPersonNameWithTagsReq'
+            example:
+              query: ROBINSON
+              size: 20
+              userid: shorvath@newsnationnow.com
+              sessionid: 1C0C49E66DAC4CEE941EF70F77A94A9F
+              tsrange:
+                starttime: 1775684026048
+                endtime: 1778276026048
+              tags:
+                personids: []
+              permission:
+                objectSources:
+                - '1031568072126906368'
+                - '1031567701400764416'
+                enable: true
+      responses:
+        '200':
+          description: 'Successful response; check code field for logical results: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.SearchPersonNameWithTagsResp'
+              example:
+                code: 0
+                message: succ
+                data:
+                  host_person:
+                    name: ''
+                  list:
+                  - access:
+                      peerlist:
+                      - FFFFFFF00001B200
+                    asset_num: 1
+                    face_num: 2
+                    group_id: b7f47630d47c4479aff16b9e1862e77d
+                    name: Amy Robinson
+                    path: FFFFFFF00001B200_1721098514284.jpg
+                    peer_id: FFFFFFF00001B200
+                    person_id: 1721098512007fkpmi32n
+                    position:
+                      height: 167
+                      left: 1330
+                      top: 364
+                      width: 124
+                    timestamp: 1721098514284
+                  - access:
+                      peerlist:
+                      - FFFFFFF00001B203
+                    asset_num: 1
+                    face_num: 51
+                    group_id: b7f47630d47c4479aff16b9e1862e77d
+                    name: Eartha Robinson
+                    path: FFFFFFF00001B203_1714742713669.jpg
+                    peer_id: FFFFFFF00001B203
+                    person_id: 1714742710657872ut2gm
+                    position:
+                      height: 183
+                      left: 439
+                      top: 144
+                      width: 135
+                    timestamp: 1714742713669
+                  size: 4
+                  total: 4
+          headers: {}
+          x-apifox-name: ''
+        '400':
+          description: Malformed HTTP request or parse error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                x-apifox-orders: []
+                properties: {}
+                x-apifox-ignore-properties: []
+          headers: {}
+          x-apifox-name: ''
+      security: []
+      x-apifox-folder: Search API/search/person
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-468959090-run
+      operationId: Search_persons_globally_by_name_or_ID_tags_468959090
+      x-source-doc: https://docs.tvunetworks.cn/api-468959090.md
+components:
+  schemas:
+    models.SearchLocation:
+      type: object
+      properties:
+        br:
+          type: string
+        tl:
+          type: string
+      x-apifox-orders:
+      - br
+      - tl
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchPersonNameWithTagsResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+          examples:
+          - 0
+        data:
+          description: return data, if exists
+          allOf:
+          - $ref: '#/components/schemas/controllers.ReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+          examples:
+          - succ
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.GpsInfo:
+      type: object
+      properties:
+        distance:
+          type: number
+        lat:
+          type: number
+        lon:
+          type: number
+      x-apifox-orders:
+      - distance
+      - lat
+      - lon
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.PersonListClickResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+          examples:
+          - 0
+        data:
+          description: return data, if exists
+          allOf:
+          - $ref: '#/components/schemas/controllers.ReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+          examples:
+          - succ
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchTsRange:
+      type: object
+      properties:
+        endtime:
+          type: integer
+          examples:
+          - 1778304241635
+        field:
+          type: string
+        starttime:
+          type: integer
+          examples:
+          - 1778304121635
+      x-apifox-orders:
+      - endtime
+      - field
+      - starttime
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.ReturnData:
+      type: object
+      properties:
+        host_person:
+          $ref: '#/components/schemas/models.PersonReturnData'
+        list:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+          examples:
+          - 1
+        total:
+          type: integer
+          examples:
+          - 1
+      x-apifox-orders:
+      - host_person
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchTags:
+      type: object
+      properties:
+        CustomSourceSort:
+          description: Custom sort order for sources, comma-separated
+          type: string
+        favorite:
+          type: integer
+        feature:
+          type: array
+          items:
+            type: string
+        geoinfo:
+          type: string
+        gpsinfo:
+          $ref: '#/components/schemas/models.GpsInfo'
+        liveSources:
+          description: 'Sort by source status, first priority: sources actively ingesting (have ongoing events)'
+          type: array
+          items:
+            type: string
+        location:
+          $ref: '#/components/schemas/models.SearchLocation'
+        noInputSources:
+          description: 'Sort by source status, third priority: online sources with no input'
+          type: array
+          items:
+            type: string
+        objectEvents:
+          description: events
+          type: array
+          items:
+            type: string
+        objectGeo:
+          description: geo
+          type: array
+          items:
+            type: string
+        objectGroupIds:
+          description: Group ID list for object search
+          type: array
+          items:
+            type: string
+          examples:
+          - - bc3a83594dcd41288c52dac3c552da3d
+        objectSources:
+          description: sources
+          type: array
+          items:
+            type: string
+          examples:
+          - - '1447853763061747712'
+        objectTags:
+          description: object tags
+          type: array
+          items:
+            type: string
+        objectUserIds:
+          description: User ID list for object search
+          type: array
+          items:
+            type: string
+          examples:
+          - - 4668211d13424faea1677b51810cb488
+        onlineSources:
+          description: 'Sort by source status, second priority: online sources with no ongoing event'
+          type: array
+          items:
+            type: string
+        personids:
+          type: array
+          items:
+            type: string
+        status:
+          description: ingesting or live or other
+          type: integer
+        storyids:
+          type: array
+          items:
+            type: string
+        uids:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - CustomSourceSort
+      - favorite
+      - feature
+      - geoinfo
+      - gpsinfo
+      - liveSources
+      - location
+      - noInputSources
+      - objectEvents
+      - objectGeo
+      - objectGroupIds
+      - objectSources
+      - objectTags
+      - objectUserIds
+      - onlineSources
+      - personids
+      - status
+      - storyids
+      - uids
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchPersonNameWithTagsReq:
+      type: object
+      properties:
+        durationRange:
+          $ref: '#/components/schemas/models.SearchDurationRange'
+        pageNum:
+          type: integer
+          examples:
+          - 1
+        pageSize:
+          type: integer
+          examples:
+          - 8
+        permission:
+          $ref: '#/components/schemas/models.AccessPermission'
+        query:
+          type: string
+          examples:
+          - ROBINSON
+        searchLang:
+          type: string
+        sessionid:
+          type: string
+          examples:
+          - 1C0C49E66DAC4CEE941EF70F77A94A9F
+        size:
+          type: integer
+          examples:
+          - 20
+        slugtag:
+          type: boolean
+        sort:
+          type: integer
+          examples:
+          - 1
+        source:
+          type: array
+          items:
+            type: string
+          examples:
+          - - source
+        tags:
+          $ref: '#/components/schemas/models.SearchTags'
+        tsrange:
+          $ref: '#/components/schemas/models.SearchTsRange'
+        userid:
+          type: string
+          examples:
+          - shorvath@newsnationnow.com
+      x-apifox-orders:
+      - durationRange
+      - pageNum
+      - pageSize
+      - permission
+      - query
+      - searchLang
+      - sessionid
+      - size
+      - slugtag
+      - sort
+      - source
+      - tags
+      - tsrange
+      - userid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchDurationRange:
+      type: object
+      properties:
+        durationEnd:
+          type: integer
+        durationStart:
+          type: integer
+      x-apifox-orders:
+      - durationEnd
+      - durationStart
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AccessPermission:
+      type: object
+      properties:
+        black:
+          type: array
+          items:
+            type: string
+        enable:
+          type: boolean
+          examples:
+          - true
+        enableown:
+          type: boolean
+        objectSources:
+          description: New object permission sources
+          type: array
+          items:
+            type: string
+          examples:
+          - - '1031568072126906368'
+        private:
+          type: array
+          items:
+            type: string
+        public:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - black
+      - enable
+      - enableown
+      - objectSources
+      - private
+      - public
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.PersonReturnData:
+      type: object
+      properties:
+        asset_num:
+          type: integer
+        face_num:
+          type: integer
+          examples:
+          - 1
+        group_id:
+          type: string
+          examples:
+          - 00fe20a2d2d84093b304f0d54d4bedda
+        highlight:
+          type: string
+        last_update_ts:
+          type: integer
+          examples:
+          - 1717055943701
+        name:
+          type: string
+          examples:
+          - ''
+        object_media:
+          type: integer
+        path:
+          type: string
+          examples:
+          - FFFFFFF00015C633_1717048728819.jpg
+        peer_id:
+          type: string
+          examples:
+          - FFFFFFF00015C633
+        person_id:
+          type: string
+          examples:
+          - 1710142217249mbzk5zx0
+        position:
+          type: string
+        recfile_path:
+          type: string
+        sourceObjectId:
+          type: string
+        tag:
+          type: string
+        timestamp:
+          type: integer
+          examples:
+          - 1717055943701
+        total_track_duration:
+          type: integer
+          examples:
+          - 1000
+        tracklist:
+          description: the first value is the emerged time of the person, the second value is the disappearred time.
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int64
+        tslist:
+          type: array
+          items:
+            type: integer
+        uid:
+          type: string
+      x-apifox-orders:
+      - asset_num
+      - face_num
+      - group_id
+      - highlight
+      - last_update_ts
+      - name
+      - object_media
+      - path
+      - peer_id
+      - person_id
+      - position
+      - recfile_path
+      - sourceObjectId
+      - tag
+      - timestamp
+      - total_track_duration
+      - tracklist
+      - tslist
+      - uid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

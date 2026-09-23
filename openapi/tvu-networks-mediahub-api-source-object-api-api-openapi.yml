@@ -1,0 +1,734 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — MediaHub MediaHub API/source-object-api API
+  description: MediaHub API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+- url: https://mediahub.tvunetworks.com
+  description: Apifox server "MediaHub"
+tags:
+- name: MediaHub API/source-object-api
+paths:
+  /mediahub/api/v2/sourceObject:
+    post:
+      summary: createSourceObject
+      deprecated: false
+      description: ''
+      operationId: createSourceObject
+      tags:
+      - MediaHub API/source-object-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSourceObjectParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultObjectInfoDTO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/source-object-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498606-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498606.md
+    put:
+      summary: updateSourceObjectInfo
+      deprecated: false
+      description: ''
+      operationId: updateSourceObjectInfo
+      tags:
+      - MediaHub API/source-object-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSourceObjectDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultObjectInfoDTO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/source-object-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498607-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498607.md
+  /mediahub/api/v2/sourceObject/bulk:
+    post:
+      summary: deleteSourceObjectInfoBulk
+      deprecated: false
+      description: ''
+      operationId: batchDeleteSourceObject
+      tags:
+      - MediaHub API/source-object-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/source-object-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498609-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498609.md
+  /mediahub/api/v2/sourceObject/{objectId}:
+    get:
+      summary: sourceObjectInfo
+      deprecated: false
+      description: ''
+      operationId: sourceObjectInfo
+      tags:
+      - MediaHub API/source-object-api
+      parameters:
+      - name: objectId
+        in: path
+        description: ''
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultObjectInfoDTO'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/source-object-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498604-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498604.md
+    delete:
+      summary: deleteSourceObjectInfo
+      deprecated: false
+      description: ''
+      operationId: deleteSourceObjectInfo
+      tags:
+      - MediaHub API/source-object-api
+      parameters:
+      - name: objectId
+        in: path
+        description: ''
+        required: true
+        example: ''
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResult'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/source-object-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498605-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498605.md
+  /mediahub/api/v2/sourceObjects:
+    post:
+      summary: listSourceObjects
+      deprecated: false
+      description: ''
+      operationId: listSourceObjects
+      tags:
+      - MediaHub API/source-object-api
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceObjectListParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResponseResultSourceSearchPageVo'
+          headers: {}
+          x-apifox-name: OK
+      security: []
+      x-apifox-folder: MediaHub API/source-object-api
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-243498608-run
+      x-source-doc: https://docs.tvunetworks.cn/api-243498608.md
+components:
+  schemas:
+    SourceAttrPO:
+      type: object
+      properties:
+        id:
+          type: string
+        createTime:
+          type: integer
+          format: int64
+        updateTime:
+          type: integer
+          format: int64
+        deleteFlag:
+          type: integer
+          format: int32
+        bitrate:
+          type: integer
+          format: int32
+        delay:
+          type: integer
+          format: int32
+        sourceId:
+          type: string
+        objectId:
+          type: string
+        region:
+          type: string
+        boxPoolId:
+          type: string
+      x-apifox-orders:
+      - id
+      - createTime
+      - updateTime
+      - deleteFlag
+      - bitrate
+      - delay
+      - sourceId
+      - objectId
+      - region
+      - boxPoolId
+      x--orders:
+      - id
+      - createTime
+      - updateTime
+      - deleteFlag
+      - bitrate
+      - delay
+      - sourceId
+      - objectId
+      - region
+      - boxPoolId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultObjectInfoDTO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ObjectInfoDTO'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    SourceSearchObject:
+      type: object
+      properties:
+        objectId:
+          type: string
+        objectName:
+          type: string
+        objectType:
+          type: integer
+          format: int32
+        objectTypeStr:
+          type: string
+        tangibleId:
+          type: string
+        tangibleName:
+          type: string
+        tangibleType:
+          type: string
+        updateTimestamp:
+          type: integer
+          format: int64
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceSearchTag'
+        status:
+          type: integer
+          format: int32
+        description:
+          type: string
+        remark:
+          type: string
+        concreteType:
+          type: string
+        previewId:
+          type: string
+        rtilCode:
+          type: string
+        partyCode:
+          type: string
+        previewType:
+          type: integer
+          format: int32
+        url:
+          type: string
+        previewStatus:
+          type: integer
+          format: int32
+        previewStartTime:
+          type: integer
+          format: int64
+        videoUrl:
+          type: string
+        recordStatus:
+          type: integer
+          format: int32
+        taskId:
+          type: string
+        objectConnectInfo:
+          $ref: '#/components/schemas/ObjectConnectInfo'
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        sourceAttrDTO:
+          $ref: '#/components/schemas/SourceAttrPO'
+        extraInfo:
+          type: object
+          additionalProperties:
+            type: object
+            x-apifox-orders: []
+            x--orders: []
+            properties: {}
+            x--ignore-properties: []
+          x-apifox-orders: []
+          x--orders: []
+          properties: {}
+          x--ignore-properties: []
+        rank:
+          type: integer
+          format: int32
+        env:
+          type: string
+      x-apifox-orders:
+      - objectId
+      - objectName
+      - objectType
+      - objectTypeStr
+      - tangibleId
+      - tangibleName
+      - tangibleType
+      - updateTimestamp
+      - tags
+      - status
+      - description
+      - remark
+      - concreteType
+      - previewId
+      - rtilCode
+      - partyCode
+      - previewType
+      - url
+      - previewStatus
+      - previewStartTime
+      - videoUrl
+      - recordStatus
+      - taskId
+      - objectConnectInfo
+      - attributes
+      - sourceAttrDTO
+      - extraInfo
+      - rank
+      - env
+      x--orders:
+      - objectId
+      - objectName
+      - objectType
+      - objectTypeStr
+      - tangibleId
+      - tangibleName
+      - tangibleType
+      - updateTimestamp
+      - tags
+      - status
+      - description
+      - remark
+      - concreteType
+      - previewId
+      - rtilCode
+      - partyCode
+      - previewType
+      - url
+      - previewStatus
+      - previewStartTime
+      - videoUrl
+      - recordStatus
+      - taskId
+      - objectConnectInfo
+      - attributes
+      - sourceAttrDTO
+      - extraInfo
+      - rank
+      - env
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AddSourceObjectParam:
+      required:
+      - sourceName
+      - url
+      - sourceType
+      type: object
+      properties:
+        sourceName:
+          type: string
+        url:
+          type: string
+        sourceType:
+          type: string
+        region:
+          type: string
+          default: us-east-1
+          examples:
+          - us-east-1
+        boxPoolId:
+          type: string
+          description: This property can be obtained from tvu home by contacting support
+      x-apifox-orders:
+      - sourceName
+      - url
+      - sourceType
+      - region
+      - boxPoolId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ObjectConnectInfo:
+      type: object
+      properties:
+        status:
+          type: string
+          description: source object status
+          enum:
+          - inactive
+          - active
+          examples:
+          - active
+        live:
+          type: boolean
+          description: whether the source is LIVE
+        projectId:
+          type: string
+          description: when source object is live this value will be returned
+      description: source object connect info
+      x-apifox-orders:
+      - status
+      - live
+      - projectId
+      x--orders:
+      - status
+      - live
+      - projectId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    SourceSearchPageVo:
+      type: object
+      properties:
+        totalNum:
+          type: integer
+          format: int32
+        sourceList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceSearchObject'
+      x-apifox-orders:
+      - totalNum
+      - sourceList
+      x--orders:
+      - totalNum
+      - sourceList
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    SourceObjectListParam:
+      type: object
+      properties:
+        pageNum:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        condition:
+          type: string
+      x-apifox-orders:
+      - pageNum
+      - pageSize
+      - condition
+      x--orders:
+      - pageNum
+      - pageSize
+      - condition
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ObjectInfoDTO:
+      type: object
+      properties:
+        objectId:
+          type: string
+        objectName:
+          type: string
+        tangibleId:
+          type: string
+        tangibleInfo:
+          type: string
+        objectType:
+          type: integer
+          format: int32
+        url:
+          type: string
+      x-apifox-orders:
+      - objectId
+      - objectName
+      - tangibleId
+      - tangibleInfo
+      - objectType
+      - url
+      x--orders:
+      - objectId
+      - objectName
+      - tangibleId
+      - tangibleInfo
+      - objectType
+      - url
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    SourceSearchTag:
+      type: object
+      properties:
+        tagId:
+          type: string
+        tagName:
+          type: string
+        label:
+          type: string
+        classification:
+          type: integer
+          format: int32
+      x-apifox-orders:
+      - tagId
+      - tagName
+      - label
+      - classification
+      x--orders:
+      - tagId
+      - tagName
+      - label
+      - classification
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    Attribute:
+      type: object
+      properties:
+        attrName:
+          type: string
+        attrValue:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - attrName
+      - attrValue
+      x--orders:
+      - attrName
+      - attrValue
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    UpdateSourceObjectDTO:
+      required:
+      - objectId
+      - sourceName
+      - url
+      type: object
+      properties:
+        objectId:
+          type: string
+        sourceName:
+          type: string
+        url:
+          type: string
+        region:
+          type: string
+          description: When setting the boxPoolId property, the region property is ignored.
+          default: us-east-1
+          examples:
+          - us-east-1
+        boxPoolId:
+          type: string
+          description: This property can be obtained from tvu home by contacting support
+      x-apifox-orders:
+      - objectId
+      - sourceName
+      - url
+      - region
+      - boxPoolId
+      x--orders:
+      - objectId
+      - sourceName
+      - url
+      - region
+      - boxPoolId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultSourceSearchPageVo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/SourceSearchPageVo'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

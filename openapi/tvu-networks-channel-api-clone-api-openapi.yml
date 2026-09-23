@@ -1,0 +1,269 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Channel Channel API/clone API
+  description: Channel API operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Channel API/clone
+paths:
+  /clone/enableSyncBroadcastData:
+    get:
+      summary: enable/disable sync at start of Broadcast day
+      deprecated: false
+      tags:
+      - Channel API/clone
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programId:
+                  type: string
+                  description: Slave channel id
+                syncBroadcastDataOpen:
+                  type: integer
+                  description: 'open: 0-disable, 1-enable'
+              required:
+              - programId
+              - syncBroadcastDataOpen
+              x-apifox-orders:
+              - programId
+              - syncBroadcastDataOpen
+            example:
+              programId: 6a4818c9ae9747ca9ab8020a17817d61
+              syncBroadcastDataOpen: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result: null
+          headers: {}
+          x-apifox-name: Success
+      security: []
+      x-apifox-folder: Channel API/clone
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778581-run
+      operationId: enable_disable_sync_at_start_of_Broadcast_day_250778581
+      x-source-doc: https://docs.tvunetworks.cn/api-250778581.md
+  /tvu-playout/clone/copyDataFromMasterToSlave:
+    post:
+      summary: mirror clone
+      deprecated: false
+      tags:
+      - Channel API/clone
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                masterProgramId:
+                  type: string
+                  description: master Program Id
+                slaveProgramId:
+                  type: string
+                  description: slave Program Id
+                startTime:
+                  type: integer
+                  description: start time
+                endTime:
+                  type: integer
+                  description: end time
+              required:
+              - masterProgramId
+              - slaveProgramId
+              - startTime
+              - endTime
+              x-apifox-orders:
+              - masterProgramId
+              - slaveProgramId
+              - startTime
+              - endTime
+            example:
+              masterProgramId: 759aa623c7c04b5d913d138a712758ab
+              slaveProgramId: ccb45a16e40e4c75894c5180f17a0b7d
+              startTime: 1717132716000
+              endTime: 1717219116000
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: 200 means normal, and other numbers mean abnormal
+                  errorInfo:
+                    type: string
+                    description: In normal cases, success is returned. In abnormal cases, specific exception information is returned to the front-end
+                  result:
+                    type: 'null'
+                    description: empty
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              examples:
+                '1':
+                  summary: Success
+                  value:
+                    errorCode: '0x0'
+                    errorInfo: Success
+                    result: null
+                '4':
+                  summary: Success
+                  value:
+                    errorCode: '81003511'
+                    errorInfo: Copying,Please wait
+                    result: null
+          headers: {}
+          x-apifox-name: '200'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: 200 means normal, and other numbers mean abnormal
+                  errorInfo:
+                    type: string
+                    description: In normal cases, success is returned. In abnormal cases, specific exception information is returned to the front-end
+                  result:
+                    type: 'null'
+                    description: empty
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '81003502'
+                errorInfo: Mirror channels does not be set.
+                result: null
+          headers: {}
+          x-apifox-name: Mirror channels does not be set
+        x-500:Please turn off the clone sync first.:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: 200 means normal, and other numbers mean abnormal
+                  errorInfo:
+                    type: string
+                    description: In normal cases, success is returned. In abnormal cases, specific exception information is returned to the front-end
+                  result:
+                    type: 'null'
+                    description: empty
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '81003510'
+                errorInfo: Please turn off the clone sync first.
+                result: null
+          headers: {}
+          x-apifox-name: Please turn off the clone sync first.
+        x-500:Copying,Please wait:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                    description: 200 means normal, and other numbers mean abnormal
+                  errorInfo:
+                    type: string
+                    description: In normal cases, success is returned. In abnormal cases, specific exception information is returned to the front-end
+                  result:
+                    type: 'null'
+                    description: empty
+                required:
+                - errorCode
+                - errorInfo
+                - result
+                x-apifox-orders:
+                - errorCode
+                - errorInfo
+                - result
+              example:
+                errorCode: '81003511'
+                errorInfo: Copying,Please wait
+                result: null
+          headers: {}
+          x-apifox-name: Copying,Please wait
+      security: []
+      x-apifox-folder: Channel API/clone
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778580-run
+      operationId: mirror_clone_250778580
+      x-source-doc: https://docs.tvunetworks.cn/api-250778580.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

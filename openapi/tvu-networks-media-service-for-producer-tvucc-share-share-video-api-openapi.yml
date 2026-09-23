@@ -1,0 +1,342 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Media Service For Producer Media Service For…
+  description: Media Service For Producer operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Media Service For Producer/tvucc-share/share Video
+paths:
+  /media/tvucc-share/shareVideo/startShareVideo:
+    post:
+      summary: liveRtmpOutputAccount
+      deprecated: false
+      description: '**Request Param**
+
+
+        | param name | required | type | desc |
+
+        | :--------- | :--- | :----- | ------------------------------------------------------------ |
+
+        | rId | Y | String | R PID |
+
+        | id | Y | String | output account id |
+
+        | origin | Y | String | please set value pp |
+
+        | module | Y | String |please set value Studio|
+
+        | targetId | Y | String |producer program id |
+
+        | platform | F | String |please set value pp |
+
+        | sessionId | F | String |producer productionId from Producer GrapQL API |
+
+        | colorStandard| F | Object|Value reference document：https://ffmpeg.org/ffmpeg-codecs.html |
+
+        | colorPrimaries| Y | colorStandard Object| Chromaticity value,Value reference document：https://ffmpeg.org/ffmpeg-codecs.html|
+
+        | colorTrc| Y | colorStandard Object| High color characteristics,Value reference document：https://ffmpeg.org/ffmpeg-codecs.html |
+
+        | colorSpace| Y | colorStandard Object| color space Value reference document：https://ffmpeg.org/ffmpeg-codecs.html |
+
+        | colorRange| Y | colorStandard Object|color range Value reference document：https://ffmpeg.org/ffmpeg-codecs.html|
+
+
+        **Request exmple**
+
+
+        ```
+
+        {
+
+        "rId": "fffffffbb00ba003",
+
+        "id": "82411903055e45c49e719a6a62a3325a",
+
+        "bitrate": "5.0M",
+
+        "resolution": "1920x1080",
+
+        "targetId": 41563952205824,
+
+        "platform": "pp",
+
+        "origin": "pp",
+
+        "module": "Studio",
+
+        "sessionId": 10300665,
+
+        "colorStandard":{
+
+        "colorPrimaries":"bt709",
+
+        "colorTrc":"bt709",
+
+        "colorSpace":"rgb",
+
+        "colorRange":"tv"
+
+        }
+
+
+        }
+
+        ```
+
+
+        **Response**
+
+
+        ```
+
+        {
+
+        "errorCode": "0x0",
+
+        "errorInfo": "Success",
+
+        "result": {
+
+        "success": [
+
+        {
+
+        "errorCode": "0x0",
+
+        "errorInfo": "Success",
+
+        "result": {
+
+        "id": "82411903055e45c49e719a6a62a3325a",
+
+        "rtmp": "rtmp://10.12.22.23/test",
+
+        "platformType": "O",
+
+        "account": "test-rtmp-push",
+
+        "authType": "1",
+
+        "custom": null,
+
+        "errorMsg": null,
+
+        "errorObj": null,
+
+        "subType": "RTMP"
+
+        }
+
+        }
+
+        ]
+
+        }
+
+        }
+
+
+        ```'
+      tags:
+      - Media Service For Producer/tvucc-share/share Video
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: DBC549501C574694AB920614ABFC468E
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              rId: fffffffbb00ba003
+              id: 82411903055e45c49e719a6a62a3325a
+              bitrate: 5.0M
+              resolution: 1920x1080
+              targetId: 41563952205824
+              platform: pp
+              origin: pp
+              module: Studio
+              sessionId: 10300665
+              colorStandard:
+                colorPrimaries: bt709
+                colorTrc: bt709
+                colorSpace: rgb
+                colorRange: tv
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                  success:
+                  - errorCode: '0x0'
+                    errorInfo: Success
+                    result:
+                      id: 82411903055e45c49e719a6a62a3325a
+                      rtmp: rtmp://10.12.22.23/test
+                      platformType: O
+                      account: test-rtmp-push
+                      authType: '1'
+                      custom: null
+                      errorMsg: null
+                      errorObj: null
+                      subType: RTMP
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-share/share Video
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778590-run
+      operationId: liveRtmpOutputAccount_250778590
+      x-source-doc: https://docs.tvunetworks.cn/api-250778590.md
+  /media/tvucc-share/shareVideo/stopShare:
+    post:
+      summary: stopRtmpOutput
+      deprecated: false
+      description: '**Request Param：**
+
+
+        | Param name | required | type | desc |
+
+        | :---------- | :--- | :----- | ------------------------------------------------------------ |
+
+        | rId | Y | String | R PID |
+
+        | id | Y | String | output account id from add RTMP account API |
+
+        | origin | Y | String | please set value Studio pp |
+
+        | module | Y | String | please set value Studio |
+
+
+        **reqeust param**
+
+
+        ```
+
+        {
+
+        "rId":"fffffffbb00ba003",
+
+        "id":"cf2d469fb38348f9b54d976ba9420a3a",
+
+        "origin":"pp",
+
+        "module":"Studio"
+
+        }
+
+        ```
+
+
+        **Response**
+
+
+        ```
+
+        {
+
+        "errorCode": "0x0",
+
+        "errorInfo": "Success",
+
+        "result": null
+
+        }
+
+
+        ```'
+      tags:
+      - Media Service For Producer/tvucc-share/share Video
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: XXX
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              rId: fffffffbb00ba003
+              id: cf2d469fb38348f9b54d976ba9420a3a
+              origin: pp
+              module: Studio
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result: null
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-share/share Video
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778589-run
+      operationId: stopRtmpOutput_250778589
+      x-source-doc: https://docs.tvunetworks.cn/api-250778589.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

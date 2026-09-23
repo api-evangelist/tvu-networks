@@ -1,0 +1,147 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Uncategorized Dashboards API
+  description: Uncategorized operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Dashboards
+paths:
+  /_dashboards/api/console/proxy:
+    post:
+      summary: 查询Object信息
+      deprecated: false
+      description: ''
+      tags:
+      - Dashboards
+      parameters:
+      - name: SID
+        in: cookie
+        description: ''
+        required: false
+        example: '{{SID}}'
+        schema:
+          type: string
+          default: '{{SID}}'
+      - name: object01
+        in: cookie
+        description: ''
+        required: false
+        example: 01daily1
+        schema:
+          type: string
+          default: 01daily1
+      - name: path
+        in: query
+        description: ''
+        required: false
+        example: '%2Ftvu-object-2024%2F_search'
+        schema:
+          type: string
+      - name: method
+        in: query
+        description: ''
+        required: false
+        example: GET
+        schema:
+          type: string
+      - name: osd-version
+        in: header
+        description: ''
+        required: false
+        example: '{{osd-version}}'
+        schema:
+          type: string
+      - name: osd-xsrf
+        in: header
+        description: ''
+        required: false
+        example: '{{osd-xsrf}}'
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: false
+        example: '{{cookie_es}}'
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: ''
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: SID
+        in: header
+        description: ''
+        example: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+        schema:
+          type: string
+          default: 92575d36dcb631ac94745e6b157de17a5a13d65b31e44869f06854ab928dd80235d4daae8696b4a92a7be5f802c45a219648701fc9ca59f44e9c0f022d5d38a7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              query:
+                term:
+                  objectId:
+                    value: '1220745129208463360'
+              sort:
+              - createTimestamp:
+                  order: desc
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+          headers: {}
+          x-apifox-name: ''
+      security:
+      - bearer: []
+        x-apifox:
+          schemeGroups:
+          - id: jQeJvs0qKIU08YWjz4NfP
+            schemeIds:
+            - bearer
+          required: true
+          use:
+            id: jQeJvs0qKIU08YWjz4NfP
+          scopes:
+            jQeJvs0qKIU08YWjz4NfP:
+              bearer: []
+      x-apifox-folder: ''
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-473290257-run
+      operationId: Object_473290257
+      x-source-doc: https://docs.tvunetworks.cn/api-473290257.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer

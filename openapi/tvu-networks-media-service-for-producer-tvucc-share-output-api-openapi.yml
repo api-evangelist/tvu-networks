@@ -1,0 +1,444 @@
+openapi: 3.2.0
+info:
+  title: TVU Networks — Media Service For Producer Media Service For…
+  description: Media Service For Producer operations of the TVU Networks public HTTP API, assembled verbatim from the per-endpoint OpenAPI 3.0.1 exports TVU publishes on its own Apifox documentation site (https://docs.tvunetworks.cn/). Each operation body is the provider's own export; only grouping, servers[] and operationId backfill were added by API Evangelist.
+  version: 1.0.0
+  contact:
+    name: TVU Networks
+    url: https://www.tvunetworks.com/tvu-developer/
+servers:
+- url: https://api.tvunetworks.com
+  description: Prod Env default server
+tags:
+- name: Media Service For Producer/tvucc-share/output
+paths:
+  /media/tvucc-share/output/goLive:
+    post:
+      summary: liveOutput
+      deprecated: false
+      description: '# Description
+
+
+        **Brief**
+
+
+        - goLive3
+
+
+        **Request URL**
+
+
+        - `{domain}``/media/tvucc-share/output/goLive`
+
+
+        **Request Mode**
+
+
+        - POST
+
+
+        **Request Headers**
+
+
+        |key|value|
+
+        |:----|:---|
+
+        |Authorization|[D8554504FA734CFB87BCD38D25158174]|
+
+        |Cookie|[SID=D8554504FA734CFB87BCD38D25158174]|
+
+        |Content-Type|[application/json;charset=UTF-8]|
+
+
+        **Parameter(body)**
+
+
+        |name|required|type|explain|
+
+        |:----|:---|:----|:---|
+
+        |id|Y|String|output account id|
+
+        |rId|Y|String|producer mainRid (Can be obtained from Producer GrappQL API) |
+
+        |resolution|Y|String|resolution|
+
+        |module|Y|If r is a producer, r needs to be set to Studio|
+
+        |origin|N|String|If r is a producer, r needs to be set to pp|
+
+        |bitrate|Y|String|bitrate|
+
+        |targetId|Y|String|producer programId ( Can be obtained from Producer GrappQL API)|
+
+        |platform|Y|String|If r is a producer, r needs to be set to pp|
+
+        |sessionId|F|String|producer productionId (Can be obtained from Producer GrappQL API) |
+
+        |audioTrackMap|F|Integer[]|remap values：[1,2,3,4]
+
+        | colorStandard| F | Object|Value reference document：https://ffmpeg.org/ffmpeg-codecs.html |
+
+        | colorPrimaries| Y | colorStandard Object| Chromaticity value,Value reference document：https://ffmpeg.org/ffmpeg-codecs.html|
+
+        | colorTrc| Y | colorStandard Object| High color characteristics,Value reference document：https://ffmpeg.org/ffmpeg-codecs.html |
+
+        | colorSpace| Y | colorStandard Object| color space Value reference document：https://ffmpeg.org/ffmpeg-codecs.html |
+
+        | colorRange| Y | colorStandard Object|color range Value reference document：https://ffmpeg.org/ffmpeg-codecs.html|
+
+
+        # Request Example
+
+
+        **Request Example(body)**
+
+        ```json
+
+        {
+
+        "rId":"fffffffbb0006708",
+
+        "id":"5bb0575054744f71839bd36003bbfffd",
+
+        "targetId":52846403399680,
+
+        "platform":"pp",
+
+        "origin":"pp",
+
+        "module":"Studio",
+
+        "sessionId":10027572
+
+        }
+
+        ```
+
+
+        ---
+
+
+        # Response Example
+
+
+        **Return Example**
+
+
+        ```json
+
+        {
+
+        "errorCode": "0x0",
+
+        "errorInfo": "Success",
+
+        "result": [
+
+        {
+
+        "platformType": null,
+
+        "id": "5bb0575054744f71839bd36003bbfffd",
+
+        "nickname": "HLS_20230410",
+
+        "pushTime": "1681193477872",
+
+        "CopierNickName": "HLS_20230410",
+
+        "RtmpUrl": "https://54.234.114.108:8298/1.m3u8?n=10&d=6",
+
+        "EncoderIndex": "1",
+
+        "Type": 2,
+
+        "CopierType": "M3U8",
+
+        "RetryTimes": 0,
+
+        "Extra": "{\"duration\":6,\"sliceCount\":10,\"index\":\"1\"}"
+
+        }
+
+        ]
+
+        }
+
+        ```
+
+        **Return Example Description**
+
+
+        |name|type|explain|
+
+        |:----|:---|
+
+        |result|JSONArray|Return data|
+
+        |errorCode|String|Return error code description，0x0:success|
+
+        |errorInfo|String|Return error description|'
+      tags:
+      - Media Service For Producer/tvucc-share/output
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: D9B77CDEEA384660AE00A523E057432C
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              rId: fffffffbb0006708
+              id: 5bb0575054744f71839bd36003bbfffd
+              targetId: 52846403399680
+              platform: pp
+              origin: pp
+              module: Studio
+              sessionId: 10027572
+              colorStandard:
+                colorPrimaries: bt709
+                colorTrc: bt709
+                colorSpace: rgb
+                colorRange: tv
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example:
+                errorCode: '0x0'
+                errorInfo: Success
+                result:
+                - platformType: null
+                  id: 5bb0575054744f71839bd36003bbfffd
+                  nickname: HLS_20230410
+                  pushTime: '1681193477872'
+                  CopierNickName: HLS_20230410
+                  RtmpUrl: https://54.234.114.108:8298/1.m3u8?n=10&d=6
+                  EncoderIndex: '1'
+                  Type: 2
+                  CopierType: M3U8
+                  RetryTimes: 0
+                  Extra: '{"duration":6,"sliceCount":10,"index":"1"}'
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-share/output
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778588-run
+      operationId: liveOutput_250778588
+      x-source-doc: https://docs.tvunetworks.cn/api-250778588.md
+  /media/tvucc-share/output/stopLive:
+    post:
+      summary: stopOutput
+      deprecated: false
+      description: '# Description
+
+
+        **Brief**
+
+
+        - stopLive
+
+
+        **Request URL**
+
+
+        - `{{domain}}``/media/tvucc-share/output/stopLive`
+
+
+        **Request Mode**
+
+
+        - POST
+
+
+        **Request Headers**
+
+
+        |key|value|
+
+        |:----|:---|
+
+        |Authorization|[D8554504FA734CFB87BCD38D25158174]|
+
+        |Cookie|[SID=D8554504FA734CFB87BCD38D25158174]|
+
+        |Content-Type|[application/json;charset=UTF-8]|
+
+        **Parameter(body)**
+
+
+        |name|required|type|explain|
+
+        |:----|:---|:----|:---|
+
+        |id|Y|String|output account id|
+
+        |rId|Y|String|ReceiverId|
+
+        |platform|Y|String|If r is a producer, r needs to be set to pp|
+
+        |origin|Y|String|If r is a producer, r needs to be set to pp|
+
+        |module|Y|String|If r is a producer, r needs to be set to Studio|
+
+        ---
+
+
+        # Request Example
+
+
+        **Request Example(body)**
+
+        ```json
+
+        {
+
+        "rId":"fffffffbb0006708",
+
+        "id":"5bb0575054744f71839bd36003bbfffd",
+
+        "platform":"pp",
+
+        "origin":"pp",
+
+        "module":"Studio"
+
+        }
+
+        ```
+
+
+        ---
+
+
+        # Response Example
+
+
+        **Return Example**
+
+
+        ```json
+
+        {
+
+        "errorCode": "0x0",
+
+        "errorInfo": "Success",
+
+        "result": [
+
+        {
+
+        "copierNickName": "HLS_20230410",
+
+        "EncoderIndex": "1",
+
+        "module": "Studio"
+
+        }
+
+        ]
+
+        }
+
+        ```
+
+        **Return Example Description**
+
+
+        |name|type|explain|
+
+        |:----|:---|
+
+        |result|JSONArray|Return data|
+
+        |errorCode|String|Return error code description，0x0:success|
+
+        |errorInfo|String|Return error description|'
+      tags:
+      - Media Service For Producer/tvucc-share/output
+      parameters:
+      - name: SID
+        in: header
+        description: ''
+        required: true
+        example: D9B77CDEEA384660AE00A523E057432C
+        schema:
+          type: string
+      - name: Cookie
+        in: header
+        description: ''
+        required: true
+        example: mediasearch10=10mstfri
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-orders: []
+            example:
+              rId: fffffffbb0006708
+              id: 5bb0575054744f71839bd36003bbfffd
+              platform: pp
+              origin: pp
+              module: Studio
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+                x-apifox-orders: []
+              example: "{\n    \"errorCode\": \"0x0\",\n    \"errorInfo\": \"Success\",\n    \"result\": [\n        {\n            \"copierNickName\": \"HLS_20230410\",\n            \"EncoderIndex\": \"1\",\n            \"module\": \"Studio\"\n        }\n    ]\n}"
+          headers: {}
+          x-apifox-name: Untitled Response
+      security: []
+      x-apifox-folder: Media Service For Producer/tvucc-share/output
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-250778587-run
+      operationId: stopOutput_250778587
+      x-source-doc: https://docs.tvunetworks.cn/api-250778587.md
+components:
+  securitySchemes:
+    bearer:
+      type: bearer
+      scheme: bearer
+    apikey-header-Authorization:
+      type: apikey
+      in: header
+      name: Authorization
+    apikey-header-SID:
+      type: apikey
+      in: header
+      name: SID
+    tvu:
+      type: bearer
+      scheme: bearer
