@@ -605,97 +605,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-450372673.md
 components:
   schemas:
-    ProcessResultObject:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: 'Error code. "0x0" indicates success; any other value indicates an error.
-
-            Common codes: "0x0"=success, "80B00101"=parameter error, "0x80100002"=null record,
-
-            "0x80100003"=exception, "0x80100008"=request timeout.'
-        errorInfo:
-          type: string
-          description: 'Human-readable error message corresponding to errorCode.
-
-            "success" when errorCode is "0x0".'
-        result:
-          type: object
-          properties: {}
-          x--orders: []
-          x--ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    CreateSlugRecordParam:
-      type: object
-      properties:
-        sourceObjectId:
-          type: string
-          description: source object id
-        slug:
-          type: string
-          description: slug
-        title:
-          type: string
-          description: The display title of the slug/event.
-        report:
-          type: string
-          description: The report or description text for the slug.
-        startTime:
-          type: integer
-          description: 'Slug start time as a Unix timestamp in milliseconds.
-
-            When this time is reached, recording will be triggered automatically.
-
-            Defaults to the current time if not provided.'
-          format: int64
-        endTime:
-          type: integer
-          description: 'Slug end time as a Unix timestamp in milliseconds.
-
-            When this time is reached, recording will be stopped automatically.
-
-            Defaults to 9999999999999 (no expiry) if not provided.'
-          format: int64
-        recordingType:
-          type: integer
-          description: 'Recording backend type. Optional.
-
-            null or 0 - Simple slug creation, no recording is triggered.
-
-            1 - MMA (Media Mind Application). Requires mmaRecordingParameters.
-
-            2 - RRS (Remote Recording Service). Requires rrsRecordingParameters.'
-        mmaRecordingParameters:
-          $ref: '#/components/schemas/MmaRecordingParam'
-          description: MMA recording configuration parameters. Required when recordingType = 1.
-        rrsRecordingParameters:
-          $ref: '#/components/schemas/RrsRecordingParam'
-          description: RRS recording configuration parameters. Required when recordingType = 2.
-      required:
-      - sourceObjectId
-      - slug
-      x-apifox-orders:
-      - sourceObjectId
-      - slug
-      - title
-      - report
-      - startTime
-      - endTime
-      - recordingType
-      - mmaRecordingParameters
-      - rrsRecordingParameters
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     RrsRecordingParam:
       type: object
       properties:
@@ -753,6 +662,36 @@ components:
       - vision
       - transcriberParameter
       - rrsCustomParameter
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ProcessResultObject:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: 'Error code. "0x0" indicates success; any other value indicates an error.
+
+            Common codes: "0x0"=success, "80B00101"=parameter error, "0x80100002"=null record,
+
+            "0x80100003"=exception, "0x80100008"=request timeout.'
+        errorInfo:
+          type: string
+          description: 'Human-readable error message corresponding to errorCode.
+
+            "success" when errorCode is "0x0".'
+        result:
+          type: object
+          properties: {}
+          x--orders: []
+          x--ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
       x--ignore-properties: []
       x-apifox-folder: ''
     MmaRecordingParam:
@@ -824,6 +763,67 @@ components:
       - transcriberInfo
       - sourceResolution
       x--ignore-properties: []
+      x-apifox-folder: ''
+    CreateSlugRecordParam:
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+          description: source object id
+        slug:
+          type: string
+          description: slug
+        title:
+          type: string
+          description: The display title of the slug/event.
+        report:
+          type: string
+          description: The report or description text for the slug.
+        startTime:
+          type: integer
+          description: 'Slug start time as a Unix timestamp in milliseconds.
+
+            When this time is reached, recording will be triggered automatically.
+
+            Defaults to the current time if not provided.'
+          format: int64
+        endTime:
+          type: integer
+          description: 'Slug end time as a Unix timestamp in milliseconds.
+
+            When this time is reached, recording will be stopped automatically.
+
+            Defaults to 9999999999999 (no expiry) if not provided.'
+          format: int64
+        recordingType:
+          type: integer
+          description: 'Recording backend type. Optional.
+
+            null or 0 - Simple slug creation, no recording is triggered.
+
+            1 - MMA (Media Mind Application). Requires mmaRecordingParameters.
+
+            2 - RRS (Remote Recording Service). Requires rrsRecordingParameters.'
+        mmaRecordingParameters:
+          $ref: '#/components/schemas/MmaRecordingParam'
+          description: MMA recording configuration parameters. Required when recordingType = 1.
+        rrsRecordingParameters:
+          $ref: '#/components/schemas/RrsRecordingParam'
+          description: RRS recording configuration parameters. Required when recordingType = 2.
+      required:
+      - sourceObjectId
+      - slug
+      x-apifox-orders:
+      - sourceObjectId
+      - slug
+      - title
+      - report
+      - startTime
+      - endTime
+      - recordingType
+      - mmaRecordingParameters
+      - rrsRecordingParameters
+      x-apifox-ignore-properties: []
       x-apifox-folder: ''
     UpdateSlugRecordParam:
       type: object

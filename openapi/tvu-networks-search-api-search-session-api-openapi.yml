@@ -58,6 +58,18 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959085.md
 components:
   schemas:
+    controllers.UpdateActivityResp:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+      x-apifox-orders:
+      - code
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     controllers.UpdateActivityReq:
       type: object
       properties:
@@ -71,18 +83,6 @@ components:
       - page
       - sessionid
       - userid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.UpdateActivityResp:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-      x-apifox-orders:
-      - code
-      - message
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

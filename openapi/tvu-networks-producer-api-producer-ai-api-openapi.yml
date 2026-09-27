@@ -218,6 +218,20 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778563.md
 components:
   schemas:
+    PlayAllClipPlayerRequest:
+      required:
+      - productionId
+      type: object
+      properties:
+        productionId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - productionId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     UploadSourceThumbnailRequest:
       required:
       - imageBase64
@@ -261,20 +275,6 @@ components:
       - imageUrl
       - slotNo
       - timestamp
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    PlayAllClipPlayerRequest:
-      required:
-      - productionId
-      type: object
-      properties:
-        productionId:
-          type: integer
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - productionId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     UpdateAISettingRequest:

@@ -162,28 +162,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778559.md
 components:
   schemas:
-    SlaveProgramAndFeature:
-      required:
-      - slaveProgramId
-      - gangFeatures
-      type: object
-      properties:
-        slaveProgramId:
-          type: integer
-          description: slave program id
-          format: int64
-          examples:
-          - 1960549480044043000
-        gangFeatures:
-          type: string
-          description: gang features
-          examples:
-          - IAexnRrpkqadVFibZAocTpixYqPLTFcll
-      x-apifox-orders:
-      - slaveProgramId
-      - gangFeatures
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     GangOperateRequest:
       required:
       - slaveProgramAndFeatures
@@ -204,6 +182,28 @@ components:
       x-apifox-orders:
       - slaveProgramAndFeatures
       - masterProgramId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SlaveProgramAndFeature:
+      required:
+      - slaveProgramId
+      - gangFeatures
+      type: object
+      properties:
+        slaveProgramId:
+          type: integer
+          description: slave program id
+          format: int64
+          examples:
+          - 1960549480044043000
+        gangFeatures:
+          type: string
+          description: gang features
+          examples:
+          - IAexnRrpkqadVFibZAocTpixYqPLTFcll
+      x-apifox-orders:
+      - slaveProgramId
+      - gangFeatures
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

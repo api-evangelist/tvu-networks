@@ -421,6 +421,42 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-243498617.md
 components:
   schemas:
+    PairDetailVO:
+      type: object
+      properties:
+        outputEncodingProfilePairId:
+          type: string
+        outputId:
+          type: string
+        profileId:
+          type: string
+        multiProfileId:
+          type: string
+          description: Only applicable for multi-encoding hls
+        staticIp:
+          type: string
+        outputName:
+          type: string
+        profileName:
+          type: string
+      x-apifox-orders:
+      - outputEncodingProfilePairId
+      - outputId
+      - profileId
+      - multiProfileId
+      - staticIp
+      - outputName
+      - profileName
+      x--orders:
+      - outputEncodingProfilePairId
+      - outputId
+      - profileId
+      - multiProfileId
+      - staticIp
+      - outputName
+      - profileName
+      x--ignore-properties: []
+      x-apifox-folder: ''
     OutputDTO:
       required:
       - type
@@ -474,40 +510,6 @@ components:
       - url
       x--ignore-properties: []
       x-apifox-folder: ''
-    ResultOutputDTO:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          $ref: '#/components/schemas/OutputDTO'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResultPageResultOutputVo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          $ref: '#/components/schemas/PageResultOutputVo'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--ignore-properties: []
-      x-apifox-folder: ''
     OutputQueryDTO:
       required:
       - pageSize
@@ -536,108 +538,23 @@ components:
       - liveOnly
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    ResponseResult:
+    ResultPageResultOutputVo:
       type: object
       properties:
         errorCode:
           type: string
-          examples:
-          - '0x0'
         errorInfo:
           type: string
-          examples:
-          - success
         result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
+          $ref: '#/components/schemas/PageResultOutputVo'
       x-apifox-orders:
       - errorCode
       - errorInfo
       - result
-      - async
-      - errorBody
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResultListPairVo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/PairVo'
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          x--orders: []
-          properties: {}
-          x--ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
       x--orders:
       - errorCode
       - errorInfo
       - result
-      - async
-      - errorBody
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    PairDetailVO:
-      type: object
-      properties:
-        outputEncodingProfilePairId:
-          type: string
-        outputId:
-          type: string
-        profileId:
-          type: string
-        multiProfileId:
-          type: string
-          description: Only applicable for multi-encoding hls
-        staticIp:
-          type: string
-        outputName:
-          type: string
-        profileName:
-          type: string
-      x-apifox-orders:
-      - outputEncodingProfilePairId
-      - outputId
-      - profileId
-      - multiProfileId
-      - staticIp
-      - outputName
-      - profileName
-      x--orders:
-      - outputEncodingProfilePairId
-      - outputId
-      - profileId
-      - multiProfileId
-      - staticIp
-      - outputName
-      - profileName
       x--ignore-properties: []
       x-apifox-folder: ''
     Result:
@@ -695,6 +612,43 @@ components:
       - errorBody
       x--ignore-properties: []
       x-apifox-folder: ''
+    ResponseResultListPairVo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/PairVo'
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          x--orders: []
+          properties: {}
+          x--ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--ignore-properties: []
+      x-apifox-folder: ''
     OutputEncodingProfilePairDTO:
       type: object
       properties:
@@ -714,28 +668,6 @@ components:
       - profileId
       - staticIp
       x--ignore-properties: []
-      x-apifox-folder: ''
-    PairVo:
-      type: object
-      properties:
-        outputEncodingProfilePairId:
-          type: string
-        outputId:
-          type: string
-        profileId:
-          type: string
-        multiProfileId:
-          type: string
-          description: Only applicable for multi-encoding hls
-        staticIp:
-          type: string
-      x-apifox-orders:
-      - outputEncodingProfilePairId
-      - outputId
-      - profileId
-      - multiProfileId
-      - staticIp
-      x-apifox-ignore-properties: []
       x-apifox-folder: ''
     CreateOutputDTO:
       required:
@@ -762,6 +694,21 @@ components:
       - outputName
       - url
       x--ignore-properties: []
+      x-apifox-folder: ''
+    ResultOutputDTO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          $ref: '#/components/schemas/OutputDTO'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
       x-apifox-folder: ''
     PageResultOutputVo:
       type: object
@@ -795,6 +742,59 @@ components:
       - total
       - pages
       x--ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PairVo:
+      type: object
+      properties:
+        outputEncodingProfilePairId:
+          type: string
+        outputId:
+          type: string
+        profileId:
+          type: string
+        multiProfileId:
+          type: string
+          description: Only applicable for multi-encoding hls
+        staticIp:
+          type: string
+      x-apifox-orders:
+      - outputEncodingProfilePairId
+      - outputId
+      - profileId
+      - multiProfileId
+      - staticIp
+      x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:
     bearer:

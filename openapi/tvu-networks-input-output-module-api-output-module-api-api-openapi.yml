@@ -17,7 +17,7 @@ paths:
       summary: run output
       deprecated: false
       description: run output module connect with input
-      operationId: run output
+      operationId: runOutput
       tags:
       - Input&Output Module API/output-module-api
       parameters:
@@ -50,11 +50,13 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728352-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728352.md
+      x-operation-id-source: normalized
+      x-operation-id-original: run output
     put:
       summary: update output
       deprecated: false
       description: update output module connect with input
-      operationId: update output
+      operationId: updateOutput
       tags:
       - Input&Output Module API/output-module-api
       parameters:
@@ -87,12 +89,14 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728353-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728353.md
+      x-operation-id-source: normalized
+      x-operation-id-original: update output
   /output-docker/api/v1/output/{outputId}:
     get:
       summary: query output
       deprecated: false
       description: ''
-      operationId: query output
+      operationId: queryOutput
       tags:
       - Input&Output Module API/output-module-api
       parameters:
@@ -126,11 +130,13 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728355-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728355.md
+      x-operation-id-source: normalized
+      x-operation-id-original: query output
     delete:
       summary: delete output
       deprecated: false
       description: ''
-      operationId: delete output
+      operationId: deleteOutput
       tags:
       - Input&Output Module API/output-module-api
       parameters:
@@ -164,12 +170,14 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728356-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728356.md
+      x-operation-id-source: normalized
+      x-operation-id-original: delete output
   /output-docker/api/v1/outputs:
     get:
       summary: query output list
       deprecated: false
       description: ''
-      operationId: query output list
+      operationId: queryOutputList
       tags:
       - Input&Output Module API/output-module-api
       parameters:
@@ -227,8 +235,73 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728354-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728354.md
+      x-operation-id-source: normalized
+      x-operation-id-original: query output list
 components:
   schemas:
+    RunOutputVO:
+      description: result
+      type: object
+      properties:
+        outputId:
+          description: Output Unique id, identifies the user operation data record, and can be used to delete the record later
+          type: string
+        encodingProfileId:
+          description: encoding profile id, please us encoding api build encoding profile and then get the encodingProfileId
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+        streamingUrl:
+          description: Streaming address
+          type: string
+          examples:
+          - rtmp://a.rtmp.youtube.com/live2/demo
+        region:
+          description: aws cloud region
+          type: string
+          examples:
+          - us-east-1
+        boxId:
+          description: tvu box id
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+        status:
+          format: int32
+          description: 'OptionValue 0:stop,1: loading, 2:active'
+          type: integer
+          examples:
+          - 1
+      x-apifox-orders:
+      - outputId
+      - encodingProfileId
+      - streamingUrl
+      - region
+      - boxId
+      - status
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResultRunOutputVO:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/RunOutputVO'
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
+      x-apifox-orders:
+      - result
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     ResultVoid:
       type: object
       properties:
@@ -288,69 +361,6 @@ components:
       - streamingUrl
       - region
       - boxId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResultRunOutputVO:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/RunOutputVO'
-        errorCode:
-          description: error code
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          description: error info
-          type: string
-          examples:
-          - success
-      x-apifox-orders:
-      - result
-      - errorCode
-      - errorInfo
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    RunOutputVO:
-      description: result
-      type: object
-      properties:
-        outputId:
-          description: Output Unique id, identifies the user operation data record, and can be used to delete the record later
-          type: string
-        encodingProfileId:
-          description: encoding profile id, please us encoding api build encoding profile and then get the encodingProfileId
-          type: string
-          examples:
-          - 3796d351982c40e08c778312216a4e30
-        streamingUrl:
-          description: Streaming address
-          type: string
-          examples:
-          - rtmp://a.rtmp.youtube.com/live2/demo
-        region:
-          description: aws cloud region
-          type: string
-          examples:
-          - us-east-1
-        boxId:
-          description: tvu box id
-          type: string
-          examples:
-          - 3796d351982c40e08c778312216a4e30
-        status:
-          format: int32
-          description: 'OptionValue 0:stop,1: loading, 2:active'
-          type: integer
-          examples:
-          - 1
-      x-apifox-orders:
-      - outputId
-      - encodingProfileId
-      - streamingUrl
-      - region
-      - boxId
-      - status
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

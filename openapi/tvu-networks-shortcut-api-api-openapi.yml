@@ -276,40 +276,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778642.md
 components:
   schemas:
-    GetUserShortcutRequest:
-      type: object
-      properties:
-        pages:
-          type: array
-          items:
-            type: string
-            examples:
-            - '[studio, AudioMixer]'
-        service:
-          type: string
-          examples:
-          - pp
-        searchKeyword:
-          type: string
-          examples:
-          - videocut
-        userId:
-          type: string
-          examples:
-          - QHsSLkZZMldhcKizsNlEAyNDlHutHvcU
-        version:
-          type: integer
-          format: int32
-          examples:
-          - 5
-      x-apifox-orders:
-      - pages
-      - service
-      - searchKeyword
-      - userId
-      - version
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     ShortcutUpdateRequest:
       type: object
       properties:
@@ -359,6 +325,40 @@ components:
       - service
       - shortcuts
       - page
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    GetUserShortcutRequest:
+      type: object
+      properties:
+        pages:
+          type: array
+          items:
+            type: string
+            examples:
+            - '[studio, AudioMixer]'
+        service:
+          type: string
+          examples:
+          - pp
+        searchKeyword:
+          type: string
+          examples:
+          - videocut
+        userId:
+          type: string
+          examples:
+          - QHsSLkZZMldhcKizsNlEAyNDlHutHvcU
+        version:
+          type: integer
+          format: int32
+          examples:
+          - 5
+      x-apifox-orders:
+      - pages
+      - service
+      - searchKeyword
+      - userId
+      - version
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

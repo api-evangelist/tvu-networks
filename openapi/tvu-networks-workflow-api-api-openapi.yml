@@ -329,6 +329,27 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778638.md
 components:
   schemas:
+    Output:
+      required:
+      - url
+      - boxId
+      type: object
+      properties:
+        url:
+          type: string
+          description: destination address
+          examples:
+          - rtmp://a.rtmp.youtube.com/live2/ustb-05h1-7hf1-qwp0-7z2d
+        boxId:
+          type: string
+          description: agent boxId
+          examples:
+          - 671ef779b95be309c368a965
+      x-apifox-orders:
+      - url
+      - boxId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     AgentUpdateWorkFlowDTO:
       required:
       - name
@@ -361,35 +382,25 @@ components:
       - workflowId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    ResponseResult:
+    Input:
+      required:
+      - pid
+      - boxId
       type: object
       properties:
-        errorCode:
+        pid:
           type: string
+          description: ( pack | anywhere) pid
           examples:
-          - '0x0'
-        errorInfo:
+          - B1BD4C8F339CB707
+        boxId:
           type: string
+          description: agent boxId
           examples:
-          - success
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
+          - 671ef779b95be309c368a965
       x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
+      - pid
+      - boxId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     Result:
@@ -408,27 +419,6 @@ components:
       - errorCode
       - errorInfo
       - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Output:
-      required:
-      - url
-      - boxId
-      type: object
-      properties:
-        url:
-          type: string
-          description: destination address
-          examples:
-          - rtmp://a.rtmp.youtube.com/live2/ustb-05h1-7hf1-qwp0-7z2d
-        boxId:
-          type: string
-          description: agent boxId
-          examples:
-          - 671ef779b95be309c368a965
-      x-apifox-orders:
-      - url
-      - boxId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     AgentWorkFlowDTO:
@@ -460,25 +450,35 @@ components:
       - output
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    Input:
-      required:
-      - pid
-      - boxId
+    ResponseResult:
       type: object
       properties:
-        pid:
+        errorCode:
           type: string
-          description: ( pack | anywhere) pid
           examples:
-          - B1BD4C8F339CB707
-        boxId:
+          - '0x0'
+        errorInfo:
           type: string
-          description: agent boxId
           examples:
-          - 671ef779b95be309c368a965
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
       x-apifox-orders:
-      - pid
-      - boxId
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

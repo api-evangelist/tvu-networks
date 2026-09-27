@@ -335,6 +335,23 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778513.md
 components:
   schemas:
+    SortField:
+      type: object
+      properties:
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        name:
+          type: string
+          examples:
+          - IPjwhveYYdMMpDJZvjANlUFUTlJAxcQz
+      x-apifox-orders:
+      - sortDirection
+      - name
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     ProgramInput:
       required:
       - id
@@ -384,23 +401,6 @@ components:
       - pageIndex
       - pageSize
       - sortFields
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    SortField:
-      type: object
-      properties:
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        name:
-          type: string
-          examples:
-          - IPjwhveYYdMMpDJZvjANlUFUTlJAxcQz
-      x-apifox-orders:
-      - sortDirection
-      - name
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ProgramFeaturesInput:

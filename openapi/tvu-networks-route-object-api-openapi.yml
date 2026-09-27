@@ -1374,54 +1374,62 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-473290258.md
 components:
   schemas:
-    OperatorInfo:
+    ProcessResultMapBoolean:
       type: object
       properties:
-        users:
-          type: array
-          items:
-            type: string
-          description: ''
-        groups:
-          type: array
-          items:
-            type: string
-          description: ''
-      x-apifox-orders:
-      - users
-      - groups
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    AdminInfo:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            type: string
-          description: ''
-        groups:
-          type: array
-          items:
-            type: string
-          description: ''
-      x-apifox-orders:
-      - users
-      - groups
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    TypeInfo:
-      type: object
-      properties:
-        ObjectType:
+        errorCode:
           type: string
           description: ''
-        num:
-          type: integer
+        errorInfo:
+          type: string
+          description: ''
+        result:
+          $ref: '#/components/schemas/MapBoolean'
           description: ''
       x-apifox-orders:
-      - ObjectType
-      - num
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProcessResultBoolean:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: ''
+        errorInfo:
+          type: string
+          description: ''
+        result:
+          type: boolean
+          description: ''
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CopyObjectParam:
+      type: object
+      properties:
+        objectId:
+          type: string
+          description: ''
+        tangibleId:
+          type: string
+          description: ''
+        userId:
+          type: string
+          description: ''
+      required:
+      - objectId
+      - tangibleId
+      - userId
+      x-apifox-orders:
+      - objectId
+      - tangibleId
+      - userId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ObjTgbRelation:
@@ -1445,24 +1453,44 @@ components:
       - priority
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    CheckObjectFeature:
+    ReleaseObjectParam:
       type: object
       properties:
-        userId:
+        appName:
           type: string
-          description: ID of the user making the request, used for permission scoping. Optional.
-        objectIds:
-          type: array
-          items:
-            type: string
-          description: List of object IDs to check features for. Required.
-        featureName:
+          description: Name of the application that originally placed the hold. Required.
+        objectId:
           type: string
-          description: Name of the specific feature to check (e.g., "recording", "publicSlug"). Required for checkObjectFeature; optional for objectFeatureList.
+          description: ID of the object to release. Required.
+        user:
+          type: string
+          description: User ID of the user releasing the hold. Required.
+        tangibleId:
+          type: string
+          description: ID of the specific tangible to release. Optional; if omitted, the entire object hold is released.
+      required:
+      - appName
+      - objectId
+      - user
       x-apifox-orders:
-      - userId
-      - objectIds
-      - featureName
+      - appName
+      - objectId
+      - user
+      - tangibleId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    TypeInfo:
+      type: object
+      properties:
+        ObjectType:
+          type: string
+          description: ''
+        num:
+          type: integer
+          description: ''
+      x-apifox-orders:
+      - ObjectType
+      - num
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ProcessResult:
@@ -1516,168 +1544,6 @@ components:
       - errorInfo
       - result
       - processResponse
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ProcessResultListObjectDetailsInfo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: ''
-        errorInfo:
-          type: string
-          description: ''
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ObjectDetailsInfo'
-            description: Detailed information for an object returned by queries.
-          description: ''
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ReleaseObjectParam:
-      type: object
-      properties:
-        appName:
-          type: string
-          description: Name of the application that originally placed the hold. Required.
-        objectId:
-          type: string
-          description: ID of the object to release. Required.
-        user:
-          type: string
-          description: User ID of the user releasing the hold. Required.
-        tangibleId:
-          type: string
-          description: ID of the specific tangible to release. Optional; if omitted, the entire object hold is released.
-      required:
-      - appName
-      - objectId
-      - user
-      x-apifox-orders:
-      - appName
-      - objectId
-      - user
-      - tangibleId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    OwnerInfo:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            type: string
-          description: ''
-        groups:
-          type: array
-          items:
-            type: string
-          description: ''
-      x-apifox-orders:
-      - users
-      - groups
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    GraphqlResult:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: Error code returned by objectd.{@code "0x0"} indicates success; any other value indicates an error.
-        errorInfo:
-          type: string
-          description: Human-readable error message. Populated when errorCode is not{@code "0x0"}.
-        result:
-          type: string
-          description: JSON string containing the operation result data. Populated on success.
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    CopyObjectParam:
-      type: object
-      properties:
-        objectId:
-          type: string
-          description: ''
-        tangibleId:
-          type: string
-          description: ''
-        userId:
-          type: string
-          description: ''
-      required:
-      - objectId
-      - tangibleId
-      - userId
-      x-apifox-orders:
-      - objectId
-      - tangibleId
-      - userId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    GeoInfo:
-      type: object
-      properties:
-        lat:
-          type: number
-          description: ''
-        lon:
-          type: number
-          description: ''
-      x-apifox-orders:
-      - lat
-      - lon
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    MapBoolean:
-      type: object
-      properties:
-        key:
-          type: boolean
-      x-apifox-orders:
-      - key
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ProcessResultBoolean:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: ''
-        errorInfo:
-          type: string
-          description: ''
-        result:
-          type: boolean
-          description: ''
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    CreateObjectAttr:
-      type: object
-      properties:
-        attrName:
-          type: string
-          description: ''
-        attrValue:
-          type: array
-          items:
-            type: string
-          description: ''
-      x-apifox-orders:
-      - attrName
-      - attrValue
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ObjectDetailsInfo:
@@ -1810,110 +1676,18 @@ components:
       - highlight
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    NestedObjects:
-      type: object
-      properties:
-        objectList:
-          type: array
-          items:
-            type: string
-          description: ''
-      x-apifox-orders:
-      - objectList
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    FeatureInfo:
-      type: object
-      properties:
-        feature:
-          type: string
-          description: ''
-        users:
-          type: array
-          items:
-            type: string
-          description: ''
-        groups:
-          type: array
-          items:
-            type: string
-          description: ''
-      x-apifox-orders:
-      - feature
-      - users
-      - groups
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    HoldObjectParam:
-      type: object
-      properties:
-        appName:
-          type: string
-          description: Name of the application placing the hold (e.g., "media-encoder"). Required.
-        objectId:
-          type: string
-          description: ID of the object to hold. Required.
-        user:
-          type: string
-          description: User ID of the user placing the hold. Required.
-        callbackUrl:
-          type: string
-          description: Callback URL to invoke when the hold state changes (e.g., released or expired). Optional.
-        requestHeader:
-          type: string
-          description: HTTP request headers to include when calling the callbackUrl. Optional JSON string.
-        description:
-          type: string
-          description: Human-readable reason or description for this hold. Optional.
-        tangibleId:
-          type: string
-          description: ID of the specific tangible to hold. Optional; if omitted, the hold applies to the object globally.
-        features:
-          type: array
-          items:
-            type: string
-          description: List of feature names that the hold should lock (e.g., ["recording"]). Optional.
-      required:
-      - appName
-      - objectId
-      - user
-      x-apifox-orders:
-      - appName
-      - objectId
-      - user
-      - callbackUrl
-      - requestHeader
-      - description
-      - tangibleId
-      - features
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    CheckObjectAdmin:
-      type: object
-      properties:
-        userId:
-          type: string
-          description: ''
-        objectId:
-          type: string
-          description: ''
-      x-apifox-orders:
-      - userId
-      - objectId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ProcessResultMapBoolean:
+    GraphqlResult:
       type: object
       properties:
         errorCode:
           type: string
-          description: ''
+          description: Error code returned by objectd.{@code "0x0"} indicates success; any other value indicates an error.
         errorInfo:
           type: string
-          description: ''
+          description: Human-readable error message. Populated when errorCode is not{@code "0x0"}.
         result:
-          $ref: '#/components/schemas/MapBoolean'
-          description: ''
+          type: string
+          description: JSON string containing the operation result data. Populated on success.
       x-apifox-orders:
       - errorCode
       - errorInfo
@@ -1950,6 +1724,46 @@ components:
       - tangibleType
       - extraInfo
       - createTimestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AdminInfo:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: string
+          description: ''
+        groups:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - users
+      - groups
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    FeatureInfo:
+      type: object
+      properties:
+        feature:
+          type: string
+          description: ''
+        users:
+          type: array
+          items:
+            type: string
+          description: ''
+        groups:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - feature
+      - users
+      - groups
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     TagInfo:
@@ -2000,6 +1814,192 @@ components:
       - num
       - thumbnail
       - sortIndex
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    HoldObjectParam:
+      type: object
+      properties:
+        appName:
+          type: string
+          description: Name of the application placing the hold (e.g., "media-encoder"). Required.
+        objectId:
+          type: string
+          description: ID of the object to hold. Required.
+        user:
+          type: string
+          description: User ID of the user placing the hold. Required.
+        callbackUrl:
+          type: string
+          description: Callback URL to invoke when the hold state changes (e.g., released or expired). Optional.
+        requestHeader:
+          type: string
+          description: HTTP request headers to include when calling the callbackUrl. Optional JSON string.
+        description:
+          type: string
+          description: Human-readable reason or description for this hold. Optional.
+        tangibleId:
+          type: string
+          description: ID of the specific tangible to hold. Optional; if omitted, the hold applies to the object globally.
+        features:
+          type: array
+          items:
+            type: string
+          description: List of feature names that the hold should lock (e.g., ["recording"]). Optional.
+      required:
+      - appName
+      - objectId
+      - user
+      x-apifox-orders:
+      - appName
+      - objectId
+      - user
+      - callbackUrl
+      - requestHeader
+      - description
+      - tangibleId
+      - features
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProcessResultListObjectDetailsInfo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: ''
+        errorInfo:
+          type: string
+          description: ''
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectDetailsInfo'
+            description: Detailed information for an object returned by queries.
+          description: ''
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OwnerInfo:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: string
+          description: ''
+        groups:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - users
+      - groups
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    MapBoolean:
+      type: object
+      properties:
+        key:
+          type: boolean
+      x-apifox-orders:
+      - key
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CreateObjectAttr:
+      type: object
+      properties:
+        attrName:
+          type: string
+          description: ''
+        attrValue:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - attrName
+      - attrValue
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OperatorInfo:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: string
+          description: ''
+        groups:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - users
+      - groups
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    NestedObjects:
+      type: object
+      properties:
+        objectList:
+          type: array
+          items:
+            type: string
+          description: ''
+      x-apifox-orders:
+      - objectList
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    GeoInfo:
+      type: object
+      properties:
+        lat:
+          type: number
+          description: ''
+        lon:
+          type: number
+          description: ''
+      x-apifox-orders:
+      - lat
+      - lon
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CheckObjectFeature:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: ID of the user making the request, used for permission scoping. Optional.
+        objectIds:
+          type: array
+          items:
+            type: string
+          description: List of object IDs to check features for. Required.
+        featureName:
+          type: string
+          description: Name of the specific feature to check (e.g., "recording", "publicSlug"). Required for checkObjectFeature; optional for objectFeatureList.
+      x-apifox-orders:
+      - userId
+      - objectIds
+      - featureName
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CheckObjectAdmin:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: ''
+        objectId:
+          type: string
+          description: ''
+      x-apifox-orders:
+      - userId
+      - objectId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

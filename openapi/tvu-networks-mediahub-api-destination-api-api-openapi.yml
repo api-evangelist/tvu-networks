@@ -270,7 +270,34 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-430970843.md
 components:
   schemas:
-    ResultPageResultDestinationVO:
+    PageResultDestinationVO:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/DestinationVO'
+        pageNum:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+        pages:
+          type: integer
+          format: int64
+      x-apifox-orders:
+      - list
+      - pageNum
+      - pageSize
+      - total
+      - pages
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResultDestinationVO:
       type: object
       properties:
         errorCode:
@@ -278,12 +305,16 @@ components:
         errorInfo:
           type: string
         result:
-          $ref: '#/components/schemas/PageResultDestinationVO'
+          $ref: '#/components/schemas/DestinationVO'
       x-apifox-orders:
       - errorCode
       - errorInfo
       - result
-      x-apifox-ignore-properties: []
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--ignore-properties: []
       x-apifox-folder: ''
     OutputDTO:
       required:
@@ -315,7 +346,58 @@ components:
       - objectId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    ResultDestinationVO:
+    DestinationVO:
+      required:
+      - type
+      - outputName
+      type: object
+      properties:
+        type:
+          type: string
+          description: support HLS/SRT/NDI/SDI/RTMP
+          default: SRT
+        outputName:
+          type: string
+        url:
+          type: string
+          description: NDI No URL required
+          default: srt://demo-zzhforrum.tvustream.com:47087?mode=caller&latency=120000
+        objectId:
+          type: string
+      x-apifox-orders:
+      - type
+      - outputName
+      - url
+      - objectId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CreateOutputDTO:
+      required:
+      - type
+      - outputName
+      type: object
+      properties:
+        type:
+          type: string
+          description: support HLS/SRT/NDI/SDI/RTMP
+          default: SRT
+        outputName:
+          type: string
+        url:
+          type: string
+          description: NDI No URL required
+          default: srt://demo-zzhforrum.tvustream.com:47087?mode=caller&latency=120000
+      x-apifox-orders:
+      - type
+      - outputName
+      - url
+      x--orders:
+      - type
+      - outputName
+      - url
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResultPageResultDestinationVO:
       type: object
       properties:
         errorCode:
@@ -323,16 +405,30 @@ components:
         errorInfo:
           type: string
         result:
-          $ref: '#/components/schemas/DestinationVO'
+          $ref: '#/components/schemas/PageResultDestinationVO'
       x-apifox-orders:
       - errorCode
       - errorInfo
       - result
-      x--orders:
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Result:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
       - errorCode
       - errorInfo
       - result
-      x--ignore-properties: []
+      x-apifox-ignore-properties: []
       x-apifox-folder: ''
     OutputQueryDTO:
       required:
@@ -392,102 +488,6 @@ components:
       - async
       - errorBody
       x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Result:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    DestinationVO:
-      required:
-      - type
-      - outputName
-      type: object
-      properties:
-        type:
-          type: string
-          description: support HLS/SRT/NDI/SDI/RTMP
-          default: SRT
-        outputName:
-          type: string
-        url:
-          type: string
-          description: NDI No URL required
-          default: srt://demo-zzhforrum.tvustream.com:47087?mode=caller&latency=120000
-        objectId:
-          type: string
-      x-apifox-orders:
-      - type
-      - outputName
-      - url
-      - objectId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    PageResultDestinationVO:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/DestinationVO'
-        pageNum:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          format: int64
-        pages:
-          type: integer
-          format: int64
-      x-apifox-orders:
-      - list
-      - pageNum
-      - pageSize
-      - total
-      - pages
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    CreateOutputDTO:
-      required:
-      - type
-      - outputName
-      type: object
-      properties:
-        type:
-          type: string
-          description: support HLS/SRT/NDI/SDI/RTMP
-          default: SRT
-        outputName:
-          type: string
-        url:
-          type: string
-          description: NDI No URL required
-          default: srt://demo-zzhforrum.tvustream.com:47087?mode=caller&latency=120000
-      x-apifox-orders:
-      - type
-      - outputName
-      - url
-      x--orders:
-      - type
-      - outputName
-      - url
-      x--ignore-properties: []
       x-apifox-folder: ''
     DestinationObjectEncodingProfileDTO:
       type: object

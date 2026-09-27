@@ -136,6 +136,119 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959110.md
 components:
   schemas:
+    models.AppearanceRelationsResponse:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Appearance relations result; present only on success
+          allOf:
+          - $ref: '#/components/schemas/models.AppearanceRelationsResult'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelationsResult:
+      type: object
+      properties:
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceRelations'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - relations
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceSuggestionResponse:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: List of appearance entity suggestions; present only on success
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceContent:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        path:
+          type: string
+        position:
+          type: string
+      x-apifox-orders:
+      - id
+      - name
+      - path
+      - position
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelations:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: Content identifier of the appearance
+          type: string
+        groupId:
+          description: Group ID this appearance belongs to
+          type: string
+        name:
+          description: Display name of the appearance entity
+          type: string
+        personId:
+          description: Person ID (applicable when classType=2)
+          type: string
+        position:
+          type: string
+        relations:
+          description: Related appearances grouped by class type
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceRelationItem'
+        thumbnailPath:
+          description: Path to the thumbnail image
+          type: string
+      x-apifox-orders:
+      - classType
+      - content
+      - groupId
+      - name
+      - personId
+      - position
+      - relations
+      - thumbnailPath
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     models.AppearanceRelationsRequestV2:
       type: object
       properties:
@@ -215,44 +328,6 @@ components:
       - position
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.AppearanceContent:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        path:
-          type: string
-        position:
-          type: string
-      x-apifox-orders:
-      - id
-      - name
-      - path
-      - position
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceSuggestionResponse:
-      type: object
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: List of appearance entity suggestions; present only on success
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceData'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     models.AppearanceRelationItem:
       type: object
       properties:
@@ -267,81 +342,6 @@ components:
       x-apifox-orders:
       - classType
       - content
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceRelations:
-      type: object
-      properties:
-        classType:
-          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
-          type: integer
-        content:
-          description: Content identifier of the appearance
-          type: string
-        groupId:
-          description: Group ID this appearance belongs to
-          type: string
-        name:
-          description: Display name of the appearance entity
-          type: string
-        personId:
-          description: Person ID (applicable when classType=2)
-          type: string
-        position:
-          type: string
-        relations:
-          description: Related appearances grouped by class type
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceRelationItem'
-        thumbnailPath:
-          description: Path to the thumbnail image
-          type: string
-      x-apifox-orders:
-      - classType
-      - content
-      - groupId
-      - name
-      - personId
-      - position
-      - relations
-      - thumbnailPath
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceRelationsResult:
-      type: object
-      properties:
-        relations:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceRelations'
-        size:
-          type: integer
-        total:
-          type: integer
-      x-apifox-orders:
-      - relations
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceRelationsResponse:
-      type: object
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Appearance relations result; present only on success
-          allOf:
-          - $ref: '#/components/schemas/models.AppearanceRelationsResult'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.AppearanceSuggestionRequestV2:

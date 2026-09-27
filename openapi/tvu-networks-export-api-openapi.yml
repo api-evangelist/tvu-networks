@@ -805,35 +805,31 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-473290198.md
 components:
   schemas:
-    PublicDestination:
+    VideoPaddingInfo:
       type: object
-      description: Target storage location for the output file.
+      description: Black-frame video padding to prepend/append.
       properties:
-        cloudVendor:
-          type: string
-          description: Cloud storage vendor. Values are matched case-insensitively by the storage layer (`s3`, `azure`, `oss`, `cos`).
+        mode:
+          type: integer
+          description: Padding mode (0 = none, 1 = black frames).
           examples:
-          - s3
-        bucket:
-          type: string
-          description: Target s3/azure/oss/cos storage bucket name.
+          - 1
+        headLen:
+          type: integer
+          format: int64
+          description: Padding duration at the start in milliseconds.
           examples:
-          - media-export-bucket
-        region:
-          type: string
-          description: Bucket region.
+          - 500
+        tailLen:
+          type: integer
+          format: int64
+          description: Padding duration at the end in milliseconds.
           examples:
-          - us-east-1
-        folder:
-          type: string
-          description: Key prefix / folder path within the bucket (trailing slash recommended).
-          examples:
-          - export/
+          - 500
       x-apifox-orders:
-      - cloudVendor
-      - bucket
-      - region
-      - folder
+      - mode
+      - headLen
+      - tailLen
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ThumbnailBaseInfo:
@@ -854,42 +850,87 @@ components:
       - height
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    PublicLongexportRes:
+    EstimateVideoSizeRes:
       type: object
       properties:
         errorCode:
           type: integer
-          description: '- `1000` — Task registered; keep polling (`timeWait` > 0)
+          description: '- `1000` — Success
 
-            - `1001` — Still processing; keep polling (`timeWait` > 0)
-
-            - `1005` — All chunks exported successfully (terminal, `timeWait` = 0)
-
-            - Other — Error (terminal, `timeWait` = 0)
+            - Other — Error (see endpoint description)
 
             '
           examples:
-          - 1005
+          - 1000
         errorMsg:
           type: string
           examples:
           - ''
-        timeWait:
+        videoSize:
           type: integer
           format: int64
-          description: Milliseconds to wait before the next poll. `0` when done or errored.
+          description: Estimated output file size in **bytes**. `0` on error.
           examples:
-          - 0
-        videoList:
-          type: array
-          description: List of completed (and in-progress) video chunks. Grows with each poll.
-          items:
-            $ref: '#/components/schemas/VideoInfo'
+          - 52428800
       x-apifox-orders:
       - errorCode
       - errorMsg
-      - timeWait
-      - videoList
+      - videoSize
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AudioPaddingInfo:
+      type: object
+      description: Silent audio padding to prepend/append to the output clip.
+      properties:
+        headLen:
+          type: integer
+          format: int64
+          description: Padding duration at the start in milliseconds.
+          examples:
+          - 500
+        tailLen:
+          type: integer
+          format: int64
+          description: Padding duration at the end in milliseconds.
+          examples:
+          - 500
+      x-apifox-orders:
+      - headLen
+      - tailLen
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    VideoBaseInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL of the output video file.
+        type:
+          type: string
+          description: Container format (e.g. `ts`, `mp4`).
+        bitrate:
+          type: string
+          description: Video bitrate (e.g. `"5000k"`).
+        width:
+          type: string
+          description: Frame width in pixels.
+        height:
+          type: string
+          description: Frame height in pixels.
+        framerate:
+          type: string
+          description: Frame rate (e.g. `"29.97"`).
+        duration:
+          type: string
+          description: Duration in seconds.
+      x-apifox-orders:
+      - url
+      - type
+      - bitrate
+      - width
+      - height
+      - framerate
+      - duration
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     PublicExportRes:
@@ -969,123 +1010,6 @@ components:
       - videoInfo
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    MergeVideoRes:
-      type: object
-      properties:
-        ErrorCode:
-          type: integer
-          description: '- `0` — Merge complete
-
-            - `1` — Still processing
-
-            - Other — Error (see endpoint description)
-
-            '
-          examples:
-          - 0
-        ErrorMessage:
-          type: string
-          examples:
-          - success
-        VideoPath:
-          type: string
-          description: Object key of the merged output file. Populated when `ErrorCode == 0`.
-          examples:
-          - merged/final.mp4
-        VideoUrl:
-          type: string
-          description: Public HTTP(S) URL for the merged output file.
-          examples:
-          - https://media-export-bucket.s3.us-east-1.amazonaws.com/merged/final.mp4
-        TimeWait:
-          type: integer
-          format: int64
-          description: Milliseconds to wait before the next poll. `0` when done or errored.
-          examples:
-          - 0
-      x-apifox-orders:
-      - ErrorCode
-      - ErrorMessage
-      - VideoPath
-      - VideoUrl
-      - TimeWait
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    VideoBaseInfo:
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL of the output video file.
-        type:
-          type: string
-          description: Container format (e.g. `ts`, `mp4`).
-        bitrate:
-          type: string
-          description: Video bitrate (e.g. `"5000k"`).
-        width:
-          type: string
-          description: Frame width in pixels.
-        height:
-          type: string
-          description: Frame height in pixels.
-        framerate:
-          type: string
-          description: Frame rate (e.g. `"29.97"`).
-        duration:
-          type: string
-          description: Duration in seconds.
-      x-apifox-orders:
-      - url
-      - type
-      - bitrate
-      - width
-      - height
-      - framerate
-      - duration
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Destination:
-      type: object
-      required:
-      - bucket
-      - region
-      - full_path
-      - media_type
-      properties:
-        bucket:
-          type: string
-          description: Target S3 bucket for merged output.
-          examples:
-          - media-export-bucket
-        region:
-          type: string
-          description: AWS region of the target bucket.
-          examples:
-          - us-east-1
-        full_path:
-          type: string
-          description: Output object key without extension. The service appends `.` + `media_type`.
-          examples:
-          - merged/final
-        media_type:
-          type: string
-          description: Output container format. `json` is not supported for merge.
-          enum:
-          - ts
-          - mp4
-          - mov
-          - mkv
-          - mxf
-          examples:
-          - mp4
-      x-apifox-orders:
-      - bucket
-      - region
-      - full_path
-      - media_type
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     PublicLongexportReq:
       type: object
       required:
@@ -1152,189 +1076,6 @@ components:
       - destination
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    CutJsonRes:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: '- `0` — Success
-
-            - `3001` — Source JSON URL is invalid or unreachable
-
-            - `3002` — JSON content format is invalid
-
-            - `3003` — Bucket configuration error
-
-            - `3004` — Output upload failed
-
-            '
-          examples:
-          - 0
-        errorMessage:
-          type: string
-          examples:
-          - success
-        jsonUrl:
-          type: string
-          description: HTTP(S) URL to the trimmed output JSON file. Empty on error.
-          examples:
-          - https://media-export-bucket.s3.us-east-1.amazonaws.com/trimmed/story_trimmed_20231114_120000_60000.json
-      x-apifox-orders:
-      - errorCode
-      - errorMessage
-      - jsonUrl
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    MergeVideoReq:
-      type: object
-      required:
-      - user_id
-      - source_file_list
-      - destination
-      properties:
-        user_id:
-          type: string
-          description: User email or identifier who owns the merge job.
-          examples:
-          - user@example.com
-        session_id:
-          type: string
-          description: Optional session identifier for tracking.
-        source_file_list:
-          type: array
-          description: Ordered list of video segments to merge. `order` must be unique and sequential.
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/SourceFile'
-        destination:
-          $ref: '#/components/schemas/Destination'
-      x-apifox-orders:
-      - user_id
-      - session_id
-      - source_file_list
-      - destination
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    VideoPaddingInfo:
-      type: object
-      description: Black-frame video padding to prepend/append.
-      properties:
-        mode:
-          type: integer
-          description: Padding mode (0 = none, 1 = black frames).
-          examples:
-          - 1
-        headLen:
-          type: integer
-          format: int64
-          description: Padding duration at the start in milliseconds.
-          examples:
-          - 500
-        tailLen:
-          type: integer
-          format: int64
-          description: Padding duration at the end in milliseconds.
-          examples:
-          - 500
-      x-apifox-orders:
-      - mode
-      - headLen
-      - tailLen
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Transcribe:
-      type: object
-      description: Optional AI re-transcription settings for the exported audio.
-      properties:
-        switch:
-          type: boolean
-          description: Enable re-transcription.
-          default: false
-        groupId:
-          type: string
-          description: Transcription group identifier.
-        language:
-          type: string
-          description: Language code for transcription (e.g. `"en-US"`).
-      x-apifox-orders:
-      - switch
-      - groupId
-      - language
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ExportAudioReqV2:
-      type: object
-      required:
-      - startTime
-      - duration
-      - sourceObjectId
-      - fileName
-      properties:
-        startTime:
-          type: integer
-          format: int64
-          description: Clip start position as a Unix timestamp in **milliseconds**.
-          examples:
-          - 1700000000000
-        duration:
-          type: integer
-          format: int64
-          description: Clip duration in **milliseconds**.
-          examples:
-          - 60000
-        sourceObjectId:
-          type: string
-          description: Numeric identifier of the source media object to extract audio from.
-          examples:
-          - '123456789012345678'
-        fileName:
-          type: string
-          description: Output file name **including extension** (e.g. `"clip.flac"`, `"clip.aac"`).
-          examples:
-          - audio_extract.flac
-        sampleRate:
-          type: integer
-          format: int32
-          description: Sample rate passed to downstream transcription metadata. Use `48000` to match the encoder output used by this service.
-          examples:
-          - 48000
-        fileStartTimecode:
-          type: integer
-          format: int64
-          description: Timecode of the first frame in the source file (ms), used for sub-frame alignment.
-        fileEndTimecode:
-          type: integer
-          format: int64
-          description: Timecode of the last frame in the source file (ms).
-        reTranscribe:
-          $ref: '#/components/schemas/Transcribe'
-        mediaType:
-          type: string
-          description: Source media selector used by metadata lookup. Use `"mma"` for high-resolution media; any other value selects preview media.
-          examples:
-          - mma
-        callbackUrl:
-          type: string
-          description: Webhook URL to notify when the export completes.
-          examples:
-          - https://my-service.example.com/audio-ready
-        uuid:
-          type: string
-          description: Client-supplied idempotency key for this export job.
-      x-apifox-orders:
-      - startTime
-      - duration
-      - sourceObjectId
-      - fileName
-      - sampleRate
-      - fileStartTimecode
-      - fileEndTimecode
-      - reTranscribe
-      - mediaType
-      - callbackUrl
-      - uuid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     EstimateVideoSizeReq:
       type: object
       required:
@@ -1399,7 +1140,7 @@ components:
       - fileName
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    ExportAudioResV2:
+    PublicLongexportRes:
       type: object
       properties:
         errorCode:
@@ -1408,219 +1149,33 @@ components:
 
             - `1001` — Still processing; keep polling (`timeWait` > 0)
 
-            - `1005` — Audio export completed successfully (`status` = 2, `timeWait` = 0)
+            - `1005` — All chunks exported successfully (terminal, `timeWait` = 0)
 
             - Other — Error (terminal, `timeWait` = 0)
 
             '
           examples:
           - 1005
-        errorMessage:
+        errorMsg:
           type: string
           examples:
-          - task created successfully
-        status:
-          type: integer
-          description: 'Processing state:
-
-            - `1` — In progress
-
-            - `2` — Completed
-
-            '
-          enum:
-          - 1
-          - 2
-          examples:
-          - 2
+          - ''
         timeWait:
           type: integer
           format: int64
           description: Milliseconds to wait before the next poll. `0` when done or errored.
           examples:
           - 0
-        audioPath:
-          type: string
-          description: S3 path or URL to the exported audio file. Populated when `errorCode == 1005`. Empty while processing.
-          examples:
-          - https://mma-video-new.s3.us-east-1.amazonaws.com/export/audio_extract.flac
-      x-apifox-orders:
-      - errorCode
-      - errorMessage
-      - status
-      - timeWait
-      - audioPath
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    VideoInfo:
-      type: object
-      properties:
-        startTime:
-          type: integer
-          format: int64
-          description: Chunk start timestamp in milliseconds (Unix epoch ms).
-        duration:
-          type: integer
-          format: int64
-          description: Chunk duration in milliseconds.
-        videoPath:
-          type: string
-          description: S3 path or URL to this chunk's video file.
-        isCompleted:
-          type: boolean
-          description: Whether this chunk has finished processing.
-      x-apifox-orders:
-      - startTime
-      - duration
-      - videoPath
-      - isCompleted
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    EstimateVideoSizeRes:
-      type: object
-      properties:
-        errorCode:
-          type: integer
-          description: '- `1000` — Success
-
-            - Other — Error (see endpoint description)
-
-            '
-          examples:
-          - 1000
-        errorMsg:
-          type: string
-          examples:
-          - ''
-        videoSize:
-          type: integer
-          format: int64
-          description: Estimated output file size in **bytes**. `0` on error.
-          examples:
-          - 52428800
+        videoList:
+          type: array
+          description: List of completed (and in-progress) video chunks. Grows with each poll.
+          items:
+            $ref: '#/components/schemas/VideoInfo'
       x-apifox-orders:
       - errorCode
       - errorMsg
-      - videoSize
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    AudioPaddingInfo:
-      type: object
-      description: Silent audio padding to prepend/append to the output clip.
-      properties:
-        headLen:
-          type: integer
-          format: int64
-          description: Padding duration at the start in milliseconds.
-          examples:
-          - 500
-        tailLen:
-          type: integer
-          format: int64
-          description: Padding duration at the end in milliseconds.
-          examples:
-          - 500
-      x-apifox-orders:
-      - headLen
-      - tailLen
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    CutJsonReqV2:
-      type: object
-      required:
-      - jsonUrl
-      - markIn
-      - markOut
-      properties:
-        jsonUrl:
-          type: string
-          description: HTTP(S) URL of the source JSON edit list / timeline file.
-          format: uri
-          examples:
-          - https://mma-video-new.s3.us-east-1.amazonaws.com/export/story.json
-        markIn:
-          type: integer
-          format: int64
-          description: Cut-in point in **milliseconds** (relative to the beginning of the JSON timeline).
-          examples:
-          - 5000
-        markOut:
-          type: integer
-          format: int64
-          description: Cut-out point in **milliseconds**. Must be strictly greater than `markIn`.
-          examples:
-          - 65000
-        fileName:
-          type: string
-          description: Output JSON base name. The service appends `_<timestamp>_<duration>.json`.
-          examples:
-          - story_trimmed
-        uploadPath:
-          type: string
-          description: S3 key prefix for the output file.
-          examples:
-          - trimmed/
-        PathId:
-          type: string
-          description: Internal path identifier.
-        Bucket:
-          type: string
-          description: Target S3 bucket for the output JSON file.
-          examples:
-          - media-export-bucket
-        Region:
-          type: string
-          description: AWS region of the target bucket.
-          examples:
-          - us-east-1
-        serviceCaller:
-          type: string
-          description: Identifier of the upstream service making this request.
-      x-apifox-orders:
-      - jsonUrl
-      - markIn
-      - markOut
-      - fileName
-      - uploadPath
-      - PathId
-      - Bucket
-      - Region
-      - serviceCaller
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    SourceFile:
-      type: object
-      required:
-      - order
-      - bucket
-      - region
-      - video_path
-      properties:
-        order:
-          type: integer
-          description: 1-based position of this segment in the merged output.
-          examples:
-          - 1
-        bucket:
-          type: string
-          description: S3 bucket containing this segment.
-          examples:
-          - mma-video-new
-        region:
-          type: string
-          description: AWS region of the bucket.
-          examples:
-          - us-east-1
-        video_path:
-          type: string
-          description: Object key of the video segment within the bucket.
-          examples:
-          - export/part1.ts
-      x-apifox-orders:
-      - order
-      - bucket
-      - region
-      - video_path
+      - timeWait
+      - videoList
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     PublicExportReq:
@@ -1733,6 +1288,451 @@ components:
       - audioPadding
       - videoPadding
       - destination
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PublicDestination:
+      type: object
+      description: Target storage location for the output file.
+      properties:
+        cloudVendor:
+          type: string
+          description: Cloud storage vendor. Values are matched case-insensitively by the storage layer (`s3`, `azure`, `oss`, `cos`).
+          examples:
+          - s3
+        bucket:
+          type: string
+          description: Target s3/azure/oss/cos storage bucket name.
+          examples:
+          - media-export-bucket
+        region:
+          type: string
+          description: Bucket region.
+          examples:
+          - us-east-1
+        folder:
+          type: string
+          description: Key prefix / folder path within the bucket (trailing slash recommended).
+          examples:
+          - export/
+      x-apifox-orders:
+      - cloudVendor
+      - bucket
+      - region
+      - folder
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ExportAudioReqV2:
+      type: object
+      required:
+      - startTime
+      - duration
+      - sourceObjectId
+      - fileName
+      properties:
+        startTime:
+          type: integer
+          format: int64
+          description: Clip start position as a Unix timestamp in **milliseconds**.
+          examples:
+          - 1700000000000
+        duration:
+          type: integer
+          format: int64
+          description: Clip duration in **milliseconds**.
+          examples:
+          - 60000
+        sourceObjectId:
+          type: string
+          description: Numeric identifier of the source media object to extract audio from.
+          examples:
+          - '123456789012345678'
+        fileName:
+          type: string
+          description: Output file name **including extension** (e.g. `"clip.flac"`, `"clip.aac"`).
+          examples:
+          - audio_extract.flac
+        sampleRate:
+          type: integer
+          format: int32
+          description: Sample rate passed to downstream transcription metadata. Use `48000` to match the encoder output used by this service.
+          examples:
+          - 48000
+        fileStartTimecode:
+          type: integer
+          format: int64
+          description: Timecode of the first frame in the source file (ms), used for sub-frame alignment.
+        fileEndTimecode:
+          type: integer
+          format: int64
+          description: Timecode of the last frame in the source file (ms).
+        reTranscribe:
+          $ref: '#/components/schemas/Transcribe'
+        mediaType:
+          type: string
+          description: Source media selector used by metadata lookup. Use `"mma"` for high-resolution media; any other value selects preview media.
+          examples:
+          - mma
+        callbackUrl:
+          type: string
+          description: Webhook URL to notify when the export completes.
+          examples:
+          - https://my-service.example.com/audio-ready
+        uuid:
+          type: string
+          description: Client-supplied idempotency key for this export job.
+      x-apifox-orders:
+      - startTime
+      - duration
+      - sourceObjectId
+      - fileName
+      - sampleRate
+      - fileStartTimecode
+      - fileEndTimecode
+      - reTranscribe
+      - mediaType
+      - callbackUrl
+      - uuid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Destination:
+      type: object
+      required:
+      - bucket
+      - region
+      - full_path
+      - media_type
+      properties:
+        bucket:
+          type: string
+          description: Target S3 bucket for merged output.
+          examples:
+          - media-export-bucket
+        region:
+          type: string
+          description: AWS region of the target bucket.
+          examples:
+          - us-east-1
+        full_path:
+          type: string
+          description: Output object key without extension. The service appends `.` + `media_type`.
+          examples:
+          - merged/final
+        media_type:
+          type: string
+          description: Output container format. `json` is not supported for merge.
+          enum:
+          - ts
+          - mp4
+          - mov
+          - mkv
+          - mxf
+          examples:
+          - mp4
+      x-apifox-orders:
+      - bucket
+      - region
+      - full_path
+      - media_type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SourceFile:
+      type: object
+      required:
+      - order
+      - bucket
+      - region
+      - video_path
+      properties:
+        order:
+          type: integer
+          description: 1-based position of this segment in the merged output.
+          examples:
+          - 1
+        bucket:
+          type: string
+          description: S3 bucket containing this segment.
+          examples:
+          - mma-video-new
+        region:
+          type: string
+          description: AWS region of the bucket.
+          examples:
+          - us-east-1
+        video_path:
+          type: string
+          description: Object key of the video segment within the bucket.
+          examples:
+          - export/part1.ts
+      x-apifox-orders:
+      - order
+      - bucket
+      - region
+      - video_path
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    MergeVideoRes:
+      type: object
+      properties:
+        ErrorCode:
+          type: integer
+          description: '- `0` — Merge complete
+
+            - `1` — Still processing
+
+            - Other — Error (see endpoint description)
+
+            '
+          examples:
+          - 0
+        ErrorMessage:
+          type: string
+          examples:
+          - success
+        VideoPath:
+          type: string
+          description: Object key of the merged output file. Populated when `ErrorCode == 0`.
+          examples:
+          - merged/final.mp4
+        VideoUrl:
+          type: string
+          description: Public HTTP(S) URL for the merged output file.
+          examples:
+          - https://media-export-bucket.s3.us-east-1.amazonaws.com/merged/final.mp4
+        TimeWait:
+          type: integer
+          format: int64
+          description: Milliseconds to wait before the next poll. `0` when done or errored.
+          examples:
+          - 0
+      x-apifox-orders:
+      - ErrorCode
+      - ErrorMessage
+      - VideoPath
+      - VideoUrl
+      - TimeWait
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Transcribe:
+      type: object
+      description: Optional AI re-transcription settings for the exported audio.
+      properties:
+        switch:
+          type: boolean
+          description: Enable re-transcription.
+          default: false
+        groupId:
+          type: string
+          description: Transcription group identifier.
+        language:
+          type: string
+          description: Language code for transcription (e.g. `"en-US"`).
+      x-apifox-orders:
+      - switch
+      - groupId
+      - language
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    MergeVideoReq:
+      type: object
+      required:
+      - user_id
+      - source_file_list
+      - destination
+      properties:
+        user_id:
+          type: string
+          description: User email or identifier who owns the merge job.
+          examples:
+          - user@example.com
+        session_id:
+          type: string
+          description: Optional session identifier for tracking.
+        source_file_list:
+          type: array
+          description: Ordered list of video segments to merge. `order` must be unique and sequential.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/SourceFile'
+        destination:
+          $ref: '#/components/schemas/Destination'
+      x-apifox-orders:
+      - user_id
+      - session_id
+      - source_file_list
+      - destination
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CutJsonReqV2:
+      type: object
+      required:
+      - jsonUrl
+      - markIn
+      - markOut
+      properties:
+        jsonUrl:
+          type: string
+          description: HTTP(S) URL of the source JSON edit list / timeline file.
+          format: uri
+          examples:
+          - https://mma-video-new.s3.us-east-1.amazonaws.com/export/story.json
+        markIn:
+          type: integer
+          format: int64
+          description: Cut-in point in **milliseconds** (relative to the beginning of the JSON timeline).
+          examples:
+          - 5000
+        markOut:
+          type: integer
+          format: int64
+          description: Cut-out point in **milliseconds**. Must be strictly greater than `markIn`.
+          examples:
+          - 65000
+        fileName:
+          type: string
+          description: Output JSON base name. The service appends `_<timestamp>_<duration>.json`.
+          examples:
+          - story_trimmed
+        uploadPath:
+          type: string
+          description: S3 key prefix for the output file.
+          examples:
+          - trimmed/
+        PathId:
+          type: string
+          description: Internal path identifier.
+        Bucket:
+          type: string
+          description: Target S3 bucket for the output JSON file.
+          examples:
+          - media-export-bucket
+        Region:
+          type: string
+          description: AWS region of the target bucket.
+          examples:
+          - us-east-1
+        serviceCaller:
+          type: string
+          description: Identifier of the upstream service making this request.
+      x-apifox-orders:
+      - jsonUrl
+      - markIn
+      - markOut
+      - fileName
+      - uploadPath
+      - PathId
+      - Bucket
+      - Region
+      - serviceCaller
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ExportAudioResV2:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: '- `1000` — Task registered; keep polling (`timeWait` > 0)
+
+            - `1001` — Still processing; keep polling (`timeWait` > 0)
+
+            - `1005` — Audio export completed successfully (`status` = 2, `timeWait` = 0)
+
+            - Other — Error (terminal, `timeWait` = 0)
+
+            '
+          examples:
+          - 1005
+        errorMessage:
+          type: string
+          examples:
+          - task created successfully
+        status:
+          type: integer
+          description: 'Processing state:
+
+            - `1` — In progress
+
+            - `2` — Completed
+
+            '
+          enum:
+          - 1
+          - 2
+          examples:
+          - 2
+        timeWait:
+          type: integer
+          format: int64
+          description: Milliseconds to wait before the next poll. `0` when done or errored.
+          examples:
+          - 0
+        audioPath:
+          type: string
+          description: S3 path or URL to the exported audio file. Populated when `errorCode == 1005`. Empty while processing.
+          examples:
+          - https://mma-video-new.s3.us-east-1.amazonaws.com/export/audio_extract.flac
+      x-apifox-orders:
+      - errorCode
+      - errorMessage
+      - status
+      - timeWait
+      - audioPath
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CutJsonRes:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+          description: '- `0` — Success
+
+            - `3001` — Source JSON URL is invalid or unreachable
+
+            - `3002` — JSON content format is invalid
+
+            - `3003` — Bucket configuration error
+
+            - `3004` — Output upload failed
+
+            '
+          examples:
+          - 0
+        errorMessage:
+          type: string
+          examples:
+          - success
+        jsonUrl:
+          type: string
+          description: HTTP(S) URL to the trimmed output JSON file. Empty on error.
+          examples:
+          - https://media-export-bucket.s3.us-east-1.amazonaws.com/trimmed/story_trimmed_20231114_120000_60000.json
+      x-apifox-orders:
+      - errorCode
+      - errorMessage
+      - jsonUrl
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    VideoInfo:
+      type: object
+      properties:
+        startTime:
+          type: integer
+          format: int64
+          description: Chunk start timestamp in milliseconds (Unix epoch ms).
+        duration:
+          type: integer
+          format: int64
+          description: Chunk duration in milliseconds.
+        videoPath:
+          type: string
+          description: S3 path or URL to this chunk's video file.
+        isCompleted:
+          type: boolean
+          description: Whether this chunk has finished processing.
+      x-apifox-orders:
+      - startTime
+      - duration
+      - videoPath
+      - isCompleted
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

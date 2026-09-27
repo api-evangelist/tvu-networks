@@ -158,7 +158,7 @@ paths:
       summary: get objects' attribute
       deprecated: false
       description: ''
-      operationId: /api/objectd/v1/attr
+      operationId: getApiObjectdV1Attr
       tags:
       - Object API/RESTful
       parameters:
@@ -283,6 +283,8 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782318-run
       x-source-doc: https://docs.tvunetworks.cn/api-321782318.md
+      x-operation-id-source: normalized
+      x-operation-id-original: /api/objectd/v1/attr
   /api/objectd/v1/attr/object:
     get:
       summary: Get objects with the attribute set to a specific value
@@ -431,7 +433,7 @@ paths:
       summary: get objects' single attribute
       deprecated: false
       description: get objects' single attribute value.
-      operationId: /api/objectd/v1/attrv2
+      operationId: postApiObjectdV1Attrv2
       tags:
       - Object API/RESTful
       parameters:
@@ -541,6 +543,8 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-321782319-run
       x-source-doc: https://docs.tvunetworks.cn/api-321782319.md
+      x-operation-id-source: normalized
+      x-operation-id-original: /api/objectd/v1/attrv2
   /api/objectd/v1/object:
     get:
       summary: get object

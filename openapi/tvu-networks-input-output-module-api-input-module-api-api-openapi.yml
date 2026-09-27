@@ -17,7 +17,7 @@ paths:
       summary: update input
       deprecated: false
       description: update input by identification source
-      operationId: update input
+      operationId: updateInput
       tags:
       - Input&Output Module API/input-module-api
       parameters:
@@ -50,11 +50,13 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728336-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728336.md
+      x-operation-id-source: normalized
+      x-operation-id-original: update input
     post:
       summary: run input
       deprecated: false
       description: run input module by identification source
-      operationId: run input
+      operationId: runInput
       tags:
       - Input&Output Module API/input-module-api
       parameters:
@@ -87,12 +89,14 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728337-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728337.md
+      x-operation-id-source: normalized
+      x-operation-id-original: run input
   /input-docker/api/v1/input/{inputId}:
     get:
       summary: query input
       deprecated: false
       description: get input record by identification source
-      operationId: query input
+      operationId: queryInput
       tags:
       - Input&Output Module API/input-module-api
       parameters:
@@ -126,11 +130,13 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728338-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728338.md
+      x-operation-id-source: normalized
+      x-operation-id-original: query input
     delete:
       summary: delete input
       deprecated: false
       description: delete input record by identification source
-      operationId: delete input
+      operationId: deleteInput
       tags:
       - Input&Output Module API/input-module-api
       parameters:
@@ -164,12 +170,14 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728339-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728339.md
+      x-operation-id-source: normalized
+      x-operation-id-original: delete input
   /input-docker/api/v1/inputs:
     get:
       summary: query input list
       deprecated: false
       description: get input module by identification source
-      operationId: query input list
+      operationId: queryInputList
       tags:
       - Input&Output Module API/input-module-api
       parameters:
@@ -227,33 +235,10 @@ paths:
       x-apifox-status: released
       x-run-in-apifox: https://app.apifox.com/web/project/4126232/apis/api-256728335-run
       x-source-doc: https://docs.tvunetworks.cn/api-256728335.md
+      x-operation-id-source: normalized
+      x-operation-id-original: query input list
 components:
   schemas:
-    ResultVoid:
-      type: object
-      properties:
-        result:
-          description: result
-          type: object
-          properties: {}
-          x-apifox-orders: []
-          x-apifox-ignore-properties: []
-        errorCode:
-          description: error code
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          description: error info
-          type: string
-          examples:
-          - success
-      x-apifox-orders:
-      - result
-      - errorCode
-      - errorInfo
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     ResultPageInfoRunInputVO:
       type: object
       properties:
@@ -338,6 +323,31 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/RunInputVO'
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
+      x-apifox-orders:
+      - result
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResultVoid:
+      type: object
+      properties:
+        result:
+          description: result
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
         errorCode:
           description: error code
           type: string

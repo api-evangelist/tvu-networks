@@ -89,6 +89,23 @@ components:
       - upid
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    controllers.GetScteMarkerInfoResp:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.ScteMarkerInfoResult'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     models.ScteMarkerInfoReq:
       type: object
       properties:
@@ -105,23 +122,6 @@ components:
       - scteType
       - sourceObject
       - startTime
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.GetScteMarkerInfoResp:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.ScteMarkerInfoResult'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

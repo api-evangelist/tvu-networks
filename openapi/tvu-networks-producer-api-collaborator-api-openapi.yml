@@ -141,29 +141,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778556.md
 components:
   schemas:
-    ProgramTeamMember:
-      required:
-      - roles
-      - id
-      type: object
-      properties:
-        roles:
-          maxLength: 200
-          type: string
-          description: 'the roles that a collaborator has in current program, eg: ClipPlayer'
-          examples:
-          - ClipPlayer
-        id:
-          type: integer
-          description: this is from createCollaborator API result, or from program API result，program API has all data relevant with current program, eg:123456789
-          format: int64
-          examples:
-          - 123456789
-      x-apifox-orders:
-      - roles
-      - id
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     AddOrRemoveMembersRequest:
       required:
       - programId
@@ -185,6 +162,29 @@ components:
       x-apifox-orders:
       - emails
       - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramTeamMember:
+      required:
+      - roles
+      - id
+      type: object
+      properties:
+        roles:
+          maxLength: 200
+          type: string
+          description: 'the roles that a collaborator has in current program, eg: ClipPlayer'
+          examples:
+          - ClipPlayer
+        id:
+          type: integer
+          description: this is from createCollaborator API result, or from program API result，program API has all data relevant with current program, eg:123456789
+          format: int64
+          examples:
+          - 123456789
+      x-apifox-orders:
+      - roles
+      - id
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

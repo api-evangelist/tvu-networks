@@ -774,7 +774,7 @@ apis:
   - type: OpenAPI
     url: openapi/tvu-networks-search-api-search-srt-api-openapi.yml
 - aid: tvu-networks:tvu-networks-shortcut-api-api
-  name: TVU Networks shortcut API
+  name: TVU Networks Shortcut API
   description: The shortcut API API from TVU Networks — 5 operation(s) for shortcut api.
   humanURL: https://docs.tvunetworks.cn/folder-45770135
   baseURL: https://api.tvunetworks.com

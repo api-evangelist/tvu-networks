@@ -790,6 +790,30 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-236527413.md
 components:
   schemas:
+    VideoInfo:
+      type: object
+      properties:
+        startTime:
+          type: integer
+          format: int64
+          description: Chunk start timestamp in milliseconds (Unix epoch ms).
+        duration:
+          type: integer
+          format: int64
+          description: Chunk duration in milliseconds.
+        videoPath:
+          type: string
+          description: S3 path or URL to this chunk's video file.
+        isCompleted:
+          type: boolean
+          description: Whether this chunk has finished processing.
+      x-apifox-orders:
+      - startTime
+      - duration
+      - videoPath
+      - isCompleted
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     PublicDestination:
       type: object
       description: Target storage location for the output file.
@@ -819,30 +843,6 @@ components:
       - bucket
       - region
       - folder
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    VideoInfo:
-      type: object
-      properties:
-        startTime:
-          type: integer
-          format: int64
-          description: Chunk start timestamp in milliseconds (Unix epoch ms).
-        duration:
-          type: integer
-          format: int64
-          description: Chunk duration in milliseconds.
-        videoPath:
-          type: string
-          description: S3 path or URL to this chunk's video file.
-        isCompleted:
-          type: boolean
-          description: Whether this chunk has finished processing.
-      x-apifox-orders:
-      - startTime
-      - duration
-      - videoPath
-      - isCompleted
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ReTranscribe:

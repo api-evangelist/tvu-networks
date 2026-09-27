@@ -415,6 +415,25 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-243498597.md
 components:
   schemas:
+    OrderItem:
+      type: object
+      properties:
+        key:
+          type: string
+          enum:
+          - liveFirst
+          - createTime
+          - updateTime
+        desc:
+          type: boolean
+        secondKey:
+          type: string
+      x-apifox-orders:
+      - key
+      - desc
+      - secondKey
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     ActiveOutput:
       type: object
       properties:
@@ -434,55 +453,7 @@ components:
       - url
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    AudioOffsetDTO:
-      required:
-      - offset
-      - destinationId
-      type: object
-      properties:
-        offset:
-          type: integer
-          description: 'audio delay ,Unit: Milliseconds'
-          format: int32
-          examples:
-          - 1000
-        destinationId:
-          type: string
-          description: destinationId can from getProject API
-          examples:
-          - 7aae4a307e1d4d4ab887b5ebfbf3d269
-      x-apifox-orders:
-      - offset
-      - destinationId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    WhiteBalanceDetailVO:
-      type: object
-      properties:
-        originPreviewId:
-          type: string
-        afterPreviewId:
-          type: string
-        whiteBalanceMode:
-          type: integer
-          description: '0: yuv,1:rgb'
-          format: int32
-        yuv:
-          $ref: '#/components/schemas/WhiteBalanceDTO'
-        rgb:
-          $ref: '#/components/schemas/RgbDTO'
-        scopes:
-          $ref: '#/components/schemas/Scopes'
-      x-apifox-orders:
-      - originPreviewId
-      - afterPreviewId
-      - whiteBalanceMode
-      - yuv
-      - rgb
-      - scopes
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResultPageInfoOutputProjectApiVo:
+    ResponseResultOutputProjectApiVo:
       type: object
       properties:
         errorCode:
@@ -496,7 +467,7 @@ components:
         async:
           type: boolean
         result:
-          $ref: '#/components/schemas/PageInfoOutputProjectApiVo'
+          $ref: '#/components/schemas/OutputProjectApiVo'
       x-apifox-orders:
       - errorCode
       - errorInfo
@@ -504,68 +475,16 @@ components:
       - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    SourceObj:
+    Vector:
       type: object
       properties:
-        sourceObjectId:
-          type: string
-        sourceObjectName:
-          type: string
-        sourceUrl:
-          type: string
-      description: when the project is live, the sourceObj will be available, otherwise it will be null
+        inputScope:
+          $ref: '#/components/schemas/ScopeInfo'
+        outputScope:
+          $ref: '#/components/schemas/ScopeInfo'
       x-apifox-orders:
-      - sourceObjectId
-      - sourceObjectName
-      - sourceUrl
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    OutputProjectQueryDTO:
-      type: object
-      properties:
-        pageNum:
-          type: integer
-          format: int32
-          examples:
-          - 1
-        pageSize:
-          type: integer
-          format: int32
-          examples:
-          - 10
-        orderItem:
-          $ref: '#/components/schemas/OrderItem'
-        includeTags:
-          type: array
-          items:
-            type: string
-            examples:
-            - '[]'
-          examples:
-          - []
-        excludeTags:
-          type: array
-          items:
-            type: string
-            examples:
-            - '[]'
-          examples:
-          - []
-        permission:
-          $ref: '#/components/schemas/PermissionDTO'
-        condition:
-          type: string
-          description: Search keywords,Can be used to filter project name and description
-          examples:
-          - projectName or description
-      x-apifox-orders:
-      - pageNum
-      - pageSize
-      - orderItem
-      - includeTags
-      - excludeTags
-      - permission
-      - condition
+      - inputScope
+      - outputScope
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ResponseResultWhiteBalanceDetailVO:
@@ -663,38 +582,109 @@ components:
       - objectId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    ScopeInfo:
+    ResponseResultPageInfoOutputProjectApiVo:
       type: object
       properties:
-        taskId:
+        errorCode:
           type: string
-        previewId:
+          examples:
+          - '0x0'
+        errorInfo:
           type: string
-        mode:
-          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/PageInfoOutputProjectApiVo'
       x-apifox-orders:
-      - taskId
-      - previewId
-      - mode
+      - errorCode
+      - errorInfo
+      - async
+      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    OrderItem:
+    ProjectRecord:
       type: object
       properties:
-        key:
+        id:
           type: string
-          enum:
-          - liveFirst
-          - createTime
-          - updateTime
-        desc:
-          type: boolean
-        secondKey:
+        projectId:
+          type: string
+        sourceObjectId:
+          type: string
+        sourceObjectName:
+          type: string
+        status:
+          type: integer
+          description: -1:inactive 0:loading,1:active
+          format: int32
+        sourceId:
           type: string
       x-apifox-orders:
-      - key
-      - desc
-      - secondKey
+      - id
+      - projectId
+      - sourceObjectId
+      - sourceObjectName
+      - status
+      - sourceId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    WhiteBalanceAdjustDTO:
+      type: object
+      properties:
+        outputId:
+          type: string
+        whiteBalanceMode:
+          type: integer
+          description: '0: yuv,1:rgb'
+          format: int32
+        yuv:
+          $ref: '#/components/schemas/WhiteBalanceDTO'
+        rgb:
+          $ref: '#/components/schemas/RgbDTO'
+      x-apifox-orders:
+      - outputId
+      - whiteBalanceMode
+      - yuv
+      - rgb
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Scopes:
+      type: object
+      properties:
+        vector:
+          $ref: '#/components/schemas/Vector'
+        waveform:
+          $ref: '#/components/schemas/Vector'
+        linetrace:
+          $ref: '#/components/schemas/Vector'
+      x-apifox-orders:
+      - vector
+      - waveform
+      - linetrace
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AudioOffsetDTO:
+      required:
+      - offset
+      - destinationId
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: 'audio delay ,Unit: Milliseconds'
+          format: int32
+          examples:
+          - 1000
+        destinationId:
+          type: string
+          description: destinationId can from getProject API
+          examples:
+          - 7aae4a307e1d4d4ab887b5ebfbf3d269
+      x-apifox-orders:
+      - offset
+      - destinationId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     CreateProjectDTO:
@@ -760,37 +750,46 @@ components:
       - enableInSync
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    OutputEncodingPairs:
+    WhiteBalanceDetailVO:
       type: object
       properties:
-        outputName:
+        originPreviewId:
           type: string
-        profileName:
+        afterPreviewId:
           type: string
-        outputEncodingProfilePairId:
-          type: string
-        outputId:
-          type: string
-        outputType:
-          type: string
-        profileId:
-          type: string
-        destinationId:
-          type: string
-        status:
-          maximum: 2
+        whiteBalanceMode:
           type: integer
-          description: pair status 1:enable 2:disable,disable means the output is not available for streaming
+          description: '0: yuv,1:rgb'
           format: int32
+        yuv:
+          $ref: '#/components/schemas/WhiteBalanceDTO'
+        rgb:
+          $ref: '#/components/schemas/RgbDTO'
+        scopes:
+          $ref: '#/components/schemas/Scopes'
       x-apifox-orders:
-      - outputName
-      - profileName
-      - outputEncodingProfilePairId
-      - outputId
-      - outputType
-      - profileId
-      - destinationId
-      - status
+      - originPreviewId
+      - afterPreviewId
+      - whiteBalanceMode
+      - yuv
+      - rgb
+      - scopes
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SourceObj:
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+        sourceObjectName:
+          type: string
+        sourceUrl:
+          type: string
+      description: when the project is live, the sourceObj will be available, otherwise it will be null
+      x-apifox-orders:
+      - sourceObjectId
+      - sourceObjectName
+      - sourceUrl
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     PermissionDTO:
@@ -803,188 +802,13 @@ components:
       - createByMe
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    ResponseResultOutputProjectApiVo:
+    WhiteBalanceParentDTO:
       type: object
       properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        async:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/OutputProjectApiVo'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    WhiteBalanceDTO:
-      type: object
-      properties:
-        chroma:
-          type: number
-          format: double
-        hue:
-          type: number
-          format: double
-        gamma:
-          type: number
-          format: double
-        yGain:
-          type: number
-          format: double
-        yOffset:
-          type: number
-          format: double
-      x-apifox-orders:
-      - chroma
-      - hue
-      - gamma
-      - yGain
-      - yOffset
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResult:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ProjectRecord:
-      type: object
-      properties:
-        id:
-          type: string
-        projectId:
-          type: string
-        sourceObjectId:
-          type: string
-        sourceObjectName:
-          type: string
-        status:
-          type: integer
-          description: -1:inactive 0:loading,1:active
-          format: int32
-        sourceId:
+        outputId:
           type: string
       x-apifox-orders:
-      - id
-      - projectId
-      - sourceObjectId
-      - sourceObjectName
-      - status
-      - sourceId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Scopes:
-      type: object
-      properties:
-        vector:
-          $ref: '#/components/schemas/Vector'
-        waveform:
-          $ref: '#/components/schemas/Vector'
-        linetrace:
-          $ref: '#/components/schemas/Vector'
-      x-apifox-orders:
-      - vector
-      - waveform
-      - linetrace
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    RgbDTO:
-      type: object
-      properties:
-        rOffset:
-          type: number
-          format: double
-        gOffset:
-          type: number
-          format: double
-        bOffset:
-          type: number
-          format: double
-        rGain:
-          type: number
-          format: double
-        gGain:
-          type: number
-          format: double
-        bGain:
-          type: number
-          format: double
-      x-apifox-orders:
-      - rOffset
-      - gOffset
-      - bOffset
-      - rGain
-      - gGain
-      - bGain
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Vector:
-      type: object
-      properties:
-        inputScope:
-          $ref: '#/components/schemas/ScopeInfo'
-        outputScope:
-          $ref: '#/components/schemas/ScopeInfo'
-      x-apifox-orders:
-      - inputScope
-      - outputScope
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResultProjectRecord:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        async:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/ProjectRecord'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
+      - outputId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     PageInfoOutputProjectApiVo:
@@ -1074,33 +898,209 @@ components:
       - lastPage
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    WhiteBalanceParentDTO:
+    ResponseResult:
       type: object
       properties:
-        outputId:
+        errorCode:
           type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
       x-apifox-orders:
-      - outputId
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    WhiteBalanceAdjustDTO:
+    OutputProjectQueryDTO:
       type: object
       properties:
+        pageNum:
+          type: integer
+          format: int32
+          examples:
+          - 1
+        pageSize:
+          type: integer
+          format: int32
+          examples:
+          - 10
+        orderItem:
+          $ref: '#/components/schemas/OrderItem'
+        includeTags:
+          type: array
+          items:
+            type: string
+            examples:
+            - '[]'
+          examples:
+          - []
+        excludeTags:
+          type: array
+          items:
+            type: string
+            examples:
+            - '[]'
+          examples:
+          - []
+        permission:
+          $ref: '#/components/schemas/PermissionDTO'
+        condition:
+          type: string
+          description: Search keywords,Can be used to filter project name and description
+          examples:
+          - projectName or description
+      x-apifox-orders:
+      - pageNum
+      - pageSize
+      - orderItem
+      - includeTags
+      - excludeTags
+      - permission
+      - condition
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ScopeInfo:
+      type: object
+      properties:
+        taskId:
+          type: string
+        previewId:
+          type: string
+        mode:
+          type: string
+      x-apifox-orders:
+      - taskId
+      - previewId
+      - mode
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    WhiteBalanceDTO:
+      type: object
+      properties:
+        chroma:
+          type: number
+          format: double
+        hue:
+          type: number
+          format: double
+        gamma:
+          type: number
+          format: double
+        yGain:
+          type: number
+          format: double
+        yOffset:
+          type: number
+          format: double
+      x-apifox-orders:
+      - chroma
+      - hue
+      - gamma
+      - yGain
+      - yOffset
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RgbDTO:
+      type: object
+      properties:
+        rOffset:
+          type: number
+          format: double
+        gOffset:
+          type: number
+          format: double
+        bOffset:
+          type: number
+          format: double
+        rGain:
+          type: number
+          format: double
+        gGain:
+          type: number
+          format: double
+        bGain:
+          type: number
+          format: double
+      x-apifox-orders:
+      - rOffset
+      - gOffset
+      - bOffset
+      - rGain
+      - gGain
+      - bGain
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultProjectRecord:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ProjectRecord'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OutputEncodingPairs:
+      type: object
+      properties:
+        outputName:
+          type: string
+        profileName:
+          type: string
+        outputEncodingProfilePairId:
+          type: string
         outputId:
           type: string
-        whiteBalanceMode:
+        outputType:
+          type: string
+        profileId:
+          type: string
+        destinationId:
+          type: string
+        status:
+          maximum: 2
           type: integer
-          description: '0: yuv,1:rgb'
+          description: pair status 1:enable 2:disable,disable means the output is not available for streaming
           format: int32
-        yuv:
-          $ref: '#/components/schemas/WhiteBalanceDTO'
-        rgb:
-          $ref: '#/components/schemas/RgbDTO'
       x-apifox-orders:
+      - outputName
+      - profileName
+      - outputEncodingProfilePairId
       - outputId
-      - whiteBalanceMode
-      - yuv
-      - rgb
+      - outputType
+      - profileId
+      - destinationId
+      - status
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     OutputProjectApiVo:

@@ -317,109 +317,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-243498622.md
 components:
   schemas:
-    ResponseResultProfileTemplateVo:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          $ref: '#/components/schemas/ProfileTemplateVo'
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          x--orders: []
-          properties: {}
-          x--ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x--orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResultListSingleTierEncodingProfileRes:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SingleTierEncodingProfileRes'
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          x--orders: []
-          properties: {}
-          x--ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x--orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    EncodingProfileDTO:
-      required:
-      - profileName
-      - videoEncoder
-      - audioEncoders
-      type: object
-      properties:
-        profileName:
-          type: string
-        videoEncoder:
-          $ref: '#/components/schemas/VideoEncoderParam'
-        audioEncoders:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudioEncoderParam'
-        audioEncoder:
-          $ref: '#/components/schemas/AudioEncoderParam'
-        templateType:
-          type: integer
-          format: int32
-        streamProfile:
-          $ref: '#/components/schemas/StreamProfileParam'
-      x-apifox-orders:
-      - profileName
-      - videoEncoder
-      - audioEncoders
-      - audioEncoder
-      - templateType
-      - streamProfile
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     SingleTierEncodingProfileRes:
       type: object
       properties:
@@ -477,6 +374,21 @@ components:
       x--orders:
       - videoProfile
       - audioProfiles
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ProfileTemplateVo:
+      type: object
+      properties:
+        audio:
+          $ref: '#/components/schemas/Audio'
+        video:
+          $ref: '#/components/schemas/Video'
+      x-apifox-orders:
+      - audio
+      - video
+      x--orders:
+      - audio
+      - video
       x--ignore-properties: []
       x-apifox-folder: ''
     UpdateVideoEncoderReq:
@@ -593,52 +505,6 @@ components:
       - id
       x--ignore-properties: []
       x-apifox-folder: ''
-    Result:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResultQueryEncodingProfileVO:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          $ref: '#/components/schemas/QueryEncodingProfileVO'
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     VideoEncoderParam:
       required:
       - bitrate
@@ -733,54 +599,7 @@ components:
       - transpose
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    StreamProfile:
-      type: object
-      properties:
-        name:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-          x-apifox-orders: []
-          x--orders: []
-          properties: {}
-          x--ignore-properties: []
-        mpegtsPmtStartPid:
-          type: integer
-          format: int32
-        mpegtsStartPid:
-          type: integer
-          format: int32
-        mpegtsSctePid:
-          type: integer
-          format: int32
-        mpegtsAudioPids:
-          type: array
-          items:
-            type: integer
-            format: int32
-        id:
-          type: string
-      x-apifox-orders:
-      - name
-      - metadata
-      - mpegtsPmtStartPid
-      - mpegtsStartPid
-      - mpegtsSctePid
-      - mpegtsAudioPids
-      - id
-      x--orders:
-      - name
-      - metadata
-      - mpegtsPmtStartPid
-      - mpegtsStartPid
-      - mpegtsSctePid
-      - mpegtsAudioPids
-      - id
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    AudioEncoderRes:
+    UpdateAudioEncoderReq:
       required:
       - bitrate
       - codec
@@ -816,128 +635,6 @@ components:
       - sampleRate
       - audioPid
       - id
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    StreamProfileParam:
-      type: object
-      properties:
-        name:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        mpegtsPmtStartPid:
-          type: integer
-          format: int32
-        mpegtsStartPid:
-          type: integer
-          format: int32
-        mpegtsSctePid:
-          type: integer
-          format: int32
-        mpegtsAudioPids:
-          type: array
-          items:
-            type: integer
-            format: int32
-      x-apifox-orders:
-      - name
-      - metadata
-      - mpegtsPmtStartPid
-      - mpegtsStartPid
-      - mpegtsSctePid
-      - mpegtsAudioPids
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResult:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    EditEncodingProfileDTO:
-      required:
-      - profileId
-      - profileName
-      type: object
-      properties:
-        profileId:
-          type: string
-        profileName:
-          type: string
-        videoEncoder:
-          $ref: '#/components/schemas/UpdateVideoEncoderReq'
-        audioEncoder:
-          $ref: '#/components/schemas/UpdateAudioEncoderReq'
-        audioEncoders:
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdateAudioEncoderReq'
-        streamProfile:
-          $ref: '#/components/schemas/StreamProfile'
-        templateType:
-          type: integer
-          format: int32
-      x-apifox-orders:
-      - profileId
-      - profileName
-      - videoEncoder
-      - audioEncoder
-      - audioEncoders
-      - streamProfile
-      - templateType
-      x--orders:
-      - profileId
-      - profileName
-      - videoEncoder
-      - audioEncoder
-      - audioEncoders
-      - streamProfile
-      - templateType
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    ProfileTemplateVo:
-      type: object
-      properties:
-        audio:
-          $ref: '#/components/schemas/Audio'
-        video:
-          $ref: '#/components/schemas/Video'
-      x-apifox-orders:
-      - audio
-      - video
-      x--orders:
-      - audio
-      - video
       x--ignore-properties: []
       x-apifox-folder: ''
     Audio:
@@ -1012,6 +709,322 @@ components:
       - templateType
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    StreamProfile:
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          x-apifox-orders: []
+          x--orders: []
+          properties: {}
+          x--ignore-properties: []
+        mpegtsPmtStartPid:
+          type: integer
+          format: int32
+        mpegtsStartPid:
+          type: integer
+          format: int32
+        mpegtsSctePid:
+          type: integer
+          format: int32
+        mpegtsAudioPids:
+          type: array
+          items:
+            type: integer
+            format: int32
+        id:
+          type: string
+      x-apifox-orders:
+      - name
+      - metadata
+      - mpegtsPmtStartPid
+      - mpegtsStartPid
+      - mpegtsSctePid
+      - mpegtsAudioPids
+      - id
+      x--orders:
+      - name
+      - metadata
+      - mpegtsPmtStartPid
+      - mpegtsStartPid
+      - mpegtsSctePid
+      - mpegtsAudioPids
+      - id
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    EncodingProfileDTO:
+      required:
+      - profileName
+      - videoEncoder
+      - audioEncoders
+      type: object
+      properties:
+        profileName:
+          type: string
+        videoEncoder:
+          $ref: '#/components/schemas/VideoEncoderParam'
+        audioEncoders:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudioEncoderParam'
+        audioEncoder:
+          $ref: '#/components/schemas/AudioEncoderParam'
+        templateType:
+          type: integer
+          format: int32
+        streamProfile:
+          $ref: '#/components/schemas/StreamProfileParam'
+      x-apifox-orders:
+      - profileName
+      - videoEncoder
+      - audioEncoders
+      - audioEncoder
+      - templateType
+      - streamProfile
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultProfileApiVo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          $ref: '#/components/schemas/ProfileApiVo'
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          x--orders: []
+          properties: {}
+          x--ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultProfileTemplateVo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          $ref: '#/components/schemas/ProfileTemplateVo'
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          x--orders: []
+          properties: {}
+          x--ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    AudioEncoderParam:
+      required:
+      - bitrate
+      - codec
+      type: object
+      properties:
+        bitrate:
+          type: string
+          examples:
+          - 128k
+        codec:
+          type: string
+          examples:
+          - AAC
+        sampleRate:
+          type: integer
+          format: int32
+          examples:
+          - 48000
+        audioPid:
+          type: integer
+          format: int32
+      x-apifox-orders:
+      - bitrate
+      - codec
+      - sampleRate
+      - audioPid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProfileApiVo:
+      type: object
+      properties:
+        profileId:
+          type: string
+      x-apifox-orders:
+      - profileId
+      x--orders:
+      - profileId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    Result:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AudioEncoderRes:
+      required:
+      - bitrate
+      - codec
+      type: object
+      properties:
+        bitrate:
+          type: string
+          examples:
+          - 128k
+        codec:
+          type: string
+          examples:
+          - AAC
+        sampleRate:
+          type: integer
+          format: int32
+          examples:
+          - 48000
+        audioPid:
+          type: integer
+          format: int32
+        id:
+          type: string
+      x-apifox-orders:
+      - bitrate
+      - codec
+      - sampleRate
+      - audioPid
+      - id
+      x--orders:
+      - bitrate
+      - codec
+      - sampleRate
+      - audioPid
+      - id
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    EditEncodingProfileDTO:
+      required:
+      - profileId
+      - profileName
+      type: object
+      properties:
+        profileId:
+          type: string
+        profileName:
+          type: string
+        videoEncoder:
+          $ref: '#/components/schemas/UpdateVideoEncoderReq'
+        audioEncoder:
+          $ref: '#/components/schemas/UpdateAudioEncoderReq'
+        audioEncoders:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateAudioEncoderReq'
+        streamProfile:
+          $ref: '#/components/schemas/StreamProfile'
+        templateType:
+          type: integer
+          format: int32
+      x-apifox-orders:
+      - profileId
+      - profileName
+      - videoEncoder
+      - audioEncoder
+      - audioEncoders
+      - streamProfile
+      - templateType
+      x--orders:
+      - profileId
+      - profileName
+      - videoEncoder
+      - audioEncoder
+      - audioEncoders
+      - streamProfile
+      - templateType
+      x--ignore-properties: []
+      x-apifox-folder: ''
     Video:
       type: object
       properties:
@@ -1061,36 +1074,7 @@ components:
       - levels
       x--ignore-properties: []
       x-apifox-folder: ''
-    AudioEncoderParam:
-      required:
-      - bitrate
-      - codec
-      type: object
-      properties:
-        bitrate:
-          type: string
-          examples:
-          - 128k
-        codec:
-          type: string
-          examples:
-          - AAC
-        sampleRate:
-          type: integer
-          format: int32
-          examples:
-          - 48000
-        audioPid:
-          type: integer
-          format: int32
-      x-apifox-orders:
-      - bitrate
-      - codec
-      - sampleRate
-      - audioPid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResultProfileApiVo:
+    ResponseResultQueryEncodingProfileVO:
       type: object
       properties:
         errorCode:
@@ -1102,66 +1086,21 @@ components:
           examples:
           - success
         result:
-          $ref: '#/components/schemas/ProfileApiVo'
+          $ref: '#/components/schemas/QueryEncodingProfileVO'
         async:
           type: boolean
         errorBody:
           type: object
           x-apifox-orders: []
-          x--orders: []
           properties: {}
-          x--ignore-properties: []
+          x-apifox-ignore-properties: []
       x-apifox-orders:
       - errorCode
       - errorInfo
       - result
       - async
       - errorBody
-      x--orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    UpdateAudioEncoderReq:
-      required:
-      - bitrate
-      - codec
-      type: object
-      properties:
-        bitrate:
-          type: string
-          examples:
-          - 128k
-        codec:
-          type: string
-          examples:
-          - AAC
-        sampleRate:
-          type: integer
-          format: int32
-          examples:
-          - 48000
-        audioPid:
-          type: integer
-          format: int32
-        id:
-          type: string
-      x-apifox-orders:
-      - bitrate
-      - codec
-      - sampleRate
-      - audioPid
-      - id
-      x--orders:
-      - bitrate
-      - codec
-      - sampleRate
-      - audioPid
-      - id
-      x--ignore-properties: []
+      x-apifox-ignore-properties: []
       x-apifox-folder: ''
     VideoEncoderRes:
       required:
@@ -1277,15 +1216,76 @@ components:
       - id
       x--ignore-properties: []
       x-apifox-folder: ''
-    ProfileApiVo:
+    StreamProfileParam:
       type: object
       properties:
-        profileId:
+        name:
           type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        mpegtsPmtStartPid:
+          type: integer
+          format: int32
+        mpegtsStartPid:
+          type: integer
+          format: int32
+        mpegtsSctePid:
+          type: integer
+          format: int32
+        mpegtsAudioPids:
+          type: array
+          items:
+            type: integer
+            format: int32
       x-apifox-orders:
-      - profileId
+      - name
+      - metadata
+      - mpegtsPmtStartPid
+      - mpegtsStartPid
+      - mpegtsSctePid
+      - mpegtsAudioPids
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultListSingleTierEncodingProfileRes:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SingleTierEncodingProfileRes'
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          x--orders: []
+          properties: {}
+          x--ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
       x--orders:
-      - profileId
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
       x--ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:
