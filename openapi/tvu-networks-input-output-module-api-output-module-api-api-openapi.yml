@@ -239,6 +239,42 @@ paths:
       x-operation-id-original: query output list
 components:
   schemas:
+    RunOutPutDTO:
+      type: object
+      properties:
+        inputId:
+          description: inputId from run input api
+          type: string
+          examples:
+          - '1227255915959431168'
+        encodingProfileId:
+          description: encoding profile id, please us encoding api build encoding profile and then get the encodingProfileId
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+        streamingUrl:
+          description: Streaming address
+          type: string
+          examples:
+          - rtmp://a.rtmp.youtube.com/live2/demo
+        region:
+          description: aws cloud region
+          type: string
+          examples:
+          - us-east-1
+        boxId:
+          description: tvu box id,please contact us
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+      x-apifox-orders:
+      - inputId
+      - encodingProfileId
+      - streamingUrl
+      - region
+      - boxId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     RunOutputVO:
       description: result
       type: object
@@ -281,27 +317,6 @@ components:
       - status
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    ResultRunOutputVO:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/RunOutputVO'
-        errorCode:
-          description: error code
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          description: error info
-          type: string
-          examples:
-          - success
-      x-apifox-orders:
-      - result
-      - errorCode
-      - errorInfo
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     ResultVoid:
       type: object
       properties:
@@ -327,40 +342,25 @@ components:
       - errorInfo
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    RunOutPutDTO:
+    ResultRunOutputVO:
       type: object
       properties:
-        inputId:
-          description: inputId from run input api
+        result:
+          $ref: '#/components/schemas/RunOutputVO'
+        errorCode:
+          description: error code
           type: string
           examples:
-          - '1227255915959431168'
-        encodingProfileId:
-          description: encoding profile id, please us encoding api build encoding profile and then get the encodingProfileId
+          - '0x0'
+        errorInfo:
+          description: error info
           type: string
           examples:
-          - 3796d351982c40e08c778312216a4e30
-        streamingUrl:
-          description: Streaming address
-          type: string
-          examples:
-          - rtmp://a.rtmp.youtube.com/live2/demo
-        region:
-          description: aws cloud region
-          type: string
-          examples:
-          - us-east-1
-        boxId:
-          description: tvu box id,please contact us
-          type: string
-          examples:
-          - 3796d351982c40e08c778312216a4e30
+          - success
       x-apifox-orders:
-      - inputId
-      - encodingProfileId
-      - streamingUrl
-      - region
-      - boxId
+      - result
+      - errorCode
+      - errorInfo
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

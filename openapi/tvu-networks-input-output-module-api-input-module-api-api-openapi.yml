@@ -239,6 +239,69 @@ paths:
       x-operation-id-original: query input list
 components:
   schemas:
+    PageInfoRunInputVO:
+      description: result
+      type: object
+      properties:
+        total:
+          format: int32
+          type: integer
+        pages:
+          format: int32
+          type: integer
+        size:
+          format: int32
+          type: integer
+        hasNextPage:
+          type: boolean
+        pageSize:
+          format: int32
+          type: integer
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/RunInputVO'
+        pageNum:
+          format: int32
+          type: integer
+      x-apifox-orders:
+      - total
+      - pages
+      - size
+      - hasNextPage
+      - pageSize
+      - list
+      - pageNum
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RunInputVO:
+      description: result
+      type: object
+      properties:
+        inputId:
+          description: Input Record Unique id, identifies the user operation data record, and can be used to delete the record later
+          type: string
+        objectId:
+          description: 'tvu source object id '
+          type: string
+        url:
+          description: source url
+          type: string
+          examples:
+          - https://www.youtube.com/watch?v=Kzbrq_kf7Rw
+        status:
+          format: int32
+          description: 'OptionValue 0:stop,1: loading, 2:active'
+          type: integer
+          examples:
+          - 1
+      x-apifox-orders:
+      - inputId
+      - objectId
+      - url
+      - status
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     ResultPageInfoRunInputVO:
       type: object
       properties:
@@ -290,55 +353,6 @@ components:
       - boxId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    RunInputVO:
-      description: result
-      type: object
-      properties:
-        inputId:
-          description: Input Record Unique id, identifies the user operation data record, and can be used to delete the record later
-          type: string
-        objectId:
-          description: 'tvu source object id '
-          type: string
-        url:
-          description: source url
-          type: string
-          examples:
-          - https://www.youtube.com/watch?v=Kzbrq_kf7Rw
-        status:
-          format: int32
-          description: 'OptionValue 0:stop,1: loading, 2:active'
-          type: integer
-          examples:
-          - 1
-      x-apifox-orders:
-      - inputId
-      - objectId
-      - url
-      - status
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResultRunInputVO:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/RunInputVO'
-        errorCode:
-          description: error code
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          description: error info
-          type: string
-          examples:
-          - success
-      x-apifox-orders:
-      - result
-      - errorCode
-      - errorInfo
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     ResultVoid:
       type: object
       properties:
@@ -364,39 +378,25 @@ components:
       - errorInfo
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    PageInfoRunInputVO:
-      description: result
+    ResultRunInputVO:
       type: object
       properties:
-        total:
-          format: int32
-          type: integer
-        pages:
-          format: int32
-          type: integer
-        size:
-          format: int32
-          type: integer
-        hasNextPage:
-          type: boolean
-        pageSize:
-          format: int32
-          type: integer
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/RunInputVO'
-        pageNum:
-          format: int32
-          type: integer
+        result:
+          $ref: '#/components/schemas/RunInputVO'
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
       x-apifox-orders:
-      - total
-      - pages
-      - size
-      - hasNextPage
-      - pageSize
-      - list
-      - pageNum
+      - result
+      - errorCode
+      - errorInfo
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

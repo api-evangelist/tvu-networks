@@ -118,58 +118,10 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-329846476.md
 components:
   schemas:
-    BasePreviewDTO:
-      required:
-      - sourceObjectId
-      type: object
-      properties:
-        sourceObjectId:
-          type: string
-          description: source objectId
-        previewType:
-          type: integer
-          description: 'preview type,allowed values: 1 webrtc 2 RTIL'
-          format: int32
-          examples:
-          - 2
-      x-apifox-orders:
-      - sourceObjectId
-      - previewType
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    StopPreviewParam:
-      required:
-      - sourceObjectId
-      type: object
-      properties:
-        sourceObjectId:
-          type: string
-      x-apifox-orders:
-      - sourceObjectId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     BasePreviewVO:
       type: object
       x-apifox-orders: []
       properties: {}
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Result:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ResponseResultBasePreviewVO:
@@ -198,6 +150,35 @@ components:
       - result
       - async
       - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    StopPreviewParam:
+      required:
+      - sourceObjectId
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+      x-apifox-orders:
+      - sourceObjectId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Result:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ResponseResult:
@@ -229,6 +210,25 @@ components:
       - result
       - async
       - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    BasePreviewDTO:
+      required:
+      - sourceObjectId
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+          description: source objectId
+        previewType:
+          type: integer
+          description: 'preview type,allowed values: 1 webrtc 2 RTIL'
+          format: int32
+          examples:
+          - 2
+      x-apifox-orders:
+      - sourceObjectId
+      - previewType
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

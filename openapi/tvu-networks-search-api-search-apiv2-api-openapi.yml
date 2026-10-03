@@ -95,6 +95,25 @@ components:
       - query
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    controllers.AgentSearchResp:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Search result payload
+          allOf:
+          - $ref: '#/components/schemas/controllers.AgentSearchItems'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     controllers.AgentSearchItems:
       type: object
       properties:
@@ -117,25 +136,6 @@ components:
       - memoryId
       - size
       - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.AgentSearchResp:
-      type: object
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Search result payload
-          allOf:
-          - $ref: '#/components/schemas/controllers.AgentSearchItems'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

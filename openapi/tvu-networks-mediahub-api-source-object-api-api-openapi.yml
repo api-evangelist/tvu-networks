@@ -230,50 +230,212 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-243498608.md
 components:
   schemas:
-    ObjectConnectInfo:
+    SourceSearchTag:
       type: object
       properties:
-        status:
+        tagId:
           type: string
-          description: source object status
-          enum:
-          - inactive
-          - active
-          examples:
-          - active
-        live:
-          type: boolean
-          description: whether the source is LIVE
-        projectId:
+        tagName:
           type: string
-          description: when source object is live this value will be returned
-      description: source object connect info
-      x-apifox-orders:
-      - status
-      - live
-      - projectId
-      x--orders:
-      - status
-      - live
-      - projectId
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    SourceSearchPageVo:
-      type: object
-      properties:
-        totalNum:
+        label:
+          type: string
+        classification:
           type: integer
           format: int32
-        sourceList:
+      x-apifox-orders:
+      - tagId
+      - tagName
+      - label
+      - classification
+      x--orders:
+      - tagId
+      - tagName
+      - label
+      - classification
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    SourceObjectListParam:
+      type: object
+      properties:
+        pageNum:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        condition:
+          type: string
+      x-apifox-orders:
+      - pageNum
+      - pageSize
+      - condition
+      x--orders:
+      - pageNum
+      - pageSize
+      - condition
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    UpdateSourceObjectDTO:
+      required:
+      - objectId
+      - sourceName
+      - url
+      type: object
+      properties:
+        objectId:
+          type: string
+        sourceName:
+          type: string
+        url:
+          type: string
+        region:
+          type: string
+          description: When setting the boxPoolId property, the region property is ignored.
+          default: us-east-1
+          examples:
+          - us-east-1
+        boxPoolId:
+          type: string
+          description: This property can be obtained from tvu home by contacting support
+      x-apifox-orders:
+      - objectId
+      - sourceName
+      - url
+      - region
+      - boxPoolId
+      x--orders:
+      - objectId
+      - sourceName
+      - url
+      - region
+      - boxPoolId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    Attribute:
+      type: object
+      properties:
+        attrName:
+          type: string
+        attrValue:
           type: array
           items:
-            $ref: '#/components/schemas/SourceSearchObject'
+            type: string
       x-apifox-orders:
-      - totalNum
-      - sourceList
+      - attrName
+      - attrValue
       x--orders:
-      - totalNum
-      - sourceList
+      - attrName
+      - attrValue
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultObjectInfoDTO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ObjectInfoDTO'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SourceAttrPO:
+      type: object
+      properties:
+        id:
+          type: string
+        createTime:
+          type: integer
+          format: int64
+        updateTime:
+          type: integer
+          format: int64
+        deleteFlag:
+          type: integer
+          format: int32
+        bitrate:
+          type: integer
+          format: int32
+        delay:
+          type: integer
+          format: int32
+        sourceId:
+          type: string
+        objectId:
+          type: string
+        region:
+          type: string
+        boxPoolId:
+          type: string
+      x-apifox-orders:
+      - id
+      - createTime
+      - updateTime
+      - deleteFlag
+      - bitrate
+      - delay
+      - sourceId
+      - objectId
+      - region
+      - boxPoolId
+      x--orders:
+      - id
+      - createTime
+      - updateTime
+      - deleteFlag
+      - bitrate
+      - delay
+      - sourceId
+      - objectId
+      - region
+      - boxPoolId
       x--ignore-properties: []
       x-apifox-folder: ''
     SourceSearchObject:
@@ -448,22 +610,21 @@ components:
       - result
       x--ignore-properties: []
       x-apifox-folder: ''
-    UpdateSourceObjectDTO:
+    AddSourceObjectParam:
       required:
-      - objectId
       - sourceName
       - url
+      - sourceType
       type: object
       properties:
-        objectId:
-          type: string
         sourceName:
           type: string
         url:
           type: string
+        sourceType:
+          type: string
         region:
           type: string
-          description: When setting the boxPoolId property, the region property is ignored.
           default: us-east-1
           examples:
           - us-east-1
@@ -471,91 +632,12 @@ components:
           type: string
           description: This property can be obtained from tvu home by contacting support
       x-apifox-orders:
-      - objectId
       - sourceName
       - url
+      - sourceType
       - region
       - boxPoolId
-      x--orders:
-      - objectId
-      - sourceName
-      - url
-      - region
-      - boxPoolId
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    SourceAttrPO:
-      type: object
-      properties:
-        id:
-          type: string
-        createTime:
-          type: integer
-          format: int64
-        updateTime:
-          type: integer
-          format: int64
-        deleteFlag:
-          type: integer
-          format: int32
-        bitrate:
-          type: integer
-          format: int32
-        delay:
-          type: integer
-          format: int32
-        sourceId:
-          type: string
-        objectId:
-          type: string
-        region:
-          type: string
-        boxPoolId:
-          type: string
-      x-apifox-orders:
-      - id
-      - createTime
-      - updateTime
-      - deleteFlag
-      - bitrate
-      - delay
-      - sourceId
-      - objectId
-      - region
-      - boxPoolId
-      x--orders:
-      - id
-      - createTime
-      - updateTime
-      - deleteFlag
-      - bitrate
-      - delay
-      - sourceId
-      - objectId
-      - region
-      - boxPoolId
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    SourceObjectListParam:
-      type: object
-      properties:
-        pageNum:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        condition:
-          type: string
-      x-apifox-orders:
-      - pageNum
-      - pageSize
-      - condition
-      x--orders:
-      - pageNum
-      - pageSize
-      - condition
-      x--ignore-properties: []
+      x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ObjectInfoDTO:
       type: object
@@ -589,133 +671,51 @@ components:
       - url
       x--ignore-properties: []
       x-apifox-folder: ''
-    ResponseResultObjectInfoDTO:
+    ObjectConnectInfo:
       type: object
       properties:
-        errorCode:
+        status:
           type: string
+          description: source object status
+          enum:
+          - inactive
+          - active
           examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        async:
+          - active
+        live:
           type: boolean
-        result:
-          $ref: '#/components/schemas/ObjectInfoDTO'
+          description: whether the source is LIVE
+        projectId:
+          type: string
+          description: when source object is live this value will be returned
+      description: source object connect info
       x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
+      - status
+      - live
+      - projectId
       x--orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
+      - status
+      - live
+      - projectId
       x--ignore-properties: []
       x-apifox-folder: ''
-    ResponseResult:
+    SourceSearchPageVo:
       type: object
       properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Attribute:
-      type: object
-      properties:
-        attrName:
-          type: string
-        attrValue:
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - attrName
-      - attrValue
-      x--orders:
-      - attrName
-      - attrValue
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    SourceSearchTag:
-      type: object
-      properties:
-        tagId:
-          type: string
-        tagName:
-          type: string
-        label:
-          type: string
-        classification:
+        totalNum:
           type: integer
           format: int32
+        sourceList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceSearchObject'
       x-apifox-orders:
-      - tagId
-      - tagName
-      - label
-      - classification
+      - totalNum
+      - sourceList
       x--orders:
-      - tagId
-      - tagName
-      - label
-      - classification
+      - totalNum
+      - sourceList
       x--ignore-properties: []
-      x-apifox-folder: ''
-    AddSourceObjectParam:
-      required:
-      - sourceName
-      - url
-      - sourceType
-      type: object
-      properties:
-        sourceName:
-          type: string
-        url:
-          type: string
-        sourceType:
-          type: string
-        region:
-          type: string
-          default: us-east-1
-          examples:
-          - us-east-1
-        boxPoolId:
-          type: string
-          description: This property can be obtained from tvu home by contacting support
-      x-apifox-orders:
-      - sourceName
-      - url
-      - sourceType
-      - region
-      - boxPoolId
-      x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:
     bearer:

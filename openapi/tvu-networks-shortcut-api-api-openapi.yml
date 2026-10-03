@@ -303,12 +303,6 @@ components:
       - enabled
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    Object:
-      type: object
-      x-apifox-orders: []
-      properties: {}
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     PageShortcut:
       type: object
       properties:
@@ -325,6 +319,12 @@ components:
       - service
       - shortcuts
       - page
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Object:
+      type: object
+      x-apifox-orders: []
+      properties: {}
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     GetUserShortcutRequest:

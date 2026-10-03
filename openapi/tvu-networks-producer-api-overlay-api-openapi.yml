@@ -703,31 +703,17 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778550.md
 components:
   schemas:
-    FileInfoQueryRequest:
+    UploadSourceResult:
+      required:
+      - objectKey
+      - programId
       type: object
       properties:
-        pageIndex:
-          type: integer
-          description: page index
-          format: int32
-          examples:
-          - 1
-        name:
+        objectKey:
           type: string
-          description: file name
+          description: S3 object key
           examples:
-          - BYlYWOIpCasrzKVHDlqGoevKKTYckMOW
-        pageSize:
-          type: integer
-          description: request records count per page
-          format: int32
-          examples:
-          - 10
-        pid:
-          type: string
-          description: parent directory id
-          examples:
-          - VyQLcbNCIfYUxfzeMUudxLygEaQfIbwTG
+          - rjThfblhWIHdNORBspbIoNfledin
         programId:
           type: integer
           description: program id
@@ -735,10 +721,40 @@ components:
           examples:
           - 0
       x-apifox-orders:
-      - pageIndex
-      - name
-      - pageSize
-      - pid
+      - objectKey
+      - programId
+      x--orders:
+      - objectKey
+      - programId
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    FileSourceActionVo:
+      required:
+      - sourceId
+      - position
+      - programId
+      type: object
+      properties:
+        sourceId:
+          type: string
+          description: logo file source id
+          examples:
+          - '000000000000000'
+        position:
+          type: integer
+          description: logo position(begin from 0)
+          format: int32
+          examples:
+          - 1427076743
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - sourceId
+      - position
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
@@ -765,17 +781,17 @@ components:
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    UploadSourceResult:
+    UserSingularApp:
       required:
-      - objectKey
+      - apply
       - programId
       type: object
       properties:
-        objectKey:
-          type: string
-          description: S3 object key
+        apply:
+          type: boolean
+          description: singular switch on or off
           examples:
-          - rjThfblhWIHdNORBspbIoNfledin
+          - true
         programId:
           type: integer
           description: program id
@@ -783,12 +799,9 @@ components:
           examples:
           - 0
       x-apifox-orders:
-      - objectKey
+      - apply
       - programId
-      x--orders:
-      - objectKey
-      - programId
-      x--ignore-properties: []
+      x-apifox-ignore-properties: []
       x-apifox-folder: ''
     UploadSourceRequest:
       required:
@@ -847,28 +860,6 @@ components:
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    UserSingularApp:
-      required:
-      - apply
-      - programId
-      type: object
-      properties:
-        apply:
-          type: boolean
-          description: singular switch on or off
-          examples:
-          - true
-        programId:
-          type: integer
-          description: program id
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - apply
-      - programId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     OverlayRequest:
       type: object
       properties:
@@ -889,24 +880,31 @@ components:
       - timestamp
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    FileSourceActionVo:
-      required:
-      - sourceId
-      - position
-      - programId
+    FileInfoQueryRequest:
       type: object
       properties:
-        sourceId:
-          type: string
-          description: logo file source id
-          examples:
-          - '000000000000000'
-        position:
+        pageIndex:
           type: integer
-          description: logo position(begin from 0)
+          description: page index
           format: int32
           examples:
-          - 1427076743
+          - 1
+        name:
+          type: string
+          description: file name
+          examples:
+          - BYlYWOIpCasrzKVHDlqGoevKKTYckMOW
+        pageSize:
+          type: integer
+          description: request records count per page
+          format: int32
+          examples:
+          - 10
+        pid:
+          type: string
+          description: parent directory id
+          examples:
+          - VyQLcbNCIfYUxfzeMUudxLygEaQfIbwTG
         programId:
           type: integer
           description: program id
@@ -914,8 +912,10 @@ components:
           examples:
           - 0
       x-apifox-orders:
-      - sourceId
-      - position
+      - pageIndex
+      - name
+      - pageSize
+      - pid
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''

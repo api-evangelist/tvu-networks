@@ -141,29 +141,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778556.md
 components:
   schemas:
-    AddOrRemoveMembersRequest:
-      required:
-      - programId
-      type: object
-      properties:
-        emails:
-          type: array
-          items:
-            type: string
-            description: user email list
-            examples:
-            - producer-test@tvunetworks.com
-        programId:
-          type: integer
-          description: program id
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - emails
-      - programId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     ProgramTeamMember:
       required:
       - roles
@@ -185,6 +162,29 @@ components:
       x-apifox-orders:
       - roles
       - id
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AddOrRemoveMembersRequest:
+      required:
+      - programId
+      type: object
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+            description: user email list
+            examples:
+            - producer-test@tvunetworks.com
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - emails
+      - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

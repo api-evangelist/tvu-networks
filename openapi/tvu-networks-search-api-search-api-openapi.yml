@@ -2473,397 +2473,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-236527408.md
 components:
   schemas:
-    models.AppearanceSearchRequest:
-      type: object
-      properties:
-        filters:
-          description: Search filter criteria
-          allOf:
-          - $ref: '#/components/schemas/models.AppearanceSearchFilter'
-        pageNum:
-          description: The page number of the returned results, defaulting to 1
-          type: integer
-        pageSize:
-          description: The number of results returned per page, defaulting to 20
-          type: integer
-        searchLang:
-          description: Search language, defaults to en
-          type: string
-        sort:
-          description: Result sort order; currently only 1 (by relevance) is supported
-          type: integer
-        timestampRange:
-          description: The search time range, defaults to one week
-          allOf:
-          - $ref: '#/components/schemas/models.TimestampRange'
-      x-apifox-orders:
-      - filters
-      - pageNum
-      - pageSize
-      - searchLang
-      - sort
-      - timestampRange
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.EventRecordingsResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Recording files associated with the event; present only on success
-          allOf:
-          - $ref: '#/components/schemas/models.EventObjectRecordingsResult'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchObjectByUserId:
-      type: object
-      properties:
-        objectId:
-          type: string
-        objectName:
-          type: string
-      x-apifox-orders:
-      - objectId
-      - objectName
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.PersonResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Returned person list; present only on success
-          allOf:
-          - $ref: '#/components/schemas/controllers.PersonItem'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.LocationInfo:
-      type: object
-      properties:
-        description:
-          type: string
-        mainText:
-          type: string
-        searchedText:
-          type: string
-        secondaryText:
-          type: string
-        terms:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.TermsItem'
-      x-apifox-orders:
-      - description
-      - mainText
-      - searchedText
-      - secondaryText
-      - terms
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceFilter:
-      type: object
-      properties:
-        classType:
-          description: 'Appearance class type to filter: 0=logo/brand, 1=text/number, 2=person/face'
-          type: integer
-        content:
-          description: Specific appearance entities to filter by within the class type
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceContent'
-      x-apifox-orders:
-      - classType
-      - content
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SuggestionResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: List of autocomplete suggestions; present only on success
-          type: array
-          items:
-            $ref: '#/components/schemas/models.HintRetureData'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SupportLangResp:
-      type: object
-      required:
-      - data
-      - errorCode
-      - errorInfo
-      properties:
-        data:
-          description: Supported language list; present only on success
-          allOf:
-          - $ref: '#/components/schemas/controllers.SupportLangItem'
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-      x-apifox-orders:
-      - data
-      - errorCode
-      - errorInfo
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.PersonItem:
-      type: object
-      properties:
-        list:
-          description: List of detected persons
-          type: array
-          items:
-            $ref: '#/components/schemas/models.PersonInfo'
-        size:
-          description: Number of persons in the current response
-          type: integer
-        total:
-          description: Total number of matching persons
-          type: integer
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceRelationItem:
-      type: object
-      properties:
-        classType:
-          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
-          type: integer
-        content:
-          description: List of appearance content items in this class
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceContent'
-      x-apifox-orders:
-      - classType
-      - content
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.CaptionSearchResult:
-      type: object
-      properties:
-        list:
-          description: List of matched caption records
-          type: array
-          items:
-            $ref: '#/components/schemas/models.EsCapfullReturnDataV3'
-        size:
-          description: Number of records in the current page
-          type: integer
-        total:
-          description: Total number of matching records across all pages
-          type: integer
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x--orders:
-      - list
-      - size
-      - total
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    controllers.MediaFileByIdsResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: List of media files matching the given object IDs; present only on success
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SearchMediaFileBySourceObjectId'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    controllers.PublicSearchItem:
-      type: object
-      properties:
-        list:
-          description: return data
-          type: array
-          items:
-            type: string
-        size:
-          description: return data size
-          type: integer
-          examples:
-          - 6
-        total:
-          description: return data length
-          type: integer
-          examples:
-          - 6
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.EventItem:
-      type: object
-      properties:
-        list:
-          description: List of matched event records
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SearchAssetResult'
-        size:
-          description: Number of events in the current response
-          type: integer
-        total:
-          description: Total number of matching events
-          type: integer
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceRelationsResult:
-      type: object
-      properties:
-        relations:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceRelations'
-        size:
-          type: integer
-        total:
-          type: integer
-      x-apifox-orders:
-      - relations
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.PersonTrackResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Returned person track list; present only on success
-          allOf:
-          - $ref: '#/components/schemas/controllers.PersonTrackItem'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SettingsResp:
-      type: object
-      required:
-      - errorCode
-      - errorMsg
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorMsg:
-          description: Human-readable result message
-          type: string
-        result:
-          type: string
-      x-apifox-orders:
-      - errorCode
-      - errorMsg
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.RecordedFileResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2006=user not found by email, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Returned recorded file list; present only on success
-          allOf:
-          - $ref: '#/components/schemas/controllers.MediafileItem'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     models.MediaInfo:
       type: object
       properties:
@@ -2898,6 +2507,793 @@ components:
       - sourceId
       - sourceObjectId
       - thumbnailFullPath
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.WebPersonReturnData:
+      type: object
+      properties:
+        can_be_merged:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.PersonReturnData'
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.PersonReturnData'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - can_be_merged
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.PersonResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Returned person list; present only on success
+          allOf:
+          - $ref: '#/components/schemas/controllers.PersonItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelationsResult:
+      type: object
+      properties:
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceRelations'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - relations
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.TermsItem:
+      type: object
+      properties:
+        offset:
+          type: integer
+        value:
+          type: string
+      x-apifox-orders:
+      - offset
+      - value
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.PersonInfoItem:
+      type: object
+      properties:
+        list:
+          description: List of face appearance records
+          type: array
+          items:
+            type: string
+        personName:
+          description: Display name of the queried person
+          type: string
+        searchAfterId:
+          description: Cursor to pass in the next request for the following page; empty means last page
+          type: string
+        size:
+          description: Number of records in the current response
+          type: integer
+        total:
+          description: Total number of face appearance records
+          type: integer
+      x-apifox-orders:
+      - list
+      - personName
+      - searchAfterId
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceAffiliated:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: List of appearance entities in this class found in the result
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceAffiliatedContent'
+      x-apifox-orders:
+      - classType
+      - content
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SupportLangItem:
+      type: object
+      required:
+      - list
+      - size
+      - total
+      properties:
+        list:
+          description: List of supported language codes (e.g., "en-US", "zh-CN")
+          type: array
+          items:
+            type: string
+        size:
+          description: Number of languages in the current response
+          type: integer
+        total:
+          description: Total number of supported languages
+          type: integer
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.EventItem:
+      type: object
+      properties:
+        list:
+          description: List of matched event records
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SearchAssetResult'
+        size:
+          description: Number of events in the current response
+          type: integer
+        total:
+          description: Total number of matching events
+          type: integer
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.PersonReturnData:
+      type: object
+      properties:
+        asset_num:
+          type: integer
+        face_num:
+          type: integer
+          examples:
+          - 1
+        group_id:
+          type: string
+          examples:
+          - 00fe20a2d2d84093b304f0d54d4bedda
+        highlight:
+          type: string
+        last_update_ts:
+          type: integer
+          examples:
+          - 1717055943701
+        name:
+          type: string
+          examples:
+          - ''
+        object_media:
+          type: integer
+        path:
+          type: string
+          examples:
+          - FFFFFFF00015C633_1717048728819.jpg
+        peer_id:
+          type: string
+          examples:
+          - FFFFFFF00015C633
+        person_id:
+          type: string
+          examples:
+          - 1710142217249mbzk5zx0
+        position:
+          type: string
+        recfile_path:
+          type: string
+        sourceObjectId:
+          type: string
+        tag:
+          type: string
+        timestamp:
+          type: integer
+          examples:
+          - 1717055943701
+        total_track_duration:
+          type: integer
+          examples:
+          - 1000
+        tracklist:
+          description: the first value is the emerged time of the person, the second value is the disappearred time.
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int64
+        tslist:
+          type: array
+          items:
+            type: integer
+        uid:
+          type: string
+      x-apifox-orders:
+      - asset_num
+      - face_num
+      - group_id
+      - highlight
+      - last_update_ts
+      - name
+      - object_media
+      - path
+      - peer_id
+      - person_id
+      - position
+      - recfile_path
+      - sourceObjectId
+      - tag
+      - timestamp
+      - total_track_duration
+      - tracklist
+      - tslist
+      - uid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.NameSuggestionResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: List of person name suggestions; present only on success
+          allOf:
+          - $ref: '#/components/schemas/controllers.WebPersonReturnData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.HintData:
+      type: object
+      properties:
+        hint_data:
+          type: string
+        hint_text:
+          type: string
+        original_string:
+          type: string
+      x-apifox-orders:
+      - hint_data
+      - hint_text
+      - original_string
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.CaptionSearchReq:
+      type: object
+      properties:
+        endTimestamp:
+          description: Search end time in milliseconds; required
+          type: integer
+        fuzzyMatchString:
+          description: Prefix-based fuzzy search string for subtitle content
+          type: string
+        keywords:
+          description: Exact keyword list; all keywords must appear in the subtitle (AND logic)
+          type: array
+          items:
+            type: string
+        objectId:
+          description: Source object ID obtained from the source object API; required
+          type: string
+        pageNum:
+          description: Page number, starting from 1; defaults to 1
+          type: integer
+        pageSize:
+          description: Number of results per page; defaults to 20
+          type: integer
+        startTimestamp:
+          description: Search start time in milliseconds; required
+          type: integer
+      x-apifox-orders:
+      - endTimestamp
+      - fuzzyMatchString
+      - keywords
+      - objectId
+      - pageNum
+      - pageSize
+      - startTimestamp
+      x--orders:
+      - endTimestamp
+      - fuzzyMatchString
+      - keywords
+      - objectId
+      - pageNum
+      - pageSize
+      - startTimestamp
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceListResponse:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Appearance list result; present only on success
+          allOf:
+          - $ref: '#/components/schemas/models.AppearanceListItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelationsResponse:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Appearance relations result; present only on success
+          allOf:
+          - $ref: '#/components/schemas/models.AppearanceRelationsResult'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SceneChangeInfoResp:
+      type: object
+      required:
+      - result
+      properties:
+        errorCode:
+          description: error code
+          type: integer
+        errorInfo:
+          description: error message
+          type: string
+        result:
+          description: data
+          allOf:
+          - $ref: '#/components/schemas/controllers.SceneChangeInfoItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SceneChangeInfoData:
+      type: object
+      properties:
+        createTimestamp:
+          type: integer
+        objectId:
+          type: string
+        pts:
+          type: integer
+        tangibleId:
+          type: string
+        timecode:
+          type: integer
+      x-apifox-orders:
+      - createTimestamp
+      - objectId
+      - pts
+      - tangibleId
+      - timecode
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.ObjectItem:
+      type: object
+      properties:
+        list:
+          description: List of matched source objects
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SearchObjectByUserId'
+        size:
+          description: Number of objects in the current response
+          type: integer
+        total:
+          description: Total number of matching source objects
+          type: integer
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceSearchResponse:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Search result payload; present only on success
+          allOf:
+          - $ref: '#/components/schemas/models.AppearanceSearchResult'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.HostAppearance:
+      type: object
+      properties:
+        appearance:
+          $ref: '#/components/schemas/models.AppearanceData'
+        offset:
+          type: integer
+      x-apifox-orders:
+      - appearance
+      - offset
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceSearchRequest:
+      type: object
+      properties:
+        filters:
+          description: Search filter criteria
+          allOf:
+          - $ref: '#/components/schemas/models.AppearanceSearchFilter'
+        pageNum:
+          description: The page number of the returned results, defaulting to 1
+          type: integer
+        pageSize:
+          description: The number of results returned per page, defaulting to 20
+          type: integer
+        searchLang:
+          description: Search language, defaults to en
+          type: string
+        sort:
+          description: Result sort order; currently only 1 (by relevance) is supported
+          type: integer
+        timestampRange:
+          description: The search time range, defaults to one week
+          allOf:
+          - $ref: '#/components/schemas/models.TimestampRange'
+      x-apifox-orders:
+      - filters
+      - pageNum
+      - pageSize
+      - searchLang
+      - sort
+      - timestampRange
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceSearchResult:
+      type: object
+      properties:
+        affiliated:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceAffiliated'
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceEvent'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - affiliated
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceSearchFilter:
+      type: object
+      properties:
+        appearance:
+          description: Appearance filters; multiple filters can be combined
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceFilter'
+        exactMatchStrings:
+          description: Exact search keywords; multiple keywords can be provided
+          type: array
+          items:
+            type: string
+        fuzzyMatchStrings:
+          description: Fuzzy matching search string
+          type: string
+        groupIds:
+          description: 'Permission control: a list of user group IDs'
+          type: array
+          items:
+            type: string
+        objectSources:
+          description: A list of source object IDs for searching content under these sources
+          type: array
+          items:
+            type: string
+        userIds:
+          description: 'Permission control: a list of user IDs; defaults to current user if empty'
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - appearance
+      - exactMatchStrings
+      - fuzzyMatchStrings
+      - groupIds
+      - objectSources
+      - userIds
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.PreViewMediaInfo:
+      type: object
+      properties:
+        fullPath:
+          type: string
+        mediaObjectId:
+          type: string
+        mediafrom:
+          type: string
+        offset:
+          type: integer
+        path:
+          type: string
+        recordEnd:
+          type: integer
+        recordStart:
+          type: integer
+        rid:
+          type: string
+        sourceId:
+          type: string
+        sourceObjectId:
+          type: string
+        thumbnailFullPath:
+          type: string
+      x-apifox-orders:
+      - fullPath
+      - mediaObjectId
+      - mediafrom
+      - offset
+      - path
+      - recordEnd
+      - recordStart
+      - rid
+      - sourceId
+      - sourceObjectId
+      - thumbnailFullPath
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.PubSearchTsRange:
+      type: object
+      properties:
+        endTimestamp:
+          description: End time in milliseconds
+          type: integer
+          examples:
+          - 1762531199000
+        startTimestamp:
+          description: Start time in milliseconds
+          type: integer
+          examples:
+          - 1699545600000
+      x-apifox-orders:
+      - endTimestamp
+      - startTimestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.PubSearchFilters:
+      type: object
+      properties:
+        areaName:
+          description: The location of the object, for example, New York
+          type: array
+          items:
+            type: string
+        exactMatchStrings:
+          description: The string to search for exact matches
+          type: array
+          items:
+            type: string
+        fuzzyMatchString:
+          description: fuzzyMatchString carries the natural language query. The response provides moment-level results, including sourceObject, mediaObject, and eventObject, along with specific start and end timestamps
+          type: string
+          examples:
+          - books
+        objectEvents:
+          description: list of event object IDs
+          type: array
+          items:
+            type: string
+        objectSources:
+          description: objectSources is required, otherwise, no data will be found. source object IDs to search within
+          type: array
+          items:
+            type: string
+          examples:
+          - - '1398305490756308992'
+        persons:
+          description: person id list; results containing these persons will have higher weight
+          type: array
+          items:
+            type: string
+        status:
+          description: 1:INGESTING 2:LIVING 3:ALL
+          type: integer
+        tags:
+          description: tag id list
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - areaName
+      - exactMatchStrings
+      - fuzzyMatchString
+      - objectEvents
+      - objectSources
+      - persons
+      - status
+      - tags
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.PersonTrackItem:
+      type: object
+      properties:
+        list:
+          description: List of person tracking records with appearance timelines
+          type: array
+          items:
+            $ref: '#/components/schemas/models.PersonTrackInfo'
+        size:
+          description: Number of records in the current response
+          type: integer
+        total:
+          description: Total number of matching person track records
+          type: integer
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.PublicSearchResp:
+      type: object
+      properties:
+        errorCode:
+          description: error code
+          type: integer
+          examples:
+          - 0
+        errorInfo:
+          description: error message
+          type: string
+          examples:
+          - succ
+        result:
+          description: return data
+          allOf:
+          - $ref: '#/components/schemas/controllers.PublicSearchItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SettingsResp:
+      type: object
+      required:
+      - errorCode
+      - errorMsg
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorMsg:
+          description: Human-readable result message
+          type: string
+        result:
+          type: string
+      x-apifox-orders:
+      - errorCode
+      - errorMsg
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.EventResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Returned event list; present only on success
+          allOf:
+          - $ref: '#/components/schemas/controllers.EventItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceAffiliatedContent:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        position:
+          type: string
+        thumbnailPath:
+          type: string
+      x-apifox-orders:
+      - id
+      - name
+      - position
+      - thumbnailPath
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.TimestampRange:
+      type: object
+      properties:
+        endTimestamp:
+          description: End time of search in milliseconds
+          type: integer
+        startTimestamp:
+          description: Start time of search in milliseconds, defaults to last 7 days
+          type: integer
+      x-apifox-orders:
+      - endTimestamp
+      - startTimestamp
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.Tvu264StatusData:
@@ -2999,67 +3395,117 @@ components:
       - timestampStart
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.PersonInfo:
-      type: object
-      required:
-      - groupId
-      - name
-      - personIdList
-      - position
-      - thumbnailAllPath
-      - thumbnailPath
-      - timestamp
-      properties:
-        groupId:
-          description: group id
-          type: string
-        name:
-          description: person name
-          type: string
-        personIdList:
-          description: person all id
-          type: array
-          items:
-            type: string
-        position:
-          type: string
-        thumbnailAllPath:
-          description: person thumbnail all path
-          type: string
-        thumbnailPath:
-          description: person thumbnail pic
-          type: string
-        timestamp:
-          description: time stamp
-          type: integer
-      x-apifox-orders:
-      - groupId
-      - name
-      - personIdList
-      - position
-      - thumbnailAllPath
-      - thumbnailPath
-      - timestamp
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.MediafileItem:
+    controllers.CaptionSearchResult:
       type: object
       properties:
         list:
-          description: List of matched media files
+          description: List of matched caption records
           type: array
           items:
-            $ref: '#/components/schemas/models.SearchMediaFileBySourceObjectId'
+            $ref: '#/components/schemas/models.EsCapfullReturnDataV3'
         size:
-          description: Number of media files in the current response
+          description: Number of records in the current page
           type: integer
         total:
-          description: Total number of matching media files
+          description: Total number of matching records across all pages
           type: integer
       x-apifox-orders:
       - list
       - size
       - total
+      x--orders:
+      - list
+      - size
+      - total
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    controllers.LatestEventResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: List of latest event records; present only on success
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SearchAssetResult'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceListItem:
+      type: object
+      properties:
+        afterContent:
+          description: Cursor for next page; empty means last page
+          type: string
+        content_list:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SubStanceV2'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - afterContent
+      - content_list
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelations:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: Content identifier of the appearance
+          type: string
+        groupId:
+          description: Group ID this appearance belongs to
+          type: string
+        name:
+          description: Display name of the appearance entity
+          type: string
+        personId:
+          description: Person ID (applicable when classType=2)
+          type: string
+        position:
+          type: string
+        relations:
+          description: Related appearances grouped by class type
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceRelationItem'
+        thumbnailPath:
+          description: Path to the thumbnail image
+          type: string
+      x-apifox-orders:
+      - classType
+      - content
+      - groupId
+      - name
+      - personId
+      - position
+      - relations
+      - thumbnailPath
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.SearchMediaFileBySourceObjectId:
@@ -3094,42 +3540,391 @@ components:
       - thumbnailPath
       x--ignore-properties: []
       x-apifox-folder: ''
-    models.PubSearchTsRange:
+    controllers.Tvu264StatusResp:
       type: object
+      required:
+      - result
       properties:
-        endTimestamp:
-          description: End time in milliseconds
+        errorCode:
+          description: error code
           type: integer
-          examples:
-          - 1762531199000
-        startTimestamp:
-          description: Start time in milliseconds
-          type: integer
-          examples:
-          - 1699545600000
+        errorInfo:
+          description: error message
+          type: string
+        result:
+          description: data
+          allOf:
+          - $ref: '#/components/schemas/controllers.Tvu264StatusItem'
       x-apifox-orders:
-      - endTimestamp
-      - startTimestamp
+      - errorCode
+      - errorInfo
+      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    controllers.PersonTrackItem:
+    models.AppearanceRelationItem:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: List of appearance content items in this class
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceContent'
+      x-apifox-orders:
+      - classType
+      - content
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.PersonItem:
       type: object
       properties:
         list:
-          description: List of person tracking records with appearance timelines
+          description: List of detected persons
           type: array
           items:
-            $ref: '#/components/schemas/models.PersonTrackInfo'
+            $ref: '#/components/schemas/models.PersonInfo'
         size:
-          description: Number of records in the current response
+          description: Number of persons in the current response
           type: integer
         total:
-          description: Total number of matching person track records
+          description: Total number of matching persons
           type: integer
       x-apifox-orders:
       - list
       - size
       - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.Tvu264StatusItem:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.Tvu264StatusData'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceContent:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        path:
+          type: string
+        position:
+          type: string
+      x-apifox-orders:
+      - id
+      - name
+      - path
+      - position
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.AutoCompleteResp:
+      type: object
+      properties:
+        code:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.LocationInfo'
+        msg:
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - msg
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.PersonTrackInfo:
+      type: object
+      required:
+      - LastUpdateTs
+      - groupId
+      - name
+      - personId
+      - position
+      - thumbnailAllPath
+      - thumbnailPath
+      - timestamp
+      - totalTrackDuration
+      - trackList
+      properties:
+        LastUpdateTs:
+          type: integer
+        groupId:
+          description: group id
+          type: string
+        name:
+          description: person name
+          type: string
+        personId:
+          description: person id
+          type: array
+          items:
+            type: string
+        position:
+          type: string
+        thumbnailAllPath:
+          description: thumbnail all path
+          type: string
+        thumbnailPath:
+          description: thumbnail path
+          type: string
+        timestamp:
+          type: integer
+        totalTrackDuration:
+          description: total trackduration
+          type: integer
+        trackList:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int64
+      x-apifox-orders:
+      - LastUpdateTs
+      - groupId
+      - name
+      - personId
+      - position
+      - thumbnailAllPath
+      - thumbnailPath
+      - timestamp
+      - totalTrackDuration
+      - trackList
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.PersonTrackResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Returned person track list; present only on success
+          allOf:
+          - $ref: '#/components/schemas/controllers.PersonTrackItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceFilter:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type to filter: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: Specific appearance entities to filter by within the class type
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceContent'
+      x-apifox-orders:
+      - classType
+      - content
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceData:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: Content identifier (e.g., person ID for faces, text for logos)
+          type: string
+        highlight:
+          description: Highlighted snippet for search result display
+          type: string
+        name:
+          description: Display name of the appearance entity
+          type: string
+        path:
+          description: Path to the appearance image or resource
+          type: string
+        personId:
+          description: Person ID (applicable when classType=2)
+          type: string
+        position:
+          type: string
+      x-apifox-orders:
+      - classType
+      - content
+      - highlight
+      - name
+      - path
+      - personId
+      - position
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.EsCapfullReturnData:
+      type: object
+      properties:
+        _id:
+          type: string
+        end_ts:
+          type: integer
+        lang:
+          type: string
+        peer_id:
+          type: string
+        speaker_tag:
+          type: integer
+        start_ts:
+          type: integer
+        text:
+          type: string
+        timestamp:
+          type: integer
+        tmpid:
+          type: string
+        words:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.EsWordsData'
+      x-apifox-orders:
+      - _id
+      - end_ts
+      - lang
+      - peer_id
+      - speaker_tag
+      - start_ts
+      - text
+      - timestamp
+      - tmpid
+      - words
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.HintRetureData:
+      type: object
+      properties:
+        hint_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.HintData'
+        hint_type:
+          description: 'Currently, there are four types: person_name/story_title/word_expand/caption. We are going to add a new type “address”'
+          type: string
+      x-apifox-orders:
+      - hint_list
+      - hint_type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.LocationInfo:
+      type: object
+      properties:
+        description:
+          type: string
+        mainText:
+          type: string
+        searchedText:
+          type: string
+        secondaryText:
+          type: string
+        terms:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.TermsItem'
+      x-apifox-orders:
+      - description
+      - mainText
+      - searchedText
+      - secondaryText
+      - terms
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.MediaFileResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Returned media file list; present only on success
+          allOf:
+          - $ref: '#/components/schemas/controllers.MediafileItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SuggestionResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: List of autocomplete suggestions; present only on success
+          type: array
+          items:
+            $ref: '#/components/schemas/models.HintRetureData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.RecordedFileResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2006=user not found by email, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Returned recorded file list; present only on success
+          allOf:
+          - $ref: '#/components/schemas/controllers.MediafileItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.PubSearchBaseReq:
@@ -3201,218 +3996,47 @@ components:
       - userIds
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    controllers.PublicSearchResp:
+    models.AppearanceSuggestionResponse:
       type: object
       properties:
         errorCode:
-          description: error code
+          description: 'Business result code: 0=success, 2002=no results, 2008=access denied'
           type: integer
-          examples:
-          - 0
         errorInfo:
-          description: error message
+          description: Human-readable result message
           type: string
-          examples:
-          - succ
         result:
-          description: return data
-          allOf:
-          - $ref: '#/components/schemas/controllers.PublicSearchItem'
+          description: List of appearance entity suggestions; present only on success
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceData'
       x-apifox-orders:
       - errorCode
       - errorInfo
       - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    controllers.PersonInfoItem:
+    controllers.EventRecordingsResp:
       type: object
-      properties:
-        list:
-          description: List of face appearance records
-          type: array
-          items:
-            type: string
-        personName:
-          description: Display name of the queried person
-          type: string
-        searchAfterId:
-          description: Cursor to pass in the next request for the following page; empty means last page
-          type: string
-        size:
-          description: Number of records in the current response
-          type: integer
-        total:
-          description: Total number of face appearance records
-          type: integer
-      x-apifox-orders:
-      - list
-      - personName
-      - searchAfterId
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.Tvu264StatusItem:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.Tvu264StatusData'
-        size:
-          type: integer
-        total:
-          type: integer
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceRelations:
-      type: object
-      properties:
-        classType:
-          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
-          type: integer
-        content:
-          description: Content identifier of the appearance
-          type: string
-        groupId:
-          description: Group ID this appearance belongs to
-          type: string
-        name:
-          description: Display name of the appearance entity
-          type: string
-        personId:
-          description: Person ID (applicable when classType=2)
-          type: string
-        position:
-          type: string
-        relations:
-          description: Related appearances grouped by class type
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceRelationItem'
-        thumbnailPath:
-          description: Path to the thumbnail image
-          type: string
-      x-apifox-orders:
-      - classType
-      - content
-      - groupId
-      - name
-      - personId
-      - position
-      - relations
-      - thumbnailPath
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.HostAppearance:
-      type: object
-      properties:
-        appearance:
-          $ref: '#/components/schemas/models.AppearanceData'
-        offset:
-          type: integer
-      x-apifox-orders:
-      - appearance
-      - offset
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.CaptionResp:
-      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
       properties:
         errorCode:
-          description: 'Business result code: 0=success, 2004=invalid request, 2008=access denied, 2009-2012=file write error'
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
           type: integer
         errorInfo:
           description: Human-readable result message
           type: string
+        result:
+          description: Recording files associated with the event; present only on success
+          allOf:
+          - $ref: '#/components/schemas/models.EventObjectRecordingsResult'
       x-apifox-orders:
       - errorCode
       - errorInfo
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.HintData:
-      type: object
-      properties:
-        hint_data:
-          type: string
-        hint_text:
-          type: string
-        original_string:
-          type: string
-      x-apifox-orders:
-      - hint_data
-      - hint_text
-      - original_string
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.CaptionSearchReq:
-      type: object
-      properties:
-        endTimestamp:
-          description: Search end time in milliseconds; required
-          type: integer
-        fuzzyMatchString:
-          description: Prefix-based fuzzy search string for subtitle content
-          type: string
-        keywords:
-          description: Exact keyword list; all keywords must appear in the subtitle (AND logic)
-          type: array
-          items:
-            type: string
-        objectId:
-          description: Source object ID obtained from the source object API; required
-          type: string
-        pageNum:
-          description: Page number, starting from 1; defaults to 1
-          type: integer
-        pageSize:
-          description: Number of results per page; defaults to 20
-          type: integer
-        startTimestamp:
-          description: Search start time in milliseconds; required
-          type: integer
-      x-apifox-orders:
-      - endTimestamp
-      - fuzzyMatchString
-      - keywords
-      - objectId
-      - pageNum
-      - pageSize
-      - startTimestamp
-      x--orders:
-      - endTimestamp
-      - fuzzyMatchString
-      - keywords
-      - objectId
-      - pageNum
-      - pageSize
-      - startTimestamp
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceSearchResult:
-      type: object
-      properties:
-        affiliated:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceAffiliated'
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceEvent'
-        size:
-          type: integer
-        total:
-          type: integer
-      x-apifox-orders:
-      - affiliated
-      - list
-      - size
-      - total
+      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     controllers.PersonInfoResp:
@@ -3436,419 +4060,6 @@ components:
       - data
       - errorCode
       - errorInfo
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.HintRetureData:
-      type: object
-      properties:
-        hint_list:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.HintData'
-        hint_type:
-          description: 'Currently, there are four types: person_name/story_title/word_expand/caption. We are going to add a new type “address”'
-          type: string
-      x-apifox-orders:
-      - hint_list
-      - hint_type
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.ContentV2Resp:
-      type: object
-      properties:
-        errorCode:
-          description: error code
-          type: integer
-        errorInfo:
-          description: error message
-          type: string
-        result:
-          $ref: '#/components/schemas/controllers.ContentV2Item'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SceneChangeInfoResp:
-      type: object
-      required:
-      - result
-      properties:
-        errorCode:
-          description: error code
-          type: integer
-        errorInfo:
-          description: error message
-          type: string
-        result:
-          description: data
-          allOf:
-          - $ref: '#/components/schemas/controllers.SceneChangeInfoItem'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SupportLangItem:
-      type: object
-      required:
-      - list
-      - size
-      - total
-      properties:
-        list:
-          description: List of supported language codes (e.g., "en-US", "zh-CN")
-          type: array
-          items:
-            type: string
-        size:
-          description: Number of languages in the current response
-          type: integer
-        total:
-          description: Total number of supported languages
-          type: integer
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceAffiliatedContent:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        position:
-          type: string
-        thumbnailPath:
-          type: string
-      x-apifox-orders:
-      - id
-      - name
-      - position
-      - thumbnailPath
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.LatestEventResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: List of latest event records; present only on success
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SearchAssetResult'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.TermsItem:
-      type: object
-      properties:
-        offset:
-          type: integer
-        value:
-          type: string
-      x-apifox-orders:
-      - offset
-      - value
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.EventResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Returned event list; present only on success
-          allOf:
-          - $ref: '#/components/schemas/controllers.EventItem'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceRelationsResponse:
-      type: object
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Appearance relations result; present only on success
-          allOf:
-          - $ref: '#/components/schemas/models.AppearanceRelationsResult'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.MediaItem:
-      type: object
-      properties:
-        duration:
-          type: integer
-        endTimestamp:
-          type: integer
-        fileSize:
-          type: integer
-        path:
-          type: string
-        startTimestamp:
-          type: integer
-      x-apifox-orders:
-      - duration
-      - endTimestamp
-      - fileSize
-      - path
-      - startTimestamp
-      x--orders:
-      - duration
-      - endTimestamp
-      - fileSize
-      - path
-      - startTimestamp
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    models.SortOptions:
-      type: object
-      properties:
-        customSourceSort:
-          type: string
-        liveSources:
-          type: array
-          items:
-            type: string
-        noInputources:
-          type: array
-          items:
-            type: string
-        onlineSources:
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - customSourceSort
-      - liveSources
-      - noInputources
-      - onlineSources
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.PreViewMediaInfo:
-      type: object
-      properties:
-        fullPath:
-          type: string
-        mediaObjectId:
-          type: string
-        mediafrom:
-          type: string
-        offset:
-          type: integer
-        path:
-          type: string
-        recordEnd:
-          type: integer
-        recordStart:
-          type: integer
-        rid:
-          type: string
-        sourceId:
-          type: string
-        sourceObjectId:
-          type: string
-        thumbnailFullPath:
-          type: string
-      x-apifox-orders:
-      - fullPath
-      - mediaObjectId
-      - mediafrom
-      - offset
-      - path
-      - recordEnd
-      - recordStart
-      - rid
-      - sourceId
-      - sourceObjectId
-      - thumbnailFullPath
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.TimestampRange:
-      type: object
-      properties:
-        endTimestamp:
-          description: End time of search in milliseconds
-          type: integer
-        startTimestamp:
-          description: Start time of search in milliseconds, defaults to last 7 days
-          type: integer
-      x-apifox-orders:
-      - endTimestamp
-      - startTimestamp
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.MediaFileResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Returned media file list; present only on success
-          allOf:
-          - $ref: '#/components/schemas/controllers.MediafileItem'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceSearchResponse:
-      type: object
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Search result payload; present only on success
-          allOf:
-          - $ref: '#/components/schemas/models.AppearanceSearchResult'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceSearchFilter:
-      type: object
-      properties:
-        appearance:
-          description: Appearance filters; multiple filters can be combined
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceFilter'
-        exactMatchStrings:
-          description: Exact search keywords; multiple keywords can be provided
-          type: array
-          items:
-            type: string
-        fuzzyMatchStrings:
-          description: Fuzzy matching search string
-          type: string
-        groupIds:
-          description: 'Permission control: a list of user group IDs'
-          type: array
-          items:
-            type: string
-        objectSources:
-          description: A list of source object IDs for searching content under these sources
-          type: array
-          items:
-            type: string
-        userIds:
-          description: 'Permission control: a list of user IDs; defaults to current user if empty'
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - appearance
-      - exactMatchStrings
-      - fuzzyMatchStrings
-      - groupIds
-      - objectSources
-      - userIds
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.PubSearchFilters:
-      type: object
-      properties:
-        areaName:
-          description: The location of the object, for example, New York
-          type: array
-          items:
-            type: string
-        exactMatchStrings:
-          description: The string to search for exact matches
-          type: array
-          items:
-            type: string
-        fuzzyMatchString:
-          description: fuzzyMatchString carries the natural language query. The response provides moment-level results, including sourceObject, mediaObject, and eventObject, along with specific start and end timestamps
-          type: string
-          examples:
-          - books
-        objectEvents:
-          description: list of event object IDs
-          type: array
-          items:
-            type: string
-        objectSources:
-          description: objectSources is required, otherwise, no data will be found. source object IDs to search within
-          type: array
-          items:
-            type: string
-          examples:
-          - - '1398305490756308992'
-        persons:
-          description: person id list; results containing these persons will have higher weight
-          type: array
-          items:
-            type: string
-        status:
-          description: 1:INGESTING 2:LIVING 3:ALL
-          type: integer
-        tags:
-          description: tag id list
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - areaName
-      - exactMatchStrings
-      - fuzzyMatchString
-      - objectEvents
-      - objectSources
-      - persons
-      - status
-      - tags
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.EventObjectRecordingsResult:
@@ -3903,7 +4114,168 @@ components:
       - thumbnail
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.AppearanceListResponse:
+    controllers.MediaFileByIdsResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: List of media files matching the given object IDs; present only on success
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SearchMediaFileBySourceObjectId'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    controllers.ObjectResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Returned object list; present only on success
+          allOf:
+          - $ref: '#/components/schemas/controllers.ObjectItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.WordsResp:
+      type: object
+      required:
+      - errorCode
+      - errorInfo
+      - result
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: Returned word/caption records; present only on success
+          allOf:
+          - $ref: '#/components/schemas/controllers.WordsItem'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SceneChangeInfoItem:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SceneChangeInfoData'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.MediafileItem:
+      type: object
+      properties:
+        list:
+          description: List of matched media files
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SearchMediaFileBySourceObjectId'
+        size:
+          description: Number of media files in the current response
+          type: integer
+        total:
+          description: Total number of matching media files
+          type: integer
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.ContentV2Item:
+      type: object
+      properties:
+        afterContent:
+          description: Cursor for the next page; empty means this is the last page
+          type: string
+        content_list:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SubStanceV2'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - afterContent
+      - content_list
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.WordsItem:
+      type: object
+      required:
+      - data
+      - size
+      - total
+      properties:
+        data:
+          description: List of caption word records
+          type: array
+          items:
+            $ref: '#/components/schemas/models.EsCapfullReturnData'
+        size:
+          description: Number of records in the current response
+          type: integer
+        total:
+          description: Total number of matching records
+          type: integer
+      x-apifox-orders:
+      - data
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.CaptionSearchResp:
       type: object
       properties:
         errorCode:
@@ -3913,33 +4285,102 @@ components:
           description: Human-readable result message
           type: string
         result:
-          description: Appearance list result; present only on success
+          description: Search result payload
           allOf:
-          - $ref: '#/components/schemas/models.AppearanceListItem'
+          - $ref: '#/components/schemas/controllers.CaptionSearchResult'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    controllers.ContentV2Resp:
+      type: object
+      properties:
+        errorCode:
+          description: error code
+          type: integer
+        errorInfo:
+          description: error message
+          type: string
+        result:
+          $ref: '#/components/schemas/controllers.ContentV2Item'
       x-apifox-orders:
       - errorCode
       - errorInfo
       - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    controllers.ObjectItem:
+    models.EsWordsData:
       type: object
       properties:
-        list:
-          description: List of matched source objects
+        end_time:
+          type: integer
+        speaker_tag:
+          type: integer
+        start_time:
+          type: integer
+        word:
+          type: string
+      x-apifox-orders:
+      - end_time
+      - speaker_tag
+      - start_time
+      - word
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.CaptionResp:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2004=invalid request, 2008=access denied, 2009-2012=file write error'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchObjectByUserId:
+      type: object
+      properties:
+        objectId:
+          type: string
+        objectName:
+          type: string
+      x-apifox-orders:
+      - objectId
+      - objectName
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SortOptions:
+      type: object
+      properties:
+        customSourceSort:
+          type: string
+        liveSources:
           type: array
           items:
-            $ref: '#/components/schemas/models.SearchObjectByUserId'
-        size:
-          description: Number of objects in the current response
-          type: integer
-        total:
-          description: Total number of matching source objects
-          type: integer
+            type: string
+        noInputources:
+          type: array
+          items:
+            type: string
+        onlineSources:
+          type: array
+          items:
+            type: string
       x-apifox-orders:
-      - list
-      - size
-      - total
+      - customSourceSort
+      - liveSources
+      - noInputources
+      - onlineSources
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.SearchAssetResult:
@@ -3985,81 +4426,70 @@ components:
       - thumbnail
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    controllers.WebPersonReturnData:
+    models.PersonInfo:
       type: object
+      required:
+      - groupId
+      - name
+      - personIdList
+      - position
+      - thumbnailAllPath
+      - thumbnailPath
+      - timestamp
       properties:
-        can_be_merged:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.PersonReturnData'
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.PersonReturnData'
-        size:
-          type: integer
-        total:
-          type: integer
-      x-apifox-orders:
-      - can_be_merged
-      - list
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SceneChangeInfoItem:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SceneChangeInfoData'
-        size:
-          type: integer
-        total:
-          type: integer
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.EsWordsData:
-      type: object
-      properties:
-        end_time:
-          type: integer
-        speaker_tag:
-          type: integer
-        start_time:
-          type: integer
-        word:
+        groupId:
+          description: group id
           type: string
+        name:
+          description: person name
+          type: string
+        personIdList:
+          description: person all id
+          type: array
+          items:
+            type: string
+        position:
+          type: string
+        thumbnailAllPath:
+          description: person thumbnail all path
+          type: string
+        thumbnailPath:
+          description: person thumbnail pic
+          type: string
+        timestamp:
+          description: time stamp
+          type: integer
       x-apifox-orders:
-      - end_time
-      - speaker_tag
-      - start_time
-      - word
+      - groupId
+      - name
+      - personIdList
+      - position
+      - thumbnailAllPath
+      - thumbnailPath
+      - timestamp
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.AppearanceSuggestionResponse:
+    controllers.SupportLangResp:
       type: object
+      required:
+      - data
+      - errorCode
+      - errorInfo
       properties:
+        data:
+          description: Supported language list; present only on success
+          allOf:
+          - $ref: '#/components/schemas/controllers.SupportLangItem'
         errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2008=access denied'
+          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
           type: integer
         errorInfo:
           description: Human-readable result message
           type: string
-        result:
-          description: List of appearance entity suggestions; present only on success
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceData'
       x-apifox-orders:
+      - data
       - errorCode
       - errorInfo
-      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.EsCapfullReturnDataV3:
@@ -4105,441 +4535,28 @@ components:
       - sourceObjectId
       x--ignore-properties: []
       x-apifox-folder: ''
-    controllers.NameSuggestionResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: List of person name suggestions; present only on success
-          allOf:
-          - $ref: '#/components/schemas/controllers.WebPersonReturnData'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.PersonReturnData:
+    controllers.PublicSearchItem:
       type: object
       properties:
-        asset_num:
-          type: integer
-        face_num:
-          type: integer
-          examples:
-          - 1
-        group_id:
-          type: string
-          examples:
-          - 00fe20a2d2d84093b304f0d54d4bedda
-        highlight:
-          type: string
-        last_update_ts:
-          type: integer
-          examples:
-          - 1717055943701
-        name:
-          type: string
-          examples:
-          - ''
-        object_media:
-          type: integer
-        path:
-          type: string
-          examples:
-          - FFFFFFF00015C633_1717048728819.jpg
-        peer_id:
-          type: string
-          examples:
-          - FFFFFFF00015C633
-        person_id:
-          type: string
-          examples:
-          - 1710142217249mbzk5zx0
-        position:
-          type: string
-        recfile_path:
-          type: string
-        sourceObjectId:
-          type: string
-        tag:
-          type: string
-        timestamp:
-          type: integer
-          examples:
-          - 1717055943701
-        total_track_duration:
-          type: integer
-          examples:
-          - 1000
-        tracklist:
-          description: the first value is the emerged time of the person, the second value is the disappearred time.
-          type: array
-          items:
-            type: array
-            items:
-              type: integer
-              format: int64
-        tslist:
-          type: array
-          items:
-            type: integer
-        uid:
-          type: string
-      x-apifox-orders:
-      - asset_num
-      - face_num
-      - group_id
-      - highlight
-      - last_update_ts
-      - name
-      - object_media
-      - path
-      - peer_id
-      - person_id
-      - position
-      - recfile_path
-      - sourceObjectId
-      - tag
-      - timestamp
-      - total_track_duration
-      - tracklist
-      - tslist
-      - uid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.MediaFileByIdsReq:
-      type: object
-      properties:
-        objectIdList:
-          description: List of source object IDs obtained from the source object API.
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - objectIdList
-      x--orders:
-      - objectIdList
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    controllers.ContentV2Item:
-      type: object
-      properties:
-        afterContent:
-          description: Cursor for the next page; empty means this is the last page
-          type: string
-        content_list:
-          type: array
-          items:
-            type: string
         list:
+          description: return data
           type: array
           items:
-            $ref: '#/components/schemas/models.SubStanceV2'
+            type: string
         size:
+          description: return data size
           type: integer
+          examples:
+          - 6
         total:
+          description: return data length
           type: integer
+          examples:
+          - 6
       x-apifox-orders:
-      - afterContent
-      - content_list
       - list
       - size
       - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.Tvu264StatusResp:
-      type: object
-      required:
-      - result
-      properties:
-        errorCode:
-          description: error code
-          type: integer
-        errorInfo:
-          description: error message
-          type: string
-        result:
-          description: data
-          allOf:
-          - $ref: '#/components/schemas/controllers.Tvu264StatusItem'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.EsCapfullReturnData:
-      type: object
-      properties:
-        _id:
-          type: string
-        end_ts:
-          type: integer
-        lang:
-          type: string
-        peer_id:
-          type: string
-        speaker_tag:
-          type: integer
-        start_ts:
-          type: integer
-        text:
-          type: string
-        timestamp:
-          type: integer
-        tmpid:
-          type: string
-        words:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.EsWordsData'
-      x-apifox-orders:
-      - _id
-      - end_ts
-      - lang
-      - peer_id
-      - speaker_tag
-      - start_ts
-      - text
-      - timestamp
-      - tmpid
-      - words
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceListItem:
-      type: object
-      properties:
-        afterContent:
-          description: Cursor for next page; empty means last page
-          type: string
-        content_list:
-          type: array
-          items:
-            type: string
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SubStanceV2'
-        size:
-          type: integer
-        total:
-          type: integer
-      x-apifox-orders:
-      - afterContent
-      - content_list
-      - list
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.PersonTrackInfo:
-      type: object
-      required:
-      - LastUpdateTs
-      - groupId
-      - name
-      - personId
-      - position
-      - thumbnailAllPath
-      - thumbnailPath
-      - timestamp
-      - totalTrackDuration
-      - trackList
-      properties:
-        LastUpdateTs:
-          type: integer
-        groupId:
-          description: group id
-          type: string
-        name:
-          description: person name
-          type: string
-        personId:
-          description: person id
-          type: array
-          items:
-            type: string
-        position:
-          type: string
-        thumbnailAllPath:
-          description: thumbnail all path
-          type: string
-        thumbnailPath:
-          description: thumbnail path
-          type: string
-        timestamp:
-          type: integer
-        totalTrackDuration:
-          description: total trackduration
-          type: integer
-        trackList:
-          type: array
-          items:
-            type: array
-            items:
-              type: integer
-              format: int64
-      x-apifox-orders:
-      - LastUpdateTs
-      - groupId
-      - name
-      - personId
-      - position
-      - thumbnailAllPath
-      - thumbnailPath
-      - timestamp
-      - totalTrackDuration
-      - trackList
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.ObjectResp:
-      type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Returned object list; present only on success
-          allOf:
-          - $ref: '#/components/schemas/controllers.ObjectItem'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceAffiliated:
-      type: object
-      properties:
-        classType:
-          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
-          type: integer
-        content:
-          description: List of appearance entities in this class found in the result
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceAffiliatedContent'
-      x-apifox-orders:
-      - classType
-      - content
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.WordsItem:
-      type: object
-      required:
-      - data
-      - size
-      - total
-      properties:
-        data:
-          description: List of caption word records
-          type: array
-          items:
-            $ref: '#/components/schemas/models.EsCapfullReturnData'
-        size:
-          description: Number of records in the current response
-          type: integer
-        total:
-          description: Total number of matching records
-          type: integer
-      x-apifox-orders:
-      - data
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SceneChangeInfoData:
-      type: object
-      properties:
-        createTimestamp:
-          type: integer
-        objectId:
-          type: string
-        pts:
-          type: integer
-        tangibleId:
-          type: string
-        timecode:
-          type: integer
-      x-apifox-orders:
-      - createTimestamp
-      - objectId
-      - pts
-      - tangibleId
-      - timecode
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.CaptionSearchResp:
-      type: object
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: Search result payload
-          allOf:
-          - $ref: '#/components/schemas/controllers.CaptionSearchResult'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceData:
-      type: object
-      properties:
-        classType:
-          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
-          type: integer
-        content:
-          description: Content identifier (e.g., person ID for faces, text for logos)
-          type: string
-        highlight:
-          description: Highlighted snippet for search result display
-          type: string
-        name:
-          description: Display name of the appearance entity
-          type: string
-        path:
-          description: Path to the appearance image or resource
-          type: string
-        personId:
-          description: Person ID (applicable when classType=2)
-          type: string
-        position:
-          type: string
-      x-apifox-orders:
-      - classType
-      - content
-      - highlight
-      - name
-      - path
-      - personId
-      - position
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.SubStanceV2:
@@ -4580,63 +4597,46 @@ components:
       - width
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.AppearanceContent:
+    controllers.MediaFileByIdsReq:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        path:
-          type: string
-        position:
-          type: string
-      x-apifox-orders:
-      - id
-      - name
-      - path
-      - position
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.AutoCompleteResp:
-      type: object
-      properties:
-        code:
-          type: string
-        data:
+        objectIdList:
+          description: List of source object IDs obtained from the source object API.
           type: array
           items:
-            $ref: '#/components/schemas/models.LocationInfo'
-        msg:
-          type: string
+            type: string
       x-apifox-orders:
-      - code
-      - data
-      - msg
-      x-apifox-ignore-properties: []
+      - objectIdList
+      x--orders:
+      - objectIdList
+      x--ignore-properties: []
       x-apifox-folder: ''
-    controllers.WordsResp:
+    models.MediaItem:
       type: object
-      required:
-      - errorCode
-      - errorInfo
-      - result
       properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2004=invalid request, 2008=access denied'
+        duration:
           type: integer
-        errorInfo:
-          description: Human-readable result message
+        endTimestamp:
+          type: integer
+        fileSize:
+          type: integer
+        path:
           type: string
-        result:
-          description: Returned word/caption records; present only on success
-          allOf:
-          - $ref: '#/components/schemas/controllers.WordsItem'
+        startTimestamp:
+          type: integer
       x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
+      - duration
+      - endTimestamp
+      - fileSize
+      - path
+      - startTimestamp
+      x--orders:
+      - duration
+      - endTimestamp
+      - fileSize
+      - path
+      - startTimestamp
+      x--ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:
     bearer:

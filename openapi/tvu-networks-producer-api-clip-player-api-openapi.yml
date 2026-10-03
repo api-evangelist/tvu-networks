@@ -454,31 +454,24 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778537.md
 components:
   schemas:
-    FileInfoQueryRequest:
+    FileSourceActionVo:
+      required:
+      - sourceId
+      - position
+      - programId
       type: object
       properties:
-        pageIndex:
+        sourceId:
+          type: string
+          description: logo file source id
+          examples:
+          - '000000000000000'
+        position:
           type: integer
-          description: page index
+          description: logo position(begin from 0)
           format: int32
           examples:
-          - 1
-        name:
-          type: string
-          description: file name
-          examples:
-          - BYlYWOIpCasrzKVHDlqGoevKKTYckMOW
-        pageSize:
-          type: integer
-          description: request records count per page
-          format: int32
-          examples:
-          - 10
-        pid:
-          type: string
-          description: parent directory id
-          examples:
-          - VyQLcbNCIfYUxfzeMUudxLygEaQfIbwTG
+          - 1427076743
         programId:
           type: integer
           description: program id
@@ -486,10 +479,8 @@ components:
           examples:
           - 0
       x-apifox-orders:
-      - pageIndex
-      - name
-      - pageSize
-      - pid
+      - sourceId
+      - position
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
@@ -594,24 +585,31 @@ components:
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    FileSourceActionVo:
-      required:
-      - sourceId
-      - position
-      - programId
+    FileInfoQueryRequest:
       type: object
       properties:
-        sourceId:
-          type: string
-          description: logo file source id
-          examples:
-          - '000000000000000'
-        position:
+        pageIndex:
           type: integer
-          description: logo position(begin from 0)
+          description: page index
           format: int32
           examples:
-          - 1427076743
+          - 1
+        name:
+          type: string
+          description: file name
+          examples:
+          - BYlYWOIpCasrzKVHDlqGoevKKTYckMOW
+        pageSize:
+          type: integer
+          description: request records count per page
+          format: int32
+          examples:
+          - 10
+        pid:
+          type: string
+          description: parent directory id
+          examples:
+          - VyQLcbNCIfYUxfzeMUudxLygEaQfIbwTG
         programId:
           type: integer
           description: program id
@@ -619,8 +617,10 @@ components:
           examples:
           - 0
       x-apifox-orders:
-      - sourceId
-      - position
+      - pageIndex
+      - name
+      - pageSize
+      - pid
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''

@@ -428,6 +428,59 @@ components:
         enablePreview: false
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    ResponseResultString:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          type: string
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    EnableOutputDTO:
+      required:
+      - outputEncodingProfilePairId
+      type: object
+      properties:
+        projectObjectId:
+          type: string
+          description: Project object ID
+          examples:
+          - prj_a1b2c3d4e5f6
+        outputEncodingProfilePairId:
+          type: string
+          description: OutputEncodingProfileAirId can be obtained from the paired API
+          examples:
+          - pair_a1b2c3d4e5f6
+      x-apifox-orders:
+      - projectObjectId
+      - outputEncodingProfilePairId
+      examples:
+      - projectObjectId: prj_a1b2c3d4e5f6
+        outputEncodingProfilePairId: pair_a1b2c3d4e5f6
+      x--orders:
+      - projectObjectId
+      - outputEncodingProfilePairId
+      x--ignore-properties: []
+      x-apifox-folder: ''
     ConnectDTO:
       required:
       - sourceObjectId
@@ -495,32 +548,19 @@ components:
         openPreview: false
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    ResponseResultString:
+    ProjectDTO:
       type: object
       properties:
-        errorCode:
+        projectObjectId:
           type: string
+          description: Project object ID
           examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        async:
-          type: boolean
-        result:
-          type: string
+          - prj_a1b2c3d4e5f6
       x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
-      x--orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
-      x--ignore-properties: []
+      - projectObjectId
+      examples:
+      - projectObjectId: prj_a1b2c3d4e5f6
+      x-apifox-ignore-properties: []
       x-apifox-folder: ''
     SwitchConnectDTO:
       required:
@@ -569,46 +609,6 @@ components:
       examples:
       - projectObjectId: prj_a1b2c3d4e5f6
         outputEncodingProfilePairId: pair_a1b2c3d4e5f6
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    EnableOutputDTO:
-      required:
-      - outputEncodingProfilePairId
-      type: object
-      properties:
-        projectObjectId:
-          type: string
-          description: Project object ID
-          examples:
-          - prj_a1b2c3d4e5f6
-        outputEncodingProfilePairId:
-          type: string
-          description: OutputEncodingProfileAirId can be obtained from the paired API
-          examples:
-          - pair_a1b2c3d4e5f6
-      x-apifox-orders:
-      - projectObjectId
-      - outputEncodingProfilePairId
-      examples:
-      - projectObjectId: prj_a1b2c3d4e5f6
-        outputEncodingProfilePairId: pair_a1b2c3d4e5f6
-      x--orders:
-      - projectObjectId
-      - outputEncodingProfilePairId
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    ProjectDTO:
-      type: object
-      properties:
-        projectObjectId:
-          type: string
-          description: Project object ID
-          examples:
-          - prj_a1b2c3d4e5f6
-      x-apifox-orders:
-      - projectObjectId
-      examples:
-      - projectObjectId: prj_a1b2c3d4e5f6
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

@@ -171,27 +171,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959103.md
 components:
   schemas:
-    controllers.SearchWordsResp:
-      type: object
-      properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-        data:
-          $ref: '#/components/schemas/controllers.CapReturnData'
-        message:
-          description: Human-readable result message
-          type: string
-      x-apifox-orders:
-      - code
-      - data
-      - message
-      x--orders:
-      - code
-      - data
-      - message
-      x--ignore-properties: []
-      x-apifox-folder: ''
     controllers.CapReturnData:
       type: object
       properties:
@@ -215,6 +194,27 @@ components:
       - list
       - size
       - total
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchWordsResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          $ref: '#/components/schemas/controllers.CapReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x--orders:
+      - code
+      - data
+      - message
       x--ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

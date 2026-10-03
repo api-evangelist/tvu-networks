@@ -479,6 +479,80 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778527.md
 components:
   schemas:
+    ProgramSource:
+      required:
+      - sourceName
+      - programId
+      type: object
+      properties:
+        productionId:
+          type: integer
+          description: production id
+          format: int64
+          examples:
+          - 0
+        source:
+          maxLength: 1024
+          type: string
+          description: source
+          examples:
+          - XrcTXPmOllIygJiwnEiRNwqLADQdDLBwUOboGNDPVwzPklVhHcsEYrqFfmZDxIVf
+        sourceName:
+          maxLength: 256
+          type: string
+          description: source name
+          examples:
+          - Source Name
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - productionId
+      - source
+      - sourceName
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    CreateRTPFECSourceParam:
+      required:
+      - port
+      - sourceName
+      - programId
+      type: object
+      properties:
+        port:
+          type: integer
+          description: please input 60000-65000 port num, eg:60000
+          format: int32
+          examples:
+          - 60000
+        productionId:
+          type: integer
+          description: production id
+          format: int64
+          examples:
+          - 0
+        sourceName:
+          type: string
+          description: source name, RTP-FEC Source
+          examples:
+          - Source Name
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - port
+      - productionId
+      - sourceName
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     CreateSRTSourceParam:
       required:
       - mode
@@ -563,30 +637,26 @@ components:
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    CreateRTPFECSourceParam:
+    SourceDelayRequest:
       required:
-      - port
-      - sourceName
+      - delay
+      - slotNo
       - programId
       type: object
       properties:
-        port:
+        delay:
+          maximum: 10000
+          minimum: 300
           type: integer
-          description: please input 60000-65000 port num, eg:60000
-          format: int32
-          examples:
-          - 60000
-        productionId:
-          type: integer
-          description: production id
+          description: delay
           format: int64
           examples:
-          - 0
-        sourceName:
+          - 6486
+        slotNo:
           type: string
-          description: source name, RTP-FEC Source
+          description: slot no
           examples:
-          - Source Name
+          - s1
         programId:
           type: integer
           description: program id
@@ -594,36 +664,27 @@ components:
           examples:
           - 0
       x-apifox-orders:
-      - port
-      - productionId
-      - sourceName
+      - delay
+      - slotNo
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    ProgramSource:
+    StopLiveRequest:
       required:
-      - sourceName
+      - slotNo
       - programId
       type: object
       properties:
-        productionId:
-          type: integer
-          description: production id
-          format: int64
-          examples:
-          - 0
-        source:
-          maxLength: 1024
+        rid:
           type: string
-          description: source
+          description: rid
           examples:
-          - XrcTXPmOllIygJiwnEiRNwqLADQdDLBwUOboGNDPVwzPklVhHcsEYrqFfmZDxIVf
-        sourceName:
-          maxLength: 256
+          - xxxx
+        slotNo:
           type: string
-          description: source name
+          description: slot no
           examples:
-          - Source Name
+          - s1
         programId:
           type: integer
           description: program id
@@ -631,9 +692,8 @@ components:
           examples:
           - 0
       x-apifox-orders:
-      - productionId
-      - source
-      - sourceName
+      - rid
+      - slotNo
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
@@ -673,38 +733,6 @@ components:
       x-apifox-orders:
       - sourceId
       - sourceType
-      - slotNo
-      - programId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    SourceDelayRequest:
-      required:
-      - delay
-      - slotNo
-      - programId
-      type: object
-      properties:
-        delay:
-          maximum: 10000
-          minimum: 300
-          type: integer
-          description: delay
-          format: int64
-          examples:
-          - 6486
-        slotNo:
-          type: string
-          description: slot no
-          examples:
-          - s1
-        programId:
-          type: integer
-          description: program id
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - delay
       - slotNo
       - programId
       x-apifox-ignore-properties: []
@@ -762,34 +790,6 @@ components:
       - effectDuration
       - slotNo
       - subTimestamp
-      - programId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    StopLiveRequest:
-      required:
-      - slotNo
-      - programId
-      type: object
-      properties:
-        rid:
-          type: string
-          description: rid
-          examples:
-          - xxxx
-        slotNo:
-          type: string
-          description: slot no
-          examples:
-          - s1
-        programId:
-          type: integer
-          description: program id
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - rid
-      - slotNo
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''

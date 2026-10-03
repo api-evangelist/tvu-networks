@@ -237,39 +237,118 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959088.md
 components:
   schemas:
-    models.MatchCaptionRet:
+    models.MatchLogoRet:
       type: object
       properties:
-        highlight:
+        name:
           type: string
-        text:
-          type: string
-        timestamp:
-          type: integer
         timestampEnd:
           type: integer
+        timestampStart:
+          type: integer
       x-apifox-orders:
-      - highlight
-      - text
-      - timestamp
+      - name
       - timestampEnd
+      - timestampStart
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.SourceCondition:
+    models.MatchResult:
       type: object
       properties:
-        eventList:
+        matchList:
           type: array
           items:
-            $ref: '#/components/schemas/models.EventCondition'
-        source:
-          type: string
-        sourceName:
-          type: string
+            $ref: '#/components/schemas/models.MatchListRet'
+        size:
+          type: integer
+          examples:
+          - 0
+        total:
+          type: integer
+          examples:
+          - 0
       x-apifox-orders:
-      - eventList
-      - source
-      - sourceName
+      - matchList
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SummarizationRequest:
+      type: object
+      properties:
+        end:
+          type: integer
+          examples:
+          - 1778307400115
+        mode:
+          type: integer
+          examples:
+          - 0
+        path:
+          type: string
+          examples:
+          - ''
+        sourceObject:
+          type: string
+          examples:
+          - '1326008830139699200'
+        start:
+          type: integer
+          examples:
+          - 1778306200900
+        type:
+          type: integer
+          examples:
+          - 3
+      x-apifox-orders:
+      - end
+      - mode
+      - path
+      - sourceObject
+      - start
+      - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.HitSlug:
+      type: object
+      properties:
+        objectAsset:
+          type: string
+        slugName:
+          type: string
+        timestampEnd:
+          type: integer
+        timestampStart:
+          type: integer
+      x-apifox-orders:
+      - objectAsset
+      - slugName
+      - timestampEnd
+      - timestampStart
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.MatchSlugRet:
+      type: object
+      properties:
+        assetId:
+          type: string
+        highlight:
+          type: string
+        objectAsset:
+          type: string
+        slug:
+          type: string
+        timestampEnd:
+          type: integer
+        timestampStart:
+          type: integer
+      x-apifox-orders:
+      - assetId
+      - highlight
+      - objectAsset
+      - slug
+      - timestampEnd
+      - timestampStart
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.AutoSearchReq:
@@ -287,27 +366,6 @@ components:
       - criteria
       - tsRange
       - userId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchSummarizationRequest:
-      type: object
-      properties:
-        endTime:
-          type: integer
-          examples:
-          - 1778299320439
-        sourceObjectId:
-          type: string
-          examples:
-          - '1400073057711820800'
-        startTime:
-          type: integer
-          examples:
-          - 1778298487122
-      x-apifox-orders:
-      - endTime
-      - sourceObjectId
-      - startTime
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     controllers.ActiveSearchResp:
@@ -328,72 +386,6 @@ components:
       - code
       - data
       - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.EventCondition:
-      type: object
-      properties:
-        endTime:
-          type: integer
-        event:
-          type: string
-        eventName:
-          type: string
-        startTime:
-          type: integer
-      x-apifox-orders:
-      - endTime
-      - event
-      - eventName
-      - startTime
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.GetSummarizationResp:
-      type: object
-      properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-          examples:
-          - 0
-        message:
-          description: Human-readable result message
-          type: string
-          examples:
-          - succ
-        source:
-          description: Raw caption source data (JSON string)
-          type: string
-          examples:
-          - '{"peer_id":"FFFFFFF0001CFB05","text":"..."}'
-        summarization:
-          description: AI-generated summarization text for the requested segment
-          type: string
-          examples:
-          - Weather conditions affecting police helicopter operations.
-      x-apifox-orders:
-      - code
-      - message
-      - source
-      - summarization
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.HitSlug:
-      type: object
-      properties:
-        objectAsset:
-          type: string
-        slugName:
-          type: string
-        timestampEnd:
-          type: integer
-        timestampStart:
-          type: integer
-      x-apifox-orders:
-      - objectAsset
-      - slugName
-      - timestampEnd
-      - timestampStart
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.MediaFileRet:
@@ -439,170 +431,43 @@ components:
       - uid
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.MatchLogoRet:
+    models.MatchCaptionRet:
       type: object
       properties:
-        name:
-          type: string
-        timestampEnd:
-          type: integer
-        timestampStart:
-          type: integer
-      x-apifox-orders:
-      - name
-      - timestampEnd
-      - timestampStart
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.MatchSlugRet:
-      type: object
-      properties:
-        assetId:
-          type: string
         highlight:
           type: string
-        objectAsset:
+        text:
           type: string
-        slug:
-          type: string
+        timestamp:
+          type: integer
         timestampEnd:
           type: integer
-        timestampStart:
-          type: integer
       x-apifox-orders:
-      - assetId
       - highlight
-      - objectAsset
-      - slug
+      - text
+      - timestamp
       - timestampEnd
-      - timestampStart
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.SummarizationItem:
+    models.SearchSummarizationRequest:
       type: object
       properties:
         endTime:
           type: integer
+          examples:
+          - 1778299320439
         sourceObjectId:
           type: string
+          examples:
+          - '1400073057711820800'
         startTime:
           type: integer
-        summarization:
-          type: string
+          examples:
+          - 1778298487122
       x-apifox-orders:
       - endTime
       - sourceObjectId
       - startTime
-      - summarization
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.MatchResult:
-      type: object
-      properties:
-        matchList:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.MatchListRet'
-        size:
-          type: integer
-          examples:
-          - 0
-        total:
-          type: integer
-          examples:
-          - 0
-      x-apifox-orders:
-      - matchList
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SearchSummarizationResp:
-      type: object
-      properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-        data:
-          description: return data
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SummarizationItem'
-        message:
-          description: Human-readable result message
-          type: string
-      x-apifox-orders:
-      - code
-      - data
-      - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.MatchListRet:
-      type: object
-      properties:
-        MediaFile:
-          $ref: '#/components/schemas/models.MediaFileRet'
-        captions:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.MatchCaptionRet'
-        faces:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.MatchFaceRet'
-        hitSlug:
-          $ref: '#/components/schemas/models.HitSlug'
-        logos:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.MatchLogoRet'
-        slugs:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.MatchSlugRet'
-      x-apifox-orders:
-      - MediaFile
-      - captions
-      - faces
-      - hitSlug
-      - logos
-      - slugs
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SummarizationRequest:
-      type: object
-      properties:
-        end:
-          type: integer
-          examples:
-          - 1778307400115
-        mode:
-          type: integer
-          examples:
-          - 0
-        path:
-          type: string
-          examples:
-          - ''
-        sourceObject:
-          type: string
-          examples:
-          - '1326008830139699200'
-        start:
-          type: integer
-          examples:
-          - 1778306200900
-        type:
-          type: integer
-          examples:
-          - 3
-      x-apifox-orders:
-      - end
-      - mode
-      - path
-      - sourceObject
-      - start
-      - type
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.MatchFaceRet:
@@ -678,6 +543,106 @@ components:
       - sources
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    controllers.SearchSummarizationResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          description: return data
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SummarizationItem'
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SummarizationItem:
+      type: object
+      properties:
+        endTime:
+          type: integer
+        sourceObjectId:
+          type: string
+        startTime:
+          type: integer
+        summarization:
+          type: string
+      x-apifox-orders:
+      - endTime
+      - sourceObjectId
+      - startTime
+      - summarization
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.MatchListRet:
+      type: object
+      properties:
+        MediaFile:
+          $ref: '#/components/schemas/models.MediaFileRet'
+        captions:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.MatchCaptionRet'
+        faces:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.MatchFaceRet'
+        hitSlug:
+          $ref: '#/components/schemas/models.HitSlug'
+        logos:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.MatchLogoRet'
+        slugs:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.MatchSlugRet'
+      x-apifox-orders:
+      - MediaFile
+      - captions
+      - faces
+      - hitSlug
+      - logos
+      - slugs
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.GetSummarizationResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+          examples:
+          - 0
+        message:
+          description: Human-readable result message
+          type: string
+          examples:
+          - succ
+        source:
+          description: Raw caption source data (JSON string)
+          type: string
+          examples:
+          - '{"peer_id":"FFFFFFF0001CFB05","text":"..."}'
+        summarization:
+          description: AI-generated summarization text for the requested segment
+          type: string
+          examples:
+          - Weather conditions affecting police helicopter operations.
+      x-apifox-orders:
+      - code
+      - message
+      - source
+      - summarization
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     models.SearchTsRange:
       type: object
       properties:
@@ -695,6 +660,41 @@ components:
       - endtime
       - field
       - starttime
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SourceCondition:
+      type: object
+      properties:
+        eventList:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.EventCondition'
+        source:
+          type: string
+        sourceName:
+          type: string
+      x-apifox-orders:
+      - eventList
+      - source
+      - sourceName
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.EventCondition:
+      type: object
+      properties:
+        endTime:
+          type: integer
+        event:
+          type: string
+        eventName:
+          type: string
+        startTime:
+          type: integer
+      x-apifox-orders:
+      - endTime
+      - event
+      - eventName
+      - startTime
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

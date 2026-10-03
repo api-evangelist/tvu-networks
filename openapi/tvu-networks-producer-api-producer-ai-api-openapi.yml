@@ -232,6 +232,43 @@ components:
       - productionId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    UpdateAISettingRequest:
+      required:
+      - productionId
+      type: object
+      properties:
+        clipSlots:
+          type: string
+          description: the No of the slots used to recognize scoreboard
+          examples:
+          - s1,s2
+        clipSize:
+          minimum: 1000
+          type: integer
+          description: the duration of generated clips' duration,unit millisecond
+          format: int32
+          examples:
+          - 3000
+        scoreboardSlot:
+          maxLength: 4
+          type: string
+          description: the No of the slot used to recognize scoreboard
+          examples:
+          - s5
+        productionId:
+          minimum: 10000
+          type: integer
+          description: the id of production
+          format: int64
+          examples:
+          - 100000
+      x-apifox-orders:
+      - clipSlots
+      - clipSize
+      - scoreboardSlot
+      - productionId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     UploadSourceThumbnailRequest:
       required:
       - imageBase64
@@ -275,43 +312,6 @@ components:
       - imageUrl
       - slotNo
       - timestamp
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    UpdateAISettingRequest:
-      required:
-      - productionId
-      type: object
-      properties:
-        clipSlots:
-          type: string
-          description: the No of the slots used to recognize scoreboard
-          examples:
-          - s1,s2
-        clipSize:
-          minimum: 1000
-          type: integer
-          description: the duration of generated clips' duration,unit millisecond
-          format: int32
-          examples:
-          - 3000
-        scoreboardSlot:
-          maxLength: 4
-          type: string
-          description: the No of the slot used to recognize scoreboard
-          examples:
-          - s5
-        productionId:
-          minimum: 10000
-          type: integer
-          description: the id of production
-          format: int64
-          examples:
-          - 100000
-      x-apifox-orders:
-      - clipSlots
-      - clipSize
-      - scoreboardSlot
-      - productionId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

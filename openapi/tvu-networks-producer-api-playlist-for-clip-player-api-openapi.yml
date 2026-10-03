@@ -453,44 +453,21 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778568.md
 components:
   schemas:
-    PlayList:
-      required:
-      - data
+    SortField:
       type: object
       properties:
-        duration:
-          type: integer
-          description: total duration of playlist, no need pass
-          format: int32
-        aiProgress:
-          type: integer
-          format: int32
-        thumbnail:
+        sortDirection:
           type: string
-          description: the thumbnail of playlist, will use the first clip's thumbnail if not pass
-        data:
-          type: array
-          items:
-            description: clips
-            $ref: '#/components/schemas/PlayListItem'
+          enum:
+          - ASC
+          - DESC
         name:
           type: string
-          description: the name of playlist
-        fromPlaylistId:
-          type: string
-        id:
-          type: string
-        md5:
-          type: string
+          examples:
+          - IPjwhveYYdMMpDJZvjANlUFUTlJAxcQz
       x-apifox-orders:
-      - duration
-      - aiProgress
-      - thumbnail
-      - data
+      - sortDirection
       - name
-      - fromPlaylistId
-      - id
-      - md5
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ProgramPlaylistQuery:
@@ -675,29 +652,6 @@ components:
       - fileId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    PlayListItem:
-      type: object
-      x-apifox-orders: []
-      properties: {}
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    SortField:
-      type: object
-      properties:
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        name:
-          type: string
-          examples:
-          - IPjwhveYYdMMpDJZvjANlUFUTlJAxcQz
-      x-apifox-orders:
-      - sortDirection
-      - name
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     ProgramPlaylist:
       required:
       - fileShimNo
@@ -769,6 +723,52 @@ components:
       - id
       - programId
       - fileId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayListItem:
+      type: object
+      x-apifox-orders: []
+      properties: {}
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayList:
+      required:
+      - data
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: total duration of playlist, no need pass
+          format: int32
+        aiProgress:
+          type: integer
+          format: int32
+        thumbnail:
+          type: string
+          description: the thumbnail of playlist, will use the first clip's thumbnail if not pass
+        data:
+          type: array
+          items:
+            description: clips
+            $ref: '#/components/schemas/PlayListItem'
+        name:
+          type: string
+          description: the name of playlist
+        fromPlaylistId:
+          type: string
+        id:
+          type: string
+        md5:
+          type: string
+      x-apifox-orders:
+      - duration
+      - aiProgress
+      - thumbnail
+      - data
+      - name
+      - fromPlaylistId
+      - id
+      - md5
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

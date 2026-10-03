@@ -110,6 +110,149 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959091.md
 components:
   schemas:
+    models.SearchLocation:
+      type: object
+      properties:
+        br:
+          type: string
+        tl:
+          type: string
+      x-apifox-orders:
+      - br
+      - tl
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchTsRange:
+      type: object
+      properties:
+        endtime:
+          type: integer
+          examples:
+          - 1778304241635
+        field:
+          type: string
+        starttime:
+          type: integer
+          examples:
+          - 1778304121635
+      x-apifox-orders:
+      - endtime
+      - field
+      - starttime
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.CapReturnData:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+          examples:
+          - 1
+        total:
+          type: integer
+          examples:
+          - 3
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x--orders:
+      - list
+      - size
+      - total
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchDurationRange:
+      type: object
+      properties:
+        durationEnd:
+          type: integer
+        durationStart:
+          type: integer
+      x-apifox-orders:
+      - durationEnd
+      - durationStart
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AccessPermission:
+      type: object
+      properties:
+        black:
+          type: array
+          items:
+            type: string
+        enable:
+          type: boolean
+          examples:
+          - true
+        enableown:
+          type: boolean
+        objectSources:
+          description: New object permission sources
+          type: array
+          items:
+            type: string
+          examples:
+          - - '1031568072126906368'
+        private:
+          type: array
+          items:
+            type: string
+        public:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - black
+      - enable
+      - enableown
+      - objectSources
+      - private
+      - public
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.GpsInfo:
+      type: object
+      properties:
+        distance:
+          type: number
+        lat:
+          type: number
+        lon:
+          type: number
+      x-apifox-orders:
+      - distance
+      - lat
+      - lon
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchCombtagsResp:
+      type: object
+      properties:
+        code:
+          description: error code
+          type: integer
+          examples:
+          - 0
+        data:
+          description: return data
+          allOf:
+          - $ref: '#/components/schemas/controllers.CapReturnData'
+        message:
+          description: error message
+          type: string
+          examples:
+          - succ
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     models.SearchBaseTagsReq:
       type: object
       properties:
@@ -169,93 +312,6 @@ components:
       - tags
       - tsrange
       - userid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SearchCombtagsResp:
-      type: object
-      properties:
-        code:
-          description: error code
-          type: integer
-          examples:
-          - 0
-        data:
-          description: return data
-          allOf:
-          - $ref: '#/components/schemas/controllers.CapReturnData'
-        message:
-          description: error message
-          type: string
-          examples:
-          - succ
-      x-apifox-orders:
-      - code
-      - data
-      - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchLocation:
-      type: object
-      properties:
-        br:
-          type: string
-        tl:
-          type: string
-      x-apifox-orders:
-      - br
-      - tl
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.CapReturnData:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            type: string
-        size:
-          type: integer
-          examples:
-          - 1
-        total:
-          type: integer
-          examples:
-          - 3
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x--orders:
-      - list
-      - size
-      - total
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchDurationRange:
-      type: object
-      properties:
-        durationEnd:
-          type: integer
-        durationStart:
-          type: integer
-      x-apifox-orders:
-      - durationEnd
-      - durationStart
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.GpsInfo:
-      type: object
-      properties:
-        distance:
-          type: number
-        lat:
-          type: number
-        lon:
-          type: number
-      x-apifox-orders:
-      - distance
-      - lat
-      - lon
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.SearchTags:
@@ -362,62 +418,6 @@ components:
       - status
       - storyids
       - uids
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AccessPermission:
-      type: object
-      properties:
-        black:
-          type: array
-          items:
-            type: string
-        enable:
-          type: boolean
-          examples:
-          - true
-        enableown:
-          type: boolean
-        objectSources:
-          description: New object permission sources
-          type: array
-          items:
-            type: string
-          examples:
-          - - '1031568072126906368'
-        private:
-          type: array
-          items:
-            type: string
-        public:
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - black
-      - enable
-      - enableown
-      - objectSources
-      - private
-      - public
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchTsRange:
-      type: object
-      properties:
-        endtime:
-          type: integer
-          examples:
-          - 1778304241635
-        field:
-          type: string
-        starttime:
-          type: integer
-          examples:
-          - 1778304121635
-      x-apifox-orders:
-      - endtime
-      - field
-      - starttime
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

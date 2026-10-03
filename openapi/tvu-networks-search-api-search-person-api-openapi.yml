@@ -266,6 +266,29 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959090.md
 components:
   schemas:
+    controllers.SearchPersonNameWithTagsResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+          examples:
+          - 0
+        data:
+          description: return data, if exists
+          allOf:
+          - $ref: '#/components/schemas/controllers.ReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+          examples:
+          - succ
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     models.SearchLocation:
       type: object
       properties:
@@ -276,6 +299,202 @@ components:
       x-apifox-orders:
       - br
       - tl
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchTsRange:
+      type: object
+      properties:
+        endtime:
+          type: integer
+          examples:
+          - 1778304241635
+        field:
+          type: string
+        starttime:
+          type: integer
+          examples:
+          - 1778304121635
+      x-apifox-orders:
+      - endtime
+      - field
+      - starttime
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchDurationRange:
+      type: object
+      properties:
+        durationEnd:
+          type: integer
+        durationStart:
+          type: integer
+      x-apifox-orders:
+      - durationEnd
+      - durationStart
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.ReturnData:
+      type: object
+      properties:
+        host_person:
+          $ref: '#/components/schemas/models.PersonReturnData'
+        list:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+          examples:
+          - 1
+        total:
+          type: integer
+          examples:
+          - 1
+      x-apifox-orders:
+      - host_person
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AccessPermission:
+      type: object
+      properties:
+        black:
+          type: array
+          items:
+            type: string
+        enable:
+          type: boolean
+          examples:
+          - true
+        enableown:
+          type: boolean
+        objectSources:
+          description: New object permission sources
+          type: array
+          items:
+            type: string
+          examples:
+          - - '1031568072126906368'
+        private:
+          type: array
+          items:
+            type: string
+        public:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - black
+      - enable
+      - enableown
+      - objectSources
+      - private
+      - public
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.GpsInfo:
+      type: object
+      properties:
+        distance:
+          type: number
+        lat:
+          type: number
+        lon:
+          type: number
+      x-apifox-orders:
+      - distance
+      - lat
+      - lon
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchPersonNameWithTagsReq:
+      type: object
+      properties:
+        durationRange:
+          $ref: '#/components/schemas/models.SearchDurationRange'
+        pageNum:
+          type: integer
+          examples:
+          - 1
+        pageSize:
+          type: integer
+          examples:
+          - 8
+        permission:
+          $ref: '#/components/schemas/models.AccessPermission'
+        query:
+          type: string
+          examples:
+          - ROBINSON
+        searchLang:
+          type: string
+        sessionid:
+          type: string
+          examples:
+          - 1C0C49E66DAC4CEE941EF70F77A94A9F
+        size:
+          type: integer
+          examples:
+          - 20
+        slugtag:
+          type: boolean
+        sort:
+          type: integer
+          examples:
+          - 1
+        source:
+          type: array
+          items:
+            type: string
+          examples:
+          - - source
+        tags:
+          $ref: '#/components/schemas/models.SearchTags'
+        tsrange:
+          $ref: '#/components/schemas/models.SearchTsRange'
+        userid:
+          type: string
+          examples:
+          - shorvath@newsnationnow.com
+      x-apifox-orders:
+      - durationRange
+      - pageNum
+      - pageSize
+      - permission
+      - query
+      - searchLang
+      - sessionid
+      - size
+      - slugtag
+      - sort
+      - source
+      - tags
+      - tsrange
+      - userid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.PersonListClickResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+          examples:
+          - 0
+        data:
+          description: return data, if exists
+          allOf:
+          - $ref: '#/components/schemas/controllers.ReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+          examples:
+          - succ
+      x-apifox-orders:
+      - code
+      - data
+      - message
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.PersonReturnData:
@@ -365,57 +584,6 @@ components:
       - tracklist
       - tslist
       - uid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchDurationRange:
-      type: object
-      properties:
-        durationEnd:
-          type: integer
-        durationStart:
-          type: integer
-      x-apifox-orders:
-      - durationEnd
-      - durationStart
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.ReturnData:
-      type: object
-      properties:
-        host_person:
-          $ref: '#/components/schemas/models.PersonReturnData'
-        list:
-          type: array
-          items:
-            type: string
-        size:
-          type: integer
-          examples:
-          - 1
-        total:
-          type: integer
-          examples:
-          - 1
-      x-apifox-orders:
-      - host_person
-      - list
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.GpsInfo:
-      type: object
-      properties:
-        distance:
-          type: number
-        lat:
-          type: number
-        lon:
-          type: number
-      x-apifox-orders:
-      - distance
-      - lat
-      - lon
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.SearchTags:
@@ -522,174 +690,6 @@ components:
       - status
       - storyids
       - uids
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchPersonNameWithTagsReq:
-      type: object
-      properties:
-        durationRange:
-          $ref: '#/components/schemas/models.SearchDurationRange'
-        pageNum:
-          type: integer
-          examples:
-          - 1
-        pageSize:
-          type: integer
-          examples:
-          - 8
-        permission:
-          $ref: '#/components/schemas/models.AccessPermission'
-        query:
-          type: string
-          examples:
-          - ROBINSON
-        searchLang:
-          type: string
-        sessionid:
-          type: string
-          examples:
-          - 1C0C49E66DAC4CEE941EF70F77A94A9F
-        size:
-          type: integer
-          examples:
-          - 20
-        slugtag:
-          type: boolean
-        sort:
-          type: integer
-          examples:
-          - 1
-        source:
-          type: array
-          items:
-            type: string
-          examples:
-          - - source
-        tags:
-          $ref: '#/components/schemas/models.SearchTags'
-        tsrange:
-          $ref: '#/components/schemas/models.SearchTsRange'
-        userid:
-          type: string
-          examples:
-          - shorvath@newsnationnow.com
-      x-apifox-orders:
-      - durationRange
-      - pageNum
-      - pageSize
-      - permission
-      - query
-      - searchLang
-      - sessionid
-      - size
-      - slugtag
-      - sort
-      - source
-      - tags
-      - tsrange
-      - userid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AccessPermission:
-      type: object
-      properties:
-        black:
-          type: array
-          items:
-            type: string
-        enable:
-          type: boolean
-          examples:
-          - true
-        enableown:
-          type: boolean
-        objectSources:
-          description: New object permission sources
-          type: array
-          items:
-            type: string
-          examples:
-          - - '1031568072126906368'
-        private:
-          type: array
-          items:
-            type: string
-        public:
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - black
-      - enable
-      - enableown
-      - objectSources
-      - private
-      - public
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SearchPersonNameWithTagsResp:
-      type: object
-      properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-          examples:
-          - 0
-        data:
-          description: return data, if exists
-          allOf:
-          - $ref: '#/components/schemas/controllers.ReturnData'
-        message:
-          description: Human-readable result message
-          type: string
-          examples:
-          - succ
-      x-apifox-orders:
-      - code
-      - data
-      - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchTsRange:
-      type: object
-      properties:
-        endtime:
-          type: integer
-          examples:
-          - 1778304241635
-        field:
-          type: string
-        starttime:
-          type: integer
-          examples:
-          - 1778304121635
-      x-apifox-orders:
-      - endtime
-      - field
-      - starttime
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.PersonListClickResp:
-      type: object
-      properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-          examples:
-          - 0
-        data:
-          description: return data, if exists
-          allOf:
-          - $ref: '#/components/schemas/controllers.ReturnData'
-        message:
-          description: Human-readable result message
-          type: string
-          examples:
-          - succ
-      x-apifox-orders:
-      - code
-      - data
-      - message
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:
