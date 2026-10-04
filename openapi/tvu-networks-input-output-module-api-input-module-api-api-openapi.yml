@@ -239,6 +239,27 @@ paths:
       x-operation-id-original: query input list
 components:
   schemas:
+    ResultPageInfoRunInputVO:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/PageInfoRunInputVO'
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
+      x-apifox-orders:
+      - result
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     PageInfoRunInputVO:
       description: result
       type: object
@@ -272,85 +293,6 @@ components:
       - pageSize
       - list
       - pageNum
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    RunInputVO:
-      description: result
-      type: object
-      properties:
-        inputId:
-          description: Input Record Unique id, identifies the user operation data record, and can be used to delete the record later
-          type: string
-        objectId:
-          description: 'tvu source object id '
-          type: string
-        url:
-          description: source url
-          type: string
-          examples:
-          - https://www.youtube.com/watch?v=Kzbrq_kf7Rw
-        status:
-          format: int32
-          description: 'OptionValue 0:stop,1: loading, 2:active'
-          type: integer
-          examples:
-          - 1
-      x-apifox-orders:
-      - inputId
-      - objectId
-      - url
-      - status
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResultPageInfoRunInputVO:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/PageInfoRunInputVO'
-        errorCode:
-          description: error code
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          description: error info
-          type: string
-          examples:
-          - success
-      x-apifox-orders:
-      - result
-      - errorCode
-      - errorInfo
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    RunInputDTO:
-      type: object
-      properties:
-        region:
-          description: aws cloud region,At least one of the region and boxId attributes should be filled in. Region is preferred.
-          type: string
-          examples:
-          - us-east-1
-        objectId:
-          description: tvu source object id , Fill in at least one of this attribute and the url attribute
-          type: string
-          examples:
-          - '1227255915959431168'
-        url:
-          description: source url
-          type: string
-          examples:
-          - https://www.youtube.com/watch?v=Kzbrq_kf7Rw
-        boxId:
-          description: tvu box id,please contact us
-          type: string
-          examples:
-          - 3796d351982c40e08c778312216a4e30
-      x-apifox-orders:
-      - region
-      - objectId
-      - url
-      - boxId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ResultVoid:
@@ -397,6 +339,64 @@ components:
       - result
       - errorCode
       - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RunInputVO:
+      description: result
+      type: object
+      properties:
+        inputId:
+          description: Input Record Unique id, identifies the user operation data record, and can be used to delete the record later
+          type: string
+        objectId:
+          description: 'tvu source object id '
+          type: string
+        url:
+          description: source url
+          type: string
+          examples:
+          - https://www.youtube.com/watch?v=Kzbrq_kf7Rw
+        status:
+          format: int32
+          description: 'OptionValue 0:stop,1: loading, 2:active'
+          type: integer
+          examples:
+          - 1
+      x-apifox-orders:
+      - inputId
+      - objectId
+      - url
+      - status
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    RunInputDTO:
+      type: object
+      properties:
+        region:
+          description: aws cloud region,At least one of the region and boxId attributes should be filled in. Region is preferred.
+          type: string
+          examples:
+          - us-east-1
+        objectId:
+          description: tvu source object id , Fill in at least one of this attribute and the url attribute
+          type: string
+          examples:
+          - '1227255915959431168'
+        url:
+          description: source url
+          type: string
+          examples:
+          - https://www.youtube.com/watch?v=Kzbrq_kf7Rw
+        boxId:
+          description: tvu box id,please contact us
+          type: string
+          examples:
+          - 3796d351982c40e08c778312216a4e30
+      x-apifox-orders:
+      - region
+      - objectId
+      - url
+      - boxId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

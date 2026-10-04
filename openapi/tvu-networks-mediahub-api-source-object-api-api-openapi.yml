@@ -230,49 +230,121 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-243498608.md
 components:
   schemas:
-    SourceSearchTag:
+    ObjectInfoDTO:
       type: object
       properties:
-        tagId:
+        objectId:
           type: string
-        tagName:
+        objectName:
           type: string
-        label:
+        tangibleId:
           type: string
-        classification:
+        tangibleInfo:
+          type: string
+        objectType:
           type: integer
           format: int32
+        url:
+          type: string
       x-apifox-orders:
-      - tagId
-      - tagName
-      - label
-      - classification
+      - objectId
+      - objectName
+      - tangibleId
+      - tangibleInfo
+      - objectType
+      - url
       x--orders:
-      - tagId
-      - tagName
-      - label
-      - classification
+      - objectId
+      - objectName
+      - tangibleId
+      - tangibleInfo
+      - objectType
+      - url
       x--ignore-properties: []
       x-apifox-folder: ''
-    SourceObjectListParam:
+    ResponseResult:
       type: object
       properties:
-        pageNum:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        condition:
+        errorCode:
           type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
       x-apifox-orders:
-      - pageNum
-      - pageSize
-      - condition
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultObjectInfoDTO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ObjectInfoDTO'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
       x--orders:
-      - pageNum
-      - pageSize
-      - condition
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultSourceSearchPageVo:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        async:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/SourceSearchPageVo'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
+      x--orders:
+      - errorCode
+      - errorInfo
+      - async
+      - result
       x--ignore-properties: []
       x-apifox-folder: ''
     UpdateSourceObjectDTO:
@@ -328,62 +400,57 @@ components:
       - attrValue
       x--ignore-properties: []
       x-apifox-folder: ''
-    ResponseResultObjectInfoDTO:
+    SourceSearchTag:
       type: object
       properties:
-        errorCode:
+        tagId:
           type: string
-          examples:
-          - '0x0'
-        errorInfo:
+        tagName:
           type: string
-          examples:
-          - success
-        async:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/ObjectInfoDTO'
+        label:
+          type: string
+        classification:
+          type: integer
+          format: int32
       x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
+      - tagId
+      - tagName
+      - label
+      - classification
       x--orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
+      - tagId
+      - tagName
+      - label
+      - classification
       x--ignore-properties: []
       x-apifox-folder: ''
-    ResponseResult:
+    AddSourceObjectParam:
+      required:
+      - sourceName
+      - url
+      - sourceType
       type: object
       properties:
-        errorCode:
+        sourceName:
           type: string
-          examples:
-          - '0x0'
-        errorInfo:
+        url:
           type: string
+        sourceType:
+          type: string
+        region:
+          type: string
+          default: us-east-1
           examples:
-          - success
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
+          - us-east-1
+        boxPoolId:
+          type: string
+          description: This property can be obtained from tvu home by contacting support
       x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
+      - sourceName
+      - url
+      - sourceType
+      - region
+      - boxPoolId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     SourceAttrPO:
@@ -583,92 +650,22 @@ components:
       - env
       x--ignore-properties: []
       x-apifox-folder: ''
-    ResponseResultSourceSearchPageVo:
+    SourceSearchPageVo:
       type: object
       properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        async:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/SourceSearchPageVo'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
-      x--orders:
-      - errorCode
-      - errorInfo
-      - async
-      - result
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    AddSourceObjectParam:
-      required:
-      - sourceName
-      - url
-      - sourceType
-      type: object
-      properties:
-        sourceName:
-          type: string
-        url:
-          type: string
-        sourceType:
-          type: string
-        region:
-          type: string
-          default: us-east-1
-          examples:
-          - us-east-1
-        boxPoolId:
-          type: string
-          description: This property can be obtained from tvu home by contacting support
-      x-apifox-orders:
-      - sourceName
-      - url
-      - sourceType
-      - region
-      - boxPoolId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ObjectInfoDTO:
-      type: object
-      properties:
-        objectId:
-          type: string
-        objectName:
-          type: string
-        tangibleId:
-          type: string
-        tangibleInfo:
-          type: string
-        objectType:
+        totalNum:
           type: integer
           format: int32
-        url:
-          type: string
+        sourceList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceSearchObject'
       x-apifox-orders:
-      - objectId
-      - objectName
-      - tangibleId
-      - tangibleInfo
-      - objectType
-      - url
+      - totalNum
+      - sourceList
       x--orders:
-      - objectId
-      - objectName
-      - tangibleId
-      - tangibleInfo
-      - objectType
-      - url
+      - totalNum
+      - sourceList
       x--ignore-properties: []
       x-apifox-folder: ''
     ObjectConnectInfo:
@@ -699,22 +696,25 @@ components:
       - projectId
       x--ignore-properties: []
       x-apifox-folder: ''
-    SourceSearchPageVo:
+    SourceObjectListParam:
       type: object
       properties:
-        totalNum:
+        pageNum:
           type: integer
           format: int32
-        sourceList:
-          type: array
-          items:
-            $ref: '#/components/schemas/SourceSearchObject'
+        pageSize:
+          type: integer
+          format: int32
+        condition:
+          type: string
       x-apifox-orders:
-      - totalNum
-      - sourceList
+      - pageNum
+      - pageSize
+      - condition
       x--orders:
-      - totalNum
-      - sourceList
+      - pageNum
+      - pageSize
+      - condition
       x--ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

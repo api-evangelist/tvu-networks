@@ -276,57 +276,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778642.md
 components:
   schemas:
-    ShortcutUpdateRequest:
-      type: object
-      properties:
-        shortcut:
-          type: string
-          examples:
-          - ALT+5
-        userId:
-          type: string
-          examples:
-          - CantzxXqTGlIFBaNkGWhgdVlDiyawNXY
-        shortcutId:
-          type: integer
-          format: int64
-          examples:
-          - 7067589385339111000
-        enabled:
-          type: boolean
-          examples:
-          - true
-      x-apifox-orders:
-      - shortcut
-      - userId
-      - shortcutId
-      - enabled
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    PageShortcut:
-      type: object
-      properties:
-        service:
-          type: string
-        shortcuts:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        page:
-          type: string
-      x-apifox-orders:
-      - service
-      - shortcuts
-      - page
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Object:
-      type: object
-      x-apifox-orders: []
-      properties: {}
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     GetUserShortcutRequest:
       type: object
       properties:
@@ -359,6 +308,57 @@ components:
       - searchKeyword
       - userId
       - version
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ShortcutUpdateRequest:
+      type: object
+      properties:
+        shortcut:
+          type: string
+          examples:
+          - ALT+5
+        userId:
+          type: string
+          examples:
+          - CantzxXqTGlIFBaNkGWhgdVlDiyawNXY
+        shortcutId:
+          type: integer
+          format: int64
+          examples:
+          - 7067589385339111000
+        enabled:
+          type: boolean
+          examples:
+          - true
+      x-apifox-orders:
+      - shortcut
+      - userId
+      - shortcutId
+      - enabled
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Object:
+      type: object
+      x-apifox-orders: []
+      properties: {}
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PageShortcut:
+      type: object
+      properties:
+        service:
+          type: string
+        shortcuts:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        page:
+          type: string
+      x-apifox-orders:
+      - service
+      - shortcuts
+      - page
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

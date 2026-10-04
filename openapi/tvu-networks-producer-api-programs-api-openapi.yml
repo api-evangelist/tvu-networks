@@ -335,57 +335,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778513.md
 components:
   schemas:
-    ProgramInput:
-      required:
-      - id
-      type: object
-      properties:
-        features:
-          description: Program Features
-          $ref: '#/components/schemas/ProgramFeaturesInput'
-        name:
-          type: string
-          description: Program Name
-          examples:
-          - nlgCdHMmylpklbufhdUbenKpslJxwZnm
-        id:
-          type: integer
-          description: Program ID
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - features
-      - name
-      - id
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ProgramQuery:
-      type: object
-      properties:
-        pageIndex:
-          type: integer
-          description: retur
-          format: int32
-          examples:
-          - 1
-        pageSize:
-          type: integer
-          description: return data
-          format: int32
-          examples:
-          - 10
-        sortFields:
-          type: array
-          items:
-            description: 'Support sort fields: createTime'
-            $ref: '#/components/schemas/SortField'
-      x-apifox-orders:
-      - pageIndex
-      - pageSize
-      - sortFields
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     ProgramFeaturesInput:
       required:
       - format
@@ -485,6 +434,32 @@ components:
       - replayApp
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    ProgramQuery:
+      type: object
+      properties:
+        pageIndex:
+          type: integer
+          description: retur
+          format: int32
+          examples:
+          - 1
+        pageSize:
+          type: integer
+          description: return data
+          format: int32
+          examples:
+          - 10
+        sortFields:
+          type: array
+          items:
+            description: 'Support sort fields: createTime'
+            $ref: '#/components/schemas/SortField'
+      x-apifox-orders:
+      - pageIndex
+      - pageSize
+      - sortFields
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     SortField:
       type: object
       properties:
@@ -500,6 +475,31 @@ components:
       x-apifox-orders:
       - sortDirection
       - name
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramInput:
+      required:
+      - id
+      type: object
+      properties:
+        features:
+          description: Program Features
+          $ref: '#/components/schemas/ProgramFeaturesInput'
+        name:
+          type: string
+          description: Program Name
+          examples:
+          - nlgCdHMmylpklbufhdUbenKpslJxwZnm
+        id:
+          type: integer
+          description: Program ID
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - features
+      - name
+      - id
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

@@ -110,72 +110,19 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959091.md
 components:
   schemas:
-    models.SearchLocation:
+    models.GpsInfo:
       type: object
       properties:
-        br:
-          type: string
-        tl:
-          type: string
+        distance:
+          type: number
+        lat:
+          type: number
+        lon:
+          type: number
       x-apifox-orders:
-      - br
-      - tl
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchTsRange:
-      type: object
-      properties:
-        endtime:
-          type: integer
-          examples:
-          - 1778304241635
-        field:
-          type: string
-        starttime:
-          type: integer
-          examples:
-          - 1778304121635
-      x-apifox-orders:
-      - endtime
-      - field
-      - starttime
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.CapReturnData:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            type: string
-        size:
-          type: integer
-          examples:
-          - 1
-        total:
-          type: integer
-          examples:
-          - 3
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x--orders:
-      - list
-      - size
-      - total
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchDurationRange:
-      type: object
-      properties:
-        durationEnd:
-          type: integer
-        durationStart:
-          type: integer
-      x-apifox-orders:
-      - durationEnd
-      - durationStart
+      - distance
+      - lat
+      - lon
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.AccessPermission:
@@ -215,104 +162,54 @@ components:
       - public
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.GpsInfo:
+    models.SearchDurationRange:
       type: object
       properties:
-        distance:
-          type: number
-        lat:
-          type: number
-        lon:
-          type: number
+        durationEnd:
+          type: integer
+        durationStart:
+          type: integer
       x-apifox-orders:
-      - distance
-      - lat
-      - lon
+      - durationEnd
+      - durationStart
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    controllers.SearchCombtagsResp:
+    models.SearchLocation:
       type: object
       properties:
-        code:
-          description: error code
-          type: integer
-          examples:
-          - 0
-        data:
-          description: return data
-          allOf:
-          - $ref: '#/components/schemas/controllers.CapReturnData'
-        message:
-          description: error message
+        br:
           type: string
-          examples:
-          - succ
+        tl:
+          type: string
       x-apifox-orders:
-      - code
-      - data
-      - message
+      - br
+      - tl
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.SearchBaseTagsReq:
+    controllers.CapReturnData:
       type: object
       properties:
-        durationRange:
-          $ref: '#/components/schemas/models.SearchDurationRange'
-        pageNum:
-          type: integer
-          examples:
-          - 1
-        pageSize:
-          type: integer
-          examples:
-          - 8
-        permission:
-          $ref: '#/components/schemas/models.AccessPermission'
-        query:
-          type: string
-          examples:
-          - ROBINSON
-        searchLang:
-          type: string
-        sessionid:
-          type: string
-          examples:
-          - 1C0C49E66DAC4CEE941EF70F77A94A9F
-        slugtag:
-          type: boolean
-        sort:
-          type: integer
-          examples:
-          - 1
-        source:
+        list:
           type: array
           items:
             type: string
+        size:
+          type: integer
           examples:
-          - - source
-        tags:
-          $ref: '#/components/schemas/models.SearchTags'
-        tsrange:
-          $ref: '#/components/schemas/models.SearchTsRange'
-        userid:
-          type: string
+          - 1
+        total:
+          type: integer
           examples:
-          - shorvath@newsnationnow.com
+          - 3
       x-apifox-orders:
-      - durationRange
-      - pageNum
-      - pageSize
-      - permission
-      - query
-      - searchLang
-      - sessionid
-      - slugtag
-      - sort
-      - source
-      - tags
-      - tsrange
-      - userid
-      x-apifox-ignore-properties: []
+      - list
+      - size
+      - total
+      x--orders:
+      - list
+      - size
+      - total
+      x--ignore-properties: []
       x-apifox-folder: ''
     models.SearchTags:
       type: object
@@ -418,6 +315,109 @@ components:
       - status
       - storyids
       - uids
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchBaseTagsReq:
+      type: object
+      properties:
+        durationRange:
+          $ref: '#/components/schemas/models.SearchDurationRange'
+        pageNum:
+          type: integer
+          examples:
+          - 1
+        pageSize:
+          type: integer
+          examples:
+          - 8
+        permission:
+          $ref: '#/components/schemas/models.AccessPermission'
+        query:
+          type: string
+          examples:
+          - ROBINSON
+        searchLang:
+          type: string
+        sessionid:
+          type: string
+          examples:
+          - 1C0C49E66DAC4CEE941EF70F77A94A9F
+        slugtag:
+          type: boolean
+        sort:
+          type: integer
+          examples:
+          - 1
+        source:
+          type: array
+          items:
+            type: string
+          examples:
+          - - source
+        tags:
+          $ref: '#/components/schemas/models.SearchTags'
+        tsrange:
+          $ref: '#/components/schemas/models.SearchTsRange'
+        userid:
+          type: string
+          examples:
+          - shorvath@newsnationnow.com
+      x-apifox-orders:
+      - durationRange
+      - pageNum
+      - pageSize
+      - permission
+      - query
+      - searchLang
+      - sessionid
+      - slugtag
+      - sort
+      - source
+      - tags
+      - tsrange
+      - userid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchTsRange:
+      type: object
+      properties:
+        endtime:
+          type: integer
+          examples:
+          - 1778304241635
+        field:
+          type: string
+        starttime:
+          type: integer
+          examples:
+          - 1778304121635
+      x-apifox-orders:
+      - endtime
+      - field
+      - starttime
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchCombtagsResp:
+      type: object
+      properties:
+        code:
+          description: error code
+          type: integer
+          examples:
+          - 0
+        data:
+          description: return data
+          allOf:
+          - $ref: '#/components/schemas/controllers.CapReturnData'
+        message:
+          description: error message
+          type: string
+          examples:
+          - succ
+      x-apifox-orders:
+      - code
+      - data
+      - message
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

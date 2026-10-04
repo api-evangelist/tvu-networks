@@ -329,6 +329,105 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778638.md
 components:
   schemas:
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AgentWorkFlowDTO:
+      required:
+      - name
+      - description
+      - input
+      - output
+      type: object
+      properties:
+        name:
+          type: string
+          description: workflow name
+          examples:
+          - workflowTest
+        description:
+          type: string
+          description: workflow description
+          examples:
+          - workflow test description
+        input:
+          $ref: '#/components/schemas/Input'
+        output:
+          $ref: '#/components/schemas/Output'
+      x-apifox-orders:
+      - name
+      - description
+      - input
+      - output
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Input:
+      required:
+      - pid
+      - boxId
+      type: object
+      properties:
+        pid:
+          type: string
+          description: ( pack | anywhere) pid
+          examples:
+          - B1BD4C8F339CB707
+        boxId:
+          type: string
+          description: agent boxId
+          examples:
+          - 671ef779b95be309c368a965
+      x-apifox-orders:
+      - pid
+      - boxId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Result:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     AgentUpdateWorkFlowDTO:
       required:
       - name
@@ -380,105 +479,6 @@ components:
       x-apifox-orders:
       - url
       - boxId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Result:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResult:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Input:
-      required:
-      - pid
-      - boxId
-      type: object
-      properties:
-        pid:
-          type: string
-          description: ( pack | anywhere) pid
-          examples:
-          - B1BD4C8F339CB707
-        boxId:
-          type: string
-          description: agent boxId
-          examples:
-          - 671ef779b95be309c368a965
-      x-apifox-orders:
-      - pid
-      - boxId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    AgentWorkFlowDTO:
-      required:
-      - name
-      - description
-      - input
-      - output
-      type: object
-      properties:
-        name:
-          type: string
-          description: workflow name
-          examples:
-          - workflowTest
-        description:
-          type: string
-          description: workflow description
-          examples:
-          - workflow test description
-        input:
-          $ref: '#/components/schemas/Input'
-        output:
-          $ref: '#/components/schemas/Output'
-      x-apifox-orders:
-      - name
-      - description
-      - input
-      - output
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

@@ -444,300 +444,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959099.md
 components:
   schemas:
-    models.TangibleAttributeData:
-      type: object
-      properties:
-        description:
-          type: string
-        fieldName:
-          type: string
-        level:
-          type: integer
-        readableName:
-          type: string
-        value:
-          type: string
-      x-apifox-orders:
-      - description
-      - fieldName
-      - level
-      - readableName
-      - value
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchMediaByIdsReq:
-      type: object
-      properties:
-        objectIds:
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - objectIds
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AccessPermissionV2:
-      type: object
-      properties:
-        groupIds:
-          type: array
-          items:
-            type: string
-        userIds:
-          type: array
-          items:
-            type: string
-        wildcardDisabled:
-          type: boolean
-      x-apifox-orders:
-      - groupIds
-      - userIds
-      - wildcardDisabled
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SearchObjectByMediaResp:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.ObjectReturnData'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.FetchObjectTagReq:
-      type: object
-      properties:
-        classifications:
-          type: array
-          items:
-            type: integer
-        objectIds:
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - classifications
-      - objectIds
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.ObjectTagSuggestionReq:
-      type: object
-      properties:
-        classifications:
-          type: array
-          items:
-            type: integer
-        groupId:
-          type: array
-          items:
-            type: string
-        lang:
-          type: string
-        query:
-          type: string
-        size:
-          type: integer
-        sort:
-          type: integer
-        userId:
-          type: string
-      x-apifox-orders:
-      - classifications
-      - groupId
-      - lang
-      - query
-      - size
-      - sort
-      - userId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.ObjectReturnData:
-      type: object
-      properties:
-        objectGrid:
-          type: string
-        objectId:
-          type: string
-        path:
-          type: string
-      x-apifox-orders:
-      - objectGrid
-      - objectId
-      - path
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchFilters:
-      type: object
-      properties:
-        createByme:
-          type: boolean
-        deleteFlags:
-          type: array
-          items:
-            type: integer
-        events:
-          type: array
-          items:
-            type: string
-        features:
-          type: array
-          items:
-            type: string
-        geo:
-          type: array
-          items:
-            type: string
-        noDmaShow:
-          type: boolean
-        objectIds:
-          type: array
-          items:
-            type: string
-        objectIntTypes:
-          type: array
-          items:
-            type: integer
-        objectTypes:
-          type: array
-          items:
-            type: string
-        sources:
-          type: array
-          items:
-            type: string
-        status:
-          type: array
-          items:
-            type: integer
-        tags:
-          type: array
-          items:
-            type: string
-        tangibleTypes:
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - createByme
-      - deleteFlags
-      - events
-      - features
-      - geo
-      - noDmaShow
-      - objectIds
-      - objectIntTypes
-      - objectTypes
-      - sources
-      - status
-      - tags
-      - tangibleTypes
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SearchObjectTagsResp:
-      type: object
-      properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-        data:
-          description: return data
-          type: object
-          additionalProperties: true
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        message:
-          description: Human-readable result message
-          type: string
-      x-apifox-orders:
-      - code
-      - data
-      - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchMediaByIdsReturnData:
-      type: object
-      properties:
-        dash:
-          $ref: '#/components/schemas/models.MediaFileRetrunData'
-        hls:
-          $ref: '#/components/schemas/models.MediaFileRetrunData'
-        objectGrid:
-          type: string
-        objectId:
-          type: string
-      x-apifox-orders:
-      - dash
-      - hls
-      - objectGrid
-      - objectId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.EsObjectTagData:
-      type: object
-      properties:
-        classification:
-          type: integer
-        groupId:
-          type: string
-        tagId:
-          type: string
-        tagName:
-          type: string
-        userId:
-          type: string
-      x-apifox-orders:
-      - classification
-      - groupId
-      - tagId
-      - tagName
-      - userId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.GetObjectDetailResp:
-      type: object
-      properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-        data:
-          description: return data
-          allOf:
-          - $ref: '#/components/schemas/models.ObjectDetail'
-        message:
-          description: Human-readable result message
-          type: string
-      x-apifox-orders:
-      - code
-      - data
-      - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.GetObjectTagSuggestionResp:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.EsObjectTagData'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     models.MediaFileRetrunData:
       type: object
       properties:
@@ -807,6 +513,189 @@ components:
       - uid
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    models.SearchTsRange:
+      type: object
+      properties:
+        endtime:
+          type: integer
+          examples:
+          - 1778304241635
+        field:
+          type: string
+        starttime:
+          type: integer
+          examples:
+          - 1778304121635
+      x-apifox-orders:
+      - endtime
+      - field
+      - starttime
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.ObjectTagSuggestionReq:
+      type: object
+      properties:
+        classifications:
+          type: array
+          items:
+            type: integer
+        groupId:
+          type: array
+          items:
+            type: string
+        lang:
+          type: string
+        query:
+          type: string
+        size:
+          type: integer
+        sort:
+          type: integer
+        userId:
+          type: string
+      x-apifox-orders:
+      - classifications
+      - groupId
+      - lang
+      - query
+      - size
+      - sort
+      - userId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.GetObjectTagSuggestionResp:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.EsObjectTagData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.TangibleAttributeData:
+      type: object
+      properties:
+        description:
+          type: string
+        fieldName:
+          type: string
+        level:
+          type: integer
+        readableName:
+          type: string
+        value:
+          type: string
+      x-apifox-orders:
+      - description
+      - fieldName
+      - level
+      - readableName
+      - value
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchMediaByIdsReq:
+      type: object
+      properties:
+        objectIds:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - objectIds
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchMediaByIdsResp:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SearchMediaByIdsReturnData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchFilters:
+      type: object
+      properties:
+        createByme:
+          type: boolean
+        deleteFlags:
+          type: array
+          items:
+            type: integer
+        events:
+          type: array
+          items:
+            type: string
+        features:
+          type: array
+          items:
+            type: string
+        geo:
+          type: array
+          items:
+            type: string
+        noDmaShow:
+          type: boolean
+        objectIds:
+          type: array
+          items:
+            type: string
+        objectIntTypes:
+          type: array
+          items:
+            type: integer
+        objectTypes:
+          type: array
+          items:
+            type: string
+        sources:
+          type: array
+          items:
+            type: string
+        status:
+          type: array
+          items:
+            type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        tangibleTypes:
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - createByme
+      - deleteFlags
+      - events
+      - features
+      - geo
+      - noDmaShow
+      - objectIds
+      - objectIntTypes
+      - objectTypes
+      - sources
+      - status
+      - tags
+      - tangibleTypes
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     models.SearchObjectIdByMediaReq:
       type: object
       properties:
@@ -816,6 +705,162 @@ components:
             type: string
       x-apifox-orders:
       - mediaPathes
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AccessPermissionV2:
+      type: object
+      properties:
+        groupIds:
+          type: array
+          items:
+            type: string
+        userIds:
+          type: array
+          items:
+            type: string
+        wildcardDisabled:
+          type: boolean
+      x-apifox-orders:
+      - groupIds
+      - userIds
+      - wildcardDisabled
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchObjectTagsResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          description: return data
+          type: object
+          additionalProperties: true
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.GetObjectDetailResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          description: return data
+          allOf:
+          - $ref: '#/components/schemas/models.ObjectDetail'
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.FetchAllObjectTagReq:
+      type: object
+      properties:
+        classifications:
+          type: array
+          items:
+            type: integer
+        groupId:
+          type: array
+          items:
+            type: string
+        pageNum:
+          type: integer
+        pageSize:
+          type: integer
+        sort:
+          type: integer
+        userId:
+          type: string
+      x-apifox-orders:
+      - classifications
+      - groupId
+      - pageNum
+      - pageSize
+      - sort
+      - userId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchFileFormatByPathReq:
+      type: object
+      properties:
+        filePath:
+          type: string
+        fullFilePath:
+          type: string
+      x-apifox-orders:
+      - filePath
+      - fullFilePath
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.GetObjectReq:
+      type: object
+      properties:
+        attributeType:
+          description: '0: for ES, including all searchable attributes, no need "readableName"; 1: for UI'
+          type: integer
+        objectId:
+          description: optional
+          type: string
+        objectType:
+          type: integer
+        tangibleId:
+          type: string
+      x-apifox-orders:
+      - attributeType
+      - objectId
+      - objectType
+      - tangibleId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.FetchAllObjectTagResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        message:
+          description: Human-readable result message
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.EsObjectTagData'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - code
+      - message
+      - result
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.ObjectDetail:
+      type: object
+      properties:
+        tangibleAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.TangibleAttributeData'
+      x-apifox-orders:
+      - tangibleAttributes
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.ObjectQReq:
@@ -874,55 +919,7 @@ components:
       - userId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.GetObjectReq:
-      type: object
-      properties:
-        attributeType:
-          description: '0: for ES, including all searchable attributes, no need "readableName"; 1: for UI'
-          type: integer
-        objectId:
-          description: optional
-          type: string
-        objectType:
-          type: integer
-        tangibleId:
-          type: string
-      x-apifox-orders:
-      - attributeType
-      - objectId
-      - objectType
-      - tangibleId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.FetchAllObjectTagReq:
-      type: object
-      properties:
-        classifications:
-          type: array
-          items:
-            type: integer
-        groupId:
-          type: array
-          items:
-            type: string
-        pageNum:
-          type: integer
-        pageSize:
-          type: integer
-        sort:
-          type: integer
-        userId:
-          type: string
-      x-apifox-orders:
-      - classifications
-      - groupId
-      - pageNum
-      - pageSize
-      - sort
-      - userId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SearchMediaByIdsResp:
+    controllers.SearchObjectByMediaResp:
       type: object
       properties:
         errorCode:
@@ -932,78 +929,81 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/models.SearchMediaByIdsReturnData'
+            $ref: '#/components/schemas/models.ObjectReturnData'
       x-apifox-orders:
       - errorCode
       - errorInfo
       - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.SearchTsRange:
+    models.SearchMediaByIdsReturnData:
       type: object
       properties:
-        endtime:
-          type: integer
-          examples:
-          - 1778304241635
-        field:
+        dash:
+          $ref: '#/components/schemas/models.MediaFileRetrunData'
+        hls:
+          $ref: '#/components/schemas/models.MediaFileRetrunData'
+        objectGrid:
           type: string
-        starttime:
-          type: integer
-          examples:
-          - 1778304121635
+        objectId:
+          type: string
       x-apifox-orders:
-      - endtime
-      - field
-      - starttime
+      - dash
+      - hls
+      - objectGrid
+      - objectId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    controllers.FetchAllObjectTagResp:
+    models.ObjectReturnData:
       type: object
       properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-        message:
-          description: Human-readable result message
+        objectGrid:
           type: string
-        result:
+        objectId:
+          type: string
+        path:
+          type: string
+      x-apifox-orders:
+      - objectGrid
+      - objectId
+      - path
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.FetchObjectTagReq:
+      type: object
+      properties:
+        classifications:
           type: array
           items:
-            $ref: '#/components/schemas/models.EsObjectTagData'
-        size:
-          type: integer
-        total:
-          type: integer
-      x-apifox-orders:
-      - code
-      - message
-      - result
-      - size
-      - total
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchFileFormatByPathReq:
-      type: object
-      properties:
-        filePath:
-          type: string
-        fullFilePath:
-          type: string
-      x-apifox-orders:
-      - filePath
-      - fullFilePath
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.ObjectDetail:
-      type: object
-      properties:
-        tangibleAttributes:
+            type: integer
+        objectIds:
           type: array
           items:
-            $ref: '#/components/schemas/models.TangibleAttributeData'
+            type: string
       x-apifox-orders:
-      - tangibleAttributes
+      - classifications
+      - objectIds
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.EsObjectTagData:
+      type: object
+      properties:
+        classification:
+          type: integer
+        groupId:
+          type: string
+        tagId:
+          type: string
+        tagName:
+          type: string
+        userId:
+          type: string
+      x-apifox-orders:
+      - classification
+      - groupId
+      - tagId
+      - tagName
+      - userId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

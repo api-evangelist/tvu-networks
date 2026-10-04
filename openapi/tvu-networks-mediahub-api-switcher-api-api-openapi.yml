@@ -76,24 +76,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-355991163.md
 components:
   schemas:
-    Result:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     ResponseResult:
       type: object
       properties:
@@ -123,6 +105,24 @@ components:
       - result
       - async
       - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Result:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

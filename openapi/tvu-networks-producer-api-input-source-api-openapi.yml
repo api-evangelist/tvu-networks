@@ -479,6 +479,34 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778527.md
 components:
   schemas:
+    StopLiveRequest:
+      required:
+      - slotNo
+      - programId
+      type: object
+      properties:
+        rid:
+          type: string
+          description: rid
+          examples:
+          - xxxx
+        slotNo:
+          type: string
+          description: slot no
+          examples:
+          - s1
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - rid
+      - slotNo
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     ProgramSource:
       required:
       - sourceName
@@ -516,40 +544,59 @@ components:
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    CreateRTPFECSourceParam:
+    SourceSwitchVo:
       required:
-      - port
-      - sourceName
+      - slotNo
       - programId
       type: object
       properties:
-        port:
+        actionTime:
           type: integer
-          description: please input 60000-65000 port num, eg:60000
-          format: int32
-          examples:
-          - 60000
-        productionId:
-          type: integer
-          description: production id
+          description: action time on client,if unset,will use system current time
           format: int64
           examples:
           - 0
-        sourceName:
-          type: string
-          description: source name, RTP-FEC Source
+        effect:
+          type: integer
+          description: cut effect
+          format: int32
           examples:
-          - Source Name
+          - 60
+        switchShm:
+          type: boolean
+          description: whether switch current PGM to PVW after cut this new source to the PGM
+          default: true
+          examples:
+          - true
+        effectDuration:
+          type: integer
+          description: cut effect duration
+          format: int32
+          examples:
+          - 3000
+        slotNo:
+          type: string
+          description: source slot no to be cut to PGM
+          examples:
+          - s1
+        subTimestamp:
+          type: string
+          description: timestamp when the cut execution,if unset,will use system current time,this should be extracted from the source preview video stream
+          examples:
+          - '0'
         programId:
           type: integer
-          description: program id
+          description: program ID
           format: int64
           examples:
           - 0
       x-apifox-orders:
-      - port
-      - productionId
-      - sourceName
+      - actionTime
+      - effect
+      - switchShm
+      - effectDuration
+      - slotNo
+      - subTimestamp
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
@@ -637,66 +684,6 @@ components:
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    SourceDelayRequest:
-      required:
-      - delay
-      - slotNo
-      - programId
-      type: object
-      properties:
-        delay:
-          maximum: 10000
-          minimum: 300
-          type: integer
-          description: delay
-          format: int64
-          examples:
-          - 6486
-        slotNo:
-          type: string
-          description: slot no
-          examples:
-          - s1
-        programId:
-          type: integer
-          description: program id
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - delay
-      - slotNo
-      - programId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    StopLiveRequest:
-      required:
-      - slotNo
-      - programId
-      type: object
-      properties:
-        rid:
-          type: string
-          description: rid
-          examples:
-          - xxxx
-        slotNo:
-          type: string
-          description: slot no
-          examples:
-          - s1
-        programId:
-          type: integer
-          description: program id
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - rid
-      - slotNo
-      - programId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     AddSourceParam:
       required:
       - sourceId
@@ -737,59 +724,72 @@ components:
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    SourceSwitchVo:
+    CreateRTPFECSourceParam:
       required:
-      - slotNo
+      - port
+      - sourceName
       - programId
       type: object
       properties:
-        actionTime:
+        port:
           type: integer
-          description: action time on client,if unset,will use system current time
+          description: please input 60000-65000 port num, eg:60000
+          format: int32
+          examples:
+          - 60000
+        productionId:
+          type: integer
+          description: production id
           format: int64
           examples:
           - 0
-        effect:
-          type: integer
-          description: cut effect
-          format: int32
-          examples:
-          - 60
-        switchShm:
-          type: boolean
-          description: whether switch current PGM to PVW after cut this new source to the PGM
-          default: true
-          examples:
-          - true
-        effectDuration:
-          type: integer
-          description: cut effect duration
-          format: int32
-          examples:
-          - 3000
-        slotNo:
+        sourceName:
           type: string
-          description: source slot no to be cut to PGM
+          description: source name, RTP-FEC Source
           examples:
-          - s1
-        subTimestamp:
-          type: string
-          description: timestamp when the cut execution,if unset,will use system current time,this should be extracted from the source preview video stream
-          examples:
-          - '0'
+          - Source Name
         programId:
           type: integer
-          description: program ID
+          description: program id
           format: int64
           examples:
           - 0
       x-apifox-orders:
-      - actionTime
-      - effect
-      - switchShm
-      - effectDuration
+      - port
+      - productionId
+      - sourceName
+      - programId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SourceDelayRequest:
+      required:
+      - delay
       - slotNo
-      - subTimestamp
+      - programId
+      type: object
+      properties:
+        delay:
+          maximum: 10000
+          minimum: 300
+          type: integer
+          description: delay
+          format: int64
+          examples:
+          - 6486
+        slotNo:
+          type: string
+          description: slot no
+          examples:
+          - s1
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - delay
+      - slotNo
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''

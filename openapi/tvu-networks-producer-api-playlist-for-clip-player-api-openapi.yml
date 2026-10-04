@@ -453,6 +453,119 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778568.md
 components:
   schemas:
+    PlayList:
+      required:
+      - data
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: total duration of playlist, no need pass
+          format: int32
+        aiProgress:
+          type: integer
+          format: int32
+        thumbnail:
+          type: string
+          description: the thumbnail of playlist, will use the first clip's thumbnail if not pass
+        data:
+          type: array
+          items:
+            description: clips
+            $ref: '#/components/schemas/PlayListItem'
+        name:
+          type: string
+          description: the name of playlist
+        fromPlaylistId:
+          type: string
+        id:
+          type: string
+        md5:
+          type: string
+      x-apifox-orders:
+      - duration
+      - aiProgress
+      - thumbnail
+      - data
+      - name
+      - fromPlaylistId
+      - id
+      - md5
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ProgramPlaylist:
+      required:
+      - fileShimNo
+      - name
+      - id
+      - programId
+      type: object
+      properties:
+        fileShimNo:
+          type: string
+        playlistStr:
+          type: string
+        data:
+          type: string
+        clipNum:
+          type: integer
+          format: int32
+        updateTime:
+          type: integer
+          format: int64
+        sort:
+          type: integer
+          format: int32
+        userId:
+          maxLength: 32
+          type: string
+        deleteFlag:
+          type: boolean
+        isCurrent:
+          type: boolean
+        playlist:
+          $ref: '#/components/schemas/PlayList'
+        createTime:
+          type: integer
+          format: int64
+        deleteTime:
+          type: integer
+          format: int64
+        name:
+          maxLength: 128
+          type: string
+        clipDuration:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        programId:
+          type: integer
+          format: int64
+        fileId:
+          maxLength: 32
+          type: string
+      x-apifox-orders:
+      - fileShimNo
+      - playlistStr
+      - data
+      - clipNum
+      - updateTime
+      - sort
+      - userId
+      - deleteFlag
+      - isCurrent
+      - playlist
+      - createTime
+      - deleteTime
+      - name
+      - clipDuration
+      - id
+      - programId
+      - fileId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     SortField:
       type: object
       properties:
@@ -468,6 +581,12 @@ components:
       x-apifox-orders:
       - sortDirection
       - name
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayListItem:
+      type: object
+      x-apifox-orders: []
+      properties: {}
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     ProgramPlaylistQuery:
@@ -650,125 +769,6 @@ components:
       - deleteTimeTo
       - programId
       - fileId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ProgramPlaylist:
-      required:
-      - fileShimNo
-      - name
-      - id
-      - programId
-      type: object
-      properties:
-        fileShimNo:
-          type: string
-        playlistStr:
-          type: string
-        data:
-          type: string
-        clipNum:
-          type: integer
-          format: int32
-        updateTime:
-          type: integer
-          format: int64
-        sort:
-          type: integer
-          format: int32
-        userId:
-          maxLength: 32
-          type: string
-        deleteFlag:
-          type: boolean
-        isCurrent:
-          type: boolean
-        playlist:
-          $ref: '#/components/schemas/PlayList'
-        createTime:
-          type: integer
-          format: int64
-        deleteTime:
-          type: integer
-          format: int64
-        name:
-          maxLength: 128
-          type: string
-        clipDuration:
-          type: integer
-          format: int64
-        id:
-          type: integer
-          format: int64
-        programId:
-          type: integer
-          format: int64
-        fileId:
-          maxLength: 32
-          type: string
-      x-apifox-orders:
-      - fileShimNo
-      - playlistStr
-      - data
-      - clipNum
-      - updateTime
-      - sort
-      - userId
-      - deleteFlag
-      - isCurrent
-      - playlist
-      - createTime
-      - deleteTime
-      - name
-      - clipDuration
-      - id
-      - programId
-      - fileId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    PlayListItem:
-      type: object
-      x-apifox-orders: []
-      properties: {}
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    PlayList:
-      required:
-      - data
-      type: object
-      properties:
-        duration:
-          type: integer
-          description: total duration of playlist, no need pass
-          format: int32
-        aiProgress:
-          type: integer
-          format: int32
-        thumbnail:
-          type: string
-          description: the thumbnail of playlist, will use the first clip's thumbnail if not pass
-        data:
-          type: array
-          items:
-            description: clips
-            $ref: '#/components/schemas/PlayListItem'
-        name:
-          type: string
-          description: the name of playlist
-        fromPlaylistId:
-          type: string
-        id:
-          type: string
-        md5:
-          type: string
-      x-apifox-orders:
-      - duration
-      - aiProgress
-      - thumbnail
-      - data
-      - name
-      - fromPlaylistId
-      - id
-      - md5
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

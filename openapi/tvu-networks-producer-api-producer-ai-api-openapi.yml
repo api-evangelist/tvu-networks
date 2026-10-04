@@ -218,6 +218,51 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-250778563.md
 components:
   schemas:
+    UploadSourceThumbnailRequest:
+      required:
+      - imageBase64
+      - createTime
+      - productionId
+      - slotNo
+      - timestamp
+      type: object
+      properties:
+        imageBase64:
+          type: string
+          examples:
+          - caYVZNkqyntfeGaLvybhTlIT
+        createTime:
+          type: integer
+          format: int64
+          examples:
+          - 1717142764887
+        productionId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+        imageUrl:
+          type: string
+          examples:
+          - http://www.zvurPW.com/NYuIKf
+        slotNo:
+          type: string
+          examples:
+          - s1
+        timestamp:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - imageBase64
+      - createTime
+      - productionId
+      - imageUrl
+      - slotNo
+      - timestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     PlayAllClipPlayerRequest:
       required:
       - productionId
@@ -267,51 +312,6 @@ components:
       - clipSize
       - scoreboardSlot
       - productionId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    UploadSourceThumbnailRequest:
-      required:
-      - imageBase64
-      - createTime
-      - productionId
-      - slotNo
-      - timestamp
-      type: object
-      properties:
-        imageBase64:
-          type: string
-          examples:
-          - caYVZNkqyntfeGaLvybhTlIT
-        createTime:
-          type: integer
-          format: int64
-          examples:
-          - 1717142764887
-        productionId:
-          type: integer
-          format: int64
-          examples:
-          - 0
-        imageUrl:
-          type: string
-          examples:
-          - http://www.zvurPW.com/NYuIKf
-        slotNo:
-          type: string
-          examples:
-          - s1
-        timestamp:
-          type: integer
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - imageBase64
-      - createTime
-      - productionId
-      - imageUrl
-      - slotNo
-      - timestamp
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

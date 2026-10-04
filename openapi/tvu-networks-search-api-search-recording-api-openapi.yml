@@ -114,6 +114,44 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959101.md
 components:
   schemas:
+    controllers.RecordingInfoReturnData:
+      type: object
+      properties:
+        recordings:
+          type: string
+      x-apifox-orders:
+      - recordings
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.GetRecordingInfoV2Resp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          $ref: '#/components/schemas/controllers.RecordingInfoReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.GetInterValReq:
+      type: object
+      properties:
+        paths:
+          description: List of recording file paths for which to retrieve interval information; required
+          type: array
+          items:
+            type: string
+      x-apifox-orders:
+      - paths
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     models.RecordingInfoQReq:
       type: object
       properties:
@@ -143,35 +181,6 @@ components:
       - path
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    controllers.GetInterValReq:
-      type: object
-      properties:
-        paths:
-          description: List of recording file paths for which to retrieve interval information; required
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - paths
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.GetRecordingInfoV2Resp:
-      type: object
-      properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-        data:
-          $ref: '#/components/schemas/controllers.RecordingInfoReturnData'
-        message:
-          description: Human-readable result message
-          type: string
-      x-apifox-orders:
-      - code
-      - data
-      - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     controllers.GetIntervalResp:
       type: object
       properties:
@@ -190,15 +199,6 @@ components:
       - errorCode
       - errorInfo
       - results
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.RecordingInfoReturnData:
-      type: object
-      properties:
-        recordings:
-          type: string
-      x-apifox-orders:
-      - recordings
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

@@ -118,69 +118,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-329846476.md
 components:
   schemas:
-    BasePreviewVO:
-      type: object
-      x-apifox-orders: []
-      properties: {}
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResponseResultBasePreviewVO:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          $ref: '#/components/schemas/BasePreviewVO'
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    StopPreviewParam:
-      required:
-      - sourceObjectId
-      type: object
-      properties:
-        sourceObjectId:
-          type: string
-      x-apifox-orders:
-      - sourceObjectId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    Result:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     ResponseResult:
       type: object
       properties:
@@ -197,6 +134,34 @@ components:
           x-apifox-orders: []
           properties: {}
           x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResultBasePreviewVO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          $ref: '#/components/schemas/BasePreviewVO'
         async:
           type: boolean
         errorBody:
@@ -229,6 +194,41 @@ components:
       x-apifox-orders:
       - sourceObjectId
       - previewType
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    BasePreviewVO:
+      type: object
+      x-apifox-orders: []
+      properties: {}
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    Result:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    StopPreviewParam:
+      required:
+      - sourceObjectId
+      type: object
+      properties:
+        sourceObjectId:
+          type: string
+      x-apifox-orders:
+      - sourceObjectId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

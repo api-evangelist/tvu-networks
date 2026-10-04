@@ -236,57 +236,6 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-473290200.md
 components:
   schemas:
-    GetThumbnailResV2:
-      type: object
-      properties:
-        ErrorCode:
-          type: integer
-          description: '- `1000` — Success
-
-            - `1018` — Invalid `LivePath` parameter
-
-            - `1019` — S3 SDK initialization failed
-
-            - `1024` — Failed to read generated thumbnail file
-
-            - `1050` — Cannot locate TS segment at the requested offset
-
-            - `1077` — Thumbnail upload to image server failed
-
-            - `1086` — Failed to sign source TS URL
-
-            - `1099` — Thumbnail generation failed (ffmpeg error or bad time offset)
-
-            '
-          examples:
-          - 1000
-        ErrorMessage:
-          type: string
-          examples:
-          - success
-        ImagePath:
-          type: string
-          description: 'Server-relative path to the generated thumbnail image on the image server.
-
-            Prepend the image server base URL to construct the full HTTP URL.
-
-            Populated when `ErrorCode == 1000`.
-
-            '
-          examples:
-          - /export/4B999DC458FBC4C80000000000000002/00_13_12.jpg
-        Resolution:
-          type: string
-          description: Image resolution in `WIDTHxHEIGHT` format. Populated when `ErrorCode == 1000`.
-          examples:
-          - 1920x1080
-      x-apifox-orders:
-      - ErrorCode
-      - ErrorMessage
-      - ImagePath
-      - Resolution
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     GetMetadataRes:
       type: object
       properties:
@@ -343,6 +292,57 @@ components:
       - errorCode
       - errorMessage
       - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    GetThumbnailResV2:
+      type: object
+      properties:
+        ErrorCode:
+          type: integer
+          description: '- `1000` — Success
+
+            - `1018` — Invalid `LivePath` parameter
+
+            - `1019` — S3 SDK initialization failed
+
+            - `1024` — Failed to read generated thumbnail file
+
+            - `1050` — Cannot locate TS segment at the requested offset
+
+            - `1077` — Thumbnail upload to image server failed
+
+            - `1086` — Failed to sign source TS URL
+
+            - `1099` — Thumbnail generation failed (ffmpeg error or bad time offset)
+
+            '
+          examples:
+          - 1000
+        ErrorMessage:
+          type: string
+          examples:
+          - success
+        ImagePath:
+          type: string
+          description: 'Server-relative path to the generated thumbnail image on the image server.
+
+            Prepend the image server base URL to construct the full HTTP URL.
+
+            Populated when `ErrorCode == 1000`.
+
+            '
+          examples:
+          - /export/4B999DC458FBC4C80000000000000002/00_13_12.jpg
+        Resolution:
+          type: string
+          description: Image resolution in `WIDTHxHEIGHT` format. Populated when `ErrorCode == 1000`.
+          examples:
+          - 1920x1080
+      x-apifox-orders:
+      - ErrorCode
+      - ErrorMessage
+      - ImagePath
+      - Resolution
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

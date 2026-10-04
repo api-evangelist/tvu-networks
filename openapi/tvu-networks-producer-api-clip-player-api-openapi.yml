@@ -484,17 +484,22 @@ components:
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    UploadSourceResult:
+    StopLiveRequest:
       required:
-      - objectKey
+      - slotNo
       - programId
       type: object
       properties:
-        objectKey:
+        rid:
           type: string
-          description: S3 object key
+          description: rid
           examples:
-          - rjThfblhWIHdNORBspbIoNfledin
+          - xxxx
+        slotNo:
+          type: string
+          description: slot no
+          examples:
+          - s1
         programId:
           type: integer
           description: program id
@@ -502,12 +507,10 @@ components:
           examples:
           - 0
       x-apifox-orders:
-      - objectKey
+      - rid
+      - slotNo
       - programId
-      x--orders:
-      - objectKey
-      - programId
-      x--ignore-properties: []
+      x-apifox-ignore-properties: []
       x-apifox-folder: ''
     PlayReq:
       required:
@@ -557,34 +560,6 @@ components:
       - programId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    StopLiveRequest:
-      required:
-      - slotNo
-      - programId
-      type: object
-      properties:
-        rid:
-          type: string
-          description: rid
-          examples:
-          - xxxx
-        slotNo:
-          type: string
-          description: slot no
-          examples:
-          - s1
-        programId:
-          type: integer
-          description: program id
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - rid
-      - slotNo
-      - programId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     FileInfoQueryRequest:
       type: object
       properties:
@@ -623,6 +598,31 @@ components:
       - pid
       - programId
       x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    UploadSourceResult:
+      required:
+      - objectKey
+      - programId
+      type: object
+      properties:
+        objectKey:
+          type: string
+          description: S3 object key
+          examples:
+          - rjThfblhWIHdNORBspbIoNfledin
+        programId:
+          type: integer
+          description: program id
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - objectKey
+      - programId
+      x--orders:
+      - objectKey
+      - programId
+      x--ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:
     bearer:

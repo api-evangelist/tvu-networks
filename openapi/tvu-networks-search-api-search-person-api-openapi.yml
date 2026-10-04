@@ -266,94 +266,19 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959090.md
 components:
   schemas:
-    controllers.SearchPersonNameWithTagsResp:
+    models.GpsInfo:
       type: object
       properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-          examples:
-          - 0
-        data:
-          description: return data, if exists
-          allOf:
-          - $ref: '#/components/schemas/controllers.ReturnData'
-        message:
-          description: Human-readable result message
-          type: string
-          examples:
-          - succ
+        distance:
+          type: number
+        lat:
+          type: number
+        lon:
+          type: number
       x-apifox-orders:
-      - code
-      - data
-      - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchLocation:
-      type: object
-      properties:
-        br:
-          type: string
-        tl:
-          type: string
-      x-apifox-orders:
-      - br
-      - tl
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchTsRange:
-      type: object
-      properties:
-        endtime:
-          type: integer
-          examples:
-          - 1778304241635
-        field:
-          type: string
-        starttime:
-          type: integer
-          examples:
-          - 1778304121635
-      x-apifox-orders:
-      - endtime
-      - field
-      - starttime
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchDurationRange:
-      type: object
-      properties:
-        durationEnd:
-          type: integer
-        durationStart:
-          type: integer
-      x-apifox-orders:
-      - durationEnd
-      - durationStart
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.ReturnData:
-      type: object
-      properties:
-        host_person:
-          $ref: '#/components/schemas/models.PersonReturnData'
-        list:
-          type: array
-          items:
-            type: string
-        size:
-          type: integer
-          examples:
-          - 1
-        total:
-          type: integer
-          examples:
-          - 1
-      x-apifox-orders:
-      - host_person
-      - list
-      - size
-      - total
+      - distance
+      - lat
+      - lon
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.AccessPermission:
@@ -393,19 +318,74 @@ components:
       - public
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.GpsInfo:
+    models.SearchDurationRange:
       type: object
       properties:
-        distance:
-          type: number
-        lat:
-          type: number
-        lon:
-          type: number
+        durationEnd:
+          type: integer
+        durationStart:
+          type: integer
       x-apifox-orders:
-      - distance
-      - lat
-      - lon
+      - durationEnd
+      - durationStart
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.PersonListClickResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+          examples:
+          - 0
+        data:
+          description: return data, if exists
+          allOf:
+          - $ref: '#/components/schemas/controllers.ReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+          examples:
+          - succ
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchLocation:
+      type: object
+      properties:
+        br:
+          type: string
+        tl:
+          type: string
+      x-apifox-orders:
+      - br
+      - tl
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchPersonNameWithTagsResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+          examples:
+          - 0
+        data:
+          description: return data, if exists
+          allOf:
+          - $ref: '#/components/schemas/controllers.ReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+          examples:
+          - succ
+      x-apifox-orders:
+      - code
+      - data
+      - message
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.SearchPersonNameWithTagsReq:
@@ -472,118 +452,6 @@ components:
       - tags
       - tsrange
       - userid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.PersonListClickResp:
-      type: object
-      properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
-          type: integer
-          examples:
-          - 0
-        data:
-          description: return data, if exists
-          allOf:
-          - $ref: '#/components/schemas/controllers.ReturnData'
-        message:
-          description: Human-readable result message
-          type: string
-          examples:
-          - succ
-      x-apifox-orders:
-      - code
-      - data
-      - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.PersonReturnData:
-      type: object
-      properties:
-        asset_num:
-          type: integer
-        face_num:
-          type: integer
-          examples:
-          - 1
-        group_id:
-          type: string
-          examples:
-          - 00fe20a2d2d84093b304f0d54d4bedda
-        highlight:
-          type: string
-        last_update_ts:
-          type: integer
-          examples:
-          - 1717055943701
-        name:
-          type: string
-          examples:
-          - ''
-        object_media:
-          type: integer
-        path:
-          type: string
-          examples:
-          - FFFFFFF00015C633_1717048728819.jpg
-        peer_id:
-          type: string
-          examples:
-          - FFFFFFF00015C633
-        person_id:
-          type: string
-          examples:
-          - 1710142217249mbzk5zx0
-        position:
-          type: string
-        recfile_path:
-          type: string
-        sourceObjectId:
-          type: string
-        tag:
-          type: string
-        timestamp:
-          type: integer
-          examples:
-          - 1717055943701
-        total_track_duration:
-          type: integer
-          examples:
-          - 1000
-        tracklist:
-          description: the first value is the emerged time of the person, the second value is the disappearred time.
-          type: array
-          items:
-            type: array
-            items:
-              type: integer
-              format: int64
-        tslist:
-          type: array
-          items:
-            type: integer
-        uid:
-          type: string
-      x-apifox-orders:
-      - asset_num
-      - face_num
-      - group_id
-      - highlight
-      - last_update_ts
-      - name
-      - object_media
-      - path
-      - peer_id
-      - person_id
-      - position
-      - recfile_path
-      - sourceObjectId
-      - tag
-      - timestamp
-      - total_track_duration
-      - tracklist
-      - tslist
-      - uid
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.SearchTags:
@@ -690,6 +558,138 @@ components:
       - status
       - storyids
       - uids
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchTsRange:
+      type: object
+      properties:
+        endtime:
+          type: integer
+          examples:
+          - 1778304241635
+        field:
+          type: string
+        starttime:
+          type: integer
+          examples:
+          - 1778304121635
+      x-apifox-orders:
+      - endtime
+      - field
+      - starttime
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.ReturnData:
+      type: object
+      properties:
+        host_person:
+          $ref: '#/components/schemas/models.PersonReturnData'
+        list:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+          examples:
+          - 1
+        total:
+          type: integer
+          examples:
+          - 1
+      x-apifox-orders:
+      - host_person
+      - list
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.PersonReturnData:
+      type: object
+      properties:
+        asset_num:
+          type: integer
+        face_num:
+          type: integer
+          examples:
+          - 1
+        group_id:
+          type: string
+          examples:
+          - 00fe20a2d2d84093b304f0d54d4bedda
+        highlight:
+          type: string
+        last_update_ts:
+          type: integer
+          examples:
+          - 1717055943701
+        name:
+          type: string
+          examples:
+          - ''
+        object_media:
+          type: integer
+        path:
+          type: string
+          examples:
+          - FFFFFFF00015C633_1717048728819.jpg
+        peer_id:
+          type: string
+          examples:
+          - FFFFFFF00015C633
+        person_id:
+          type: string
+          examples:
+          - 1710142217249mbzk5zx0
+        position:
+          type: string
+        recfile_path:
+          type: string
+        sourceObjectId:
+          type: string
+        tag:
+          type: string
+        timestamp:
+          type: integer
+          examples:
+          - 1717055943701
+        total_track_duration:
+          type: integer
+          examples:
+          - 1000
+        tracklist:
+          description: the first value is the emerged time of the person, the second value is the disappearred time.
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int64
+        tslist:
+          type: array
+          items:
+            type: integer
+        uid:
+          type: string
+      x-apifox-orders:
+      - asset_num
+      - face_num
+      - group_id
+      - highlight
+      - last_update_ts
+      - name
+      - object_media
+      - path
+      - peer_id
+      - person_id
+      - position
+      - recfile_path
+      - sourceObjectId
+      - tag
+      - timestamp
+      - total_track_duration
+      - tracklist
+      - tslist
+      - uid
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:
