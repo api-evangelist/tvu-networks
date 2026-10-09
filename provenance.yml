@@ -21,7 +21,10 @@ artifacts:
   errors/tvu-networks-problem-types.yml:
     method: searched
     evidence: declared in the artifact
-  kin/checks-2026-09-05T072335.yml:
+  front-door-ai/2026-09-17.yml:
+    method: unknown
+    evidence: no authorship recorded
+  kin/checks-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-01T222808.yml:
@@ -54,6 +57,123 @@ artifacts:
   kin/score-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T211329.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T230249.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T210549.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T225339.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T211151.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T233623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T205255.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T231945.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T165737.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T193153.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T205903.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T232958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T211425.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T233935.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-22T213221.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-23T000603.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T090406.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T161608.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/tvu-networks-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -63,69 +183,293 @@ artifacts:
   mcp/tvu-networks-mcp.yml:
     method: derived
     evidence: declared in the artifact
-  openapi/tvu-networks-authentication-openapi.yml:
+  openapi/_original/tvu-networks-authentication-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-channel-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-commentator-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-export-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-grid-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-input-and-output-module-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-media-info-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-media-service-for-producer-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-mediahub-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-mediamind-story-creation-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-mos-gateway-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-object-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-partyline-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-producer-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-public-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-scteservice-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-shortcut-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-uncategorized-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-usageservice-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/tvu-networks-workflow-api-openapi.yml:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/tvu-networks-channel-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-channel-api-clone-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-channel-api-event-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-channel-api-schedulemapping-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-channel-api-scte-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-commentator-api-event-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-dashboards-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-export-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-grid-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-input-output-module-api-authentication-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-input-output-module-api-encoder-profile-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-input-output-module-api-input-module-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-input-output-module-api-output-module-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-maintain-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-media-info-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-media-service-for-producer-tvucc-media-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-media-service-for-producer-tvucc-media-output-setting-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-media-service-for-producer-tvucc-share-output-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-media-service-for-producer-tvucc-share-share-video-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediahub-api-destination-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediahub-api-encoder-profile-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediahub-api-output-encoder-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediahub-api-preview-decoder-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediahub-api-project-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediahub-api-routeapi-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediahub-api-setting-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediahub-api-source-object-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediahub-api-switcher-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mediamind-story-creation-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mos-gateway-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-mos-gateway-api-channel-for-mos-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-object-api-graphql-object-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-object-api-restful-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-object-api-restful-res-tvu-ai-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-partyline-api-party-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-producer-api-audio-mixer-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-producer-api-clip-player-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-producer-api-collaborator-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-producer-api-followers-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-producer-api-input-source-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-producer-api-overlay-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-producer-api-playlist-for-clip-player-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-producer-api-producer-ai-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-producer-api-programs-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-public-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-resource-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-route-object-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-scteservice-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-search-api-event-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/tvu-networks-channel-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-commentator-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-export-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-grid-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-input-and-output-module-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-media-info-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-media-service-for-producer-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-mediahub-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-mediamind-story-creation-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-mos-gateway-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-object-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-partyline-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-producer-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-public-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/tvu-networks-scteservice-api-openapi.yml:
+  openapi/tvu-networks-search-api-extract-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
   openapi/tvu-networks-search-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-search-api-public-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/tvu-networks-shortcut-api-openapi.yml:
+  openapi/tvu-networks-search-api-search-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/tvu-networks-uncategorized-openapi.yml:
+  openapi/tvu-networks-search-api-search-apiv2-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/tvu-networks-usageservice-api-openapi.yml:
+  openapi/tvu-networks-search-api-search-appearance-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/tvu-networks-workflow-api-openapi.yml:
+  openapi/tvu-networks-search-api-search-caption-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-doc-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-health-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-object-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-person-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-query-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-recording-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-scene-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-session-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-slug-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-search-api-search-srt-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/tvu-networks-shortcut-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-usageservice-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/tvu-networks-workflow-api-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   overlays/tvu-networks-authentication-overlay.yaml:
     method: generated
     evidence: declared in the artifact
