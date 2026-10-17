@@ -51,6 +51,25 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959106.md
 components:
   schemas:
+    controllers.UpdateClickCntResp:
+      type: object
+      properties:
+        code:
+          type: integer
+        json:
+          type: object
+          additionalProperties: true
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+      x-apifox-orders:
+      - code
+      - json
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     controllers.UpdateClickReq:
       type: object
       properties:
@@ -94,25 +113,6 @@ components:
       - rank
       - sessionid
       - userid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.UpdateClickCntResp:
-      type: object
-      properties:
-        code:
-          type: integer
-        json:
-          type: object
-          additionalProperties: true
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        message:
-          type: string
-      x-apifox-orders:
-      - code
-      - json
-      - message
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

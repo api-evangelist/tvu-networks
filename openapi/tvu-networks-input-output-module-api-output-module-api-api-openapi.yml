@@ -239,6 +239,27 @@ paths:
       x-operation-id-original: query output list
 components:
   schemas:
+    ResultRunOutputVO:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/RunOutputVO'
+        errorCode:
+          description: error code
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          description: error info
+          type: string
+          examples:
+          - success
+      x-apifox-orders:
+      - result
+      - errorCode
+      - errorInfo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     RunOutputVO:
       description: result
       type: object
@@ -340,27 +361,6 @@ components:
       - streamingUrl
       - region
       - boxId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResultRunOutputVO:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/RunOutputVO'
-        errorCode:
-          description: error code
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          description: error info
-          type: string
-          examples:
-          - success
-      x-apifox-orders:
-      - result
-      - errorCode
-      - errorInfo
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

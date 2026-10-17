@@ -123,33 +123,18 @@ components:
       - recordings
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    controllers.GetRecordingInfoV2Resp:
+    models.GetIntervalItems:
       type: object
       properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+        interval:
+          description: interval
           type: integer
-        data:
-          $ref: '#/components/schemas/controllers.RecordingInfoReturnData'
-        message:
-          description: Human-readable result message
+        path:
+          description: path
           type: string
       x-apifox-orders:
-      - code
-      - data
-      - message
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.GetInterValReq:
-      type: object
-      properties:
-        paths:
-          description: List of recording file paths for which to retrieve interval information; required
-          type: array
-          items:
-            type: string
-      x-apifox-orders:
-      - paths
+      - interval
+      - path
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.RecordingInfoQReq:
@@ -167,18 +152,16 @@ components:
       - userid
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.GetIntervalItems:
+    controllers.GetInterValReq:
       type: object
       properties:
-        interval:
-          description: interval
-          type: integer
-        path:
-          description: path
-          type: string
+        paths:
+          description: List of recording file paths for which to retrieve interval information; required
+          type: array
+          items:
+            type: string
       x-apifox-orders:
-      - interval
-      - path
+      - paths
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     controllers.GetIntervalResp:
@@ -199,6 +182,23 @@ components:
       - errorCode
       - errorInfo
       - results
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.GetRecordingInfoV2Resp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          $ref: '#/components/schemas/controllers.RecordingInfoReturnData'
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

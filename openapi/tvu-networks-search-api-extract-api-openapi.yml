@@ -814,6 +814,24 @@ components:
       - isCompleted
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    ReTranscribe:
+      type: object
+      properties:
+        switch:
+          type: boolean
+          description: 'whether to recollect (default: false)'
+        groupId:
+          type: string
+          description: groupId
+        language:
+          type: string
+          description: language
+      x-apifox-orders:
+      - switch
+      - groupId
+      - language
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     PublicDestination:
       type: object
       description: Target storage location for the output file.
@@ -843,24 +861,6 @@ components:
       - bucket
       - region
       - folder
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ReTranscribe:
-      type: object
-      properties:
-        switch:
-          type: boolean
-          description: 'whether to recollect (default: false)'
-        groupId:
-          type: string
-          description: groupId
-        language:
-          type: string
-          description: language
-      x-apifox-orders:
-      - switch
-      - groupId
-      - language
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

@@ -270,38 +270,7 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-430970843.md
 components:
   schemas:
-    ResponseResult:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          examples:
-          - '0x0'
-        errorInfo:
-          type: string
-          examples:
-          - success
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-        async:
-          type: boolean
-        errorBody:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      - async
-      - errorBody
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResultPageResultDestinationVO:
+    ResultDestinationVO:
       type: object
       properties:
         errorCode:
@@ -309,12 +278,16 @@ components:
         errorInfo:
           type: string
         result:
-          $ref: '#/components/schemas/PageResultDestinationVO'
+          $ref: '#/components/schemas/DestinationVO'
       x-apifox-orders:
       - errorCode
       - errorInfo
       - result
-      x-apifox-ignore-properties: []
+      x--orders:
+      - errorCode
+      - errorInfo
+      - result
+      x--ignore-properties: []
       x-apifox-folder: ''
     DestinationVO:
       required:
@@ -339,6 +312,34 @@ components:
       - outputName
       - url
       - objectId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    OutputQueryDTO:
+      required:
+      - pageSize
+      - pageNum
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          format: int32
+          examples:
+          - 10
+        pageNum:
+          type: integer
+          format: int32
+          examples:
+          - 1
+        outputName:
+          type: string
+        liveOnly:
+          type: boolean
+          description: Filter the output being streamed
+      x-apifox-orders:
+      - pageSize
+      - pageNum
+      - outputName
+      - liveOnly
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     OutputDTO:
@@ -371,32 +372,68 @@ components:
       - objectId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    OutputQueryDTO:
-      required:
-      - pageSize
-      - pageNum
+    Result:
       type: object
       properties:
-        pageSize:
-          type: integer
-          format: int32
-          examples:
-          - 10
-        pageNum:
-          type: integer
-          format: int32
-          examples:
-          - 1
-        outputName:
+        errorCode:
           type: string
-        liveOnly:
-          type: boolean
-          description: Filter the output being streamed
+        errorInfo:
+          type: string
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
       x-apifox-orders:
-      - pageSize
-      - pageNum
-      - outputName
-      - liveOnly
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResultPageResultDestinationVO:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorInfo:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageResultDestinationVO'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ResponseResult:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          examples:
+          - '0x0'
+        errorInfo:
+          type: string
+          examples:
+          - success
+        result:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+        async:
+          type: boolean
+        errorBody:
+          type: object
+          x-apifox-orders: []
+          properties: {}
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
+      - async
+      - errorBody
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     PageResultDestinationVO:
@@ -436,43 +473,6 @@ components:
       x-apifox-orders:
       - destinationObjectId
       - encodingProfileId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ResultDestinationVO:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          $ref: '#/components/schemas/DestinationVO'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--orders:
-      - errorCode
-      - errorInfo
-      - result
-      x--ignore-properties: []
-      x-apifox-folder: ''
-    Result:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorInfo:
-          type: string
-        result:
-          type: object
-          x-apifox-orders: []
-          properties: {}
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     CreateOutputDTO:

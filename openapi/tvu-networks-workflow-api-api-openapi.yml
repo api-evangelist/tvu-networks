@@ -360,35 +360,6 @@ components:
       - errorBody
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    AgentWorkFlowDTO:
-      required:
-      - name
-      - description
-      - input
-      - output
-      type: object
-      properties:
-        name:
-          type: string
-          description: workflow name
-          examples:
-          - workflowTest
-        description:
-          type: string
-          description: workflow description
-          examples:
-          - workflow test description
-        input:
-          $ref: '#/components/schemas/Input'
-        output:
-          $ref: '#/components/schemas/Output'
-      x-apifox-orders:
-      - name
-      - description
-      - input
-      - output
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     Input:
       required:
       - pid
@@ -426,6 +397,35 @@ components:
       - errorCode
       - errorInfo
       - result
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    AgentWorkFlowDTO:
+      required:
+      - name
+      - description
+      - input
+      - output
+      type: object
+      properties:
+        name:
+          type: string
+          description: workflow name
+          examples:
+          - workflowTest
+        description:
+          type: string
+          description: workflow description
+          examples:
+          - workflow test description
+        input:
+          $ref: '#/components/schemas/Input'
+        output:
+          $ref: '#/components/schemas/Output'
+      x-apifox-orders:
+      - name
+      - description
+      - input
+      - output
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     AgentUpdateWorkFlowDTO:

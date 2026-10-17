@@ -434,6 +434,48 @@ components:
       - replayApp
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
+    ProgramInput:
+      required:
+      - id
+      type: object
+      properties:
+        features:
+          description: Program Features
+          $ref: '#/components/schemas/ProgramFeaturesInput'
+        name:
+          type: string
+          description: Program Name
+          examples:
+          - nlgCdHMmylpklbufhdUbenKpslJxwZnm
+        id:
+          type: integer
+          description: Program ID
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
+      - features
+      - name
+      - id
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    SortField:
+      type: object
+      properties:
+        sortDirection:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        name:
+          type: string
+          examples:
+          - IPjwhveYYdMMpDJZvjANlUFUTlJAxcQz
+      x-apifox-orders:
+      - sortDirection
+      - name
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     ProgramQuery:
       type: object
       properties:
@@ -458,48 +500,6 @@ components:
       - pageIndex
       - pageSize
       - sortFields
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    SortField:
-      type: object
-      properties:
-        sortDirection:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        name:
-          type: string
-          examples:
-          - IPjwhveYYdMMpDJZvjANlUFUTlJAxcQz
-      x-apifox-orders:
-      - sortDirection
-      - name
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    ProgramInput:
-      required:
-      - id
-      type: object
-      properties:
-        features:
-          description: Program Features
-          $ref: '#/components/schemas/ProgramFeaturesInput'
-        name:
-          type: string
-          description: Program Name
-          examples:
-          - nlgCdHMmylpklbufhdUbenKpslJxwZnm
-        id:
-          type: integer
-          description: Program ID
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - features
-      - name
-      - id
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

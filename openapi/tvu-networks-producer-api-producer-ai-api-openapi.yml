@@ -263,20 +263,6 @@ components:
       - timestamp
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    PlayAllClipPlayerRequest:
-      required:
-      - productionId
-      type: object
-      properties:
-        productionId:
-          type: integer
-          format: int64
-          examples:
-          - 0
-      x-apifox-orders:
-      - productionId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     UpdateAISettingRequest:
       required:
       - productionId
@@ -311,6 +297,20 @@ components:
       - clipSlots
       - clipSize
       - scoreboardSlot
+      - productionId
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    PlayAllClipPlayerRequest:
+      required:
+      - productionId
+      type: object
+      properties:
+        productionId:
+          type: integer
+          format: int64
+          examples:
+          - 0
+      x-apifox-orders:
       - productionId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''

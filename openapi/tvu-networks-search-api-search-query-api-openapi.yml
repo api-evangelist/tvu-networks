@@ -237,24 +237,118 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959088.md
 components:
   schemas:
-    controllers.SearchSummarizationResp:
+    models.MatchLogoRet:
       type: object
       properties:
-        code:
-          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+        name:
+          type: string
+        timestampEnd:
           type: integer
-        data:
-          description: return data
+        timestampStart:
+          type: integer
+      x-apifox-orders:
+      - name
+      - timestampEnd
+      - timestampStart
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SearchTsRange:
+      type: object
+      properties:
+        endtime:
+          type: integer
+          examples:
+          - 1778304241635
+        field:
+          type: string
+        starttime:
+          type: integer
+          examples:
+          - 1778304121635
+      x-apifox-orders:
+      - endtime
+      - field
+      - starttime
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.MatchSlugRet:
+      type: object
+      properties:
+        assetId:
+          type: string
+        highlight:
+          type: string
+        objectAsset:
+          type: string
+        slug:
+          type: string
+        timestampEnd:
+          type: integer
+        timestampStart:
+          type: integer
+      x-apifox-orders:
+      - assetId
+      - highlight
+      - objectAsset
+      - slug
+      - timestampEnd
+      - timestampStart
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SourceCondition:
+      type: object
+      properties:
+        eventList:
           type: array
           items:
-            $ref: '#/components/schemas/models.SummarizationItem'
-        message:
-          description: Human-readable result message
+            $ref: '#/components/schemas/models.EventCondition'
+        source:
+          type: string
+        sourceName:
           type: string
       x-apifox-orders:
-      - code
-      - data
-      - message
+      - eventList
+      - source
+      - sourceName
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.MatchResult:
+      type: object
+      properties:
+        matchList:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.MatchListRet'
+        size:
+          type: integer
+          examples:
+          - 0
+        total:
+          type: integer
+          examples:
+          - 0
+      x-apifox-orders:
+      - matchList
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.SummarizationItem:
+      type: object
+      properties:
+        endTime:
+          type: integer
+        sourceObjectId:
+          type: string
+        startTime:
+          type: integer
+        summarization:
+          type: string
+      x-apifox-orders:
+      - endTime
+      - sourceObjectId
+      - startTime
+      - summarization
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.MatchListRet:
@@ -287,6 +381,66 @@ components:
       - hitSlug
       - logos
       - slugs
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.MediaFileRet:
+      type: object
+      properties:
+        RPeerId:
+          type: string
+        TPeerId:
+          type: string
+        mType:
+          description: rrs or mma
+          type: string
+        objectGrid:
+          type: string
+        objectMedia:
+          type: string
+        path:
+          type: string
+        recordEnd:
+          type: integer
+        recordStart:
+          type: integer
+        srcInfo:
+          type: string
+        storageInfo:
+          type: string
+        thumbnailPath:
+          type: string
+        uid:
+          type: string
+      x-apifox-orders:
+      - RPeerId
+      - TPeerId
+      - mType
+      - objectGrid
+      - objectMedia
+      - path
+      - recordEnd
+      - recordStart
+      - srcInfo
+      - storageInfo
+      - thumbnailPath
+      - uid
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AutoSearchReq:
+      type: object
+      properties:
+        criteria:
+          $ref: '#/components/schemas/models.CriteriasCondition'
+        tsRange:
+          $ref: '#/components/schemas/models.SearchTsRange'
+        userId:
+          type: string
+          examples:
+          - ff8080816b793b5a016b8f11f2090057
+      x-apifox-orders:
+      - criteria
+      - tsRange
+      - userId
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.CriteriasCondition:
@@ -336,213 +490,6 @@ components:
       - persons
       - relationship
       - sources
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AutoSearchReq:
-      type: object
-      properties:
-        criteria:
-          $ref: '#/components/schemas/models.CriteriasCondition'
-        tsRange:
-          $ref: '#/components/schemas/models.SearchTsRange'
-        userId:
-          type: string
-          examples:
-          - ff8080816b793b5a016b8f11f2090057
-      x-apifox-orders:
-      - criteria
-      - tsRange
-      - userId
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SearchTsRange:
-      type: object
-      properties:
-        endtime:
-          type: integer
-          examples:
-          - 1778304241635
-        field:
-          type: string
-        starttime:
-          type: integer
-          examples:
-          - 1778304121635
-      x-apifox-orders:
-      - endtime
-      - field
-      - starttime
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.MediaFileRet:
-      type: object
-      properties:
-        RPeerId:
-          type: string
-        TPeerId:
-          type: string
-        mType:
-          description: rrs or mma
-          type: string
-        objectGrid:
-          type: string
-        objectMedia:
-          type: string
-        path:
-          type: string
-        recordEnd:
-          type: integer
-        recordStart:
-          type: integer
-        srcInfo:
-          type: string
-        storageInfo:
-          type: string
-        thumbnailPath:
-          type: string
-        uid:
-          type: string
-      x-apifox-orders:
-      - RPeerId
-      - TPeerId
-      - mType
-      - objectGrid
-      - objectMedia
-      - path
-      - recordEnd
-      - recordStart
-      - srcInfo
-      - storageInfo
-      - thumbnailPath
-      - uid
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SourceCondition:
-      type: object
-      properties:
-        eventList:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.EventCondition'
-        source:
-          type: string
-        sourceName:
-          type: string
-      x-apifox-orders:
-      - eventList
-      - source
-      - sourceName
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.EventCondition:
-      type: object
-      properties:
-        endTime:
-          type: integer
-        event:
-          type: string
-        eventName:
-          type: string
-        startTime:
-          type: integer
-      x-apifox-orders:
-      - endTime
-      - event
-      - eventName
-      - startTime
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.MatchCaptionRet:
-      type: object
-      properties:
-        highlight:
-          type: string
-        text:
-          type: string
-        timestamp:
-          type: integer
-        timestampEnd:
-          type: integer
-      x-apifox-orders:
-      - highlight
-      - text
-      - timestamp
-      - timestampEnd
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.SummarizationRequest:
-      type: object
-      properties:
-        end:
-          type: integer
-          examples:
-          - 1778307400115
-        mode:
-          type: integer
-          examples:
-          - 0
-        path:
-          type: string
-          examples:
-          - ''
-        sourceObject:
-          type: string
-          examples:
-          - '1326008830139699200'
-        start:
-          type: integer
-          examples:
-          - 1778306200900
-        type:
-          type: integer
-          examples:
-          - 3
-      x-apifox-orders:
-      - end
-      - mode
-      - path
-      - sourceObject
-      - start
-      - type
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.MatchSlugRet:
-      type: object
-      properties:
-        assetId:
-          type: string
-        highlight:
-          type: string
-        objectAsset:
-          type: string
-        slug:
-          type: string
-        timestampEnd:
-          type: integer
-        timestampStart:
-          type: integer
-      x-apifox-orders:
-      - assetId
-      - highlight
-      - objectAsset
-      - slug
-      - timestampEnd
-      - timestampStart
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.MatchLogoRet:
-      type: object
-      properties:
-        name:
-          type: string
-        timestampEnd:
-          type: integer
-        timestampStart:
-          type: integer
-      x-apifox-orders:
-      - name
-      - timestampEnd
-      - timestampStart
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.SearchSummarizationRequest:
@@ -610,24 +557,6 @@ components:
       - timestampStart
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.HitSlug:
-      type: object
-      properties:
-        objectAsset:
-          type: string
-        slugName:
-          type: string
-        timestampEnd:
-          type: integer
-        timestampStart:
-          type: integer
-      x-apifox-orders:
-      - objectAsset
-      - slugName
-      - timestampEnd
-      - timestampStart
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     controllers.GetSummarizationResp:
       type: object
       properties:
@@ -658,43 +587,114 @@ components:
       - summarization
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.SummarizationItem:
+    models.HitSlug:
+      type: object
+      properties:
+        objectAsset:
+          type: string
+        slugName:
+          type: string
+        timestampEnd:
+          type: integer
+        timestampStart:
+          type: integer
+      x-apifox-orders:
+      - objectAsset
+      - slugName
+      - timestampEnd
+      - timestampStart
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.SearchSummarizationResp:
+      type: object
+      properties:
+        code:
+          description: 'Response code: 0=success, 1001=invalid request, 1002=invalid session, 1404=access denied'
+          type: integer
+        data:
+          description: return data
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SummarizationItem'
+        message:
+          description: Human-readable result message
+          type: string
+      x-apifox-orders:
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.MatchCaptionRet:
+      type: object
+      properties:
+        highlight:
+          type: string
+        text:
+          type: string
+        timestamp:
+          type: integer
+        timestampEnd:
+          type: integer
+      x-apifox-orders:
+      - highlight
+      - text
+      - timestamp
+      - timestampEnd
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.EventCondition:
       type: object
       properties:
         endTime:
           type: integer
-        sourceObjectId:
+        event:
+          type: string
+        eventName:
           type: string
         startTime:
           type: integer
-        summarization:
-          type: string
       x-apifox-orders:
       - endTime
-      - sourceObjectId
+      - event
+      - eventName
       - startTime
-      - summarization
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.MatchResult:
+    models.SummarizationRequest:
       type: object
       properties:
-        matchList:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.MatchListRet'
-        size:
+        end:
+          type: integer
+          examples:
+          - 1778307400115
+        mode:
           type: integer
           examples:
           - 0
-        total:
+        path:
+          type: string
+          examples:
+          - ''
+        sourceObject:
+          type: string
+          examples:
+          - '1326008830139699200'
+        start:
           type: integer
           examples:
-          - 0
+          - 1778306200900
+        type:
+          type: integer
+          examples:
+          - 3
       x-apifox-orders:
-      - matchList
-      - size
-      - total
+      - end
+      - mode
+      - path
+      - sourceObject
+      - start
+      - type
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

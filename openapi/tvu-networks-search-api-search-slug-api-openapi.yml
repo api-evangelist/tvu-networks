@@ -110,20 +110,49 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959091.md
 components:
   schemas:
-    models.GpsInfo:
+    models.SearchTsRange:
       type: object
       properties:
-        distance:
-          type: number
-        lat:
-          type: number
-        lon:
-          type: number
+        endtime:
+          type: integer
+          examples:
+          - 1778304241635
+        field:
+          type: string
+        starttime:
+          type: integer
+          examples:
+          - 1778304121635
       x-apifox-orders:
-      - distance
-      - lat
-      - lon
+      - endtime
+      - field
+      - starttime
       x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    controllers.CapReturnData:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+          examples:
+          - 1
+        total:
+          type: integer
+          examples:
+          - 3
+      x-apifox-orders:
+      - list
+      - size
+      - total
+      x--orders:
+      - list
+      - size
+      - total
+      x--ignore-properties: []
       x-apifox-folder: ''
     models.AccessPermission:
       type: object
@@ -162,16 +191,42 @@ components:
       - public
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.SearchDurationRange:
+    controllers.SearchCombtagsResp:
       type: object
       properties:
-        durationEnd:
+        code:
+          description: error code
           type: integer
-        durationStart:
-          type: integer
+          examples:
+          - 0
+        data:
+          description: return data
+          allOf:
+          - $ref: '#/components/schemas/controllers.CapReturnData'
+        message:
+          description: error message
+          type: string
+          examples:
+          - succ
       x-apifox-orders:
-      - durationEnd
-      - durationStart
+      - code
+      - data
+      - message
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.GpsInfo:
+      type: object
+      properties:
+        distance:
+          type: number
+        lat:
+          type: number
+        lon:
+          type: number
+      x-apifox-orders:
+      - distance
+      - lat
+      - lon
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.SearchLocation:
@@ -185,31 +240,6 @@ components:
       - br
       - tl
       x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.CapReturnData:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            type: string
-        size:
-          type: integer
-          examples:
-          - 1
-        total:
-          type: integer
-          examples:
-          - 3
-      x-apifox-orders:
-      - list
-      - size
-      - total
-      x--orders:
-      - list
-      - size
-      - total
-      x--ignore-properties: []
       x-apifox-folder: ''
     models.SearchTags:
       type: object
@@ -378,46 +408,16 @@ components:
       - userid
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.SearchTsRange:
+    models.SearchDurationRange:
       type: object
       properties:
-        endtime:
+        durationEnd:
           type: integer
-          examples:
-          - 1778304241635
-        field:
-          type: string
-        starttime:
+        durationStart:
           type: integer
-          examples:
-          - 1778304121635
       x-apifox-orders:
-      - endtime
-      - field
-      - starttime
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    controllers.SearchCombtagsResp:
-      type: object
-      properties:
-        code:
-          description: error code
-          type: integer
-          examples:
-          - 0
-        data:
-          description: return data
-          allOf:
-          - $ref: '#/components/schemas/controllers.CapReturnData'
-        message:
-          description: error message
-          type: string
-          examples:
-          - succ
-      x-apifox-orders:
-      - code
-      - data
-      - message
+      - durationEnd
+      - durationStart
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:

@@ -136,6 +136,39 @@ paths:
       x-source-doc: https://docs.tvunetworks.cn/api-468959110.md
 components:
   schemas:
+    models.AppearanceRelationItem:
+      type: object
+      properties:
+        classType:
+          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
+          type: integer
+        content:
+          description: List of appearance content items in this class
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceContent'
+      x-apifox-orders:
+      - classType
+      - content
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceRelationsResult:
+      type: object
+      properties:
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceRelations'
+        size:
+          type: integer
+        total:
+          type: integer
+      x-apifox-orders:
+      - relations
+      - size
+      - total
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
     models.AppearanceData:
       type: object
       properties:
@@ -169,65 +202,6 @@ components:
       - position
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.AppearanceSuggestionResponse:
-      type: object
-      properties:
-        errorCode:
-          description: 'Business result code: 0=success, 2002=no results, 2008=access denied'
-          type: integer
-        errorInfo:
-          description: Human-readable result message
-          type: string
-        result:
-          description: List of appearance entity suggestions; present only on success
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceData'
-      x-apifox-orders:
-      - errorCode
-      - errorInfo
-      - result
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceRelations:
-      type: object
-      properties:
-        classType:
-          description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
-          type: integer
-        content:
-          description: Content identifier of the appearance
-          type: string
-        groupId:
-          description: Group ID this appearance belongs to
-          type: string
-        name:
-          description: Display name of the appearance entity
-          type: string
-        personId:
-          description: Person ID (applicable when classType=2)
-          type: string
-        position:
-          type: string
-        relations:
-          description: Related appearances grouped by class type
-          type: array
-          items:
-            $ref: '#/components/schemas/models.AppearanceRelationItem'
-        thumbnailPath:
-          description: Path to the thumbnail image
-          type: string
-      x-apifox-orders:
-      - classType
-      - content
-      - groupId
-      - name
-      - personId
-      - position
-      - relations
-      - thumbnailPath
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     models.AppearanceRelationsResponse:
       type: object
       properties:
@@ -247,21 +221,70 @@ components:
       - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.AppearanceRelationsResult:
+    models.AppearanceRelationsRequestV2:
       type: object
       properties:
-        relations:
+        appearanceId:
+          description: Filter by specific appearance ID
+          type: string
+        detectionTypes:
+          description: 'Filter by detection type: 0=known person, 1=unknown person, 2=logo/brand, 3=text/number'
           type: array
           items:
-            $ref: '#/components/schemas/models.AppearanceRelations'
-        size:
+            type: integer
+        endTimestamp:
+          description: Search end time in milliseconds; defaults to current time
           type: integer
-        total:
+        language:
+          description: Language code for search (e.g., en, cn)
+          type: string
+        pageNum:
+          description: Page number, starting from 1
+          type: integer
+        pageSize:
+          description: Number of results per page
+          type: integer
+        query:
+          description: Text query to filter appearances by name
+          type: string
+        sourceObjects:
+          description: List of source object IDs to query appearance relations for; required
+          type: array
+          items:
+            type: string
+        startTimestamp:
+          description: Search start time in milliseconds; defaults to 7 days ago
           type: integer
       x-apifox-orders:
-      - relations
-      - size
-      - total
+      - appearanceId
+      - detectionTypes
+      - endTimestamp
+      - language
+      - pageNum
+      - pageSize
+      - query
+      - sourceObjects
+      - startTimestamp
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    models.AppearanceSuggestionResponse:
+      type: object
+      properties:
+        errorCode:
+          description: 'Business result code: 0=success, 2002=no results, 2008=access denied'
+          type: integer
+        errorInfo:
+          description: Human-readable result message
+          type: string
+        result:
+          description: List of appearance entity suggestions; present only on success
+          type: array
+          items:
+            $ref: '#/components/schemas/models.AppearanceData'
+      x-apifox-orders:
+      - errorCode
+      - errorInfo
+      - result
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
     models.AppearanceSuggestionRequestV2:
@@ -314,66 +337,43 @@ components:
       - position
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    models.AppearanceRelationItem:
+    models.AppearanceRelations:
       type: object
       properties:
         classType:
           description: 'Appearance class type: 0=logo/brand, 1=text/number, 2=person/face'
           type: integer
         content:
-          description: List of appearance content items in this class
+          description: Content identifier of the appearance
+          type: string
+        groupId:
+          description: Group ID this appearance belongs to
+          type: string
+        name:
+          description: Display name of the appearance entity
+          type: string
+        personId:
+          description: Person ID (applicable when classType=2)
+          type: string
+        position:
+          type: string
+        relations:
+          description: Related appearances grouped by class type
           type: array
           items:
-            $ref: '#/components/schemas/models.AppearanceContent'
+            $ref: '#/components/schemas/models.AppearanceRelationItem'
+        thumbnailPath:
+          description: Path to the thumbnail image
+          type: string
       x-apifox-orders:
       - classType
       - content
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    models.AppearanceRelationsRequestV2:
-      type: object
-      properties:
-        appearanceId:
-          description: Filter by specific appearance ID
-          type: string
-        detectionTypes:
-          description: 'Filter by detection type: 0=known person, 1=unknown person, 2=logo/brand, 3=text/number'
-          type: array
-          items:
-            type: integer
-        endTimestamp:
-          description: Search end time in milliseconds; defaults to current time
-          type: integer
-        language:
-          description: Language code for search (e.g., en, cn)
-          type: string
-        pageNum:
-          description: Page number, starting from 1
-          type: integer
-        pageSize:
-          description: Number of results per page
-          type: integer
-        query:
-          description: Text query to filter appearances by name
-          type: string
-        sourceObjects:
-          description: List of source object IDs to query appearance relations for; required
-          type: array
-          items:
-            type: string
-        startTimestamp:
-          description: Search start time in milliseconds; defaults to 7 days ago
-          type: integer
-      x-apifox-orders:
-      - appearanceId
-      - detectionTypes
-      - endTimestamp
-      - language
-      - pageNum
-      - pageSize
-      - query
-      - sourceObjects
-      - startTimestamp
+      - groupId
+      - name
+      - personId
+      - position
+      - relations
+      - thumbnailPath
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes:
