@@ -1,0 +1,24 @@
+generated: '2026-10-23'
+method: searched
+checked:
+- adobe-premiere/integrations/adobe-premiere-integration-edges.yml
+source:
+- adobe-premiere/integrations/adobe-premiere-integration-edges.yml
+edges:
+- partner_name: Adobe Premiere Pro (own)
+  partner: adobe-premiere
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/cc/200363/tvu-search-plug-in-for-adobe-premiere-pro
+  mirror_of: adobe-premiere/integrations/adobe-premiere-integration-edges.yml
+  apps:
+  - TVU Search Plug-In for Adobe Premiere Pro
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
